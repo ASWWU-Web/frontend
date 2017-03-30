@@ -16,7 +16,7 @@ import { AppComponent }  from './app.component';
     NgbModule.forRoot(),
   ],
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   bootstrap: [ AppComponent ]
 })
