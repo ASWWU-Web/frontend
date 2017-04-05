@@ -5,7 +5,7 @@ import { HttpModule }    from '@angular/http';
 import { NgbModule }     from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent }  from './app.component';
-
+import { HomeComponent } from './home/home.component'
 
 
 @NgModule({
@@ -16,7 +16,8 @@ import { AppComponent }  from './app.component';
     NgbModule.forRoot(),
   ],
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   bootstrap: [ AppComponent ]
 })
