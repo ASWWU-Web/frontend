@@ -37,7 +37,7 @@ import { HomeComponent, SubmitComponent, DoneComponent, AdminComponent, AdminCre
         component: AdminCreateComponent
       },
       {
-        path: 'admin/edit/:ID',
+        path: 'admin/edit/:formID',
         component: AdminEditComponent
       },
       {
