@@ -6,14 +6,8 @@ import { RouterModule }  from '@angular/router';
 import { NgbModule }     from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent }  from './app.component';
-import { HomeComponent } from './routes/home/home.component';
-import { SubmitComponent } from './routes/submit/submit.component';
-import { DoneComponent } from './routes/done/done.component';
-import { AdminComponent } from './routes/admin/admin.component';
-import { AdminCreateComponent } from './routes/admin/create/admin-create.component';
-import { AdminEditComponent } from './routes/admin/edit/admin-edit.component';
-import { AdminReviewComponent } from './routes/admin/review/admin-review.component';
-import { AdminReviewApplicationComponent } from './routes/admin/review-application/admin-review-application.component';
+
+import { HomeComponent, SubmitComponent, DoneComponent, AdminComponent, AdminCreateComponent, AdminEditComponent, AdminReviewComponent, AdminReviewApplicationComponent } from './routes/routes';
 
 
 @NgModule({
