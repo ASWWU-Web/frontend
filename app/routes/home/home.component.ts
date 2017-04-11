@@ -13,5 +13,10 @@ export class HomeComponent {
 		{formID: "3", name: "web wizard", img: "http://lorempixel.com/300/200/abstract/", desc: "the best job"},
 		{formID: "4", name: "regular wizard", img: "http://lorempixel.com/300/200/abstract/", desc: "another good one"},
 		{formID: "5", name: "president", img: "http://lorempixel.com/300/200/abstract/", desc: "of the US? or just ASWWU?"},
+		{formID: "6", name: "dog whisperer", img: "http://lorempixel.com/300/200/abstract/", desc: "talk to dogs"},
+		{formID: "7", name: "chef", img: "http://lorempixel.com/300/200/abstract/", desc: "cookin'"},
+		{formID: "8", name: "web wizard", img: "http://lorempixel.com/300/200/abstract/", desc: "the best job"},
+		{formID: "9", name: "regular wizard", img: "http://lorempixel.com/300/200/abstract/", desc: "another good one"},
+		{formID: "10", name: "president", img: "http://lorempixel.com/300/200/abstract/", desc: "of the US? or just ASWWU?"},
 	];
 }
