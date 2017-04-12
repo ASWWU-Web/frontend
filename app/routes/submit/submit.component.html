@@ -1,0 +1,25 @@
+<div id="border1" class="side"></div>
+<div id="border2" class="side"></div>
+
+<div id="jumbotron" class="container">
+	<div class="row">
+		<div class="col col-sm-12 col-md-8 offset-md-2">
+			<h1 id="title">
+				{{form.name}}
+			</h1>
+		</div>
+		<div class="row">
+      <div class="col col-sm-12 col-md-8 offset-md-2">
+        <h2>{{form.desc}}</h2>
+      </div>
+    </div>
+	</div>
+</div>
+<div id="questions" class="container">
+  <form id="form{{form.formID}}">
+    <div *ngFor="let question of form.questions" class="form-group">
+      <label for="{{question.ID}}">{{question.text}}</label>
+      <input type="text" class="form-control" id="{{question.ID}}">
+    </div>
+  </form>
+</div>
