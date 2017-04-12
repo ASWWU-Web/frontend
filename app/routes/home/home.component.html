@@ -29,7 +29,7 @@
       <div class="row justify-content-center">
         <div class="col col-sm-12 col-md-8">
           <div class="form-group">
-            <input type="text" class="form-control" placeholder="Search Opportunities..">
+            <input [(ngModel)]="query" (input)="filterItems()" type="text" class="form-control" placeholder="Search Opportunities..">
           </div>
         </div>
       </div>
@@ -40,7 +40,7 @@
       <div id="cards" class="row justify-content-center">
 
         <!-- Cards -->
-        <div *ngFor="let form of forms" class="col col-sm-12 col-md-6 col-lg-3">
+        <div *ngFor="let form of filtered" class="col col-sm-12 col-md-6 col-lg-3">
           <div class="card">
           <img class="card-img-top" src="{{form.img}}" alt="Card image cap">
             <div class="card-block">
@@ -51,5 +51,8 @@
             </div>
           </div>
         </div>
+          <div *ngIf="filtered.length == 0" class="col col-sm-12 col-md-6 col-lg-3 text-center">
+            <p> No results found.</p>
+          </div>
       </div>
     </div>
