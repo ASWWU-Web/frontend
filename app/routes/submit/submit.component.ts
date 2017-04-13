@@ -19,13 +19,14 @@ export class SubmitComponent implements OnInit {
 	ngOnInit() {
 		//build the empty answers array
 		this.form.questions.forEach((entry) => {
-			let answerObj = {ID: entry.ID, answer: ""};
+			let answerObj = {questionID: entry.ID, answer: ""};
 			this.answers.push(answerObj);
 		});
 	}
 
 	onSubmit() {
-		console.log(this.answers);
+		let submission = { jobID: this.formID, answers: this.answers};
+		console.log(submission);
 	}
 
 }
