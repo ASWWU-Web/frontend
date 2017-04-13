@@ -27,11 +27,9 @@ export class HomeComponent implements  OnInit {
     }
 
     filterItems() {
-      var self = this;
-      this.filtered = this.forms.filter(function(el) {
+      this.filtered = this.forms.filter((el) => {
           var doc = el.name + el.desc;
-         return doc.toLowerCase().indexOf(self.query.toLowerCase()) > -1;
+         return doc.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
       })
     }
 }
-
