@@ -63,6 +63,10 @@ h1, h2, h3, h4, h5, h6 {
   margin-bottom: 10px;
 }
 
+.card img {
+  object-fit: cover;
+}
+
 #cards div:nth-child(7n+1) a{
   color: white;
   background-color: #a1d61d;
