@@ -15,11 +15,16 @@
     </div>
 	</div>
 </div>
+
 <div id="questions" class="container">
-  <form id="form{{form.formID}}">
-    <div *ngFor="let question of form.questions" class="form-group">
+  <form (ngSubmit)="onSubmit()" #submitForm="ngForm" id="form{{form.formID}}">
+    <div *ngFor="let question of form.questions; let i = index;" class="form-group">
       <label for="{{question.ID}}">{{question.text}}</label>
-      <input type="text" class="form-control" id="{{question.ID}}">
+      <input type="text" class="form-control" id="{{question.ID}}"
+             required
+             [(ngModel)]="answers[i].answer" name="{{question.ID}}">
     </div>
   </form>
+
+  <button type="submit" class="btn btn-success">Submit</button>
 </div>
