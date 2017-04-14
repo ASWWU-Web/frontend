@@ -17,10 +17,9 @@ export class SubmitComponent {
 	formID: number;
 
 	constructor(private route: ActivatedRoute, private rs: RequestService) {
-		this.formID = +route.snapshot.params['formID'];	
-		//TODO, actually make some requests to the proper places
+		this.formID = route.snapshot.params['formID'];	
+		//TODO, actually make some requests to the proper places //need to send formID
 		//GET request for form 
-		//need to send formID
 		rs.get('/search/all', (data) => {
 			this.form = { formID: "1", name: "dog whisperer", img: "http://lorempixel.com/300/200/abstract/", desc: "talk to dogs", owner: "1", questions: [{ID: "1", text: "What's your favorite color?"}, {ID: "2", text: "What's the best animal?"}]};
 			rs.get('/search/all', (data) => {
@@ -46,7 +45,7 @@ export class SubmitComponent {
 	}
 
 	onSubmit() {
-		let submission = { jobID: this.formID, answers: this.answers};
+		let submission = { jobID: this.formID, username: "nolan.chinn", answers: this.answers};
 		console.log(submission);
 		this.rs.post('/forms/application/submit', submission, () => {}, null);
 	}
