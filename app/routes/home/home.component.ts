@@ -14,7 +14,7 @@ export class HomeComponent {
     filtered: any[] = [];
     forms: any[] = [];
 
-    constructor( rs: RequestService) {
+    constructor(private rs: RequestService) {
       rs.get('/search/all', (data) => {
         this.forms = [
             {formID: "1", name: "dog whisperer", img: "http://lorempixel.com/300/200/abstract/", desc: "talk to dogs"},
