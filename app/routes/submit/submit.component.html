@@ -20,9 +20,9 @@
   <form (ngSubmit)="onSubmit()" #submitForm="ngForm" id="form{{form.formID}}">
     <div *ngFor="let question of form.questions; let i = index;" class="form-group">
       <label for="{{question.ID}}">{{question.text}}</label>
-      <input type="text" class="form-control" id="{{question.ID}}"
+      <textarea type="text" class="form-control" id="{{question.ID}}"
              required
-             [(ngModel)]="answers[i].answer" name="{{question.ID}}">
+             [(ngModel)]="answers[i].answer" name="{{question.ID}}"></textarea>
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
   </form>

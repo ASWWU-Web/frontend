@@ -1,27 +1,48 @@
 import {Component, OnInit, NgModule} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 
+import { RequestService } from "../../RequestService/requests";
+
 
 @Component({
   selector: 'submit',
   templateUrl: 'app/routes/submit/submit.component.html',
+  providers: [ RequestService ]
 })
 
 export class SubmitComponent implements OnInit {
 	form: any = { formID: "1", name: "dog whisperer", img: "http://lorempixel.com/300/200/abstract/", desc: "talk to dogs", owner: "1", questions: [{ID: "1", text: "What's your favorite color?"}, {ID: "2", text: "What's the best animal?"}]};
+	app: any = { jobID: "1", answers: [ {questionID: "1", answer: "Roja"}, {questionID: "2", answer: "Dogs of course"}], username: "buddy.boy", status: "", last_update: ""};
 	answers: any[] = [];
 	formID: number;
 
-	constructor(route: ActivatedRoute) {
+	constructor(route: ActivatedRoute, rs: RequestService) {
 		this.formID = +route.snapshot.params['formID'];	
+		//TODO, actually make some requests to the proper places
+		//GET request for form 
+		//need to send formID
+		rs.get('/search/all', (data) => {
+		}, null);
+
+		//GET request for application
+		//need to send jobID (formID), and username (have to get username)
+		rs.get('/search/all', (data) => {
+		}, null);
 	}
 
 	ngOnInit() {
-		//build the empty answers array
-		this.form.questions.forEach((entry) => {
-			let answerObj = {questionID: entry.ID, answer: ""};
-			this.answers.push(answerObj);
-		});
+		if(!this.app) {
+			//build the empty answers array
+			this.form.questions.forEach((entry) => {
+				let answerObj = {questionID: entry.ID, answer: ""};
+				this.answers.push(answerObj);
+			});
+		} else {
+			this.app.answers.forEach((entry) => {
+				let answerObj = {questionID: entry.questionID, answer: entry.answer};
+				this.answers.push(answerObj);
+			});
+		}
 	}
 
 	onSubmit() {
