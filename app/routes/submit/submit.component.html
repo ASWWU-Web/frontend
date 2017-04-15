@@ -5,24 +5,25 @@
 	<div class="row">
 		<div class="col col-sm-12 col-md-8 offset-md-2">
 			<h1 id="title">
-				{{form.name}}
+				{{form?.name}}
 			</h1>
 		</div>
 		<div class="row">
       <div class="col col-sm-12 col-md-8 offset-md-2">
-        <h2>{{form.desc}}</h2>
+        <h2>{{form?.desc}}</h2>
       </div>
     </div>
 	</div>
 </div>
-
 <div id="questions" class="container">
-  <form (ngSubmit)="onSubmit()" #submitForm="ngForm" id="form{{form.formID}}">
-    <div *ngFor="let question of form.questions; let i = index;" class="form-group">
-      <label for="{{question.ID}}">{{question.text}}</label>
-      <input type="text" class="form-control" id="{{question.ID}}"
-             required
-             [(ngModel)]="answers[i].answer" name="{{question.ID}}">
+  <form (ngSubmit)="onSubmit()" #submitForm="ngForm" id="form{{form?.formID}}">
+    <div *ngFor="let question of form?.questions; let i = index;" class="form-group">
+      <div *ngIf="question&&answers&&answers[i]">
+        <label for="{{question?.ID}}">{{question.text}}</label>
+        <textarea type="text" class="form-control" id="{{question?.ID}}"
+               required
+               [(ngModel)]="answers[i].answer" name="{{question?.ID}}"></textarea>
+      </div>
     </div>
     <button type="submit" class="btn btn-success">Submit</button>
   </form>
