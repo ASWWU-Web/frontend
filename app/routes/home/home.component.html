@@ -28,8 +28,30 @@
     <div id="searchBar" class="container">
       <div class="row justify-content-center">
         <div class="col col-sm-12 col-md-8">
-          <div class="form-group">
-            <input [(ngModel)]="query" (input)="filterItems()" type="text" class="form-control" placeholder="Search Opportunities..">
+          <div class="form-group row justify-content-center">
+
+              <div class="col col-sm-12 col-md-6">
+                  <input class="form-control " [(ngModel)]="query" (input)="filterItems()" type="text" placeholder="Search Opportunities..">
+              </div>
+              <div class="col col-sm-12 col-md-6">
+                  <select class="custom-select col col-sm-12" [(ngModel)]="department" (change)="filterItems()">
+                    <option selected [value]="''">Select a department...</option>
+                    <option [value]="'Executive'">Executive</option>
+                    <option [value]="'Senate'">Senate</option>
+                    <option [value]="'Social'">Social</option>
+                    <option [value]="'Spiritual'">Spiritual</option>
+                    <option [value]="'Global Service'">Global Service</option>
+                    <option [value]="'Marketing'">Marketing</option>
+                    <option [value]="'Web'">Web</option>
+                    <option [value]="'Collegian'">The Collegian</option>
+                    <option [value]="'Video'">Video</option>
+                    <option [value]="'Photo'">Photo</option>
+                    <option [value]="'Mountain Ash'">Mountain Ash</option>
+                    <option [value]="'Atlas'">The Atlas</option>
+                    <option [value]="'Tread Shed'">The Tread Shed</option>
+                    <option [value]="'Outdoors'">Outdoors</option>
+                  </select>
+              </div>
           </div>
         </div>
       </div>
