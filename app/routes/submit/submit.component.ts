@@ -36,8 +36,8 @@ export class SubmitComponent {
 						this.answers.push(answerObj);
 					});
 				}
-			}, null);
-		}, null);
+			}, undefined);
+		}, undefined);
 
 		//GET request for application
 		//need to send jobID (formID), and username (have to get username)
@@ -45,9 +45,9 @@ export class SubmitComponent {
 	}
 
 	onSubmit() {
-		let submission = { jobID: this.formID, username: "nolan.chinn", answers: this.answers};
+		let submission = { jobID: this.formID, username: "ryan.rabello", answers: this.answers};
 		console.log(submission);
-		this.rs.post('/forms/application/submit', submission, () => {}, null);
+		this.rs.postxwww('/forms/application/submit', submission, (data) => {console.log(data);}, undefined);
 	}
 
 }

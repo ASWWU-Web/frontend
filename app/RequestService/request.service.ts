@@ -3,7 +3,7 @@
 
 import { Injectable } from '@angular/core';
 
-import { Headers, Http, RequestOptions } from '@angular/http';
+import { Headers, Http, RequestOptions, URLSearchParams } from '@angular/http';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
@@ -62,7 +62,8 @@ export class RequestService {
     }
 
     let headers = new Headers({
-      'Content-Type': 'application/json'
+      //'Content-Type': 'application/json'
+      'Content-Type': 'application/x-www-form-urlencoded'
     });
     let options = new RequestOptions({ headers: headers });
 
@@ -83,6 +84,15 @@ export class RequestService {
         );
   }
 
+  private objToSearchParams(obj): URLSearchParams{
+    let params: URLSearchParams = new URLSearchParams();
+    for (var key in obj) {
+        if (obj.hasOwnProperty(key))
+            params.set(key, JSON.stringify(obj[key]));
+    }
+    return params;
+  }
+
   /*
   * Functions to make get and post requests
   * If a full url isn't specified, the default is aswwu.com/ and then the path given
@@ -99,6 +109,20 @@ export class RequestService {
   }
   post(uri: string, data: any, afterRequest, catchError): void {
     let body = JSON.stringify(data);
+    this.verify();
+    let req = this.createRequest(uri);
+    this.http.post(req.url, body, req.options)
+      .map(res => res.json())
+      .subscribe(
+        data => afterRequest(data),
+        err => (catchError ? catchError(err) : console.error(err))
+      );
+  }
+
+  postxwww(uri: string, data: any, afterRequest, catchError): void {
+    //let body = JSON.stringify(data);
+    let body = this.objToSearchParams(data);
+    console.log(body);
     this.verify();
     let req = this.createRequest(uri);
     this.http.post(req.url, body, req.options)
