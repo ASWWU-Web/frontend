@@ -53,7 +53,7 @@ export class RequestService {
   constructor(private http: Http) { }
 
 
-  private createRequest(uri: string): any {
+  private createRequest(uri: string, contentType: string = "application/json"): any {
     let url = uri;
     if (!url.startsWith("http")) {
       url = SERVER_URL;
@@ -62,8 +62,8 @@ export class RequestService {
     }
 
     let headers = new Headers({
-      //'Content-Type': 'application/json'
-      'Content-Type': 'application/x-www-form-urlencoded'
+      'Content-Type': contentType
+      //'Content-Type': 'application/x-www-form-urlencoded'
     });
     let options = new RequestOptions({ headers: headers });
 
@@ -87,8 +87,13 @@ export class RequestService {
   private objToSearchParams(obj): URLSearchParams{
     let params: URLSearchParams = new URLSearchParams();
     for (var key in obj) {
-        if (obj.hasOwnProperty(key))
-            params.set(key, JSON.stringify(obj[key]));
+        if (obj.hasOwnProperty(key)){
+          if(typeof obj[key] == "string"){
+            params.append(key, obj[key]);
+          }else {
+            params.append(key, JSON.stringify(obj[key]));
+          }
+        }
     }
     return params;
   }
@@ -124,8 +129,8 @@ export class RequestService {
     let body = this.objToSearchParams(data);
     console.log(body);
     this.verify();
-    let req = this.createRequest(uri);
-    this.http.post(req.url, body, req.options)
+    let req = this.createRequest(uri, "application/x-www-form-urlencoded");
+    this.http.post(req.url, body.toString(), req.options)
       .map(res => res.json())
       .subscribe(
         data => afterRequest(data),
