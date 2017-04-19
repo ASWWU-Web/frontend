@@ -1,0 +1,27 @@
+<h1>New Application</h1>
+<label for="jobName">Job Name</label>
+<input type="text" class="form-control" id="jobName"
+       required
+       [(ngModel)]="jobName" name="jobName">
+
+<label for="jobDesc">Job description</label>
+<textarea type="text" class="form-control" id="jobDesc"
+       required
+       [(ngModel)]="jobDesc" name="jobDesc"></textarea>
+
+<label for="visibility">Visibility</label>
+<select class="form-control" [(ngModel)]="visibility">
+       <option selected [value]="'TRUE'"> Visible</option>
+       <option [value]="'FALSE'"> Hidden</option>
+</select>
+
+<label for="imgLink">Image Link</label>
+<input type="text" class="form-control" id="imgLink" required [(ngModel)]="imgLink" name="imgLink">
+
+<div *ngFor="let question of questions; let i = index;" class="form-group">
+    <label for="{{i}}">Question {{i + 1}}</label>
+    <textarea type="text" class="form-control" required [(ngModel)]="questions[i].question" name="{{i}}"></textarea>
+</div>
+
+<button class="btn btn-secondary"(click)="addQuestion()">Add a question</button>
+<button class="btn btn-success" (click)="submitForm()">Submit</button>

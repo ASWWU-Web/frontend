@@ -127,7 +127,6 @@ export class RequestService {
   postxwww(uri: string, data: any, afterRequest, catchError): void {
     //let body = JSON.stringify(data);
     let body = this.objToSearchParams(data);
-    console.log(body);
     this.verify();
     let req = this.createRequest(uri, "application/x-www-form-urlencoded");
     this.http.post(req.url, body.toString(), req.options)

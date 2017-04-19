@@ -34,7 +34,6 @@ export class HomeComponent {
     }
 
     filterItems() {
-      console.log("filterItems(", this.query, this.department, ")");
       this.filtered = this.forms.filter((el) => {
           var doc = el.name + el.desc;
          return doc.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
