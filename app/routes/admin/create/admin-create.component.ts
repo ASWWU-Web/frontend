@@ -12,10 +12,11 @@ import { RequestService } from "../../../RequestService/requests";
 export class AdminCreateComponent implements OnInit {
   jobName: string;
   jobDesc: string;
-  visibility: string;
+  visibility: number = 1;
   owner: string;
   imgLink: string;
   questions: any[] = [{question: ""}];
+  department: string = "";
 
   constructor(private rs: RequestService, private router: Router) {}
 
@@ -39,7 +40,9 @@ export class AdminCreateComponent implements OnInit {
     this.rs.postxwww("/forms/job/new", {
       job_name: this.jobName,
       job_description: this.jobDesc,
-      visibility: this.visibility === "TRUE",
+      visibility: this.visibility,
+      department: this.department,
+      owner: this.owner,
       image: this.imgLink,
       questions: this.questions
 
