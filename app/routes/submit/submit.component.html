@@ -1,30 +1,44 @@
 <div id="border1" class="side"></div>
 <div id="border2" class="side"></div>
 
-<div id="jumbotron" class="container">
-	<div class="row">
-		<div class="col col-sm-12 col-md-8 offset-md-2">
-			<h1 id="title">
-				{{form?.name}}
-			</h1>
-		</div>
-		<div class="row">
+<div *ngIf="currentUser">
+  <div id="jumbotron" class="container">
+    <div class="row">
       <div class="col col-sm-12 col-md-8 offset-md-2">
-        <h2>{{form?.desc}}</h2>
+        <h1 id="title">
+          {{form?.name}}
+        </h1>
+      </div>
+      <div class="row">
+        <div class="col col-sm-12 col-md-8 offset-md-2">
+          <h2>{{form?.desc}}</h2>
+        </div>
       </div>
     </div>
-	</div>
+  </div>
+  <div id="questions" class="container">
+    <form (ngSubmit)="onSubmit()" #submitForm="ngForm" id="form{{form?.formID}}">
+      <div *ngFor="let question of gForm?.questions; let i = index;" class="form-group">
+        <div *ngIf="question&&gAnswers&&gAnswers[i]">
+          <label for="gen{{question?.ID}}">{{question.text}}</label>
+          <textarea type="text" class="form-control" id="gen{{question?.ID}}"
+                  required
+                  [(ngModel)]="gAnswers[i].answer" name="gen{{question?.ID}}"></textarea>
+        </div>
+      </div>
+      <div *ngFor="let question of form?.questions; let i = index;" class="form-group">
+        <div *ngIf="question&&answers&&answers[i]">
+          <label for="{{question?.ID}}">{{question.text}}</label>
+          <textarea type="text" class="form-control" id="{{question?.ID}}"
+                 required
+                 [(ngModel)]="answers[i].answer" name="{{question?.ID}}"></textarea>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-success">Submit</button>
+    </form>
+  </div>
 </div>
-<div id="questions" class="container">
-  <form (ngSubmit)="onSubmit()" #submitForm="ngForm" id="form{{form?.formID}}">
-    <div *ngFor="let question of form?.questions; let i = index;" class="form-group">
-      <div *ngIf="question&&answers&&answers[i]">
-        <label for="{{question?.ID}}">{{question.text}}</label>
-        <textarea type="text" class="form-control" id="{{question?.ID}}"
-               required
-               [(ngModel)]="answers[i].answer" name="{{question?.ID}}"></textarea>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-success">Submit</button>
-  </form>
+<div *ngIf="!currentUser">
+  <p>This page can only be viewed by someone logged in, please click the button to log in:</p>
+  <a class="btn btn-primary" href="https://saml.aswwu.com/?redirectURI=/submit/{{formID}}">Log in</a>
 </div>
