@@ -32,4 +32,10 @@ export class HomeComponent {
          return doc.toLowerCase().indexOf(this.department.toLowerCase()) > -1;
       })
     }
+    shorten(description: string) {
+      if(typeof description === "string") {
+        return description.split("\n")[0];
+      }
+      return "";
+    }
 }

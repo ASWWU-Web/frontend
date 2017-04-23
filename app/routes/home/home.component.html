@@ -55,9 +55,9 @@
           <img class="card-img-top" src="{{form.image}}" alt="Card image cap">
             <div class="card-block">
               <h3 class="card-title">{{form.job_name}}</h3>
-              <p class="card-text">{{form.job_description}}
+              <p class="card-text">{{shorten(form.job_description)}}
                 </p>
-              <a [routerLink]="['/submit', form.formID]" class="btn">View Opportunity</a>
+              <a [routerLink]="['/submit', form.jobID]" class="btn">View Opportunity</a>
             </div>
           </div>
         </div>
