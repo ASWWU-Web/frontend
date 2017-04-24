@@ -12,8 +12,11 @@ import { RequestService } from "../../RequestService/requests";
 
 export class SubmitComponent {
 	form: any;
+	gForm: any;
 	app: any;
+	gApp: any;
 	answers: any[] = [];
+	gAnswers:any[] = [];
 	formID: number;
 	currentUser: any;
 
@@ -22,6 +25,28 @@ export class SubmitComponent {
 		rs.verify((user) => {
 			if(user) {
 				this.currentUser = user;
+				console.log(this.currentUser);
+
+				rs.get('/search/all', (data) => {
+					this.gForm = { formID: "1", name: "generic", img: "http://lorempixel.com/300/200/abstract/", desc: "baseline stuff", owner: "1", questions: [{ID: "1", text: "What does ASWWU mean to you?"}]};
+					//GET request to retrieve previous application answers
+					rs.get('/search/all', (data) => {
+						this.gApp = { jobID: "1", answers: [ {questionID: "1", answer: "many things"}], username: "buddy.boy", status: "", last_update: ""};
+						if(!this.gApp) {
+							//build the empty answers array
+							this.gForm.questions.forEach((entry) => {
+								let answerObj = {questionID: entry.ID, answer: ""};
+								this.gAnswers.push(answerObj);
+							});
+						} else {
+							this.gApp.answers.forEach((entry) => {
+								let answerObj = {questionID: entry.questionID, answer: entry.answer};
+								this.gAnswers.push(answerObj);
+							});
+						}
+					}, undefined);
+				}, undefined);
+
 				//GET request to retrieve the form
 				rs.get('/search/all', (data) => {
 					this.form = { formID: "1", name: "dog whisperer", img: "http://lorempixel.com/300/200/abstract/", desc: "talk to dogs", owner: "1", questions: [{ID: "1", text: "What's your favorite color?"}, {ID: "2", text: "What's the best animal?"}]};

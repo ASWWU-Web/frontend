@@ -10,11 +10,11 @@ import { RequestService } from "../../../RequestService/requests";
 })
 
 export class AdminCreateComponent implements OnInit {
-  jobName: string;
-  jobDesc: string;
+  jobName: string = "";
+  jobDesc: string = "";
   visibility: number = 1;
-  owner: string;
-  imgLink: string;
+  owner: string = "";
+  imgLink: string = "";
   questions: any[] = [{question: ""}];
   department: string = "";
 
