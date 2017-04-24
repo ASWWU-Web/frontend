@@ -46,7 +46,19 @@ export class AdminCreateComponent implements OnInit {
       image: this.imgLink,
       questions: this.questions
 
-    }, (data) => {console.log(data);}, undefined);
+    }, (data) => {
+      if(data.status == "submitted"){
+        this.jobName = "";
+        this.jobDesc = "";
+        this.visibility = 1;
+        this.owner = "";
+        this.imgLink = "";
+        this.questions = [{question: ""}];
+        this.department = "";
+      } else {
+        window.alert("An unknown error occured.");
+      }
+    }, (error) => {window.alert("ERROR: \n" + error) });
   }
   removeQuestion(index: number) {
     this.questions.splice(index,1);

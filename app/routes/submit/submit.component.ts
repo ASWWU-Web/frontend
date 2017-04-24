@@ -25,13 +25,10 @@ export class SubmitComponent {
 		rs.verify((user) => {
 			if(user) {
 				this.currentUser = user;
-				console.log(this.currentUser);
-
 				rs.get('/forms/job/view/1', (data) => {
 					this.gForm = data.form//{ formID: "1", name: "generic", img: "http://lorempixel.com/300/200/abstract/", desc: "baseline stuff", owner: "1", questions: [{ID: "1", text: "What does ASWWU mean to you?"}]};
 					//GET request to retrieve previous application answers
 					rs.get('/forms/application/view/1/'+this.currentUser.username, (data) => {
-						console.log("hey");
 						this.gApp = data.application//{ jobID: "1", answers: [ {questionID: "1", answer: "many things"}], username: "buddy.boy", status: "", last_update: ""};
 						if(!this.gApp) {
 							//build the empty answers array
