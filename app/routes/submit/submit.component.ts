@@ -21,7 +21,7 @@ export class SubmitComponent {
 	currentUser: any;
 
 	constructor(private route: ActivatedRoute, private rs: RequestService, private router: Router) {
-		this.formID = route.snapshot.params['formID'];	
+		this.formID = route.snapshot.params['formID'];
 		rs.verify((user) => {
 			if(user) {
 				this.currentUser = user;
@@ -30,10 +30,10 @@ export class SubmitComponent {
 					//GET request to retrieve previous application answers
 					rs.get('/forms/application/view/1/'+this.currentUser.username, (data) => {
 						this.gApp = data.application//{ jobID: "1", answers: [ {questionID: "1", answer: "many things"}], username: "buddy.boy", status: "", last_update: ""};
-						if(!this.gApp) {
+						if(data.status == "Application not found" || this.gApp.answers.length == 0) {
 							//build the empty answers array
 							this.gForm.questions.forEach((entry) => {
-								let answerObj = {questionID: entry.ID, answer: ""};
+								let answerObj = {questionID: entry.id, answer: ""};
 								this.gAnswers.push(answerObj);
 							});
 						} else {
@@ -56,10 +56,10 @@ export class SubmitComponent {
 					//GET request to retrieve previous application answers
 					rs.get('/forms/application/view/'+this.formID+'/'+this.currentUser.username, (data) => {
 						this.app = data.application//{ jobID: "2", answers: [ {questionID: "1", answer: "Roja"}, {questionID: "2", answer: "Dogs of course"}], username: "buddy.boy", status: "", last_update: ""};
-						if(!this.app) {
+						if(data.status == "Application not found" || this.app.answers.length == 0) {
 							//build the empty answers array
 							this.form.questions.forEach((entry) => {
-								let answerObj = {questionID: entry.ID, answer: ""};
+								let answerObj = {questionID: entry.id, answer: ""};
 								this.answers.push(answerObj);
 							});
 						} else {
@@ -102,7 +102,7 @@ export class SubmitComponent {
 				}
 			}
 			catch(err) {
-				
+
 			}
 		}, (error) => { window.alert(error)} );
 	}

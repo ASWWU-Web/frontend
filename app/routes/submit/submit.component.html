@@ -12,7 +12,7 @@
       </div>
       <div class="row">
         <div class="col col-sm-12 col-md-10 offset-md-1">
-          <p>{{form?.job_description}}</p>
+          <p *ngFor="let paragraph of form?.job_description.split('\n')" style="margin-bottom: .25rem;">{{paragraph}}</p>
         </div>
       </div>
     </div>
@@ -21,14 +21,23 @@
     <h2>ASWWU Questions</h2>
     <p>These questions will be the same for all of your ASWWU applications</p>
     <hr>
-      <div *ngFor="let question of gForm?.questions; let i = index;" class="form-group">
-        <div *ngIf="question&&gAnswers&&gAnswers[i]">
-          <label for="gen{{question?.id}}">{{question.question}}</label>
-          <textarea type="text" class="form-control" id="gen{{question?.id}}"
-                  required
-                  [(ngModel)]="gAnswers[i].answer" name="gen{{question?.id}}"></textarea>
+      <div class="row">
+        <div *ngFor="let question of gForm?.questions; let i = index;" class="form-group">
+          <div *ngIf="question&&gAnswers&&gAnswers[i]">
+            <div *ngIf="i <= 13 " class="col">
+              <label for="gen{{question?.id}}">{{question.question}}</label>
+              <input [(ngModel)]="gAnswers[i].answer" name="gen{{question?.id}}" type="text" class="form-control" id="gen{{question?.id}}" required/>
+            </div>
+            <div *ngIf="!(i <= 13)" class="col">
+              <label for="gen{{question?.id}}">{{question.question}}</label>
+              <textarea type="text" class="form-control" id="gen{{question?.id}}"
+                    required
+                    [(ngModel)]="gAnswers[i].answer" name="gen{{question?.id}}"></textarea>
+            </div>
+          </div>
         </div>
       </div>
+
       <h2>{{form?.job_name}} Questions</h2>
       <p>These questions are specific to this application</p>
       <hr>
