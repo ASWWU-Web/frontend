@@ -6,16 +6,16 @@
     <div class="row">
       <div class="col col-sm-12 col-md-8 offset-md-2">
         <h1 id="title">
-          {{form?.name}}
+          {{form?.job_name}}
         </h1>
       </div>
+      </div>
       <div class="row">
-        <div class="col col-sm-12 col-md-8 offset-md-2">
-          <h2>{{form?.desc}}</h2>
+        <div class="col col-sm-12 col-md-10 offset-md-1">
+          <p>{{form?.job_description}}</p>
         </div>
       </div>
     </div>
-  </div>
   <div id="questions" class="container">
     <form (ngSubmit)="onSubmit()" #submitForm="ngForm" id="form{{form?.formID}}">
       <div *ngFor="let question of gForm?.questions; let i = index;" class="form-group">
