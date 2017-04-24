@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server -c bs-config.js\" ",
-    "serve": "webpack-dev-server -p --inline --progress",
+    "serve": "tsc && concurrently \"tsc -w\" \"webpack-dev-server -p --inline --progress\"",
     "lite": "lite-server",
     "tsc": "tsc",
     "tsc:w": "tsc -w",

@@ -58,7 +58,7 @@
             <div class="card-block">
               <h3 class="card-title">{{form.job_name}}</h3>
               <h6 class="card-subtitle mb-2 text-uppercase" style="color:#8f8f8f;">{{form.department}}</h6>
-              <p class="card-text">{{shorten(form.job_description)}}
+	      <p class="card-text">{{shorten(form.job_description)}}
                 </p>
               <a [routerLink]="['/submit', form.jobID]" class="btn">View Opportunity</a>
             </div>
