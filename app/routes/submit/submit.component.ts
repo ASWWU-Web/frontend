@@ -47,7 +47,7 @@ export class SubmitComponent {
 						}
 					}, (err) => {
 						this.gForm.questions.forEach((entry) => {
-							let answerObj = {questionID: entry.ID, answer: ""};
+							let answerObj = {questionID: entry.id, answer: ""};
 							this.gAnswers.push(answerObj);
 						});
 					});
@@ -73,7 +73,7 @@ export class SubmitComponent {
 						}
 					}, (err) => {
 						this.form.questions.forEach((entry) => {
-							let answerObj = {questionID: entry.ID, answer: ""};
+							let answerObj = {questionID: entry.id, answer: ""};
 							this.answers.push(answerObj);
 						});
 					});

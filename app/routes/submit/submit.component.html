@@ -20,18 +20,18 @@
     <form (ngSubmit)="onSubmit()" #submitForm="ngForm" id="form{{form?.formID}}">
       <div *ngFor="let question of gForm?.questions; let i = index;" class="form-group">
         <div *ngIf="question&&gAnswers&&gAnswers[i]">
-          <label for="gen{{question?.ID}}">{{question.text}}</label>
-          <textarea type="text" class="form-control" id="gen{{question?.ID}}"
+          <label for="gen{{question?.id}}">{{question.question}}</label>
+          <textarea type="text" class="form-control" id="gen{{question?.id}}"
                   required
-                  [(ngModel)]="gAnswers[i].answer" name="gen{{question?.ID}}"></textarea>
+                  [(ngModel)]="gAnswers[i].answer" name="gen{{question?.id}}"></textarea>
         </div>
       </div>
       <div *ngFor="let question of form?.questions; let i = index;" class="form-group">
         <div *ngIf="question&&answers&&answers[i]">
-          <label for="{{question?.ID}}">{{question.text}}</label>
-          <textarea type="text" class="form-control" id="{{question?.ID}}"
+          <label for="{{question?.id}}">{{question.question}}</label>
+          <textarea type="text" class="form-control" id="{{question?.id}}"
                  required
-                 [(ngModel)]="answers[i].answer" name="{{question?.ID}}"></textarea>
+                 [(ngModel)]="answers[i].answer" name="{{question?.id}}"></textarea>
         </div>
       </div>
       <button type="submit" class="btn btn-success">Submit</button>
