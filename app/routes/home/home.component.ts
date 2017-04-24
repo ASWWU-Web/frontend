@@ -23,14 +23,17 @@ export class HomeComponent {
     }
 
     filterItems() {
+      // Remove the Generic form
       this.filtered = this.forms.filter((el) => {
-          var doc = el.job_name + el.job_description;
-         return doc.toLowerCase().indexOf(this.query.toLowerCase()) > -1;
-      })
+        if (el.jobID == 1) {
+          return false;
+        }
+        return true;
+      });
+      //Remove all other departments.
       this.filtered = this.filtered.filter((el) => {
-        var doc = el.job_name + el.job_description;
-         return doc.toLowerCase().indexOf(this.department.toLowerCase()) > -1;
-      })
+         return el.department.toLowerCase().indexOf(this.department.toLowerCase()) > -1;
+      });
     }
     shorten(description: string) {
       if(typeof description === "string") {
