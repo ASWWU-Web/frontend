@@ -8,7 +8,8 @@
 <textarea type="text" class="form-control" id="jobDesc"
        required
        [(ngModel)]="jobDesc" name="jobDesc"></textarea>
-
+       <small>The first line of the description will be what appears on the homepage.</small>
+<br />
 <label for="owner">Owner</label>
 <input type="text" class="form-control" id="owner" required [(ngModel)]="owner" name="owner">
 
@@ -42,9 +43,14 @@
 <label for="imgLink">Image Link</label>
 <input type="text" class="form-control" id="imgLink" required [(ngModel)]="imgLink" name="imgLink">
 
+<label for="imgTest">Test Image</label>
+<img src="{{imgLink}}" name="imgTest" style="height:100px; width: auto;"/>
+
+
 <div *ngFor="let question of questions; let i = index;" class="form-group">
     <label for="{{i}}">Question {{i + 1}}</label>
     <textarea type="text" class="form-control" required [(ngModel)]="questions[i].question" name="{{i}}"></textarea>
+    <button class="btn btn-danger" (click)="removeQuestion(i)">Remove Question</button>
 </div>
 
 <button class="btn btn-secondary"(click)="addQuestion()">Add a question</button>

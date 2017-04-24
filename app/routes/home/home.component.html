@@ -54,7 +54,7 @@
         <!-- Cards -->
         <div *ngFor="let form of filtered" class="col col-sm-12 col-md-6 col-lg-4 col-xl-3">
           <div class="card">
-          <img class="card-img-top" src="{{form.image}}" alt="Card image cap">
+          <img *ngIf="form.image != ''" class="card-img-top" src="{{form.image}}" alt="Card image cap">
             <div class="card-block">
               <h3 class="card-title">{{form.job_name}}</h3>
               <h6 class="card-subtitle mb-2 text-uppercase" style="color:#8f8f8f;">{{form.department}}</h6>

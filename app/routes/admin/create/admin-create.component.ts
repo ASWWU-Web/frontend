@@ -48,4 +48,7 @@ export class AdminCreateComponent implements OnInit {
 
     }, (data) => {console.log(data);}, undefined);
   }
+  removeQuestion(index: number) {
+    this.questions.splice(index,1);
+  }
 }
