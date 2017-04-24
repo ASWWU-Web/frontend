@@ -18,6 +18,9 @@
     </div>
   <div id="questions" class="container">
     <form (ngSubmit)="onSubmit()" #submitForm="ngForm" id="form{{form?.formID}}">
+    <h2>ASWWU Questions</h2>
+    <p>These questions will be the same for all of your ASWWU applications</p>
+    <hr>
       <div *ngFor="let question of gForm?.questions; let i = index;" class="form-group">
         <div *ngIf="question&&gAnswers&&gAnswers[i]">
           <label for="gen{{question?.id}}">{{question.question}}</label>
@@ -26,6 +29,9 @@
                   [(ngModel)]="gAnswers[i].answer" name="gen{{question?.id}}"></textarea>
         </div>
       </div>
+      <h2>{{form?.job_name}} Questions</h2>
+      <p>These questions are specific to this application</p>
+      <hr>
       <div *ngFor="let question of form?.questions; let i = index;" class="form-group">
         <div *ngIf="question&&answers&&answers[i]">
           <label for="{{question?.id}}">{{question.question}}</label>
