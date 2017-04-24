@@ -20,18 +20,18 @@
     <form (ngSubmit)="onSubmit()" #submitForm="ngForm" id="form{{form?.formID}}">
       <div *ngFor="let question of gForm?.questions; let i = index;" class="form-group">
         <div *ngIf="question&&gAnswers&&gAnswers[i]">
-          <label for="gen{{question?.ID}}">{{question.text}}</label>
-          <textarea type="text" class="form-control" id="gen{{question?.ID}}"
+          <label for="gen{{question?.id}}">{{question.question}}</label>
+          <textarea type="text" class="form-control" id="gen{{question?.id}}"
                   required
-                  [(ngModel)]="gAnswers[i].answer" name="gen{{question?.ID}}"></textarea>
+                  [(ngModel)]="gAnswers[i].answer" name="gen{{question?.id}}"></textarea>
         </div>
       </div>
       <div *ngFor="let question of form?.questions; let i = index;" class="form-group">
         <div *ngIf="question&&answers&&answers[i]">
-          <label for="{{question?.ID}}">{{question.text}}</label>
-          <textarea type="text" class="form-control" id="{{question?.ID}}"
+          <label for="{{question?.id}}">{{question.question}}</label>
+          <textarea type="text" class="form-control" id="{{question?.id}}"
                  required
-                 [(ngModel)]="answers[i].answer" name="{{question?.ID}}"></textarea>
+                 [(ngModel)]="answers[i].answer" name="{{question?.id}}"></textarea>
         </div>
       </div>
       <button type="submit" class="btn btn-success">Submit</button>
@@ -40,9 +40,5 @@
 </div>
 <div *ngIf="!currentUser">
   <p>This page can only be viewed by someone logged in, please click the button to log in:</p>
-<<<<<<< HEAD
-  <a class="btn btn-primary" href="https://saml.aswwu.com/?redirectURI=/submit/{{formID}}">Log in</a>
-=======
   <a class="btn btn-primary" href="https://saml.aswwu.com/?redirectURI=/jobs/submit/{{formID}}">Log in</a>
->>>>>>> 177805f... Updated admin/create route, home and submit.
 </div>
