@@ -7,6 +7,7 @@ import { RequestService } from "../../RequestService/requests";
 @Component({
   selector: 'home',
   templateUrl: 'app/routes/home/home.component.html',
+  styleUrls:  ['app/routes/home/home.component.css'],
   providers: [ RequestService ]
 })
 
@@ -15,6 +16,7 @@ export class HomeComponent {
     department: string = "";
     filtered: any[] = [];
     forms: any[] = [];
+    initialLoad: boolean = true;
 
     constructor(private rs: RequestService) {
       rs.get('/forms/job/view/all', (data) => {
@@ -23,6 +25,8 @@ export class HomeComponent {
     }
 
     filterItems() {
+      // set initialLoad to false
+      this.initialLoad = false;
       // Remove the Generic form
       this.filtered = this.forms.filter((el) => {
         if (el.jobID == 1) {
