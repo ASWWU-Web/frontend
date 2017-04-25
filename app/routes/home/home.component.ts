@@ -19,7 +19,6 @@ export class HomeComponent {
     constructor(private rs: RequestService) {
       rs.get('/forms/job/view/all', (data) => {
         this.forms = data.forms;
-	this.filterItems();
       }, null);
     }
 
