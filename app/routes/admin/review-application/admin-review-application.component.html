@@ -1,0 +1,43 @@
+<div id="border1" class="side"></div>
+<div id="border2" class="side"></div>
+
+<div *ngIf="currentUser">
+  <div id="jumbotron" class="container">
+    <div class="row">
+      <div class="col col-sm-12 col-md-8 offset-md-2">
+        <h1 id="title" class="adrev-title">
+          {{username}}'s application for {{form?.job_name}}
+        </h1>
+      </div>
+      </div>
+    </div>
+  <div id="questions" class="container">
+    <h2>ASWWU Answers</h2>
+    <p>General form answers:</p>
+    <hr>
+      <div class="row">
+        <div *ngFor="let question of gForm?.questions; let i = index;" class="form-group">
+          <div *ngIf="question&&gAnswers&&gAnswers[i]">
+            <div class="col">
+              <label for="gen{{question?.id}}">{{question.question}}</label>
+              <div id="gen{{question?.id}}" class="admin-answer-review">{{gAnswers[i].answer}}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <h2>{{form?.job_name}} Questions</h2>
+      <p>Answers to specific application:</p>
+      <hr>
+      <div *ngFor="let question of form?.questions; let i = index;" class="form-group">
+        <div *ngIf="question&&answers&&answers[i]">
+          <label for="{{question?.id}}">{{question.question}}</label>
+          <div id="{{question?.id}}" class="admin-answer-review">{{answers[i].answer}}</div>
+        </div>
+      </div>
+  </div>
+</div>
+<div *ngIf="!currentUser">
+  <p>This page can only be viewed by someone logged in, please click the button to log in:</p>
+  <a class="btn btn-primary" href="https://saml.aswwu.com/?redirectURI=/jobs/submit/{{formID}}">Log in</a>
+</div>

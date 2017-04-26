@@ -1,13 +1,13 @@
 import {Component, NgModule} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import { RequestService } from '../../../RequestService/requests'
+import { RequestService } from '../../../RequestService/requests';
 
 @Component({
   selector: 'admin-review',
   template: `
   <h1>Admin is reviewing {{formID}}!</h1>
   <!-- Job Applications  -->
-  <div id="jobApps" class="container">
+  <div *ngIf="currentUser" id="jobApps" class="container">
       <div id="cards" class="row justify-content-center">
           <!-- Cards -->
           <div *ngFor="let app of applications" class="col col-sm-12 col-md-6 col-lg-4 col-xl-3">
@@ -26,6 +26,11 @@ import { RequestService } from '../../../RequestService/requests'
           </div>
       </div>
   </div>
+  <div *ngIf="!currentUser">
+      <p>This page can only be viewed by someone logged in, please click the button to log in:</p>
+      <a class="btn btn-primary" href="https://saml.aswwu.com/?redirectURI=/jobs/submit/{{formID}}">Log in</a>
+  </div>
+
   `,
     providers: [ RequestService ]
 })
@@ -33,9 +38,11 @@ import { RequestService } from '../../../RequestService/requests'
 export class AdminReviewComponent {
 	formID: number;
 	applications: any;
+	currentUser: any;
 
 	constructor(route: ActivatedRoute, private rs: RequestService) {
 		this.formID = route.snapshot.params['formID'];
+		rs.verify((user) => {this.currentUser = user;});
         rs.get('/forms/application/view/' + this.formID + '/all', (data) => {
             this.applications = data.applications;
         }, null);
