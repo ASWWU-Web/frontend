@@ -19,6 +19,7 @@ export class AdminReviewApplicationComponent {
 	gApp: any;
 	answers: any[] = [];
 	gAnswers:any[] = [];
+	status: any;
 
 	constructor(private route: ActivatedRoute, private rs: RequestService) {
 		this.formID = +route.snapshot.params['formID'];
@@ -78,6 +79,15 @@ export class AdminReviewApplicationComponent {
 				}, undefined);
 			}
 		});
+	}
+
+	toggleStatus(status:String) {
+		this.rs.postxwww('/forms/application/status', {jobID: this.formID, username: this.username, status: this.app.status},
+			(data)=>{
+				window.alert("Application status set to: " + this.app.status);
+			},
+			(err) => {window.alert("Error!" + err);}
+		);
 	}
 
 

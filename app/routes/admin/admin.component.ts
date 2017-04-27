@@ -20,7 +20,7 @@ import { RequestService } from '../../RequestService/requests';
             <h6 class="card-subtitle mb-2 text-uppercase" style="color:#8f8f8f;">{{form.department}}</h6>
       <p class="card-text">{{shorten(form.job_description)}}
               </p>
-            <button (click)="removeForm(form.jobID)" class="btn btn-danger">Remove Application</button>
+            <a [routerLink]="['/admin/review/', form.jobID]" class="btn">View Applications</a>
           </div>
         </div>
       </div>
@@ -47,18 +47,6 @@ export class AdminComponent {
     }, undefined)
   }
 
-  removeForm(id:number) {
-    if(confirm("Are you sure you want to delete this form?")){
-      console.log("Id", id);
-      this.rs.postxwww('/forms/job/delete', {jobID: id},
-        (data)=>{
-          window.alert("Application deleted.");
-          this.loadForms();
-        },
-        (err) => {window.alert("Error!" + err);}
-      );
-    }
-  }
   shorten(description: string) {
     if(typeof description === "string") {
       return description.split("\n")[0];
