@@ -1,3 +1,9 @@
+/*Poly fix for safari*/
+.col {
+  flex-basis: initial;
+  -webkit-flex-basis: initial;
+}
+
 /*Font Stuff*/
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 

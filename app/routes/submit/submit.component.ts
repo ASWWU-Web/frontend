@@ -19,6 +19,7 @@ export class SubmitComponent {
 	gAnswers:any[] = [];
 	formID: number;
 	currentUser: any;
+	submitText: string = "Submit";
 
 	constructor(private route: ActivatedRoute, private rs: RequestService, private router: Router) {
 		this.formID = route.snapshot.params['formID'];
@@ -80,6 +81,7 @@ export class SubmitComponent {
 	}
 
 	onSubmit() {
+		this.submitText = "Submitting...";
 		let submission = { jobID: this.formID, username: this.currentUser.username, answers: this.answers};
 		let gSubmission = { jobID: "1", username: this.currentUser.username, answers: this.gAnswers};
 		this.rs.postxwww('/forms/application/submit', gSubmission, (data) => {
