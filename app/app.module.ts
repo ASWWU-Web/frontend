@@ -8,6 +8,7 @@ import { NgbModule }     from '@ng-bootstrap/ng-bootstrap';
 import { AppComponent }  from './app.component';
 
 import { HomeComponent, SubmitComponent, DoneComponent, AdminComponent, AdminCreateComponent, AdminEditComponent, AdminReviewComponent, AdminReviewApplicationComponent } from './routes/routes';
+import { NavbarComponent } from './shared/navbar.component';
 
 
 @NgModule({
@@ -60,7 +61,8 @@ import { HomeComponent, SubmitComponent, DoneComponent, AdminComponent, AdminCre
     AdminCreateComponent,
     AdminEditComponent,
     AdminReviewComponent,
-    AdminReviewApplicationComponent
+    AdminReviewApplicationComponent,
+    NavbarComponent
   ],
   bootstrap: [ AppComponent ]
 })
