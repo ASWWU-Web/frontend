@@ -1,0 +1,49 @@
+.contain {
+    float: right;
+    clear: none;
+    width: 100px;
+}
+.btn-circle {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    padding: 0;
+    font-size: 24px;
+    line-height: 1.42;
+    border-radius: 25px;
+    border-color: aqua;
+    color: #336699;
+    cursor: pointer;
+}
+#bubbleicon {
+    background-color: transparent;
+    border: none;
+    color: transparent;
+    z-index: 1;
+}
+.dropdown-menu {
+    width: 150px;
+    position: absolute;
+    left: -50px;
+}
+
+#logo {
+    width: 40%;
+    height: auto;
+    padding-left: 45px;
+}
+
+#loginButton {
+    margin-right: 45px;
+    font-family: 'gyre', sans-serif;
+    font-weight: bold;
+    font-size: 30;
+    color: rgb(41,43,44);
+}
+
+#loginButton:hover {
+    color: rgb(108,114,107);
+}
+nav {
+    border-bottom: 2px solid rgb(220, 220, 222);
+}
