@@ -109,4 +109,8 @@ export class SubmitComponent {
 		}, (error) => { window.alert(error)} );
 	}
 
+	uploadFile() {
+		// TODO: Build an upload function.
+	}
+
 }

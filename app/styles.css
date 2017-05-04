@@ -9,7 +9,7 @@
 
 @font-face {
   font-family: gyre;
-  src: url(./app/media/texgyreheros-bold.otf);
+  src: url(./media/texgyreheros-bold.otf);
 }
 
 /*Main Reset and font configure*/
@@ -29,7 +29,7 @@ h1, h2, h3, h4, h5, h6 {
 .side {
   display: block;
   position: fixed;
-  background-image: url(./app/media/ASWWU-jobs-stripes.png);
+  background-image: url(./media/ASWWU-jobs-stripes.png);
   top: 0;
   height: 100%;
   width: 7px;
@@ -68,7 +68,6 @@ h1, h2, h3, h4, h5, h6 {
 .card {
   margin-bottom: 10px;
 }
-
 .card img {
   object-fit: cover;
 }

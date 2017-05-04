@@ -12,14 +12,17 @@ module.exports = {
         ignored: 'node_modules'
     },
     server: {
-        baseDir: './',
+        baseDir: './dist/',
         middleware: [
             log({ format: '%date %status %method %url' }),
             fallback({
-                index: '/index.html',
+                index: './index.html',
                 htmlAcceptHeaders: ['text/html', 'application/xhtml+xml'], // systemjs workaround
                 disableDotRule: true //Fix the dot in URL issue
             })
-        ]
+        ],
+        routes: {
+            "/app": "./app"
+        }
     }
 };

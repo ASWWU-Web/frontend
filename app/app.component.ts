@@ -2,7 +2,6 @@ import {Component, NgModule} from '@angular/core';
 
 @Component({
   selector: 'my-app',
-  styleUrls: ['styles.css'],
   template: `
     <!-- Borders  -->
     <div id="border1" class="side"></div>

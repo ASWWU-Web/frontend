@@ -4,7 +4,7 @@
   "scripts": {
     "start": "tsc && concurrently \"tsc -w\" \"lite-server -c bs-config.js\" ",
     "serve": "tsc && concurrently \"tsc -w\" \"webpack-dev-server -p --inline --progress\"",
-    "lite": "lite-server",
+    "lite": "tsc && concurrently \"tsc -w\" \"webpack -w\" \"lite-server -c bs-config.js\"",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "build": "webpack -p --progress"
