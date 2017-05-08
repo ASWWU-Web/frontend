@@ -137,6 +137,12 @@ export class RequestService {
       );
   }
 
+  // postfile(uri: string, data: any, afterRequest, catchError): void {
+  //
+  //   public uploader:FileUploader = new FileUploader({url: SERVER_URL + uri});
+  //   let body = this.objToSearchParams(data);
+  // }
+
   /*
   * Function to view whether or not the user is logged in.
   * Not sure if needed.
