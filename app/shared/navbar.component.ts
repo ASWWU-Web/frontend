@@ -36,4 +36,7 @@ export class NavbarComponent {
       return MEDIA_SM + "/" + DEFAULT_PHOTO;
     }
   }
+
+  displayUserOptions(){
+  }
 }

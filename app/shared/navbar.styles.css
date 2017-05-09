@@ -5,13 +5,12 @@
 }
 .btn-circle {
     width: 50px;
-    height: 50px;
+    height: auto;
     text-align: center;
     padding: 0;
     font-size: 24px;
     line-height: 1.42;
-    border-radius: 25px;
-    border-color: aqua;
+    border: none;
     color: #336699;
     cursor: pointer;
 }
@@ -20,6 +19,12 @@
     border: none;
     color: transparent;
     z-index: 1;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    overflow: hidden;
+    height: 50px;
+    width: 50px;
 }
 .dropdown-menu {
     width: 150px;
@@ -44,6 +49,7 @@
 #loginButton:hover {
     color: rgb(108,114,107);
 }
+
 nav {
     border-bottom: 2px solid rgb(220, 220, 222);
 }
