@@ -15,9 +15,9 @@
 			       <img *ngIf="!(currentUser?.photo == 'images/mask_unknown.png' || currentUser?.photo == 'None' || !currentUser?.photo)" (click)="displayUserOptions()" class="btn btn-default btn-circle" src="{{getPhotoLink(currentUser.photo)}}">
 			    </button>
 			    <div class="dropdown-menu" aria-labelledby="bubbleicon">
-			    	<button class="btn-default dropdown-item" [routerLink]="['/']">Home</button>
-			    	<button *ngIf="isAdmin" class="btn btn-default dropdown-item" [routerLink]="['/admin']">Admin</button>
-			        <button class="btn btn-default dropdown-item" [routerLink]="['/update']">Update Profile</button>
+			    	<button class="btn-default dropdown-item" [routerLink]="['/']">Home Page</button>
+			    	<button *ngIf="isAdmin" class="btn btn-default dropdown-item" [routerLink]="['/admin']">Admin Review</button>
+			    	<a class="btn btn-default dropdown-item" href="https://aswwu.com/#/profile/{{currentUser?.username}}/update">Update Profile</a>
 			        <button class="btn btn-default dropdown-item" (click)="logout()" [routerLink]="'/'">Log Out</button>
 			    </div>
 			</div>
