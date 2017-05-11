@@ -1,7 +1,9 @@
 import {Component, NgModule} from '@angular/core';
 import {ActivatedRoute, Router } from '@angular/router';
+import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 import { RequestService } from "../../RequestService/requests";
+import {SERVER_URL} from "../../config";
 
 
 @Component({
@@ -20,6 +22,8 @@ export class SubmitComponent {
 	formID: number;
 	currentUser: any;
 	submitText: string = "Submit";
+	file: any;
+	public uploader:FileUploader = new FileUploader({url: SERVER_URL + "/forms/resume/upload"});
 
 	constructor(private route: ActivatedRoute, private rs: RequestService, private router: Router) {
 		this.formID = route.snapshot.params['formID'];
@@ -107,6 +111,7 @@ export class SubmitComponent {
 
 			}
 		}, (error) => { window.alert(error)} );
+
 	}
 
 	uploadFile() {
