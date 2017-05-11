@@ -9,6 +9,7 @@ import { AppComponent }  from './app.component';
 
 import { HomeComponent, SubmitComponent, DoneComponent, AdminComponent, AdminCreateComponent, AdminEditComponent, AdminReviewComponent, AdminReviewApplicationComponent } from './routes/routes';
 import { NavbarComponent } from './shared/navbar.component';
+import {FileSelectDirective} from "ng2-file-upload";
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import { NavbarComponent } from './shared/navbar.component';
     AdminEditComponent,
     AdminReviewComponent,
     AdminReviewApplicationComponent,
-    NavbarComponent
+    NavbarComponent,
+    FileSelectDirective
   ],
   bootstrap: [ AppComponent ]
 })
