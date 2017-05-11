@@ -5,20 +5,20 @@
   <div id="jumbotron" class="container">
     <div class="row">
       <div class="col col-sm-12 col-md-8 offset-md-2">
-        <h1 id="title">
+        <h1 id="title" class="text-center">
           {{form?.job_name}}
         </h1>
       </div>
       </div>
-      <div class="row">
+      <div class="row" style="padding-top: 20px;">
         <div class="col col-sm-12 col-md-10 offset-md-1">
-          <p *ngFor="let paragraph of form?.job_description.split('\n')" style="margin-bottom: .25rem;">{{paragraph}}</p>
+          <p *ngFor="let paragraph of form?.job_description.split('\n')" style="margin-bottom: .25rem;">{{paragraph}}&nbsp;</p>
         </div>
       </div>
     </div>
   <div id="questions" class="container">
     <form (ngSubmit)="onSubmit()" #submitForm="ngForm" id="form{{form?.formID}}">
-    <h2>ASWWU Questions</h2>
+    <h2 style="padding-top: 20px;">ASWWU Questions</h2>
     <p>These questions will be the same for all of your ASWWU applications</p>
     <hr>
       <div class="row">
@@ -38,7 +38,7 @@
         </div>
       </div>
 
-      <h2>{{form?.job_name}} Questions</h2>
+      <h2 style="padding-top: 20px;">{{form?.job_name}} Questions</h2>
       <p>These questions are specific to this application</p>
       <hr>
       <div *ngFor="let question of form?.questions; let i = index;" class="form-group">
@@ -50,13 +50,18 @@
         </div>
       </div>
 
-      <div class="form-group">
-        <label for="resume">Resume with References</label>
+      <div class="form-group" style="padding-top: 20px;">
+        <div *ngIf="form?.department == 'Atlas'">
+          <label for="resume"><strong>Cover letter</strong> and resume with references</label>
+        </div>
+        <div *ngIf="!(form?.department == 'Atlas')">
+          <label for="resume">Resume with References</label>
+        </div>
         <input type="file" class="form-control-file bt" id="resume" ng2FileSelect [uploader]="uploader" required>
         <small class="form-text text-muted">Supported file types are PDF, Word, and Open Office files. Any previously submitted documents will be overwritten.</small>
       </div>
 
-      <button type="submit" class="btn btn-success">{{submitText}}</button>
+      <button type="submit" class="btn btn-success" style="margin-top: 20px;">{{submitText}}</button>
     </form>
   </div>
 </div>
