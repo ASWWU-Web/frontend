@@ -52,11 +52,11 @@
 
       <div class="form-group">
         <label for="resume">Resume with References</label>
-        <input type="file" class="form-control-file bt" id="resume" accept=".pdf,.doc,.docx,.odt,.zip" ng2FileSelect [uploader]="uploader" required>
-        <small class="form-text text-muted">Supported file types are PDF, Word, Open Office and Zip archives.</small>
+        <input type="file" class="form-control-file bt" id="resume" ng2FileSelect [uploader]="uploader" required>
+        <small class="form-text text-muted">Supported file types are PDF, Word, and Open Office files. Any previously submitted documents will be overwritten.</small>
       </div>
 
-      <button type="submit" (click)="uploader.uploadAll()" class="btn btn-success">{{submitText}}</button>
+      <button type="submit" class="btn btn-success">{{submitText}}</button>
     </form>
   </div>
 </div>

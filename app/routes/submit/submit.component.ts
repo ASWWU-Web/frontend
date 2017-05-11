@@ -31,10 +31,10 @@ export class SubmitComponent {
 			if(user) {
 				this.currentUser = user;
 				rs.get('/forms/job/view/1', (data) => {
-					this.gForm = data.form//{ formID: "1", name: "generic", img: "http://lorempixel.com/300/200/abstract/", desc: "baseline stuff", owner: "1", questions: [{ID: "1", text: "What does ASWWU mean to you?"}]};
+					this.gForm = data.form; //{ formID: "1", name: "generic", img: "http://lorempixel.com/300/200/abstract/", desc: "baseline stuff", owner: "1", questions: [{ID: "1", text: "What does ASWWU mean to you?"}]};
 					//GET request to retrieve previous application answers
 					rs.get('/forms/application/view/1/'+this.currentUser.username, (data) => {
-						this.gApp = data.application//{ jobID: "1", answers: [ {questionID: "1", answer: "many things"}], username: "buddy.boy", status: "", last_update: ""};
+						this.gApp = data.application; //{ jobID: "1", answers: [ {questionID: "1", answer: "many things"}], username: "buddy.boy", status: "", last_update: ""};
 						if(data.status == "Application not found" || this.gApp.answers.length == 0) {
 							//build the empty answers array
 							this.gForm.questions.forEach((entry) => {
@@ -57,10 +57,10 @@ export class SubmitComponent {
 
 				//GET request to retrieve the form
 				rs.get('/forms/job/view/'+this.formID, (data) => {
-					this.form = data.form//{ formID: "2", name: "dog whisperer", img: "http://lorempixel.com/300/200/abstract/", desc: "talk to dogs", owner: "1", questions: [{ID: "1", text: "What's your favorite color?"}, {ID: "2", text: "What's the best animal?"}]};
+					this.form = data.form; //{ formID: "2", name: "dog whisperer", img: "http://lorempixel.com/300/200/abstract/", desc: "talk to dogs", owner: "1", questions: [{ID: "1", text: "What's your favorite color?"}, {ID: "2", text: "What's the best animal?"}]};
 					//GET request to retrieve previous application answers
 					rs.get('/forms/application/view/'+this.formID+'/'+this.currentUser.username, (data) => {
-						this.app = data.application//{ jobID: "2", answers: [ {questionID: "1", answer: "Roja"}, {questionID: "2", answer: "Dogs of course"}], username: "buddy.boy", status: "", last_update: ""};
+						this.app = data.application; //{ jobID: "2", answers: [ {questionID: "1", answer: "Roja"}, {questionID: "2", answer: "Dogs of course"}], username: "buddy.boy", status: "", last_update: ""};
 						if(data.status == "Application not found" || this.app.answers.length == 0) {
 							//build the empty answers array
 							this.form.questions.forEach((entry) => {
@@ -95,27 +95,40 @@ export class SubmitComponent {
 						try {
 							if(data.error) {
 								window.alert("Error: "+data.error);
+								this.submitText = "Submit";
 							} else if(data.status == "submitted") {
-								this.router.navigateByUrl("/done/"+this.formID);
+								//File Upload
+								this.uploader.onCompleteItem = (item:any, response:any, status:any, headers:any) => {
+									console.log("ImageUpload:uploaded:", item, status);
+									if(status < 200 || status > 299) {
+										alert(JSON.parse(response).message);
+										this.submitText = "Submit";
+									} else {
+										this.router.navigateByUrl("/done/"+this.formID);
+									}
+								};
+								this.uploader.onBuildItemForm = (item, form) => {
+									form.append("jobID", this.formID);
+									item.withCredentials = false;
+								};
+								this.uploader.uploadAll();
 							} else {
 								window.alert("form status: "+data.status);
+								this.submitText = "Submit";
 							}
 						}
 						catch(err) {
 							window.alert(err);
+							this.submitText = "Submit";
 						}
-					}, (error) => { window.alert(error)} );
+					}, (error) => { window.alert(error); this.submitText = "Submit";} );
 				}
 			}
 			catch(err) {
 
 			}
-		}, (error) => { window.alert(error)} );
+		}, (error) => { window.alert(error); this.submitText = "Submit";} );
 
-	}
-
-	uploadFile() {
-		// TODO: Build an upload function.
 	}
 
 }
