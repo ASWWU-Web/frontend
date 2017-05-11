@@ -2,7 +2,7 @@
 	<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     	<span class="navbar-toggler-icon"></span>
 	</button>
-	<a class="navbar-brand" href="#">
+	<a class="navbar-brand" [routerLink]="['/']">
 		<img id="logo" src="https://aswwu.com/media/images/ASWWU_logo_dark.png">
 	</a>
 	<div class="collapse navbar-collapse justify-content-end">
@@ -18,6 +18,7 @@
 			    	<button class="btn-default dropdown-item" [routerLink]="['/']">Home Page</button>
 			    	<button *ngIf="isAdmin" class="btn btn-default dropdown-item" [routerLink]="['/admin']">Admin Review</button>
 			    	<a class="btn btn-default dropdown-item" href="https://aswwu.com/#/profile/{{currentUser?.username}}/update">Update Profile</a>
+			    	<a class="btn btn-default dropdown-item" href="mailto:aswwu.webmaster@wallawalla.edu?Subject=ASWWU.com%20Problem">Report a Problem</a>
 			        <button class="btn btn-default dropdown-item" (click)="logout()" [routerLink]="'/'">Log Out</button>
 			    </div>
 			</div>
