@@ -89,9 +89,9 @@ export class RequestService {
     for (var key in obj) {
         if (obj.hasOwnProperty(key)){
           if(typeof obj[key] == "string"){
-            params.append(key, obj[key]);
+            params.append(key, obj[key].replace(/;/g, ","));
           }else {
-            params.append(key, JSON.stringify(obj[key]));
+            params.append(key, JSON.stringify(obj[key]).replace(/;/g, ","));
           }
         }
     }
