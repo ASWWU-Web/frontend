@@ -37,6 +37,15 @@ export class NavbarComponent {
     }
   }
 
-  displayUserOptions(){
+  displayUserOptions(): void{
+  }
+
+  logout():void {
+    document.cookie="token=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    document.getElementById("bubble-popup").style.display = 'none';
+    this.currentUser = undefined;
+    this.rs.verify();
+    this.isLoggedIn = false;
+    this.isAdmin = false;
   }
 }
