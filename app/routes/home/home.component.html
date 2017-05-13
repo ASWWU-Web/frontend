@@ -36,7 +36,7 @@
           <h3>Step 1</h3>
           <div class="form-group ">
               <select class="custom-select col col-sm-12" [(ngModel)]="department" (change)="filterItems()">
-                <option selected [value]="''">Select a department...</option>
+                <!-- <option [value]="''">Select a department...</option> -->
                 <option [value]="'Executive'">Executive</option>
                 <option [value]="'Senate'">Senate</option>
                 <option [value]="'Social'">Social</option>
@@ -51,7 +51,7 @@
                 <option [value]="'Atlas'">The Atlas</option>
                 <option [value]="'Tread Shed'">The Tread Shed</option>
                 <option [value]="'Outdoors'">Outdoors</option>
-                <option [value]="''">View All</option>
+                <option selected [value]="''">View All</option>
               </select>
           </div>
         </div>
