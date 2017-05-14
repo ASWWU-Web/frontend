@@ -1,6 +1,8 @@
 import { Component, NgModule } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { RequestService } from '../../../RequestService/requests';
+import { SERVER_URL } from '../../../config';
 
 @Component({
   selector: 'admin-review-app',
@@ -19,7 +21,8 @@ export class AdminReviewApplicationComponent {
 	gApp: any;
 	answers: any[] = [];
 	gAnswers:any[] = [];
-	status: any;
+	SERVER_URL: string = SERVER_URL;
+	isResume: boolean = false;
 
 	constructor(private route: ActivatedRoute, private rs: RequestService) {
 		this.formID = +route.snapshot.params['formID'];
@@ -78,17 +81,32 @@ export class AdminReviewApplicationComponent {
 					});
 				}, undefined);
 			}
+			this.isResumeUploaded();
 		});
 	}
 
-	toggleStatus(status:String) {
+	updateStatus() {
 		this.rs.postxwww('/forms/application/status', {jobID: this.formID, username: this.username, status: this.app.status},
 			(data)=>{
-				window.alert("Application status set to: " + this.app.status);
+				if(!(data.status == "success")){
+					window.alert("Application status set to: " + this.app.status);
+				}
 			},
-			(err) => {window.alert("Error!" + err);}
+			(err) => {window.alert("Error: " + err);}
 		);
 	}
 
+	isResumeUploaded() {
+		this.rs.get(SERVER_URL + '/forms/resume/download/' +  this.formID  + '/' + this.username, (data) =>{
+			this.isResume = true;
+		}, (err) =>{
 
+			// if err.status is undefined the resume exists. 
+			if(!err.status){
+				this.isResume = true;
+			} else {
+				this.isResume = false;
+			}
+		})
+	}
 }
