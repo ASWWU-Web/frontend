@@ -13,7 +13,7 @@ import { RequestService } from "../../RequestService/requests";
 
 export class HomeComponent {
     query: string = "";
-    department: string = "";
+    department: string = "Department Head";
     filtered: any[] = [];
     forms: any[] = [];
     initialLoad: boolean = true;
