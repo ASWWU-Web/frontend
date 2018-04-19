@@ -10,17 +10,30 @@ import { RequestService } from "../../../RequestService/requests";
 })
 
 export class AdminEditComponent implements OnInit {
-  formID: number;
-  jobName: string = "";
-  jobDesc: string = "";
-  visibility: number = 1;
-  owner: string = "";
-  imgLink: string = "";
-  questions: any[] = [{question: ""}];
-  department: string = "";
+  currentUser: any;
+  jobID: number;
+  job: {
+        "department": string,
+        "job_description": string,
+        "questions": any[],
+        "owner": string,
+        "image": string,
+        "job_name": string,
+        "visibility": boolean
+    };
 
   constructor(private rs: RequestService, private router: Router, route: ActivatedRoute) {
-		this.formID = +route.snapshot.params['formID'];
+		this.jobID = route.snapshot.params['formID'];
+    rs.verify((user) => {
+			if(user) {
+				this.currentUser = user;
+				rs.get('/forms/job/view/' + this.jobID, (data) => {
+          let job = data.form;
+          delete job.jobID;
+					this.job = job;//{ formID: "1", name: "generic", img: "http://lorempixel.com/300/200/abstract/", desc: "baseline stuff", owner: "1", questions: [{ID: "1", text: "What does ASWWU mean to you?"}]};
+				}, undefined);
+      }
+    });
   }
 
   ngOnInit() {
@@ -36,33 +49,32 @@ export class AdminEditComponent implements OnInit {
   }
 
   addQuestion() {
-    this.questions.push({question: ""});
+    this.job.questions.push({question: "", id: 0});
   }
   submitForm() {
-    this.rs.postxwww("/forms/job/new", {
-      job_name: this.jobName,
-      job_description: this.jobDesc,
-      visibility: this.visibility,
-      department: this.department,
-      owner: this.owner,
-      image: this.imgLink,
-      questions: this.questions
-
+    this.rs.postxwww("/forms/job/edit/formID", {
+      job_name: this.job.job_name,
+      job_description: this.job.job_description,
+      visibility: this.job.visibility,
+      department: this.job.department,
+      owner: this.job.owner,
+      image: this.job.image,
+      questions: this.job.questions
     }, (data) => {
       if(data.status == "submitted"){
-        this.jobName = "";
-        this.jobDesc = "";
-        this.visibility = 1;
-        this.owner = "";
-        this.imgLink = "";
-        this.questions = [{question: ""}];
-        this.department = "";
+        this.job.job_name = "";
+        this.job.job_description = "";
+        this.job.visibility = true;
+        this.job.owner = "";
+        this.job.image = "";
+        this.job.questions = [{question: "", id: 0}];
+        this.job.department = "";
       } else {
         window.alert("An unknown error occured.");
       }
     }, (error) => {window.alert("ERROR: \n" + error) });
   }
   removeQuestion(index: number) {
-    this.questions.splice(index,1);
+    this.job.questions.splice(index,1);
   }
 }

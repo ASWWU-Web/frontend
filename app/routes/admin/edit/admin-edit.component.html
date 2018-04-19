@@ -2,20 +2,20 @@
 <label for="jobName">Job Name</label>
 <input type="text" class="form-control" id="jobName"
        required
-       [(ngModel)]="jobName" name="jobName">
+       [(ngModel)]="job.job_name" name="job_name">
 
 <label for="jobDesc">Job description</label>
 <textarea type="text" class="form-control" id="jobDesc"
        required
-       [(ngModel)]="jobDesc" name="jobDesc"></textarea>
+       [(ngModel)]="job.description" name="jobDesc"></textarea>
        <small>The first line of the description will be what appears on the homepage.</small>
 <br />
 <label for="owner">Owner</label>
-<input type="text" class="form-control" id="owner" required [(ngModel)]="owner" name="owner">
+<input type="text" class="form-control" id="owner" required [(ngModel)]="job.owner" name="owner">
 
 <label for="Department">Department</label>
 <div class="form-group">
-    <select class="custom-select col col-sm-12" name="jobDesc" [(ngModel)]="department">
+    <select class="custom-select col col-sm-12" name="jobDesc" [(ngModel)]="job.department">
       <option selected [value]="''">Select a department...</option>
       <option [value]="'Executive'">Executive</option>
       <option [value]="'Senate'">Senate</option>
@@ -36,13 +36,13 @@
 </div>
 
 <label for="visibility">Visibility</label>
-<select class="form-control" [(ngModel)]="visibility">
+<select class="form-control" [(ngModel)]="job.visibility">
        <option selected [value]="1"> Visible</option>
        <option [value]="0"> Hidden</option>
 </select>
 
 <label for="imgLink">Image Link</label>
-<input type="text" class="form-control" id="imgLink" required [(ngModel)]="imgLink" name="imgLink">
+<input type="text" class="form-control" id="imgLink" required [(ngModel)]="job.image" name="imgLink">
 
 <label for="imgTest">Test Image</label>
 <img src="{{imgLink}}" name="imgTest" style="height:100px; width: auto;"/>
@@ -50,7 +50,7 @@
 
 <div *ngFor="let question of questions; let i = index;" class="form-group">
     <label for="{{i}}">Question {{i + 1}}</label>
-    <textarea type="text" class="form-control" required [(ngModel)]="questions[i].question" name="{{i}}"></textarea>
+    <textarea type="text" class="form-control" required [(ngModel)]="job.questions[i].question" name="{{i}}"></textarea>
     <button class="btn btn-danger" (click)="removeQuestion(i)">Remove Question</button>
 </div>
 
