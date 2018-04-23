@@ -6,7 +6,8 @@ import { RequestService } from "../../../RequestService/requests";
 
 @Component({
   selector: 'admin-edit',
-  templateUrl: 'app/routes/admin/edit/admin-edit.component.html'
+  templateUrl: 'app/routes/admin/edit/admin-edit.component.html',
+  providers: [ RequestService ]
 })
 
 export class AdminEditComponent implements OnInit {
@@ -30,8 +31,8 @@ export class AdminEditComponent implements OnInit {
 				rs.get('/forms/job/view/' + this.jobID, (data) => {
           let job = data.form;
           delete job.jobID;
-					this.job = job;//{ formID: "1", name: "generic", img: "http://lorempixel.com/300/200/abstract/", desc: "baseline stuff", owner: "1", questions: [{ID: "1", text: "What does ASWWU mean to you?"}]};
-				}, undefined);
+          console.log(job);
+					this.job = job;
       }
     });
   }
@@ -48,11 +49,8 @@ export class AdminEditComponent implements OnInit {
     // });
   }
 
-  addQuestion() {
-    this.job.questions.push({question: "", id: 0});
-  }
   submitForm() {
-    this.rs.postxwww("/forms/job/edit/formID", {
+    this.rs.postxwww("/forms/job/edit/" + this.jobID, {
       job_name: this.job.job_name,
       job_description: this.job.job_description,
       visibility: this.job.visibility,
@@ -73,8 +71,5 @@ export class AdminEditComponent implements OnInit {
         window.alert("An unknown error occured.");
       }
     }, (error) => {window.alert("ERROR: \n" + error) });
-  }
-  removeQuestion(index: number) {
-    this.job.questions.splice(index,1);
   }
 }

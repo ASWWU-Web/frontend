@@ -1,4 +1,5 @@
-<h1>New Application</h1>
+<h1>Edit Job</h1>
+<div *ngIf="job">
 <label for="jobName">Job Name</label>
 <input type="text" class="form-control" id="jobName"
        required
@@ -7,7 +8,7 @@
 <label for="jobDesc">Job description</label>
 <textarea type="text" class="form-control" id="jobDesc"
        required
-       [(ngModel)]="job.description" name="jobDesc"></textarea>
+       [(ngModel)]="job.job_description" name="jobDesc"></textarea>
        <small>The first line of the description will be what appears on the homepage.</small>
 <br />
 <label for="owner">Owner</label>
@@ -37,22 +38,22 @@
 
 <label for="visibility">Visibility</label>
 <select class="form-control" [(ngModel)]="job.visibility">
-       <option selected [value]="1"> Visible</option>
-       <option [value]="0"> Hidden</option>
+       <option selected [value]="true"> Visible</option>
+       <option [value]="false"> Hidden</option>
 </select>
 
 <label for="imgLink">Image Link</label>
 <input type="text" class="form-control" id="imgLink" required [(ngModel)]="job.image" name="imgLink">
 
-<label for="imgTest">Test Image</label>
-<img src="{{imgLink}}" name="imgTest" style="height:100px; width: auto;"/>
+<label for="imgTest">Current Image:</label>
+<img src="{{job.image}}" name="imgTest" style="height:100px; width: auto;"/>
 
 
-<div *ngFor="let question of questions; let i = index;" class="form-group">
+<div *ngFor="let question of job.questions; let i = index;" class="form-group">
     <label for="{{i}}">Question {{i + 1}}</label>
     <textarea type="text" class="form-control" required [(ngModel)]="job.questions[i].question" name="{{i}}"></textarea>
-    <button class="btn btn-danger" (click)="removeQuestion(i)">Remove Question</button>
 </div>
 
-<button class="btn btn-secondary"(click)="addQuestion()">Add a question</button>
 <button class="btn btn-success" (click)="submitForm()">Submit</button>
+</div>
+<div *ngIf="!job"></div>
