@@ -2,6 +2,11 @@ import {Component, NgModule, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { Router } from '@angular/router';
 
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/debounceTime';
+import 'rxjs/add/operator/distinctUntilChanged';
+
 import { RequestService } from "../../../RequestService/requests";
 
 @Component({
@@ -22,6 +27,14 @@ export class AdminEditComponent implements OnInit {
         "job_name": string,
         "visibility": boolean
     };
+    profiles: any;
+
+    profileSearch = (text$: Observable<string>) =>
+    text$
+      .debounceTime(200)
+      .distinctUntilChanged()
+      .map(term => term.length < 2 ? []
+        : this.profiles.filter(v => v.username.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10).map(term => term.username));
 
   constructor(private rs: RequestService, private router: Router, route: ActivatedRoute) {
 		this.jobID = route.snapshot.params['formID'];
@@ -33,6 +46,10 @@ export class AdminEditComponent implements OnInit {
           delete job.jobID;
           console.log(job);
 					this.job = job;
+        }, null);
+        rs.get('/search/all', (data) => {
+          this.profiles = data['results'];
+        }, null);
       }
     });
   }
@@ -70,6 +87,8 @@ export class AdminEditComponent implements OnInit {
       } else {
         window.alert("An unknown error occured.");
       }
-    }, (error) => {window.alert("ERROR: \n" + error) });
+    }, (error) => {
+      window.alert("ERROR: \n" + error);
+    });
   }
 }
