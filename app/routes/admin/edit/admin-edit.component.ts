@@ -29,12 +29,12 @@ export class AdminEditComponent implements OnInit {
     };
     profiles: any;
 
-    profileSearch = (text$: Observable<string>) =>
-    text$
+    profileSearch = (text: Observable<string>) =>
+    text
       .debounceTime(200)
       .distinctUntilChanged()
       .map(term => term.length < 2 ? []
-        : this.profiles.filter(v => v.username.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10).map(term => term.username));
+        : this.profiles.filter(profile => profile.username.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10).map(profile => profile.username));
 
   constructor(private rs: RequestService, private router: Router, route: ActivatedRoute) {
 		this.jobID = route.snapshot.params['formID'];
