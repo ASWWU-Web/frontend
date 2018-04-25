@@ -2,7 +2,7 @@
   "name": "aswwu_jobs",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && webpack -p --progress && concurrently \"tsc -w\" \"lite-server -c bs-config.js\" ",
+    "start": "tsc && concurrently \"tsc -w\" \"lite-server -c bs-config.js\" ",
     "serve": "tsc && concurrently \"tsc -w\" \"webpack-dev-server -p --inline --progress\"",
     "lite": "tsc && concurrently \"tsc -w\" \"webpack -w\" \"lite-server -c bs-config.js\"",
     "tsc": "tsc",
