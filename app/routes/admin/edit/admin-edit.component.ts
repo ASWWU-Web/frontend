@@ -76,7 +76,7 @@ export class AdminEditComponent implements OnInit {
       image: this.job.image,
       questions: this.job.questions
     }, (data) => {
-      if(data.status == "submitted"){
+      if(data.status == "Form Updated"){
         this.job.job_name = "";
         this.job.job_description = "";
         this.job.visibility = true;
