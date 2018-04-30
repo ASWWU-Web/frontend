@@ -9,7 +9,7 @@ import { RequestService } from '../../RequestService/requests';
   <h1>Admin Review</h1>
   <!-- Job Opportunities  -->
   <div id="jobOpps" class="container">
-    <div id="cards" class="row justify-content-center">
+    <div class="row justify-content-center">
 
       <!-- Cards -->
       <div *ngFor="let form of forms" class="col col-sm-12 col-md-6 col-lg-4 col-xl-3 card-group">

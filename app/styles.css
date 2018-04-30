@@ -83,31 +83,31 @@ h1, h2, h3, h4, h5, h6 {
   font-size: 40px;
 }
 
-#cards div:nth-child(7n+1) .btn-group a{
+#cards div:nth-child(7n+1) a {
   color: white;
   background-color: #a1d61d;
 }
-#cards div:nth-child(7n+2) .btn-group a{
+#cards div:nth-child(7n+2) a {
   color: white;
   background-color: #ebe407;
 }
-#cards div:nth-child(7n+3) .btn-group a{
+#cards div:nth-child(7n+3) a {
   color: white;
   background-color: #f19b21;
 }
-#cards div:nth-child(7n+4) .btn-group a{
+#cards div:nth-child(7n+4) a {
   color: white;
   background-color: #eb2722;
 }
-#cards div:nth-child(7n+5) .btn-group a{
+#cards div:nth-child(7n+5) a {
   color: white;
   background-color: #803fa4;
 }
-#cards div:nth-child(7n+6) .btn-group a{
+#cards div:nth-child(7n+6) a {
   color: white;
   background-color: #4851ac;
 }
-#cards div:nth-child(7n+7) .btn-group a{
+#cards div:nth-child(7n+7) a {
   color: white;
   background-color: #6bcdb6;
 }
