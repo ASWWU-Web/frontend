@@ -76,14 +76,9 @@ export class AdminEditComponent implements OnInit {
       image: this.job.image,
       questions: this.job.questions
     }, (data) => {
+      //If the request was successful redirect to the admin page.
       if(data.status == "Form Updated"){
-        this.job.job_name = "";
-        this.job.job_description = "";
-        this.job.visibility = true;
-        this.job.owner = "";
-        this.job.image = "";
-        this.job.questions = [{question: "", id: 0}];
-        this.job.department = "";
+        this.router.navigate(['admin']);
       } else {
         window.alert("An unknown error occured.");
       }
