@@ -12,8 +12,8 @@ import { RequestService } from "../../RequestService/requests";
 })
 
 export class HomeComponent {
-    query: string = "";
-    department: string = "Department Head";
+    query: string = '';
+    department: string = '';
     filtered: any[] = [];
     forms: any[] = [];
     initialLoad: boolean = true;
@@ -23,7 +23,7 @@ export class HomeComponent {
         this.forms = data.forms.filter((el) => {
           return el.visibility;
         });
-        this.filterItems();
+        // this.filterItems();
       }, null);
     }
 
