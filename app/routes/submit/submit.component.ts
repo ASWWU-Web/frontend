@@ -8,7 +8,7 @@ import {SERVER_URL} from "../../config";
 
 @Component({
 	selector: 'submit',
-	templateUrl: 'app/routes/submit/submit.component.html',
+	templateUrl: 'submit.component.html',
 	providers: [ RequestService ]
 })
 

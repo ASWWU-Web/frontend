@@ -6,8 +6,8 @@ import { RequestService } from "../../RequestService/requests";
 
 @Component({
   selector: 'home',
-  templateUrl: 'app/routes/home/home.component.html',
-  styleUrls:  ['app/routes/home/home.component.css'],
+  templateUrl: 'home.component.html',
+  styleUrls:  ['home.component.css'],
   providers: [ RequestService ]
 })
 

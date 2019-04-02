@@ -5,7 +5,7 @@ import { RequestService } from "../../../RequestService/requests";
 
 @Component({
   selector: 'admin-create',
-  templateUrl: 'app/routes/admin/create/admin-create.component.html',
+  templateUrl: 'admin-create.component.html',
   providers: [ RequestService ]
 })
 

@@ -7,8 +7,8 @@ import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../config';
 
 @Component({
   selector: 'navbar',
-  templateUrl: 'app/shared/navbar.component.html',
-  styleUrls: ['app/shared/navbar.styles.css'],
+  templateUrl: 'navbar.component.html',
+  styleUrls: ['navbar.styles.css'],
   providers: [ RequestService ]
 })
 
