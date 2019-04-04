@@ -1,7 +1,7 @@
 import {Component, NgModule} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { RequestService } from '../../RequestService/requests';
+import { RequestService } from '../../../shared-ng/services/request.service';
 
 @Component({
   selector: 'admin',
@@ -45,9 +45,9 @@ export class AdminComponent {
     this.loadForms();
 	}
   loadForms() {
-    this.rs.get('/forms/job/view/all', (data) => {
+    this.rs.get('/forms/job/view/all').subscribe((data) => {
       this.forms = data.forms;
-    }, undefined)
+    }, undefined);
   }
 
   shorten(description: string) {
