@@ -2,7 +2,7 @@ import {Component, NgModule} from '@angular/core';
 import {ActivatedRoute, Router } from '@angular/router';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
-import { RequestService } from "../../RequestService/requests";
+import { RequestService } from '../../../shared-ng/services/request.service';
 import {SERVER_URL} from "../../config";
 
 
@@ -30,10 +30,10 @@ export class SubmitComponent {
 		rs.verify((user) => {
 			if(user) {
 				this.currentUser = user;
-				rs.get('/forms/job/view/1', (data) => {
+				rs.get('/forms/job/view/1').subscribe((data) => {
 					this.gForm = data.form; //{ formID: "1", name: "generic", img: "http://lorempixel.com/300/200/abstract/", desc: "baseline stuff", owner: "1", questions: [{ID: "1", text: "What does ASWWU mean to you?"}]};
 					//GET request to retrieve previous application answers
-					rs.get('/forms/application/view/1/'+this.currentUser.username, (data) => {
+					rs.get('/forms/application/view/1/'+this.currentUser.username).subscribe((data) => {
 						this.gApp = data.application; //{ jobID: "1", answers: [ {questionID: "1", answer: "many things"}], username: "buddy.boy", status: "", last_update: ""};
 						if(data.status == "Application not found" || this.gApp.answers.length == 0) {
 							//build the empty answers array
@@ -56,10 +56,10 @@ export class SubmitComponent {
 				}, undefined);
 
 				//GET request to retrieve the form
-				rs.get('/forms/job/view/'+this.formID, (data) => {
+				rs.get('/forms/job/view/'+this.formID).subscribe((data) => {
 					this.form = data.form; //{ formID: "2", name: "dog whisperer", img: "http://lorempixel.com/300/200/abstract/", desc: "talk to dogs", owner: "1", questions: [{ID: "1", text: "What's your favorite color?"}, {ID: "2", text: "What's the best animal?"}]};
 					//GET request to retrieve previous application answers
-					rs.get('/forms/application/view/'+this.formID+'/'+this.currentUser.username, (data) => {
+					rs.get('/forms/application/view/'+this.formID+'/'+this.currentUser.username).subscribe((data) => {
 						this.app = data.application; //{ jobID: "2", answers: [ {questionID: "1", answer: "Roja"}, {questionID: "2", answer: "Dogs of course"}], username: "buddy.boy", status: "", last_update: ""};
 						if(data.status == "Application not found" || this.app.answers.length == 0) {
 							//build the empty answers array
@@ -88,10 +88,10 @@ export class SubmitComponent {
 		this.submitText = "Submitting...";
 		let submission = { jobID: this.formID, username: this.currentUser.username, answers: this.answers};
 		let gSubmission = { jobID: "1", username: this.currentUser.username, answers: this.gAnswers};
-		this.rs.postxwww('/forms/application/submit', gSubmission, (data) => {
+		this.rs.post('/forms/application/submit', gSubmission, null, 'urlencoded').subscribe((data) => {
 			try {
 				if(!data.error) {
-					this.rs.postxwww('/forms/application/submit', submission, (data) => {
+					this.rs.post('/forms/application/submit', submission, null, 'urlencoded').subscribe((data) => {
 						try {
 							if(data.error) {
 								window.alert("Error: "+data.error);
