@@ -1,7 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { RequestService as RequestService_OLD } from '../../../RequestService/requests';
 import { RequestService, AuthService } from '../../../../shared-ng/services/services';
 import { SERVER_URL } from '../../../config';
 import { User } from '../../../../shared-ng/interfaces/interfaces';
@@ -26,7 +25,7 @@ export class AdminReviewApplicationComponent {
   SERVER_URL: string = SERVER_URL;
   isResume = false;
 
-  constructor(private route: ActivatedRoute, private RS_OLD: RequestService_OLD, private rs: RequestService, private as: AuthService) {
+  constructor(private route: ActivatedRoute, private rs: RequestService, private as: AuthService) {
     this.formID = +route.snapshot.params.formID;
     this.username = route.snapshot.params.username;
     as.authenticateUser().subscribe(
