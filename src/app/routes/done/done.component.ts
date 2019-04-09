@@ -1,10 +1,10 @@
 import {Component, NgModule} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
+import { HermesService } from 'src/shared-ng/services/services';
 
 @Component({
   selector: 'done',
   template: `
-  <h1 class="text-center">You're all set.</h1>
   <div class="row justify-content-center" style="margin-top: 30px;">
     <div class="col col-sm-12 col-md-8 text-center">
       <p>If you have any questions, contact <a href="mailto:aswwu@wallawalla.edu">ASWWU@wallawalla.edu</a> An ASWWU departmental head will be contacting you soon!</p>
@@ -17,9 +17,10 @@ import {ActivatedRoute} from '@angular/router';
 })
 
 export class DoneComponent {
-	formID: number;
+  formID: number;
 
-	constructor(route: ActivatedRoute) {
-		this.formID = +route.snapshot.params['formID'];
-	}
+  constructor(route: ActivatedRoute, private hermesService: HermesService) {
+    hermesService.sendHeaderTitle('You\'re all set!');
+    this.formID = +route.snapshot.params.formID;
+  }
 }

@@ -2,7 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
-import { RequestService } from '../../../shared-ng/services/services';
+import { RequestService, HermesService } from '../../../shared-ng/services/services';
 
 @Component({
   selector: 'home',
@@ -17,8 +17,10 @@ export class HomeComponent {
     filtered: any[] = [];
     forms: any[] = [];
     initialLoad: boolean = true;
+    cards: any[] = [];
 
-    constructor(private rs: RequestService) {
+    constructor(private rs: RequestService, private hermesService: HermesService) {
+      hermesService.sendHeaderTitle('What is ASWWU?');
       rs.get('/forms/job/view/all').subscribe((data) => {
         this.forms = data.forms.filter((el) => {
           return el.visibility;
@@ -41,6 +43,7 @@ export class HomeComponent {
       this.filtered = this.filtered.filter((el) => {
          return el.department.toLowerCase().indexOf(this.department.toLowerCase()) > -1;
       });
+      this.cards = this.buildCards(this.filtered);
     }
 
     shorten(description: string) {
@@ -48,5 +51,20 @@ export class HomeComponent {
         return description.split("\n")[0];
       }
       return "";
+    }
+
+    buildCards(filteredCards: any[]) {
+      return filteredCards.map((item) => {
+        return {
+          image: item.image,
+          color: null,
+          title: item.job_name,
+          subTitle: item.department,
+          body: this.shorten(item.job_description),
+          buttonText: 'View Opportunity',
+          buttonLink: `/submit/${item.jobID}`
+        };
+      });
+
     }
 }
