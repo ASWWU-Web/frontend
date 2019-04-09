@@ -7,7 +7,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RequestService as OLD_RS} from './RequestService/requests';
 
 import {
   HomeComponent,
@@ -20,9 +19,7 @@ import {
   AdminReviewApplicationComponent,
 } from './routes/routes';
 
-import {
-  NavbarComponent,
-} from './shared/navbar.component';
+import { CardListComponent } from './shared/shared-components';
 
 import {
   FileSelectDirective
@@ -39,7 +36,7 @@ import {
   HeaderComponent
 } from '../shared-ng/components/components';
 import {
-  RequestService
+  RequestService, AuthService, HermesService
 } from '../shared-ng/services/services';
 
 @NgModule({
@@ -59,8 +56,8 @@ import {
     AdminEditComponent,
     AdminReviewComponent,
     AdminReviewApplicationComponent,
-    NavbarComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    CardListComponent
   ],
   imports: [
     NgbModule,
@@ -73,7 +70,8 @@ import {
   ],
   providers: [
     RequestService,
-    OLD_RS
+    AuthService,
+    HermesService
   ],
   bootstrap: [AppComponent]
 })
