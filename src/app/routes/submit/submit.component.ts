@@ -3,9 +3,9 @@ import {ActivatedRoute, Router } from '@angular/router';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
 import { RequestService } from '../../../shared-ng/services/request.service';
-import { RequestService as RequestService_OLD } from '../../RequestService/request.service';
 
 import {SERVER_URL} from "../../config";
+import { AuthService } from 'src/shared-ng/services/services';
 
 
 @Component({
@@ -27,9 +27,9 @@ export class SubmitComponent {
 	file: any;
 	public uploader:FileUploader = new FileUploader({url: SERVER_URL + "/forms/resume/upload"});
 
-	constructor(private route: ActivatedRoute, private RS_OLD: RequestService_OLD, private rs: RequestService, private router: Router) {
-		this.formID = route.snapshot.params['formID'];
-		RS_OLD.verify((user) => {
+	constructor(private route: ActivatedRoute, private rs: RequestService, private as: AuthService, private router: Router) {
+    this.formID = route.snapshot.params['formID'];
+    as.authenticateUser().subscribe((user) => {
 			if(user) {
 				this.currentUser = user;
 				rs.get('/forms/job/view/1').subscribe((data) => {

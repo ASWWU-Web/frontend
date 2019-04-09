@@ -2,7 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
-import { RequestService } from "../../RequestService/requests";
+import { RequestService } from '../../../shared-ng/services/services';
 
 @Component({
   selector: 'home',
@@ -19,7 +19,7 @@ export class HomeComponent {
     initialLoad: boolean = true;
 
     constructor(private rs: RequestService) {
-      rs.get('/forms/job/view/all', (data) => {
+      rs.get('/forms/job/view/all').subscribe((data) => {
         this.forms = data.forms.filter((el) => {
           return el.visibility;
         });

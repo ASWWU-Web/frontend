@@ -1,8 +1,9 @@
 import {Component, NgModule} from '@angular/core';
 import { RouterLink } from '@angular/router';
 
-import { RequestService } from "../RequestService/requests";
-import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../config';
+import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../shared-ng/config';
+import { RequestService, AuthService } from 'src/shared-ng/services/services';
+import { asElementData } from '@angular/core/src/view';
 
 
 @Component({
@@ -17,16 +18,17 @@ export class NavbarComponent {
   isLoggedIn: boolean = false;
   isAdmin: boolean = false;
 
-  constructor( private rs: RequestService ) {
-    rs.verify((user) => {
-      if(user) {
-        this.isLoggedIn = true;
-        this.currentUser = user;
-        if(this.currentUser.roles.includes("forms")) {
-          this.isAdmin = true;
+  constructor( private rs: RequestService, private as: AuthService ) {
+    as.authenticateUser().subscribe(
+      (user) => {
+        if(user) {
+          this.isLoggedIn = true;
+          this.currentUser = user;
+          if(this.currentUser.roles.includes("forms")) {
+            this.isAdmin = true;
+          }
         }
-      }
-    });
+      });
   }
 
   getPhotoLink(url: string){
@@ -40,11 +42,9 @@ export class NavbarComponent {
   displayUserOptions(): void{
   }
 
-  logout():void {
-    document.cookie="token=;path=/;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-    document.getElementById("bubble-popup").style.display = 'none';
+  logout(): void {
+    this.as.logout();
     this.currentUser = undefined;
-    this.rs.verify();
     this.isLoggedIn = false;
     this.isAdmin = false;
   }

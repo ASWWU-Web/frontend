@@ -33,8 +33,10 @@ export class RequestService {
   * Also returns the user object to the callback function.
   */
   verify(cb?: any): void {
+    console.error('IN OLD REQUEST SERVICE');
+    console.trace();
     if (document.cookie.search('token=') !== -1)  {
-      this.verifyGet('verify', data => {
+      this.verifyGet('verify/', data => {
         // Log in the user
         const user = data.user || null;
         this.setCurrentUser(user);

@@ -1,6 +1,6 @@
 import {Component, NgModule} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import { RequestService } from '../../../RequestService/requests';
+import { RequestService, AuthService } from '../../../../shared-ng/services/services';
 
 @Component({
   selector: 'admin-review',
@@ -40,15 +40,15 @@ export class AdminReviewComponent {
 	applications: any;
 	currentUser: any;
 
-	constructor(route: ActivatedRoute, private rs: RequestService) {
-		this.formID = route.snapshot.params['formID'];
-		rs.verify((user) => {this.currentUser = user;});
-    rs.get('/forms/application/view/' + this.formID + '/all', (data) => {
+  constructor(route: ActivatedRoute, private rs: RequestService, private as: AuthService) {
+    this.formID = route.snapshot.params['formID'];
+    as.authenticateUser().subscribe((user) => this.currentUser = user);
+    rs.get('/forms/application/view/' + this.formID + '/all').subscribe((data) => {
         this.applications = data.applications;
     }, null);
-    rs.get('/forms/job/view/' + this.formID, (data) => {
+    rs.get('/forms/job/view/' + this.formID).subscribe((data) => {
       this.form = data.form;
     }, null);
-	}
+  }
 
 }
