@@ -5,7 +5,7 @@ import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-u
 import { RequestService } from '../../../shared-ng/services/request.service';
 
 import {SERVER_URL} from '../../config';
-import { AuthService } from 'src/shared-ng/services/services';
+import { AuthService, HermesService } from 'src/shared-ng/services/services';
 
 
 @Component({
@@ -27,7 +27,9 @@ export class SubmitComponent {
   file: any;
   public uploader: FileUploader = new FileUploader({url: SERVER_URL + '/forms/resume/upload'});
 
-  constructor(private route: ActivatedRoute, private rs: RequestService, private as: AuthService, private router: Router) {
+  constructor(private route: ActivatedRoute, private rs: RequestService,
+              private as: AuthService, private router: Router, private hermesService: HermesService) {
+
     this.formID = route.snapshot.params.formID;
     as.authenticateUser().subscribe((user) => {
       if (user) {
@@ -40,18 +42,27 @@ export class SubmitComponent {
             if (data.status == 'Application not found' || this.gApp.answers.length == 0) {
               // build the empty answers array
               this.gForm.questions.forEach((entry) => {
-                const answerObj = {questionID: entry.id, answer: ''};
+                const answerObj = {
+                  questionID: entry.id,
+                  answer: ''
+                };
                 this.gAnswers.push(answerObj);
               });
             } else {
               this.gApp.answers.forEach((entry) => {
-                const answerObj = {questionID: entry.questionID, answer: entry.answer};
+                const answerObj = {
+                  questionID: entry.questionID,
+                  answer: entry.answer
+                };
                 this.gAnswers.push(answerObj);
               });
             }
           }, (err) => {
             this.gForm.questions.forEach((entry) => {
-              const answerObj = {questionID: entry.id, answer: ''};
+              const answerObj = {
+                questionID: entry.id,
+                answer: ''
+              };
               this.gAnswers.push(answerObj);
             });
           });
@@ -61,23 +72,33 @@ export class SubmitComponent {
         rs.get('/forms/job/view/' + this.formID).subscribe((data) => {
           this.form = data.form; // { formID: "2", name: "dog whisperer", img: "http://lorempixel.com/300/200/abstract/", desc: "talk to dogs", owner: "1", questions: [{ID: "1", text: "What's your favorite color?"}, {ID: "2", text: "What's the best animal?"}]};
           // GET request to retrieve previous application answers
+          hermesService.sendHeaderTitle(this.form.job_name);
           rs.get('/forms/application/view/' + this.formID + '/' + this.currentUser.username).subscribe((data) => {
             this.app = data.application; // { jobID: "2", answers: [ {questionID: "1", answer: "Roja"}, {questionID: "2", answer: "Dogs of course"}], username: "buddy.boy", status: "", last_update: ""};
             if (data.status == 'Application not found' || this.app.answers.length == 0) {
               // build the empty answers array
               this.form.questions.forEach((entry) => {
-                const answerObj = {questionID: entry.id, answer: ''};
+                const answerObj = {
+                  questionID: entry.id,
+                  answer: ''
+                };
                 this.answers.push(answerObj);
               });
             } else {
               this.app.answers.forEach((entry) => {
-                const answerObj = {questionID: entry.questionID, answer: entry.answer};
+                const answerObj = {
+                  questionID: entry.questionID,
+                  answer: entry.answer
+                };
                 this.answers.push(answerObj);
               });
             }
           }, (err) => {
             this.form.questions.forEach((entry) => {
-              const answerObj = {questionID: entry.id, answer: ''};
+              const answerObj = {
+                questionID: entry.id,
+                answer: ''
+              };
               this.answers.push(answerObj);
             });
           });
