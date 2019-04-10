@@ -1,5 +1,5 @@
-<div id="magic-row" class="d-flex align-self-center">
-  <div id="special-col" class="col">
+<div id="" class="container">
+  <div id="" class="">
     <div id="jumbotron">
        <div class="row">
          <div class="col col-sm-12 col-md-8 offset-md-2">
@@ -55,6 +55,7 @@
     <!-- Job Opportunities  -->
     <div id="jobOpps" class="container">
       <div *ngIf="!initialLoad" class="text-center">
+        <hr>
         <h3>Step 2</h3>
         <p>
           Choose an opportunity
@@ -62,8 +63,9 @@
       </div>
       <!-- Cards -->
       <card-list [cards]="cards"></card-list>
-
-
+      <div *ngIf="filtered.length == 0 && !initialLoad" class="col col-sm-12 col-md-6 col-lg-3 text-center text-danger">
+        <p> No results found.</p>
+      </div>
     </div>
   </div>
 </div>

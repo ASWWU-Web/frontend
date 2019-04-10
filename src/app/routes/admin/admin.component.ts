@@ -6,30 +6,12 @@ import { RequestService } from '../../../shared-ng/services/request.service';
 @Component({
   selector: 'admin',
   template: `
-  <h1>Admin Review</h1>
   <!-- Job Opportunities  -->
   <div id="jobOpps" class="container">
-    <div class="row justify-content-center">
-
-      <!-- Cards -->
-      <div *ngFor="let form of forms" class="col col-sm-12 col-md-6 col-lg-4 col-xl-3 card-group">
-        <div class="card">
-        <img *ngIf="form.image != ''" class="card-img-top" src="{{form.image}}" alt="Card image cap">
-          <div class="card-block d-flex flex-column">
-            <h3 class="card-title">{{form.job_name}}</h3>
-            <h6 class="card-subtitle mb-2 text-uppercase" style="color:#8f8f8f;">{{form.department}}</h6>
-            <p class="card-text">{{shorten(form.job_description)}}
-            </p>
-            <div class="btn-group mt-auto">
-              <a [routerLink]="['/admin/review/', form.jobID]" class="btn btn-secondary">Applicants</a>
-              <a [routerLink]="['/admin/edit/', form.jobID]" class="btn btn-secondary">Edit</a>
-            </div>
-          </div>
-        </div>
-      </div>
-        <div *ngIf="forms.length == 0" class="col col-sm-12 col-md-6 col-lg-3 text-center">
+  <h1>Admin Review</h1>
+  <card-list [cards]="cards"></card-list>
+    <div *ngIf="forms.length == 0" class="col col-sm-12 col-md-6 col-lg-3 text-center">
           <p> No results found.</p>
-        </div>
     </div>
   </div>
   `,
@@ -39,6 +21,7 @@ import { RequestService } from '../../../shared-ng/services/request.service';
 export class AdminComponent {
 	formID: number;
   forms: any[] = [];
+  cards: any[] = [];
 
 	constructor(route: ActivatedRoute, private rs: RequestService) {
 		this.formID = +route.snapshot.params['formID'];
@@ -47,6 +30,7 @@ export class AdminComponent {
   loadForms() {
     this.rs.get('/forms/job/view/all').subscribe((data) => {
       this.forms = data.forms;
+      this.cards = this.buildCards(this.forms);
     }, undefined);
   }
 
@@ -55,5 +39,19 @@ export class AdminComponent {
       return description.split("\n")[0];
     }
     return "";
+  }
+
+  buildCards(forms: any[]) {
+    return forms.map((item) => {
+      return {
+        image: item.image,
+        color: '',
+        title: item.job_name,
+        subTitle: item.department,
+        body: this.shorten(item.job_description),
+        buttonText: 'View Applications',
+        buttonLink: `/admin/review/${item.jobID}`
+      };
+    });
   }
 }
