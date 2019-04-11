@@ -22,7 +22,8 @@ import {
 import { CardListComponent } from './shared/shared-components';
 
 import {
-  FileSelectDirective
+  // FileSelectDirective
+  FileUploadModule
 } from 'ng2-file-upload';
 
 // shared-ng
@@ -56,7 +57,7 @@ import {
     AdminEditComponent,
     AdminReviewComponent,
     AdminReviewApplicationComponent,
-    FileSelectDirective,
+    // FileSelectDirective,
     CardListComponent
   ],
   imports: [
@@ -67,6 +68,7 @@ import {
     HttpClientModule,
     NgbModule.forRoot(),
     AppRoutingModule,
+    FileUploadModule
   ],
   providers: [
     RequestService,
