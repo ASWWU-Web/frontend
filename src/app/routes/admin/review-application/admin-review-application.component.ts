@@ -103,16 +103,10 @@ export class AdminReviewApplicationComponent {
   }
 
   isResumeUploaded() {
-    this.rs.get('/forms/resume/download/' +  this.formID  + '/' + this.username).subscribe((data) => {
+    if (this.gApp.resume) {
       this.isResume = true;
-    }, (err) => {
-
-      // if err.status is undefined the resume exists.
-      if (!err.status) {
-        this.isResume = true;
-      } else {
-        this.isResume = false;
-      }
-    });
+    } else {
+      this.isResume = false;
+    }
   }
 }

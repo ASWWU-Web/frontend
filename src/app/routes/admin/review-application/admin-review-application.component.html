@@ -27,7 +27,7 @@
       <div class="col col-sm-12 col-md-6">
         <label>Resume: </label>
         <div>
-          <a *ngIf="isResume" href="{{SERVER_URL + '/forms/resume/download/' +  formID  + '/' + username}}" class="btn" target="_blank" style="color: white; background-color: #803fa4;">View Resume</a>
+          <a *ngIf="isResume" href="{{SERVER_URL + gApp.resume}}" class="btn" target="_blank" style="color: white; background-color: #803fa4;">View Resume</a>
         </div>
         <div *ngIf="!isResume" class="text-danger">
           Resume not found.
