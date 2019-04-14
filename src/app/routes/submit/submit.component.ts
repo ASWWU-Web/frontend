@@ -4,7 +4,7 @@ import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-u
 
 import { RequestService } from '../../../shared-ng/services/request.service';
 
-import {SERVER_URL} from '../../config';
+import {SERVER_URL} from '../../../shared-ng/config';
 import { AuthService, HermesService } from 'src/shared-ng/services/services';
 
 
@@ -26,10 +26,11 @@ export class SubmitComponent {
   submitText = 'Submit';
   file: any;
   public uploader: FileUploader = new FileUploader({url: SERVER_URL + '/forms/resume/upload'});
+  buildLoginLink: () => string;
 
   constructor(private route: ActivatedRoute, private rs: RequestService,
               private as: AuthService, private router: Router, private hermesService: HermesService) {
-
+    this.buildLoginLink = as.buildLoginLink;
     this.formID = route.snapshot.params.formID;
     as.authenticateUser().subscribe((user) => {
       if (user) {

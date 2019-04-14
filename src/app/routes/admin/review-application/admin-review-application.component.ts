@@ -2,7 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { RequestService, AuthService } from '../../../../shared-ng/services/services';
-import { SERVER_URL } from '../../../config';
+import { SERVER_URL } from '../../../../shared-ng/config';
 import { User } from '../../../../shared-ng/interfaces/interfaces';
 
 @Component({
@@ -24,8 +24,10 @@ export class AdminReviewApplicationComponent {
   gAnswers: any[] = [];
   SERVER_URL: string = SERVER_URL;
   isResume = false;
+  buildLoginLink: () => string;
 
   constructor(private route: ActivatedRoute, private rs: RequestService, private as: AuthService) {
+    this.buildLoginLink = as.buildLoginLink;
     this.formID = +route.snapshot.params.formID;
     this.username = route.snapshot.params.username;
     as.authenticateUser().subscribe(

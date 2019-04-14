@@ -13,9 +13,9 @@ import { RequestService, AuthService } from '../../../../shared-ng/services/serv
               <p> No results found.</p>
       </div>
   </div>
-  <div *ngIf="!currentUser">
+  <div class="container" *ngIf="!currentUser">
       <p>This page can only be viewed by someone logged in, please click the button to log in:</p>
-      <a class="btn btn-primary" href="https://saml.aswwu.com/?sso&redirect=/jobs/submit/{{formID}}">Log in</a>
+      <a class="btn btn-primary" [href]="buildLoginLink()">Log in</a>
   </div>
   `,
     providers: [ RequestService ]
@@ -27,8 +27,10 @@ export class AdminReviewComponent {
 	applications: any;
   currentUser: any;
   cards: any[] = [];
+  buildLoginLink: () => string;
 
   constructor(route: ActivatedRoute, private rs: RequestService, private as: AuthService) {
+    this.buildLoginLink = as.buildLoginLink;
     this.formID = route.snapshot.params['formID'];
     as.authenticateUser().subscribe((user) => this.currentUser = user);
     rs.get('/forms/application/view/' + this.formID + '/all').subscribe((data) => {
