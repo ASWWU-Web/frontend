@@ -2,19 +2,19 @@ import {Component, NgModule, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { Router } from '@angular/router';
 
-import {Observable} from 'rxjs/Observable';
+import {Observable} from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import { RequestService } from "../../../RequestService/requests";
+import { RequestService } from '../../../../shared-ng/services/services';
+import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 @Component({
   selector: 'admin-edit',
   templateUrl: 'app/routes/admin/edit/admin-edit.component.html',
   providers: [ RequestService ]
 })
-
 export class AdminEditComponent implements OnInit {
   currentUser: any;
   jobID: number;
@@ -30,11 +30,15 @@ export class AdminEditComponent implements OnInit {
     profiles: any;
 
     profileSearch = (text: Observable<string>) =>
-    text
-      .debounceTime(200)
-      .distinctUntilChanged()
-      .map(term => term.length < 2 ? []
-        : this.profiles.filter(profile => profile.username.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10).map(profile => profile.username));
+      text.pipe(debounceTime(200), distinctUntilChanged(), map(
+        (term) => {
+          if (term.length < 2) {
+            return [];
+          } else {
+            return this.profiles.filter(profile => profile.username.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10).map(profile => profile.username);
+          }
+        })
+      );
 
   constructor(private rs: RequestService, private router: Router, route: ActivatedRoute) {
 		this.jobID = route.snapshot.params['formID'];
