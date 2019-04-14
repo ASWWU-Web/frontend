@@ -90,7 +90,7 @@ export class AdminReviewApplicationComponent {
   }
 
   updateStatus() {
-    this.rs.post('/forms/application/status', {jobID: this.formID, username: this.username, status: this.app.status}, 'urlencoded').subscribe(
+    this.rs.post('/forms/application/status', {jobID: this.formID, username: this.username, status: this.app.status}, null,'urlencoded').subscribe(
       (data) => {
         if (!(data.status === 'success')) {
           window.alert('Application status set to: ' + this.app.status);
