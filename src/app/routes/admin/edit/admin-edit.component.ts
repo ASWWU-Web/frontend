@@ -3,17 +3,13 @@ import {ActivatedRoute} from '@angular/router';
 import { Router } from '@angular/router';
 
 import {Observable} from 'rxjs';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
-
 import { RequestService, AuthService } from '../../../../shared-ng/services/services';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { User } from 'src/shared-ng/interfaces/user';
 
 @Component({
   selector: 'admin-edit',
-  templateUrl: 'app/routes/admin/edit/admin-edit.component.html',
+  templateUrl: './admin-edit.component.html',
   providers: [ RequestService ]
 })
 export class AdminEditComponent implements OnInit {
