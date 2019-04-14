@@ -84,7 +84,7 @@ export class AdminEditComponent implements OnInit {
       image: this.job.image,
       questions: this.job.questions
     };
-    this.rs.post("/forms/job/edit/" + this.jobID, data).subscribe(
+    this.rs.post("/forms/job/edit/" + this.jobID, data, null, 'urlencoded').subscribe(
       (data) => {
         //If the request was successful redirect to the admin page.
         if(data.status == "Form Updated"){
