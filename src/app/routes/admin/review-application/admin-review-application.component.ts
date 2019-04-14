@@ -2,7 +2,7 @@ import { Component, NgModule } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { RequestService, AuthService } from '../../../../shared-ng/services/services';
-import { SERVER_URL } from '../../../../shared-ng/config';
+import { environment } from '../../../../shared-ng/environments/environment';
 import { User } from '../../../../shared-ng/interfaces/interfaces';
 
 @Component({
@@ -22,7 +22,7 @@ export class AdminReviewApplicationComponent {
   gApp: any;
   answers: any[] = [];
   gAnswers: any[] = [];
-  SERVER_URL: string = SERVER_URL;
+  SERVER_URL: string = environment.SERVER_URL;
   isResume = false;
   buildLoginLink: () => string;
 
@@ -103,7 +103,7 @@ export class AdminReviewApplicationComponent {
   }
 
   isResumeUploaded() {
-    this.rs.get(SERVER_URL + '/forms/resume/download/' +  this.formID  + '/' + this.username).subscribe((data) => {
+    this.rs.get('/forms/resume/download/' +  this.formID  + '/' + this.username).subscribe((data) => {
       this.isResume = true;
     }, (err) => {
 
