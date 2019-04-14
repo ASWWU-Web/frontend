@@ -15,7 +15,7 @@ import { RequestService, AuthService } from '../../../../shared-ng/services/serv
   </div>
   <div *ngIf="!currentUser">
       <p>This page can only be viewed by someone logged in, please click the button to log in:</p>
-      <a class="btn btn-primary" href="https://saml.aswwu.com/?redirectURI=/jobs/submit/{{formID}}">Log in</a>
+      <a class="btn btn-primary" href="https://saml.aswwu.com/?sso&redirect=/jobs/submit/{{formID}}">Log in</a>
   </div>
   `,
     providers: [ RequestService ]
