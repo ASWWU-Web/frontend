@@ -42,7 +42,7 @@
         <div *ngFor="let question of gForm?.questions; let i = index;" class="form-group">
           <div *ngIf="question&&gAnswers&&gAnswers[i]">
             <div class="col">
-              <label for="gen{{question?.id}}">{{question.question}}</label>
+              <label for="gen{{question?.id}}" class="font-weight-bolder">{{question.question}}</label>
               <div id="gen{{question?.id}}" class="admin-answer-review">{{gAnswers[i].answer}}</div>
             </div>
           </div>
@@ -54,7 +54,7 @@
       <hr>
       <div *ngFor="let question of form?.questions; let i = index;" class="form-group">
         <div *ngIf="question&&answers&&answers[i]">
-          <label for="{{question?.id}}">{{question.question}}</label>
+          <label for="{{question?.id}}" class="font-weight-bolder">{{question.question}}</label>
           <div id="{{question?.id}}" class="admin-answer-review">{{answers[i].answer}}</div>
         </div>
       </div>
