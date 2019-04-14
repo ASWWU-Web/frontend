@@ -7,8 +7,9 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import { RequestService } from '../../../../shared-ng/services/services';
+import { RequestService, AuthService } from '../../../../shared-ng/services/services';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { User } from 'src/shared-ng/interfaces/user';
 
 @Component({
   selector: 'admin-edit',
@@ -40,22 +41,29 @@ export class AdminEditComponent implements OnInit {
         })
       );
 
-  constructor(private rs: RequestService, private router: Router, route: ActivatedRoute) {
-		this.jobID = route.snapshot.params['formID'];
-    rs.verify((user) => {
-			if(user) {
-				this.currentUser = user;
-				rs.get('/forms/job/view/' + this.jobID, (data) => {
-          let job = data.form;
-          delete job.jobID;
-          console.log(job);
-					this.job = job;
-        }, null);
-        rs.get('/search/all', (data) => {
-          this.profiles = data['results'];
-        }, null);
-      }
-    });
+  constructor(private rs: RequestService, private as: AuthService, private router: Router, route: ActivatedRoute) {
+    this.jobID = route.snapshot.params['formID'];
+    as.authenticateUser().subscribe(
+      (data: User) => {
+        this.currentUser = data;
+        rs.get('/forms/job/view/' + this.jobID).subscribe(
+          (data) => {
+            let job = data.form;
+            delete job.jobID;
+            console.log(job);
+            this.job = job;
+          },
+          (err) => {}
+        );
+        rs.get('/search/all').subscribe(
+          (data) => {
+            this.profiles = data['results'];
+          },
+          (err) => {}
+        );
+      },
+      (err) => {}
+    );
   }
 
   ngOnInit() {
@@ -71,7 +79,7 @@ export class AdminEditComponent implements OnInit {
   }
 
   submitForm() {
-    this.rs.postxwww("/forms/job/edit/" + this.jobID, {
+    const data = {
       job_name: this.job.job_name,
       job_description: this.job.job_description,
       visibility: this.job.visibility,
@@ -79,15 +87,19 @@ export class AdminEditComponent implements OnInit {
       owner: this.job.owner,
       image: this.job.image,
       questions: this.job.questions
-    }, (data) => {
-      //If the request was successful redirect to the admin page.
-      if(data.status == "Form Updated"){
-        this.router.navigate(['admin']);
-      } else {
-        window.alert("An unknown error occured.");
+    };
+    this.rs.post("/forms/job/edit/" + this.jobID, data).subscribe(
+      (data) => {
+        //If the request was successful redirect to the admin page.
+        if(data.status == "Form Updated"){
+          this.router.navigate(['admin']);
+        } else {
+          window.alert("An unknown error ocurred.");
+        }
+      },
+      (err) => {
+        window.alert("ERROR: \n" + err);
       }
-    }, (error) => {
-      window.alert("ERROR: \n" + error);
-    });
+    );
   }
 }
