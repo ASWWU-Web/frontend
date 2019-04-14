@@ -1,7 +1,7 @@
 import { Component, NgModule } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { RequestService, AuthService } from '../../../../shared-ng/services/services';
+import { RequestService, AuthService, HermesService } from '../../../../shared-ng/services/services';
 import { environment } from '../../../../shared-ng/environments/environment';
 import { User } from '../../../../shared-ng/interfaces/interfaces';
 
@@ -26,7 +26,8 @@ export class AdminReviewApplicationComponent {
   isResume = false;
   buildLoginLink: () => string;
 
-  constructor(private route: ActivatedRoute, private rs: RequestService, private as: AuthService) {
+  constructor(private route: ActivatedRoute, private rs: RequestService, private as: AuthService, private hs: HermesService) {
+    hs.sendHeaderTitle('Admin Application Review');
     this.buildLoginLink = as.buildLoginLink;
     this.formID = +route.snapshot.params.formID;
     this.username = route.snapshot.params.username;
@@ -39,6 +40,7 @@ export class AdminReviewApplicationComponent {
             // GET request to retrieve previous application answers
             rs.get('/forms/application/view/1/' + this.username).subscribe((data) => {
               this.gApp = data.application;// { jobID: "1", answers: [ {questionID: "1", answer: "many things"}], username: "buddy.boy", status: "", last_update: ""};
+              this.isResumeUploaded();
               if (data.status == 'Application not found' || this.gApp.answers.length == 0) {
                 // build the empty answers array
                 this.gForm.questions.forEach((entry) => {
@@ -86,7 +88,6 @@ export class AdminReviewApplicationComponent {
             );
           }, undefined);
         }
-        this.isResumeUploaded();
       }
     );
   }

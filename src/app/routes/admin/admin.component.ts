@@ -2,13 +2,13 @@ import {Component, NgModule} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { RequestService } from '../../../shared-ng/services/request.service';
+import { HermesService } from 'src/shared-ng/services/services';
 
 @Component({
   selector: 'admin',
   template: `
   <!-- Job Opportunities  -->
   <div id="jobOpps" class="container">
-  <h1>Admin Review</h1>
   <card-list [cards]="cards"></card-list>
     <div *ngIf="forms.length == 0" class="col col-sm-12 col-md-6 col-lg-3 text-center">
           <p> No results found.</p>
@@ -23,7 +23,8 @@ export class AdminComponent {
   forms: any[] = [];
   cards: any[] = [];
 
-	constructor(route: ActivatedRoute, private rs: RequestService) {
+	constructor(route: ActivatedRoute, private rs: RequestService, private hs: HermesService) {
+    hs.sendHeaderTitle('Admin Review');
 		this.formID = +route.snapshot.params['formID'];
     this.loadForms();
 	}

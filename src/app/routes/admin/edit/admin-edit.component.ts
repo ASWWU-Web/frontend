@@ -3,7 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import { Router } from '@angular/router';
 
 import {Observable} from 'rxjs';
-import { RequestService, AuthService } from '../../../../shared-ng/services/services';
+import { RequestService, AuthService, HermesService } from '../../../../shared-ng/services/services';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { User } from 'src/shared-ng/interfaces/user';
 
@@ -37,8 +37,9 @@ export class AdminEditComponent implements OnInit {
         })
       );
 
-  constructor(private rs: RequestService, private as: AuthService, private router: Router, route: ActivatedRoute) {
+  constructor(private rs: RequestService, private as: AuthService, private router: Router, route: ActivatedRoute, private hs: HermesService) {
     this.jobID = route.snapshot.params['formID'];
+    hs.sendHeaderTitle('Edit Job');
     as.authenticateUser().subscribe(
       (data: User) => {
         this.currentUser = data;

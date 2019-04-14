@@ -1,13 +1,13 @@
 import {Component, NgModule} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import { RequestService, AuthService } from '../../../../shared-ng/services/services';
+import { RequestService, AuthService, HermesService } from '../../../../shared-ng/services/services';
 
 @Component({
   selector: 'admin-review',
   template: `
   <!-- Job Applications  -->
   <div *ngIf="currentUser" id="jobApps" class="container">
-  <h1>{{form?.job_name}} Review</h1>
+      <a class="btn btn-primary mb-5" [routerLink]="'/admin/edit/' + formID">Edit this Form</a>
       <card-list [cards]="cards"></card-list>
       <div *ngIf="applications?.length == 0" class="col col-sm-12 col-md-6 col-lg-3 text-center">
               <p> No results found.</p>
@@ -29,7 +29,7 @@ export class AdminReviewComponent {
   cards: any[] = [];
   buildLoginLink: () => string;
 
-  constructor(route: ActivatedRoute, private rs: RequestService, private as: AuthService) {
+  constructor(route: ActivatedRoute, private rs: RequestService, private as: AuthService, private hs: HermesService) {
     this.buildLoginLink = as.buildLoginLink;
     this.formID = route.snapshot.params['formID'];
     as.authenticateUser().subscribe((user) => this.currentUser = user);
@@ -39,6 +39,7 @@ export class AdminReviewComponent {
     }, null);
     rs.get('/forms/job/view/' + this.formID).subscribe((data) => {
       this.form = data.form;
+      hs.sendHeaderTitle(this.form.job_name + ' Review');
     }, null);
   }
 
