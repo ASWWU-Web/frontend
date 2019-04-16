@@ -22,7 +22,8 @@ export class AdminEditComponent implements OnInit {
         "owner": string,
         "image": string,
         "job_name": string,
-        "visibility": boolean
+        "visibility": boolean,
+        "featured": boolean
     };
     profiles: any;
 
@@ -47,7 +48,6 @@ export class AdminEditComponent implements OnInit {
           (data) => {
             let job = data.form;
             delete job.jobID;
-            console.log(job);
             this.job = job;
           },
           (err) => {}
@@ -80,6 +80,7 @@ export class AdminEditComponent implements OnInit {
       job_name: this.job.job_name,
       job_description: this.job.job_description,
       visibility: this.job.visibility,
+      featured: this.job.featured,
       department: this.job.department,
       owner: this.job.owner,
       image: this.job.image,
