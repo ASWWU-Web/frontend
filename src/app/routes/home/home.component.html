@@ -1,69 +1,70 @@
 <div id="" class="container">
   <div id="" class="">
     <div id="jumbotron">
-       <div class="row">
-         <div class="col col-sm-12 col-md-8 offset-md-2">
-           <div class="rotator">
-              <h3>a business</h3>
-              <h3>a film studio</h3>
-              <h3>a newspaper</h3>
-              <h3>a creative outlet</h3>
-              <h3>a world mission</h3>
-              <h3>a government</h3>
-              <h3>a brand</h3>
-              <h3>a company</h3>
-            </div>
-         </div>
-       </div>
-       <div class="row">
-         <div class="col col-sm-12 col-md-8 offset-md-2">
-           <h2> your next job opportunity</h2>
-         </div>
-       </div>
+      <div class="row mb-2">
+        <div class="col col-sm-12 col-md-8 offset-md-2">
+          <div class="rotator">
+            <h3>a business</h3>
+            <h3>a film studio</h3>
+            <h3>a newspaper</h3>
+            <h3>a creative outlet</h3>
+            <h3>a world mission</h3>
+            <h3>a government</h3>
+            <h3>a brand</h3>
+            <h3>a company</h3>
+          </div>
+        </div>
+      </div>
+      <div class="row mb-4">
+        <div class="col col-sm-12 col-md-8 offset-md-2">
+          <h1> your next job opportunity</h1>
+        </div>
+      </div>
     </div>
 
     <!-- Search Bar -->
     <div id="searchBar">
       <div class="row justify-content-center text-center">
         <div class="col col-sm-12 col-md-8">
-          <h3>Step 1</h3>
+          <h3>Select a department</h3>
           <div class="form-group ">
-              <select class="custom-select col col-sm-12" [(ngModel)]="department" (change)="filterItems()">
-                <option selected [value]="''">Select a department...</option>
-                <option [value]="'Executive'">Executive</option>
-                <option [value]="'Senate'">Senate</option>
-                <option [value]="'Social'">Social</option>
-                <option [value]="'Spiritual'">Spiritual</option>
-                <option [value]="'Global Service'">Global Service</option>
-                <option [value]="'Marketing'">Marketing</option>
-                <option [value]="'Web'">Web</option>
-                <option [value]="'Collegian'">The Collegian</option>
-                <option [value]="'Video'">Video</option>
-                <option [value]="'Photo'">Photo</option>
-                <option [value]="'Mountain Ash'">Mountain Ash</option>
-                <option [value]="'Atlas'">The Atlas</option>
-                <option [value]="'Tread Shed'">The Tread Shed</option>
-                <option [value]="'Outdoors'">Outdoors</option>
-                <option [value]="'Department Head'">Department Head</option>
-                <option [value]="''">View All</option>
-              </select>
+            <select class="custom-select col col-sm-12" [(ngModel)]="department" (change)="filterItems()">
+              <option selected [value]="''">Select a department...</option>
+              <option [value]="'Executive'">Executive</option>
+              <option [value]="'Senate'">Senate</option>
+              <option [value]="'Social'">Social</option>
+              <option [value]="'Spiritual'">Spiritual</option>
+              <option [value]="'Global Service'">Global Service</option>
+              <option [value]="'Marketing'">Marketing</option>
+              <option [value]="'Web'">Web</option>
+              <option [value]="'Collegian'">The Collegian</option>
+              <option [value]="'Video'">Video</option>
+              <option [value]="'Photo'">Photo</option>
+              <option [value]="'Mountain Ash'">Mountain Ash</option>
+              <option [value]="'Atlas'">The Atlas</option>
+              <option [value]="'Tread Shed'">The Tread Shed</option>
+              <option [value]="'Outdoors'">Outdoors</option>
+              <option [value]="'Department Head'">Department Head</option>
+              <option [value]="''">View All</option>
+            </select>
           </div>
         </div>
       </div>
     </div>
 
+    <hr>
+
     <!-- Job Opportunities  -->
     <div id="jobOpps" class="container">
-      <div *ngIf="!initialLoad" class="text-center">
-        <hr>
-        <h3>Step 2</h3>
-        <p>
-          Choose an opportunity
-        </p>
+      <!-- card list header -->
+      <div class="justify-content-center text-center my-3">
+        <h1 *ngIf="filtered.length !== 0 && initialLoad">Featured Jobs</h1>
+        <h1 *ngIf="!initialLoad && department !== ''">{{department}} Jobs</h1>
+        <h1 *ngIf="!initialLoad && department === ''">All Jobs</h1>
       </div>
       <!-- Cards -->
       <card-list [cards]="cards"></card-list>
-      <div *ngIf="filtered.length == 0 && !initialLoad" class="col col-sm-12 col-md-6 col-lg-3 text-center text-danger">
+      <div *ngIf="filtered.length === 0 && !initialLoad" class="col col-sm-12 col-md-6 col-lg-3 text-center text-danger">
         <p> No results found.</p>
       </div>
     </div>

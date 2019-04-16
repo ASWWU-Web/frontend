@@ -25,8 +25,15 @@ export class HomeComponent {
         this.forms = data.forms.filter((el) => {
           return el.visibility;
         });
-        // this.filterItems();
+        this.filterFeatured();
       }, null);
+    }
+
+    filterFeatured() {
+      this.filtered = this.forms.filter((form) => {
+        return form.featured;
+      });
+      this.cards = this.buildCards(this.filtered);
     }
 
     filterItems() {
