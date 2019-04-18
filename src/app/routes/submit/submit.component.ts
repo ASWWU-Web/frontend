@@ -118,14 +118,14 @@ export class SubmitComponent {
           this.rs.post('/forms/application/submit', submission, null, 'urlencoded').subscribe((data) => {
             try {
               if (data.error) {
-                window.alert('Error: '+ data.error);
+                console.log('(a) Error:', data.error);
                 this.submitText = 'Submit';
               } else if (data.status == 'submitted') {
                 // File Upload
                 this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
                   console.log('ImageUpload:uploaded:', item, status);
                   if (status < 200 || status > 299) {
-                    alert(JSON.parse(response).message);
+                    console.log('(b) Error: ', JSON.parse(response).message);
                     this.submitText = 'Submit';
                   } else {
                     this.router.navigateByUrl('/done/'+ this.formID);
@@ -137,19 +137,20 @@ export class SubmitComponent {
                 };
                 this.uploader.uploadAll();
               } else {
+                console.log('form status: ', data.status);
                 window.alert('form status: '+ data.status);
                 this.submitText = 'Submit';
               }
             } catch (err) {
-              window.alert(err);
+              console.log('(c) Error: ', err);
               this.submitText = 'Submit';
             }
-          }, (error) => { window.alert(error); this.submitText = 'Submit'; } );
+          }, (error) => { console.log('(d) Error: ', error); this.submitText = 'Submit'; } );
         }
       } catch (err) {
 
       }
-    }, (error) => { window.alert(error); this.submitText = 'Submit'; } );
+    }, (error) => { console.log('(e) Error: ', error); this.submitText = 'Submit'; } );
 
   }
 
