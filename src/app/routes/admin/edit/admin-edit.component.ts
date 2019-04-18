@@ -1,44 +1,30 @@
-import {Component, NgModule, OnInit} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-
-import {Observable} from 'rxjs';
-import { RequestService, AuthService, HermesService } from '../../../../shared-ng/services/services';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { RequestService, AuthService, HermesService, TypeAheadRequestService } from '../../../../shared-ng/services/services';
 import { User } from 'src/shared-ng/interfaces/user';
 
 @Component({
   selector: 'admin-edit',
   templateUrl: './admin-edit.component.html',
-  providers: [ RequestService ]
+  providers: [ RequestService, TypeAheadRequestService ]
 })
 export class AdminEditComponent implements OnInit {
   currentUser: any;
   jobID: number;
   job: {
-        "department": string,
-        "job_description": string,
-        "questions": any[],
-        "owner": string,
-        "image": string,
-        "job_name": string,
-        "visibility": boolean,
-        "featured": boolean
+        'department': string,
+        'job_description': string,
+        'questions': any[],
+        'owner': string,
+        'image': string,
+        'job_name': string,
+        'visibility': boolean,
+        'featured': boolean
     };
-    profiles: any;
+    search = this.tas.search;
 
-    profileSearch = (text: Observable<string>) =>
-      text.pipe(debounceTime(200), distinctUntilChanged(), map(
-        (term) => {
-          if (term.length < 2) {
-            return [];
-          } else {
-            return this.profiles.filter(profile => profile.username.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10).map(profile => profile.username);
-          }
-        })
-      );
-
-  constructor(private rs: RequestService, private as: AuthService, private router: Router, route: ActivatedRoute, private hs: HermesService) {
+  constructor(private rs: RequestService, private as: AuthService, private router: Router, route: ActivatedRoute, private hs: HermesService, private tas: TypeAheadRequestService) {
     this.jobID = route.snapshot.params['formID'];
     hs.sendHeaderTitle('Edit Job');
     as.authenticateUser().subscribe(
@@ -49,12 +35,6 @@ export class AdminEditComponent implements OnInit {
             let job = data.form;
             delete job.jobID;
             this.job = job;
-          },
-          (err) => {}
-        );
-        rs.get('/search/all').subscribe(
-          (data) => {
-            this.profiles = data['results'];
           },
           (err) => {}
         );

@@ -8,8 +8,8 @@
   <small>The first line of the description will be what appears on the homepage.</small>
   <br />
   <label for="owner">Owner</label>
-  <input type="text" class="form-control" id="owner" required [(ngModel)]="job.owner" name="owner"
-    [ngbTypeahead]="profileSearch">
+  <input class="form-control" id="owner" required [(ngModel)]="job.owner" name="owner"
+    [ngbTypeahead]="search" type="search">
 
   <label for="Department">Department</label>
   <div class="form-group">
