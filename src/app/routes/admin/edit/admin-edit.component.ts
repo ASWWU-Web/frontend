@@ -24,15 +24,16 @@ export class AdminEditComponent implements OnInit {
     };
     search = this.tas.search;
 
-  constructor(private rs: RequestService, private as: AuthService, private router: Router, route: ActivatedRoute, private hs: HermesService, private tas: TypeAheadRequestService) {
+  constructor(private rs: RequestService, private as: AuthService, private router: Router, route: ActivatedRoute,
+              private hs: HermesService, private tas: TypeAheadRequestService) {
     this.jobID = route.snapshot.params['formID'];
     hs.sendHeaderTitle('Edit Job');
     as.authenticateUser().subscribe(
-      (data: User) => {
-        this.currentUser = data;
+      (userData: User) => {
+        this.currentUser = userData;
         rs.get('/forms/job/view/' + this.jobID).subscribe(
           (data) => {
-            let job = data.form;
+            const job = data.form;
             delete job.jobID;
             this.job = job;
           },
@@ -56,7 +57,7 @@ export class AdminEditComponent implements OnInit {
   }
 
   submitForm() {
-    const data = {
+    const formData = {
       job_name: this.job.job_name,
       job_description: this.job.job_description,
       visibility: this.job.visibility,
@@ -66,17 +67,17 @@ export class AdminEditComponent implements OnInit {
       image: this.job.image,
       questions: this.job.questions
     };
-    this.rs.post("/forms/job/edit/" + this.jobID, data, null, 'urlencoded').subscribe(
+    this.rs.post('/forms/job/edit/' + this.jobID, formData, null, 'urlencoded').subscribe(
       (data) => {
-        //If the request was successful redirect to the admin page.
-        if(data.status == "Form Updated"){
+        // If the request was successful redirect to the admin page.
+        if(data.status === 'Form Updated'){
           this.router.navigate(['admin']);
         } else {
-          window.alert("An unknown error ocurred.");
+          window.alert('An unknown error ocurred.');
         }
       },
       (err) => {
-        window.alert("ERROR: \n" + err);
+        window.alert('ERROR: \n' + err);
       }
     );
   }
