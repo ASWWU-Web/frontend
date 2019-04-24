@@ -77,7 +77,7 @@ export class SubmitComponent {
           hermesService.sendHeaderTitle(this.form.job_name);
           rs.get('/forms/application/view/' + this.formID + '/' + this.currentUser.username).subscribe((data: {application: ApplicationView}) => {
             this.app = data.application;
-            if (data.status == 'Application not found' || this.app.answers.length == 0) {
+            if (this.app.answers.length === 0) {
               // build the empty answers array
               this.form.questions.forEach((entry) => {
                 const answerObj = {
