@@ -6,6 +6,7 @@ import { RequestService } from '../../../shared-ng/services/request.service';
 
 import {environment} from '../../../shared-ng/environments/environment';
 import { AuthService, HermesService } from 'src/shared-ng/services/services';
+import { AnswerObject, ApplicationPOST, JobView, ApplicationView, User } from 'src/shared-ng/interfaces/interfaces';
 
 
 @Component({
@@ -15,14 +16,14 @@ import { AuthService, HermesService } from 'src/shared-ng/services/services';
 })
 
 export class SubmitComponent {
-  form: any;
-  gForm: any;
-  app: any;
-  gApp: any;
-  answers: any[] = [];
-  gAnswers: any[] = [];
+  form: JobView;
+  gForm: JobView;
+  app: ApplicationView;
+  gApp: ApplicationView;
+  answers: AnswerObject[] = [];
+  gAnswers: AnswerObject[] = [];
   formID: number;
-  currentUser: any;
+  currentUser: User;
   submitText = 'Submit';
   file: any;
   public uploader: FileUploader = new FileUploader({url: environment.SERVER_URL + '/forms/resume/upload'});
@@ -39,7 +40,7 @@ export class SubmitComponent {
           this.gForm = data.form; // { formID: "1", name: "generic", img: "http://lorempixel.com/300/200/abstract/", desc: "baseline stuff", owner: "1", questions: [{ID: "1", text: "What does ASWWU mean to you?"}]};
           // GET request to retrieve previous application answers
           rs.get('/forms/application/view/1/' + this.currentUser.username).subscribe((data) => {
-            this.gApp = data.application; // { jobID: "1", answers: [ {questionID: "1", answer: "many things"}], username: "buddy.boy", status: "", last_update: ""};
+            this.gApp = data.application;
             if (data.status == 'Application not found' || this.gApp.answers.length == 0) {
               // build the empty answers array
               this.gForm.questions.forEach((entry) => {
@@ -70,13 +71,13 @@ export class SubmitComponent {
         }, undefined);
 
         // GET request to retrieve the form
-        rs.get('/forms/job/view/' + this.formID).subscribe((data) => {
-          this.form = data.form; // { formID: "2", name: "dog whisperer", img: "http://lorempixel.com/300/200/abstract/", desc: "talk to dogs", owner: "1", questions: [{ID: "1", text: "What's your favorite color?"}, {ID: "2", text: "What's the best animal?"}]};
+        rs.get('/forms/job/view/' + this.formID).subscribe((data: {form: JobView}) => {
+          this.form = data.form;
           // GET request to retrieve previous application answers
           hermesService.sendHeaderTitle(this.form.job_name);
-          rs.get('/forms/application/view/' + this.formID + '/' + this.currentUser.username).subscribe((data) => {
-            this.app = data.application; // { jobID: "2", answers: [ {questionID: "1", answer: "Roja"}, {questionID: "2", answer: "Dogs of course"}], username: "buddy.boy", status: "", last_update: ""};
-            if (data.status == 'Application not found' || this.app.answers.length == 0) {
+          rs.get('/forms/application/view/' + this.formID + '/' + this.currentUser.username).subscribe((data: {application: ApplicationView}) => {
+            this.app = data.application;
+            if (this.app.answers.length === 0) {
               // build the empty answers array
               this.form.questions.forEach((entry) => {
                 const answerObj = {
@@ -110,8 +111,8 @@ export class SubmitComponent {
 
   onSubmit() {
     this.submitText = 'Submitting...';
-    const submission = { jobID: this.formID, username: this.currentUser.username, answers: this.answers};
-    const gSubmission = { jobID: '1', username: this.currentUser.username, answers: this.gAnswers};
+    const submission: ApplicationPOST = { jobID: this.formID, username: this.currentUser.username, answers: this.answers};
+    const gSubmission: ApplicationPOST = { jobID: 1, username: this.currentUser.username, answers: this.gAnswers};
     this.rs.post('/forms/application/submit', gSubmission, null, 'urlencoded').subscribe((data) => {
       try {
         if (!data.error) {
