@@ -40,7 +40,6 @@ export class AdminReviewApplicationComponent {
             // GET request to retrieve previous application answers
             rs.get('/forms/application/view/1/' + this.username).subscribe((data) => {
               this.gApp = data.application;// { jobID: "1", answers: [ {questionID: "1", answer: "many things"}], username: "buddy.boy", status: "", last_update: ""};
-              this.isResumeUploaded();
               if (data.status == 'Application not found' || this.gApp.answers.length == 0) {
                 // build the empty answers array
                 this.gForm.questions.forEach((entry) => {
@@ -67,6 +66,7 @@ export class AdminReviewApplicationComponent {
             rs.get('/forms/application/view/' + this.formID + '/' + this.username).subscribe(
               (data) => {
                 this.app = data.application;// { jobID: "2", answers: [ {questionID: "1", answer: "Roja"}, {questionID: "2", answer: "Dogs of course"}], username: "buddy.boy", status: "", last_update: ""};
+                this.isResumeUploaded();
                 if (data.status == 'Application not found' || this.app.answers.length == 0) {
                   // build the empty answers array
                   this.form.questions.forEach((entry) => {
@@ -104,7 +104,7 @@ export class AdminReviewApplicationComponent {
   }
 
   isResumeUploaded() {
-    if (this.gApp.resume) {
+    if (this.app.resume) {
       this.isResume = true;
     } else {
       this.isResume = false;
