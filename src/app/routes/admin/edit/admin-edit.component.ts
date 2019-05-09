@@ -45,15 +45,6 @@ export class AdminEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    // TODO: Check to make sure the user is logged in. This isn't that important because this page is for admins.
-    // rs.verify((user) => {
-    //   if(user){
-    //     this.owner = user.username;
-    //   } else {
-    //     console.log('Navigating!!');
-    //     // this.router.navigateByUrl("/");
-    //   }
-    // });
   }
 
   submitForm() {
