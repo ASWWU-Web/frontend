@@ -52,6 +52,10 @@ export class AdminEditComponent implements OnInit {
   ngOnInit() {
   }
 
+  ngOnDestroy() {
+    this.userInfoSubscription.unsubscribe();
+  }
+
   submitForm() {
     const formData = {
       job_name: this.job.job_name,
