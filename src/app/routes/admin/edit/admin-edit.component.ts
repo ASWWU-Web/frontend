@@ -22,7 +22,7 @@ export class AdminEditComponent implements OnInit {
         'visibility': boolean,
         'featured': boolean
     };
-    search = this.tas.search;
+  search = this.tas.search;
 
   constructor(private rs: RequestService, private as: AuthService, private router: Router, route: ActivatedRoute,
               private hs: HermesService, private tas: TypeAheadRequestService) {
