@@ -29,19 +29,23 @@ export class AdminEditComponent implements OnInit {
               private hs: HermesService, private tas: TypeAheadRequestService) {
     this.jobID = route.snapshot.params['formID'];
     hs.sendHeaderTitle('Edit Job');
-    as.authenticateUser().subscribe(
-      (userData: User) => {
-        this.currentUser = userData;
-        rs.get('/forms/job/view/' + this.jobID).subscribe(
-          (data) => {
-            const job = data.form;
-            delete job.jobID;
-            this.job = job;
-          },
-          (err) => {}
-        );
-      },
-      (err) => {}
+    this.userInfoSubscription = as.getUserInfo().pipe(
+      // this prevents re-fetching the job data if the same user re-authenticates
+      distinctUntilChanged()
+    ).subscribe(
+      (data: User) => {
+        this.currentUser = data;
+        if (data) {
+          // if the user is logged in, get the job data.
+          rs.get('/forms/job/view/' + this.jobID).subscribe(
+            (jobData: {form: JobView}) => {
+              const job = jobData.form;
+              delete job.jobID;
+              this.job = job;
+            }
+          );
+        }
+      }
     );
   }
 
