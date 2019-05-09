@@ -42,9 +42,7 @@ export class AdminEditComponent implements OnInit {
           // if the user is logged in, get the job data.
           rs.get('/forms/job/view/' + this.jobID).subscribe(
             (jobData: {form: JobView}) => {
-              const job = jobData.form;
-              delete job.jobID;
-              this.job = job;
+              this.job = jobData.form;
             }
           );
         }
