@@ -5,8 +5,9 @@ import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-u
 import { RequestService } from '../../../shared-ng/services/request.service';
 
 import {environment} from '../../../shared-ng/environments/environment';
-import { AuthService, HermesService } from 'src/shared-ng/services/services';
+import { AuthService, HermesService } from '../../../shared-ng/services/services';
 import { AnswerObject, ApplicationPOST, JobView, ApplicationView, User } from 'src/shared-ng/interfaces/interfaces';
+import { Subscription } from 'rxjs';
 
 
 @Component({
@@ -28,38 +29,27 @@ export class SubmitComponent {
   file: any;
   public uploader: FileUploader = new FileUploader({url: environment.SERVER_URL + '/forms/resume/upload'});
   buildLoginLink: () => string;
+  userInfoSubscription: Subscription;
 
   constructor(private route: ActivatedRoute, private rs: RequestService,
               private as: AuthService, private router: Router, private hermesService: HermesService) {
     this.buildLoginLink = as.buildLoginLink;
     this.formID = route.snapshot.params.formID;
-    as.authenticateUser().subscribe((user) => {
-      if (user) {
-        this.currentUser = user;
-        rs.get('/forms/job/view/1').subscribe((data) => {
-          this.gForm = data.form; // { formID: "1", name: "generic", img: "http://lorempixel.com/300/200/abstract/", desc: "baseline stuff", owner: "1", questions: [{ID: "1", text: "What does ASWWU mean to you?"}]};
-          // GET request to retrieve previous application answers
-          rs.get('/forms/application/view/1/' + this.currentUser.username).subscribe((data) => {
-            this.gApp = data.application;
-            if (data.status == 'Application not found' || this.gApp.answers.length == 0) {
-              // build the empty answers array
-              this.gForm.questions.forEach((entry) => {
-                const answerObj = {
-                  questionID: entry.id,
-                  answer: ''
-                };
-                this.gAnswers.push(answerObj);
-              });
-            } else {
-              this.gApp.answers.forEach((entry) => {
-                const answerObj = {
-                  questionID: entry.questionID,
-                  answer: entry.answer
-                };
-                this.gAnswers.push(answerObj);
-              });
-            }
-          }, (err) => {
+    this.userInfoSubscription = as.getUserInfo().subscribe((data: User) => {
+      this.currentUser = data;
+      this.getJobData(data);
+    });
+  }
+
+  getJobData(userData: User) {
+    if (userData && !(this.form || this.gForm || this.app || this.gApp || this.answers || this.gAnswers)) {
+      this.rs.get('/forms/job/view/1').subscribe((data) => {
+        this.gForm = data.form;
+        // GET request to retrieve previous application answers
+        this.rs.get('/forms/application/view/1/' + this.currentUser.username).subscribe((data) => {
+          this.gApp = data.application;
+          if (data.status == 'Application not found' || this.gApp.answers.length == 0) {
+            // build the empty answers array
             this.gForm.questions.forEach((entry) => {
               const answerObj = {
                 questionID: entry.id,
@@ -67,35 +57,34 @@ export class SubmitComponent {
               };
               this.gAnswers.push(answerObj);
             });
+          } else {
+            this.gApp.answers.forEach((entry) => {
+              const answerObj = {
+                questionID: entry.questionID,
+                answer: entry.answer
+              };
+              this.gAnswers.push(answerObj);
+            });
+          }
+        }, (err) => {
+          this.gForm.questions.forEach((entry) => {
+            const answerObj = {
+              questionID: entry.id,
+              answer: ''
+            };
+            this.gAnswers.push(answerObj);
           });
-        }, undefined);
+        });
+      }, undefined);
 
-        // GET request to retrieve the form
-        rs.get('/forms/job/view/' + this.formID).subscribe((data: {form: JobView}) => {
-          this.form = data.form;
-          // GET request to retrieve previous application answers
-          hermesService.sendHeaderTitle(this.form.job_name);
-          rs.get('/forms/application/view/' + this.formID + '/' + this.currentUser.username).subscribe((data: {application: ApplicationView}) => {
-            this.app = data.application;
-            if (this.app.answers.length === 0) {
-              // build the empty answers array
-              this.form.questions.forEach((entry) => {
-                const answerObj = {
-                  questionID: entry.id,
-                  answer: ''
-                };
-                this.answers.push(answerObj);
-              });
-            } else {
-              this.app.answers.forEach((entry) => {
-                const answerObj = {
-                  questionID: entry.questionID,
-                  answer: entry.answer
-                };
-                this.answers.push(answerObj);
-              });
-            }
-          }, (err) => {
+      this.rs.get('/forms/job/view/' + this.formID).subscribe((data: {form: JobView}) => {
+        this.form = data.form;
+        // GET request to retrieve previous application answers
+        this.hermesService.sendHeaderTitle(this.form.job_name);
+        this.rs.get('/forms/application/view/' + this.formID + '/' + this.currentUser.username).subscribe((data: {application: ApplicationView}) => {
+          this.app = data.application;
+          if (this.app.answers.length === 0) {
+            // build the empty answers array
             this.form.questions.forEach((entry) => {
               const answerObj = {
                 questionID: entry.id,
@@ -103,10 +92,26 @@ export class SubmitComponent {
               };
               this.answers.push(answerObj);
             });
+          } else {
+            this.app.answers.forEach((entry) => {
+              const answerObj = {
+                questionID: entry.questionID,
+                answer: entry.answer
+              };
+              this.answers.push(answerObj);
+            });
+          }
+        }, (err) => {
+          this.form.questions.forEach((entry) => {
+            const answerObj = {
+              questionID: entry.id,
+              answer: ''
+            };
+            this.answers.push(answerObj);
           });
-        }, undefined);
-      }
-    });
+        });
+      }, undefined);
+    }
   }
 
   onSubmit() {

@@ -1,6 +1,8 @@
 import {Component, NgModule} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { RequestService, AuthService, HermesService } from '../../../../shared-ng/services/services';
+import { Subject, Subscription } from 'rxjs';
+import { User } from '../../../../shared-ng/interfaces/interfaces';
 
 @Component({
   selector: 'admin-review',
@@ -28,11 +30,14 @@ export class AdminReviewComponent {
   currentUser: any;
   cards: any[] = [];
   buildLoginLink: () => string;
+  userInfoSubscription: Subscription;
 
   constructor(route: ActivatedRoute, private rs: RequestService, private as: AuthService, private hs: HermesService) {
     this.buildLoginLink = as.buildLoginLink;
     this.formID = route.snapshot.params['formID'];
-    as.authenticateUser().subscribe((user) => this.currentUser = user);
+    this.userInfoSubscription = as.getUserInfo().subscribe((data: User) => {
+        this.currentUser = data;
+      }, null);
     rs.get('/forms/application/view/' + this.formID + '/all').subscribe((data) => {
         this.applications = data.applications;
         this.cards = this.buildCards(this.applications);

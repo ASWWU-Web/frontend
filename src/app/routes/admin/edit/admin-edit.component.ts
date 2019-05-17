@@ -32,22 +32,26 @@ export class AdminEditComponent implements OnInit {
               private hs: HermesService, private tas: TypeAheadRequestService) {
     this.jobID = route.snapshot.params['formID'];
     hs.sendHeaderTitle('Edit Job');
-    this.userInfoSubscription = as.getUserInfo().pipe(
-      // this prevents re-fetching the job data if the same user re-authenticates
-      distinctUntilChanged()
-    ).subscribe(
+    this.userInfoSubscription = as.getUserInfo().subscribe(
       (data: User) => {
         this.currentUser = data;
-        if (data) {
-          // if the user is logged in, get the job data.
-          rs.get('/forms/job/view/' + this.jobID).subscribe(
-            (jobData: {form: JobView}) => {
-              this.job = jobData.form;
-            }
-          );
-        }
+        this.getJobData(data);
       }
     );
+  }
+
+  /**
+   * run the get request to get relevant job data from the server. only runs if
+   * the user is not null and the job data has not already been set.
+   */
+  getJobData(userData: User) {
+    if (userData && !this.job) {
+      this.rs.get('/forms/job/view/' + this.jobID).subscribe(
+        (jobData: {form: JobView}) => {
+          this.job = jobData.form;
+        }
+      );
+    }
   }
 
   ngOnInit() {
