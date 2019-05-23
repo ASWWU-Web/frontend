@@ -1,4 +1,4 @@
-import {Component, NgModule} from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
 import {ActivatedRoute, Router } from '@angular/router';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload/ng2-file-upload';
 
@@ -16,7 +16,7 @@ import { Subscription } from 'rxjs';
   providers: [ RequestService ]
 })
 
-export class SubmitComponent {
+export class SubmitComponent implements OnInit {
   form: JobView;
   gForm: JobView;
   app: ApplicationView;
@@ -33,16 +33,24 @@ export class SubmitComponent {
 
   constructor(private route: ActivatedRoute, private rs: RequestService,
               private as: AuthService, private router: Router, private hermesService: HermesService) {
-    this.buildLoginLink = as.buildLoginLink;
-    this.formID = route.snapshot.params.formID;
-    this.userInfoSubscription = as.getUserInfo().subscribe((data: User) => {
+  }
+
+  ngOnInit() {
+    this.buildLoginLink = this.as.buildLoginLink;
+    this.formID = this.route.snapshot.params.formID;
+    this.userInfoSubscription = this.as.getUserInfo().subscribe((data: User) => {
+      if (this.currentUser == null && data) {
+        // this will get called when the component loads the first time, and
+        // any time the user data goes from null to defined, but not times
+        // when user data is only mutated.
+        this.getJobData(data);
+      }
       this.currentUser = data;
-      this.getJobData(data);
     });
   }
 
   getJobData(userData: User) {
-    if (userData && !(this.form || this.gForm || this.app || this.gApp || this.answers || this.gAnswers)) {
+    if (userData) {
       this.rs.get('/forms/job/view/1').subscribe((data) => {
         this.gForm = data.form;
         // GET request to retrieve previous application answers

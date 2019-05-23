@@ -1,4 +1,4 @@
-import { Component, NgModule, OnDestroy } from '@angular/core';
+import { Component, NgModule, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 import { RequestService, AuthService, HermesService } from '../../../../shared-ng/services/services';
@@ -12,7 +12,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
   providers: [ RequestService ]
 })
 
-export class AdminReviewApplicationComponent implements OnDestroy {
+export class AdminReviewApplicationComponent implements OnInit, OnDestroy {
   formID: number;
   username: string;
   application: any;
@@ -29,14 +29,24 @@ export class AdminReviewApplicationComponent implements OnDestroy {
   userInfoSubscription: Subscription;
 
   constructor(private route: ActivatedRoute, private rs: RequestService, private as: AuthService, private hs: HermesService) {
-    hs.sendHeaderTitle('Admin Application Review');
-    this.buildLoginLink = as.buildLoginLink;
-    this.formID = +route.snapshot.params.formID;
-    this.username = route.snapshot.params.username;
-    this.userInfoSubscription = as.getUserInfo().subscribe(
+  }
+
+  ngOnInit(): void {
+    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    //Add 'implements OnInit' to the class.
+    this.hs.sendHeaderTitle('Admin Application Review');
+    this.buildLoginLink = this.as.buildLoginLink;
+    this.formID = +this.route.snapshot.params.formID;
+    this.username = this.route.snapshot.params.username;
+    this.userInfoSubscription = this.as.getUserInfo().subscribe(
       (data: User) => {
+        if (this.currentUser == null && data) {
+          // this will get called when the component loads the first time, and
+          // any time the user data goes from null to defined, but not times
+          // when user data is only mutated.
+          this.getJobData(this.currentUser);
+        }
         this.currentUser = data;
-        this.getJobData(data);
       }
     );
   }
@@ -45,9 +55,8 @@ export class AdminReviewApplicationComponent implements OnDestroy {
     this.userInfoSubscription.unsubscribe();
   }
 
-
   getJobData(userData: User) {
-    if (userData && !(this.form || this.gForm || this.app || this.gapp || this.answers || this.gAnswers)) {
+    if (userData) {
       this.currentUser = userData;
       this.rs.get('/forms/job/view/1').subscribe((formData) => {
         this.gForm = formData.form;
