@@ -32,7 +32,6 @@ import {
   SharedNgContainerComponent,
   FooterComponent,
   NavBarComponent,
-  MobileNavComponent,
   UserBubbleComponent,
   HeaderComponent
 } from '../shared-ng/components/components';
@@ -45,7 +44,6 @@ import {
     SharedNgContainerComponent,
     FooterComponent,
     NavBarComponent,
-    MobileNavComponent,
     UserBubbleComponent,
     HeaderComponent,
     AppComponent,
