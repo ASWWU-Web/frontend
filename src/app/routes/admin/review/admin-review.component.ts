@@ -1,6 +1,8 @@
-import {Component, NgModule} from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { RequestService, AuthService, HermesService } from '../../../../shared-ng/services/services';
+import { Subject, Subscription } from 'rxjs';
+import { User } from '../../../../shared-ng/interfaces/interfaces';
 
 @Component({
   selector: 'admin-review',
@@ -21,26 +23,36 @@ import { RequestService, AuthService, HermesService } from '../../../../shared-n
     providers: [ RequestService ]
 })
 
-export class AdminReviewComponent {
+export class AdminReviewComponent implements OnInit {
 	formID: number;
   form: any;
 	applications: any;
   currentUser: any;
   cards: any[] = [];
   buildLoginLink: () => string;
+  userInfoSubscription: Subscription;
 
-  constructor(route: ActivatedRoute, private rs: RequestService, private as: AuthService, private hs: HermesService) {
-    this.buildLoginLink = as.buildLoginLink;
-    this.formID = route.snapshot.params['formID'];
-    as.authenticateUser().subscribe((user) => this.currentUser = user);
-    rs.get('/forms/application/view/' + this.formID + '/all').subscribe((data) => {
+  constructor(private route: ActivatedRoute, private rs: RequestService,
+              private as: AuthService, private hs: HermesService) {
+  }
+
+  ngOnInit() {
+    this.buildLoginLink = this.as.buildLoginLink;
+    this.formID = this.route.snapshot.params['formID'];
+    this.userInfoSubscription = this.as.getUserInfo().subscribe(
+      (data: User) => {
+        this.currentUser = data;
+      }
+    );
+    this.rs.get('/forms/application/view/' + this.formID + '/all').subscribe(
+      (data) => {
         this.applications = data.applications;
         this.cards = this.buildCards(this.applications);
-    }, null);
-    rs.get('/forms/job/view/' + this.formID).subscribe((data) => {
-      this.form = data.form;
-      hs.sendHeaderTitle(this.form.job_name + ' Review');
-    }, null);
+      }, null);
+    this.rs.get('/forms/job/view/' + this.formID).subscribe((data) => {
+        this.form = data.form;
+        this.hs.sendHeaderTitle(this.form.job_name + ' Review');
+      }, null);
   }
 
   buildCards(applications: any[]) {
