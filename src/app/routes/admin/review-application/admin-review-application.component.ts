@@ -40,13 +40,14 @@ export class AdminReviewApplicationComponent implements OnInit, OnDestroy {
     this.username = this.route.snapshot.params.username;
     this.userInfoSubscription = this.as.getUserInfo().subscribe(
       (data: User) => {
-        if (this.currentUser == null && data) {
+        const lastCurrentUserValue = this.currentUser;
+        this.currentUser = data;
+        if (lastCurrentUserValue == null && data) {
           // this will get called when the component loads the first time, and
           // any time the user data goes from null to defined, but not times
           // when user data is only mutated.
-          this.getJobData(this.currentUser);
+          this.getJobData();
         }
-        this.currentUser = data;
       }
     );
   }
@@ -55,9 +56,7 @@ export class AdminReviewApplicationComponent implements OnInit, OnDestroy {
     this.userInfoSubscription.unsubscribe();
   }
 
-  getJobData(userData: User) {
-    if (userData) {
-      this.currentUser = userData;
+  getJobData() {
       this.rs.get('/forms/job/view/1').subscribe((formData) => {
         this.gForm = formData.form;
         // GET request to retrieve previous application answers
@@ -110,7 +109,6 @@ export class AdminReviewApplicationComponent implements OnInit, OnDestroy {
           }
         );
       }, undefined);
-    }
   }
 
 

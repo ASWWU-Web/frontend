@@ -38,13 +38,14 @@ export class AdminEditComponent implements OnInit, OnDestroy {
     this.hs.sendHeaderTitle('Edit Job');
     this.userInfoSubscription = this.as.getUserInfo().subscribe(
       (data: User) => {
-        if (this.currentUser == null && data) {
+        const lastCurrentUserValue = this.currentUser;
+        this.currentUser = data;
+        if (lastCurrentUserValue == null && data) {
           // this will get called when the component loads the first time, and
           // any time the user data goes from null to defined, but not times
           // when user data is only mutated.
-          this.getJobData(data);
+          this.getJobData();
         }
-        this.currentUser = data;
       }
     );
   }
@@ -54,14 +55,12 @@ export class AdminEditComponent implements OnInit, OnDestroy {
    * this should only be run when the page loads (ngOnInit) and if the
    * currentUser state is going from logged out to logged in.
    */
-  getJobData(userData: User) {
-    if (userData) {
+  getJobData() {
       this.rs.get('/forms/job/view/' + this.jobID).subscribe(
         (jobData: {form: JobView}) => {
           this.job = jobData.form;
         }
       );
-    }
   }
 
   ngOnDestroy(): void {
