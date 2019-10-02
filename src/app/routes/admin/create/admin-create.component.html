@@ -41,6 +41,12 @@
        <option [value]="0"> Hidden</option>
 </select>
 
+<label for="featured">Featured</label>
+<select class="form-control" [(ngModel)]="featured">
+  <option selected [value]="false"> Not featured</option>
+  <option [value]="true"> featured</option>
+</select>
+
 <label for="imgLink">Image Link</label>
 <input type="text" class="form-control" id="imgLink" required [(ngModel)]="imgLink" name="imgLink">
 
