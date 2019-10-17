@@ -50,9 +50,11 @@ export class AdminCreateComponent implements OnInit {
         this.questions = [{question: ''}];
         this.department = '';
       } else {
-        window.alert(JSON.stringify('failed to submit'));
+        window.alert('failed to submit');
       }
-    }, (error) => {window.alert('ERROR: \n' + JSON.stringify(error)); });
+    }, (error) => {
+      window.alert(error.error.status);
+    });
   }
 
   removeQuestion(index: number) {
