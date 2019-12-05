@@ -1,5 +1,4 @@
 # Frontend
----
 
 Aswwu's five sites all reside within this repository. Homepage, Mask, Jobs, Pages, and Elections. 
 
