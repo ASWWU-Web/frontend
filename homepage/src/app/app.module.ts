@@ -10,22 +10,49 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { RequestService } from '../shared-ng/services/services';
-import { HermesService } from '../shared-ng/services/services';
-import { HomepageRequestService } from '../shared-ng/services/services';
+// shared-ng components
+import {
+  NavBarComponent,
+  FooterComponent,
+  HeaderComponent,
+  UserBubbleComponent,
+  SharedNgContainerComponent
+} from '../shared-ng/components/components';
+import {
+  RequestService,
+  HermesService,
+  HomepageRequestService,
+  AuthService,
+  MaskRequestService,
+} from '../shared-ng/services/services';
+
+// mask project components
+import {
+  ProfileComponent,
+  SearchComponent,
+  UpdateComponent,
+  RandomComponent,
+  BirthdayComponent,
+  SuperSearchComponent
+} from './routes/routes';
+import {
+  ProfileFullComponent,
+  ProfileSmComponent,
+  SearchResultsComponent,
+  UnescapePipe,
+  ProfileModalComponent,
+  ProfileModalContentComponent
+} from './shared/shared';
+
+// homepage project components
 import { SuperDuperService } from './services/services';
-import { AppComponent } from './app.component';
-import { NavBarComponent } from '../shared-ng/components/nav-bar/nav-bar.component';
-import { FooterComponent } from '../shared-ng/components/footer/footer.component';
-import { HeaderComponent } from '../shared-ng/components/header/header.component';
+import { SuperDuperComponent } from './super-duper/super-duper.component';
 import { UpcomingComponent } from './upcoming/upcoming.component';
 import { CalendarService } from './services/calendar.service';
-import { UserBubbleComponent } from '../shared-ng/components/user-bubble/user-bubble.component';
 import { HomeComponent } from './home/home.component';
-import { SuperDuperComponent } from './super-duper/super-duper.component';
-
 import { OpenForumComponent } from './open-forum/open-forum.component';
-import { SharedNgContainerComponent } from '../shared-ng/components/components';
+
+import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +65,19 @@ import { SharedNgContainerComponent } from '../shared-ng/components/components';
     HomeComponent,
     SuperDuperComponent,
     OpenForumComponent,
-    SharedNgContainerComponent
+    SharedNgContainerComponent,
+    ProfileComponent,
+    SearchComponent,
+    UpdateComponent,
+    RandomComponent,
+    BirthdayComponent,
+    SuperSearchComponent,
+    ProfileFullComponent,
+    ProfileSmComponent,
+    ProfileModalComponent,
+    ProfileModalContentComponent,
+    SearchResultsComponent,
+    UnescapePipe,
   ],
   imports: [
     BrowserModule,
@@ -50,8 +89,20 @@ import { SharedNgContainerComponent } from '../shared-ng/components/components';
     AppRoutingModule,
     FontAwesomeModule,
   ],
-  providers: [RequestService, CalendarService, SuperDuperService, HermesService, HomepageRequestService],
-  bootstrap: [AppComponent]
+  providers: [
+    RequestService,
+    CalendarService,
+    SuperDuperService,
+    HermesService,
+    HomepageRequestService,
+    AuthService,
+    MaskRequestService
+  ],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ProfileModalComponent,
+    ProfileModalContentComponent
+  ]
 })
 export class AppModule {
   constructor() {
