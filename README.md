@@ -11,3 +11,29 @@ To run the development serve first navigate into the site's directory you wish t
 `cd homepage`  
 Then run the cmd `ng serve` to start the development server.  
 Open a browser and navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+# The Mask
+
+An online yearbook created by ASWWU for Walla Walla University using **Angular 5**.
+
+Live version: [aswwu.com/mask](https://aswwu.com/mask/)
+
+
+## Build
+
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+
+Because the live version of the server is run at `aswwu.com/mask` you must build the project as follows.
+```
+ng build -prod --base-href /mask --deploy-url /mask
+```
+You can also run `npm run build`.
+
+## Further help
+
+### Angular CLI
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
+### Contact
+
+Contact [ASWWU.webmaster@wallawalla.edu](mailto:aswwu.webmaster@wallawalla.edu) for additional information about this project.
