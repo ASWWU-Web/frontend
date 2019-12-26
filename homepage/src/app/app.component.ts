@@ -32,7 +32,7 @@ export class AppComponent {
 
       // sub navbar links
       const links: SubNavbarLink[] = [
-        {linkText: 'Search', linkURI: '/'},
+        {linkText: 'Search', linkURI: '/search'},
         {linkText: 'Super Search', linkURI: '/super-search'},
         {linkText: 'Random Profile', linkURI: '/random'},
         {linkText: 'Birthdays', linkURI: 'birthdays'}
