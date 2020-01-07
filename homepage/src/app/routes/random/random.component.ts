@@ -2,7 +2,7 @@
  * Created by ethan on 2/21/17.
  */
 import { Component, OnInit } from '@angular/core';
-import { MaskRequestService } from '../../../shared-ng/services/services';
+import { MaskRequestService, HermesService } from '../../../shared-ng/services/services';
 import { ProfileModel } from '../../shared/shared';
 import { CURRENT_YEAR } from '../../config';
 
@@ -24,11 +24,13 @@ export class RandomComponent implements OnInit {
     allProfiles: any;
     selectedProfile: any;
 
-    constructor(private mrs: MaskRequestService) {}
+    constructor(private mrs: MaskRequestService, private hermesService: HermesService) {
+      hermesService.sendShowHeader(true);
+    }
 
     ngOnInit() {
       const profileObservable = this.mrs.listProfile();
-      profileObservable.subscribe((data)=> {
+      profileObservable.subscribe((data) => {
         this.allProfiles = data;
         this.getRandom();
       }, undefined);
@@ -36,8 +38,9 @@ export class RandomComponent implements OnInit {
 
     getRandom(): any {
         this.selectedProfile = this.allProfiles[Math.floor((Math.random() * (this.allProfiles.length - 1)) + 1)];
-        while(this.selectedProfile['photo'] == "images/mask_unknown.png" || this.selectedProfile['photo'] == "None" || !this.selectedProfile['photo']) {
-            this.selectedProfile = this.allProfiles[Math.floor((Math.random() * (this.allProfiles.length - 1)) + 1)];
+        while (this.selectedProfile['photo'] === 'images/mask_unknown.png' || this.selectedProfile['photo'] === 'None' ||
+               !this.selectedProfile['photo']) {
+          this.selectedProfile = this.allProfiles[Math.floor((Math.random() * (this.allProfiles.length - 1)) + 1)];
         }
         const profileObservable = this.mrs.readProfile(CURRENT_YEAR, this.selectedProfile['username']);
         profileObservable.subscribe(data => {
