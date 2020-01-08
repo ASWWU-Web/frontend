@@ -1,6 +1,6 @@
 import { Subscription ,  Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MaskRequestService } from '../../../shared-ng/services/services'
@@ -19,7 +19,10 @@ export class SearchComponent implements OnInit {
   typeaheadResults: string[] = [];
   typeaheadSub: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private mrs: MaskRequestService, private location: Location) {}
+  constructor(private activatedRoute: ActivatedRoute, private mrs: MaskRequestService, private location: Location,
+              private elementRef: ElementRef) {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
+  }
 
   ngOnInit() {
     //Get the Params from the URL.

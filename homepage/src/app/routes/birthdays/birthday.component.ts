@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -21,7 +21,9 @@ export class BirthdayComponent implements OnInit {
     queryWeek: String;
     private subscription: Subscription;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(private activatedRoute: ActivatedRoute, private elementRef: ElementRef) {
+        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
+    }
 
     ngOnInit() {
         // today's birthdays

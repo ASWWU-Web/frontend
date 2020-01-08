@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { NgStyle } from '@angular/common';
+import { HermesService } from '../../shared-ng/services/services';
 
 @Component({
   selector: 'home',
@@ -11,8 +12,10 @@ export class HomeComponent implements OnInit {
   bgLink = 'https://aswwu.com/media/images/background/background.jpg';
   bgLinkChanged = 'url(' + this.bgLink + ')';
 
-  constructor() { }
+  constructor(private hermesService: HermesService, private elementRef: ElementRef) {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+   }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
+
 }

@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -26,7 +26,10 @@ export class SuperSearchComponent implements OnInit {
 
     private subscription: Subscription;
 
-    constructor(private activatedRoute: ActivatedRoute, private location: Location) {}
+    constructor(private activatedRoute: ActivatedRoute, private location: Location,
+                private elementRef: ElementRef) {
+      this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
+    }
 
     ngOnInit() {
         this.activatedRoute.queryParamMap.subscribe( params => {
