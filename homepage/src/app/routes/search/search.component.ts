@@ -13,7 +13,7 @@ import { Profile } from '../../../shared-ng/interfaces/interfaces';
   styleUrls: ['search.component.css'],
 })
 export class SearchComponent implements OnInit {
-  typedQuery: string = '';
+  typedQuery = '';
   searchQuery: string;
   allProfiles: any[] = [];
   typeaheadResults: string[] = [];
@@ -21,14 +21,15 @@ export class SearchComponent implements OnInit {
 
   constructor(private activatedRoute: ActivatedRoute, private mrs: MaskRequestService,
               private location: Location, private hermesService: HermesService) {
+    hermesService.sendShowHeader(true);
     hermesService.sendShowSubNav(true);
   }
 
   ngOnInit() {
-    //Get the Params from the URL.
+    // Get the Params from the URL.
     this.activatedRoute.queryParamMap.subscribe( params => {
-      this.typedQuery = params.get("query");
-      if(this.typedQuery) {
+      this.typedQuery = params.get('query');
+      if (this.typedQuery) {
         this.runSearch();
       }
     });
@@ -40,11 +41,11 @@ export class SearchComponent implements OnInit {
       }, (err) => {});
   }
 
-  //Converts 'majors=Computer Engineering' to 'Major: Computer Engineering'
+  // Converts 'majors=Computer Engineering' to 'Major: Computer Engineering'
   typeaheadFormatter = (result: string) => {
-    if(result.substr(0,7) == 'majors=') {
+    if (result.substr(0, 7) === 'majors=') {
       return 'Major: ' + result.substr(7);
-    } else if(result.substr(0,7) == 'minors=') {
+    } else if (result.substr(0, 7) === 'minors=') {
       return 'Minor: ' + result.substr(7);
     }
     return result.substr(0);
@@ -54,15 +55,15 @@ export class SearchComponent implements OnInit {
   typeaheadSearch = (text$: Observable<string>) =>
     text$.pipe(distinctUntilChanged(), map(
       term => term.length < 1 ? [] : this.typeaheadResults.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10)
-    ));
+    ))
 
   // Runs the search
-  runSearch(item=null) {
+  runSearch(item = null) {
     if (item != null) {
       this.typedQuery = item.item;
     }
     this.searchQuery = this.typedQuery;
-    this.location.replaceState("/search?query=" + this.typedQuery);
+    this.location.replaceState('/search?query=' + this.typedQuery);
   }
 
   // Sets the first result of typeahead to the typed text
@@ -74,14 +75,14 @@ export class SearchComponent implements OnInit {
     this.typeaheadResults.push('');
     // Add all profiles to typeahead options
 
-    for(let profile of this.allProfiles) {
+    for (const profile of this.allProfiles) {
       this.typeaheadResults.push(profile['full_name']);
     }
     // Add all majors and minors to typeahead options
-    for(let major of SearchableFields['majors']) {
+    for (const major of SearchableFields['majors']) {
       this.typeaheadResults.push('majors=' + major);
     }
-    for(let minor of SearchableFields['minors']) {
+    for (const minor of SearchableFields['minors']) {
       this.typeaheadResults.push('minors=' + minor);
     }
   }

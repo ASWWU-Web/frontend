@@ -25,12 +25,13 @@ export class RandomComponent implements OnInit {
     selectedProfile: any;
 
     constructor(private mrs: MaskRequestService, private hermesService: HermesService) {
+      hermesService.sendShowHeader(true);
       hermesService.sendShowSubNav(true);
     }
 
     ngOnInit() {
       const profileObservable = this.mrs.listProfile();
-      profileObservable.subscribe((data)=> {
+      profileObservable.subscribe((data) => {
         this.allProfiles = data;
         this.getRandom();
       }, undefined);
@@ -38,8 +39,9 @@ export class RandomComponent implements OnInit {
 
     getRandom(): any {
         this.selectedProfile = this.allProfiles[Math.floor((Math.random() * (this.allProfiles.length - 1)) + 1)];
-        while(this.selectedProfile['photo'] == "images/mask_unknown.png" || this.selectedProfile['photo'] == "None" || !this.selectedProfile['photo']) {
-            this.selectedProfile = this.allProfiles[Math.floor((Math.random() * (this.allProfiles.length - 1)) + 1)];
+        while (this.selectedProfile['photo'] === 'images/mask_unknown.png' || this.selectedProfile['photo'] === 'None' ||
+               !this.selectedProfile['photo']) {
+          this.selectedProfile = this.allProfiles[Math.floor((Math.random() * (this.allProfiles.length - 1)) + 1)];
         }
         const profileObservable = this.mrs.readProfile(CURRENT_YEAR, this.selectedProfile['username']);
         profileObservable.subscribe(data => {

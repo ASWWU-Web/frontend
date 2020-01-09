@@ -13,6 +13,8 @@ export class HomeComponent implements OnInit {
   bgLinkChanged = 'url(' + this.bgLink + ')';
 
   constructor(private hermesService: HermesService) {
+    hermesService.sendShowHeader(false);
+   }
     hermesService.sendShowSubNav(false);
   }
 
