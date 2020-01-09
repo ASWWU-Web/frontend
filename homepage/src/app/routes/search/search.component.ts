@@ -3,7 +3,7 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params } from '@angular/router';
-import { MaskRequestService } from '../../../shared-ng/services/services'
+import { MaskRequestService, HermesService } from '../../../shared-ng/services/services';
 import { SearchableFields } from '../../shared/fields';
 import { Profile } from '../../../shared-ng/interfaces/interfaces';
 
@@ -19,7 +19,10 @@ export class SearchComponent implements OnInit {
   typeaheadResults: string[] = [];
   typeaheadSub: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private mrs: MaskRequestService, private location: Location) {}
+  constructor(private activatedRoute: ActivatedRoute, private mrs: MaskRequestService,
+              private location: Location, private hermesService: HermesService) {
+    hermesService.sendShowSubNav(true);
+  }
 
   ngOnInit() {
     //Get the Params from the URL.

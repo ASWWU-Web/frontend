@@ -1,6 +1,7 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HermesService } from '../../../shared-ng/services/services';
 
 @Component({
     template:  `
@@ -21,7 +22,9 @@ export class BirthdayComponent implements OnInit {
     queryWeek: String;
     private subscription: Subscription;
 
-    constructor(private activatedRoute: ActivatedRoute) {}
+    constructor(private activatedRoute: ActivatedRoute, private hermesService: HermesService) {
+        hermesService.sendShowSubNav(true);
+    }
 
     ngOnInit() {
         // today's birthdays
