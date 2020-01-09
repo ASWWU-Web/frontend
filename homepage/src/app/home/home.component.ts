@@ -14,7 +14,6 @@ export class HomeComponent implements OnInit {
 
   constructor(private hermesService: HermesService) {
     hermesService.sendShowHeader(false);
-   }
     hermesService.sendShowSubNav(false);
   }
 
