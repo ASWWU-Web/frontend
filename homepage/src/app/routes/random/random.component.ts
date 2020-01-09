@@ -1,7 +1,7 @@
 /**
  * Created by ethan on 2/21/17.
  */
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { MaskRequestService, HermesService } from '../../../shared-ng/services/services';
 import { ProfileModel } from '../../shared/shared';
 import { CURRENT_YEAR } from '../../config';
@@ -24,7 +24,10 @@ export class RandomComponent implements OnInit {
     allProfiles: any;
     selectedProfile: any;
 
-    constructor(private mrs: MaskRequestService, private hermesService: HermesService) {
+    constructor(private mrs: MaskRequestService, private elementRef: ElementRef, private hermesService: HermesService) {
+      // sets background color
+      this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
+      // displays header and subnav bar
       hermesService.sendShowHeader(true);
       hermesService.sendShowSubNav(true);
     }

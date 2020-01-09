@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HermesService } from '../../../shared-ng/services/services';
 
@@ -22,7 +22,10 @@ export class BirthdayComponent implements OnInit {
     queryWeek: string;
     private subscription: Subscription;
 
-    constructor(private activatedRoute: ActivatedRoute, private hermesService: HermesService) {
+    constructor(private activatedRoute: ActivatedRoute, private elementRef: ElementRef, private hermesService: HermesService) {
+        // sets background color
+        this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
+        // displays header and subnav bar
         hermesService.sendShowHeader(true);
         hermesService.sendShowSubNav(true);
     }

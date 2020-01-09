@@ -1,6 +1,6 @@
 import { Subscription ,  Observable } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MaskRequestService, HermesService } from '../../../shared-ng/services/services';
@@ -19,8 +19,11 @@ export class SearchComponent implements OnInit {
   typeaheadResults: string[] = [];
   typeaheadSub: Subscription;
 
-  constructor(private activatedRoute: ActivatedRoute, private mrs: MaskRequestService,
-              private location: Location, private hermesService: HermesService) {
+  constructor(private activatedRoute: ActivatedRoute, private mrs: MaskRequestService, private location: Location,
+              private elementRef: ElementRef, private hermesService: HermesService) {
+    // sets background color
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
+    // displays header and subnav bar
     hermesService.sendShowHeader(true);
     hermesService.sendShowSubNav(true);
   }
