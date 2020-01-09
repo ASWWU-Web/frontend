@@ -22,6 +22,7 @@ export class SearchComponent implements OnInit {
   constructor(private activatedRoute: ActivatedRoute, private mrs: MaskRequestService,
               private location: Location, private hermesService: HermesService) {
     hermesService.sendShowHeader(true);
+    hermesService.sendShowSubNav(true);
   }
 
   ngOnInit() {

@@ -26,6 +26,7 @@ export class RandomComponent implements OnInit {
 
     constructor(private mrs: MaskRequestService, private hermesService: HermesService) {
       hermesService.sendShowHeader(true);
+      hermesService.sendShowSubNav(true);
     }
 
     ngOnInit() {

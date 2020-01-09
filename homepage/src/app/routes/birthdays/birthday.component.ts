@@ -24,6 +24,7 @@ export class BirthdayComponent implements OnInit {
 
     constructor(private activatedRoute: ActivatedRoute, private hermesService: HermesService) {
         hermesService.sendShowHeader(true);
+        hermesService.sendShowSubNav(true);
     }
 
     ngOnInit() {
