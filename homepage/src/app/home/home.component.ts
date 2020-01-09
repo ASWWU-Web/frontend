@@ -13,9 +13,12 @@ export class HomeComponent implements OnInit {
   bgLinkChanged = 'url(' + this.bgLink + ')';
 
   constructor(private hermesService: HermesService, private elementRef: ElementRef) {
+    // sets background color
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+    // hides header and subnav bar
+    hermesService.sendShowHeader(false);
+    hermesService.sendShowSubNav(false);
    }
 
   ngOnInit() { }
-
 }

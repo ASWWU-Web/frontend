@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CURRENT_YEAR } from '../../config';
+import { HermesService } from '../../../shared-ng/services/services';
 
 import {
     FieldsInOrder, SelectFields, SearchableFields,
@@ -17,8 +18,8 @@ import {
 
 export class SuperSearchComponent implements OnInit {
     criteria: string[][] = [];
-    query: string = '';
-    serverQuery: string = '';
+    query = '';
+    serverQuery = '';
     year: string = CURRENT_YEAR;
     fieldsInOrder: string[] = FieldsForSearching;
     selectables: any = SelectFields;
@@ -27,17 +28,21 @@ export class SuperSearchComponent implements OnInit {
     private subscription: Subscription;
 
     constructor(private activatedRoute: ActivatedRoute, private location: Location,
-                private elementRef: ElementRef) {
+                private elementRef: ElementRef, private hermesService: HermesService) {
+      // sets background color
       this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
+      // displays header and subnav bar
+      hermesService.sendShowHeader(true);
+      hermesService.sendShowSubNav(true);
     }
 
     ngOnInit() {
         this.activatedRoute.queryParamMap.subscribe( params => {
           this.criteria = [];
-          for (let key of params.keys) {
+          for (const key of params.keys) {
             this.criteria.push([key, params.get(key)]);
           }
-          if (this.criteria.length == 0) {
+          if (this.criteria.length === 0) {
             this.criteria.push(['full_name', '']);
           } else {
             this.updateQuery();
@@ -47,21 +52,20 @@ export class SuperSearchComponent implements OnInit {
 
     updateQuery() {
         let tempstring = '';
-        for(let value of this.criteria) {
-            if(value[0] !== 'year' && value[1] != ''){
-                tempstring += value[0] + "=" + value[1] + "&";
-            }
-            else if(value[0] == 'year') {
+        for (const value of this.criteria) {
+            if (value[0] !== 'year' && value[1] !== ''){
+                tempstring += value[0] + '=' + value[1] + '&';
+            } else if (value[0] === 'year') {
                 this.year = value[1];
             }
         }
         tempstring = tempstring.slice(0, -1);
         this.query = tempstring;
-        this.serverQuery = this.query.replace("&", ";")
-        this.location.replaceState("/super-search?" + this.query);
+        this.serverQuery = this.query.replace('&', ';');
+        this.location.replaceState('/super-search?' + this.query);
     }
 
-    removeField(i){
+    removeField(i) {
         this.criteria.splice(i, 1);
         // let i = 0;
         // for(let pair of this.criteria) {

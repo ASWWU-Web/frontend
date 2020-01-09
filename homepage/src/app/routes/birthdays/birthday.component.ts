@@ -1,6 +1,7 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { HermesService } from '../../../shared-ng/services/services';
 
 @Component({
     template:  `
@@ -16,31 +17,35 @@ import { ActivatedRoute } from '@angular/router';
 })
 
 export class BirthdayComponent implements OnInit {
-    queryToday: String;
-    queryTomorrow: String;
-    queryWeek: String;
+    queryToday: string;
+    queryTomorrow: string;
+    queryWeek: string;
     private subscription: Subscription;
 
-    constructor(private activatedRoute: ActivatedRoute, private elementRef: ElementRef) {
+    constructor(private activatedRoute: ActivatedRoute, private elementRef: ElementRef, private hermesService: HermesService) {
+        // sets background color
         this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
+        // displays header and subnav bar
+        hermesService.sendShowHeader(true);
+        hermesService.sendShowSubNav(true);
     }
 
     ngOnInit() {
         // today's birthdays
-        let d = new Date();
-        this.queryToday = "birthday=" + ("0"+(d.getMonth()+1)).substr(-2)+"-"+("0"+d.getDate()).substr(-2);
+        const d = new Date();
+        this.queryToday = 'birthday=' + ('0' + (d.getMonth() + 1)).substr(-2) + '-' + ('0' + d.getDate()).substr(-2);
 
         // tomorrow's birthdays
         d.setDate(d.getDate() + 1);
-        this.queryTomorrow = "birthday=" + ("0"+(d.getMonth()+1)).substr(-2)+"-"+("0"+d.getDate()).substr(-2);
+        this.queryTomorrow = 'birthday=' + ('0' + (d.getMonth() + 1)).substr(-2) + '-' + ('0' + d.getDate()).substr(-2);
 
         // rest of the week's birthdays
-        this.queryWeek = "birthday=";
-        for(let i = 0; i < 6; i++) {
+        this.queryWeek = 'birthday=';
+        for (let i = 0; i < 6; i++) {
             d.setDate(d.getDate() + 1);
-            this.queryWeek += ("0"+(d.getMonth()+1)).substr(-2)+"-"+("0"+d.getDate()).substr(-2);
-            if(i < 5) {
-                this.queryWeek += ",";
+            this.queryWeek += ('0' + (d.getMonth() + 1)).substr(-2) + '-' + ('0' + d.getDate()).substr(-2);
+            if (i < 5) {
+                this.queryWeek += ',';
             }
         }
     }
