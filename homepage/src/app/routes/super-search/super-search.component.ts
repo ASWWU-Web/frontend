@@ -4,6 +4,7 @@ import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
 import { CURRENT_YEAR } from '../../config';
+import { HermesService } from '../../../shared-ng/services/services';
 
 import {
     FieldsInOrder, SelectFields, SearchableFields,
@@ -26,7 +27,10 @@ export class SuperSearchComponent implements OnInit {
 
     private subscription: Subscription;
 
-    constructor(private activatedRoute: ActivatedRoute, private location: Location) {}
+    constructor(private activatedRoute: ActivatedRoute, private location: Location,
+                private hermesService: HermesService) {
+      hermesService.sendShowSubNav(true);
+    }
 
     ngOnInit() {
         this.activatedRoute.queryParamMap.subscribe( params => {
