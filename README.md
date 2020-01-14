@@ -1,10 +1,16 @@
+# Frontend
+
+Aswwu's five sites all reside within this repository. Homepage, Mask, Jobs, Pages, and Elections. 
+
 # The Mask
 
 An online yearbook created by ASWWU for Walla Walla University using **Angular 5**.
 
 Live version: [aswwu.com/mask](https://aswwu.com/mask/)
 
-## Development server
+## Setup  
+After you have cloned the repository, run `npm install` to install the necessary node modules.  
+Once that has finished run `git submodule update --init --recursive`. This will add the necessary source files to the [shared-ng](https://github.com/ASWWU-Web/shared-ng) repository 
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
