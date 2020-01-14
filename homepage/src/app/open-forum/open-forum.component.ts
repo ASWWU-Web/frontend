@@ -20,7 +20,7 @@ export class OpenForumComponent implements OnInit {
     'Marketing VP'
   ];
 
-  selectedOfficer = '';
+  selectedOfficer = 'President';
   messageBody = '';
   maxChars = 1000;
   minChars = 10;
