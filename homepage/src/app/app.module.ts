@@ -26,6 +26,7 @@ import { SuperDuperComponent } from './super-duper/super-duper.component';
 
 import { OpenForumComponent } from './open-forum/open-forum.component';
 import { SharedNgContainerComponent } from '../shared-ng/components/components';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { SharedNgContainerComponent } from '../shared-ng/components/components';
     HomeComponent,
     SuperDuperComponent,
     OpenForumComponent,
-    SharedNgContainerComponent
+    SharedNgContainerComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
