@@ -13,7 +13,9 @@ jobs:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
       with:
         command: test
-        args:  --workdir=./homepage --severity-threshold=high
+        args: |
+          --workdir ./homepage 
+          --severity-threshold=high
           
   build:
 
