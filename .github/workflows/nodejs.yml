@@ -6,6 +6,7 @@ jobs:
   security-check:
     runs-on: [ubuntu-latest]
     steps:
+    - run: cd homepage
     - uses: actions/checkout@master
     - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/node@master
