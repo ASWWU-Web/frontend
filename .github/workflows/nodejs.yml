@@ -6,8 +6,10 @@ jobs:
   security-check:
     runs-on: [ubuntu-latest]
     steps:
-    - run: cd homepage
     - uses: actions/checkout@master
+    - name: cd into node project
+      run: |
+        cd ./homepage
     - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/node@master
       env:
