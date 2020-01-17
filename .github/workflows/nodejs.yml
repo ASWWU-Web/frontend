@@ -6,14 +6,14 @@ jobs:
   security-check:
     runs-on: [ubuntu-latest]
     steps:
-    - uses: actions/checkout@master
-    - name: cd into node project
-      run: |
-        cd ./homepage
+    - uses: actions/checkout@v1
     - name: Run Snyk to check for vulnerabilities
       uses: snyk/actions/node@master
       env:
         SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        command: test
+        args:  --workdir ./homepage
           
   build:
 
