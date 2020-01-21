@@ -7,7 +7,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { MaskRequestService } from '../../../shared-ng/services/services'
 
 import { ProfileFullComponent, ProfileSmComponent, ProfileModel } from '../../shared/shared';
-import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO } from '../../config';
+import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO } from '../../../shared-ng/config';
 
 
 @Component({

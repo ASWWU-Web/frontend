@@ -4,7 +4,7 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { MaskRequestService, HermesService } from '../../../shared-ng/services/services';
 import { ProfileModel } from '../../shared/shared';
-import { CURRENT_YEAR } from '../../config';
+import { CURRENT_YEAR } from '../../../shared-ng/config';
 
 @Component({
     template:  `

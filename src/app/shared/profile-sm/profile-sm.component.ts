@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../config';
+import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../../shared-ng/config';
 
 @Component({
   selector: 'profile-sm',

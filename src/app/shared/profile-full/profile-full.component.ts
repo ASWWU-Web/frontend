@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ProfileModel } from '../profile.model';
 import { FieldsInOrder } from '../fields';
-import { MEDIA_MD, DEFAULT_PHOTO, AUTH_URI } from '../../config';
+import { MEDIA_MD, DEFAULT_PHOTO, SAML_URL } from '../../../shared-ng/config';
 import { AuthService } from '../../../shared-ng/services/services'
 
 @Component({
@@ -31,7 +31,7 @@ export class ProfileFullComponent {
     return this.as.isLoggedIn();
   }
   getSamlLink() {
-    return AUTH_URI + '?redirectURI=' + window.location.pathname;
+    return SAML_URL + '?redirectURI=' + window.location.pathname;
   }
   generateWebsiteLink(website: string) {
     if (!website.startsWith('http')) {

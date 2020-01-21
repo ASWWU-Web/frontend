@@ -2,7 +2,7 @@
  * Created by ethan on 2/8/17.
  */
 
-import { MEDIA_URI, DEFAULT_PHOTO } from '../config';
+import { MEDIA_URI, DEFAULT_PHOTO } from '../../shared-ng/config';
 
 export class ProfileModel {
     wwuid: string;

@@ -5,7 +5,7 @@ import { Observable , Subscription} from 'rxjs';
 
 import { MaskRequestService } from '../../../shared-ng/services/services';
 import { ProfileSmComponent } from '../shared';
-import { CURRENT_YEAR } from '../../config';
+import { CURRENT_YEAR } from '../../../shared-ng/config';
 import { Profile } from '../../../shared-ng/interfaces/interfaces';
 
 @Component({
