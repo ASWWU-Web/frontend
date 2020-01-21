@@ -11,7 +11,7 @@ import { CURRENT_YEAR } from '../../shared-ng/config';
 export class SuperDuperService {
 
   jobsUri = '/forms/job/view/all';
-  maskUri = 'search/' + CURRENT_YEAR + '/';
+  maskUri = '/mask/search/' + CURRENT_YEAR + '/';
   pagesUri = '/pages/search?general=';
 
   jobLink = 'https://aswwu.com/jobs/submit/';

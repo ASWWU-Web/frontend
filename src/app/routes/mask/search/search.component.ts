@@ -66,7 +66,7 @@ export class SearchComponent implements OnInit {
       this.typedQuery = item.item;
     }
     this.searchQuery = this.typedQuery;
-    this.location.replaceState('/search?query=' + this.typedQuery);
+    this.location.replaceState('/mask/search?query=' + this.typedQuery);
   }
 
   // Sets the first result of typeahead to the typed text

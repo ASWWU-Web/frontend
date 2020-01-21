@@ -76,6 +76,7 @@ export class HermesService {
   sendSubNavbarLinks(links: SubNavbarLink[]) {
     this.subNavbarLinks.next(links);
   }
+  // links can be found in app.component.ts
   getSubNavbarLinks(): Observable<SubNavbarLink[]> {
     return this.subNavbarLinks.asObservable();
   }

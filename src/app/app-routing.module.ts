@@ -15,43 +15,43 @@ const routes: Routes = [
     component: HomeComponent
   },
   {
-    path: 'search',
+    path: 'mask/search',
     component: SearchComponent
   },
   {
-    path: 'search:query',
+    path: 'mask/search:query',
     component: SearchComponent
   },
   {
-    path: 'super-search',
+    path: 'mask/super-search',
     component: SuperSearchComponent
   },
   {
-    path: 'super-search:query',
+    path: 'mask/super-search:query',
     component: SuperSearchComponent
   },
   {
-    path: 'update',
+    path: 'mask/update',
     component: UpdateComponent
   },
   {
-    path: 'profile',
+    path: 'mask/profile',
     component: ProfileComponent
   },
   {
-    path: 'profile/:username',
+    path: 'mask/profile/:username',
     component: ProfileComponent
   },
   {
-    path: 'profile/:username/:year',
+    path: 'mask/profile/:username/:year',
     component: ProfileComponent
   },
   {
-    path: 'random',
+    path: 'mask/random',
     component: RandomComponent
   },
   {
-    path: 'birthdays',
+    path: 'mask/birthdays',
     component: BirthdayComponent
   }
 ];
