@@ -2,6 +2,7 @@ import { Component, NgModule, OnInit } from '@angular/core';
 import { Routes, Router } from '@angular/router';
 import { HermesService } from '../shared-ng/services/services';
 import { SubNavbarLink } from '../shared-ng/interfaces/interfaces';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -12,6 +13,7 @@ export class AppComponent {
 
   constructor(
     private hermes: HermesService,
+    private loc: Location,
     private router: Router
   ) {
       this.router.events.subscribe(() => {

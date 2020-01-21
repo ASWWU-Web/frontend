@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { HomepageRequestService } from '../../shared-ng/services/services';
-import { AuthService } from '../../shared-ng/services/auth.service';
+import { HomepageRequestService } from '../../../../shared-ng/services/services';
+import { AuthService } from '../../../../shared-ng/services/auth.service';
 
 @Component({
   selector: 'open-forum',

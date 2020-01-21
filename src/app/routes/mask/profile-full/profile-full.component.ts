@@ -1,8 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { ProfileModel } from '../profile.model';
 import { FieldsInOrder } from '../fields';
-import { MEDIA_MD, DEFAULT_PHOTO, SAML_URL } from '../../../shared-ng/config';
-import { AuthService } from '../../../shared-ng/services/services'
+import { MEDIA_MD, DEFAULT_PHOTO, SAML_URL } from '../../../../shared-ng/config';
+import { AuthService } from '../../../../shared-ng/services/services'
 
 @Component({
   selector: 'profile-full',

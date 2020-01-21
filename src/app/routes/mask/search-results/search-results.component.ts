@@ -3,10 +3,10 @@ import { CommonModule } from '@angular/common';
 
 import { Observable , Subscription} from 'rxjs';
 
-import { MaskRequestService } from '../../../shared-ng/services/services';
-import { ProfileSmComponent } from '../shared';
-import { CURRENT_YEAR } from '../../../shared-ng/config';
-import { Profile } from '../../../shared-ng/interfaces/interfaces';
+import { MaskRequestService } from '../../../../shared-ng/services/services';
+import { ProfileSmComponent } from '../profile-sm/profile-sm.component';
+import { CURRENT_YEAR } from '../../../../shared-ng/config';
+import { Profile } from '../../../../shared-ng/interfaces/interfaces';
 
 @Component({
   selector: "search-results",

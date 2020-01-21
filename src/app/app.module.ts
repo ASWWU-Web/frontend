@@ -42,15 +42,15 @@ import {
   UnescapePipe,
   ProfileModalComponent,
   ProfileModalContentComponent
-} from './shared/shared';
+} from './routes/routes';
 
 // homepage project components
 import { SuperDuperService } from './services/services';
-import { SuperDuperComponent } from './super-duper/super-duper.component';
-import { UpcomingComponent } from './upcoming/upcoming.component';
+import { SuperDuperComponent } from './routes/homepage/super-duper/super-duper.component';
+import { UpcomingComponent } from './routes/homepage/upcoming/upcoming.component';
 import { CalendarService } from './services/calendar.service';
-import { HomeComponent } from './home/home.component';
-import { OpenForumComponent } from './open-forum/open-forum.component';
+import { HomeComponent } from './routes/homepage/home/home.component';
+import { OpenForumComponent } from './routes/homepage/open-forum/open-forum.component';
 
 import { AppComponent } from './app.component';
 

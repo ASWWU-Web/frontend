@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { NgbModal, NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { CURRENT_YEAR} from '../../../shared-ng/config';
+import { CURRENT_YEAR} from '../../../../shared-ng/config';
 import { ProfileModel } from '../profile.model';
-import { MaskRequestService } from '../../../shared-ng/services/services'
+import { MaskRequestService } from '../../../../shared-ng/services/services'
 import { ActivatedRoute} from '@angular/router';
 import { PlatformLocation } from '@angular/common';
 import { Router } from '@angular/router';

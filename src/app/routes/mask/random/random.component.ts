@@ -2,9 +2,9 @@
  * Created by ethan on 2/21/17.
  */
 import { Component, OnInit, ElementRef } from '@angular/core';
-import { MaskRequestService, HermesService } from '../../../shared-ng/services/services';
-import { ProfileModel } from '../../shared/shared';
-import { CURRENT_YEAR } from '../../../shared-ng/config';
+import { MaskRequestService, HermesService } from '../../../../shared-ng/services/services';
+import { ProfileModel } from '../profile.model';
+import { CURRENT_YEAR } from '../../../../shared-ng/config';
 
 @Component({
     template:  `

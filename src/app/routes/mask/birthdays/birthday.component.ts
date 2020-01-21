@@ -1,7 +1,7 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { HermesService } from '../../../shared-ng/services/services';
+import { HermesService } from '../../../../shared-ng/services/services';
 
 @Component({
     template:  `

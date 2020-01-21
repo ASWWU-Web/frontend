@@ -3,13 +3,13 @@ import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
-import { CURRENT_YEAR } from '../../../shared-ng/config';
-import { HermesService } from '../../../shared-ng/services/services';
+import { CURRENT_YEAR } from '../../../../shared-ng/config';
+import { HermesService } from '../../../../shared-ng/services/services';
 
 import {
     FieldsInOrder, SelectFields, SearchableFields,
     FieldsForSearching
-} from '../../shared/fields';
+} from '../fields';
 
 @Component({
     templateUrl: 'super-search.component.html',

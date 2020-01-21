@@ -1,6 +1,6 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { NgStyle } from '@angular/common';
-import { HermesService } from '../../shared-ng/services/services';
+import { HermesService } from '../../../../shared-ng/services/services';
 
 @Component({
   selector: 'home',

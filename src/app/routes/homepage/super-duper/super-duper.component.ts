@@ -7,7 +7,7 @@ import { of, merge } from 'rxjs';
 import { debounceTime, distinctUntilChanged, tap, catchError, switchMap, map } from 'rxjs/operators';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 
-import { HomepageRequestService } from '../../shared-ng/services/services';
+import { HomepageRequestService } from '../../../../shared-ng/services/services';
 import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({

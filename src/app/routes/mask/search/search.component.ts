@@ -3,9 +3,9 @@ import { distinctUntilChanged, map } from 'rxjs/operators';
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params } from '@angular/router';
-import { MaskRequestService, HermesService } from '../../../shared-ng/services/services';
-import { SearchableFields } from '../../shared/fields';
-import { Profile } from '../../../shared-ng/interfaces/interfaces';
+import { MaskRequestService, HermesService } from '../../../../shared-ng/services/services';
+import { SearchableFields } from '../../mask/fields';
+import { Profile } from '../../../../shared-ng/interfaces/interfaces';
 
 
 @Component({

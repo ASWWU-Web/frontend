@@ -4,10 +4,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute, Params } from '@angular/router';
-import { MaskRequestService } from '../../../shared-ng/services/services'
+import { MaskRequestService } from '../../../../shared-ng/services/services'
 
-import { ProfileFullComponent, ProfileSmComponent, ProfileModel } from '../../shared/shared';
-import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO } from '../../../shared-ng/config';
+import { ProfileModel } from '../profile.model';
+import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO } from '../../../../shared-ng/config';
 
 
 @Component({

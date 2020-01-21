@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { SearchComponent } from './routes/search/search.component';
-import { SuperSearchComponent } from './routes/super-search/super-search.component';
-import { UpdateComponent } from './routes/update/update.component';
-import { ProfileComponent } from './routes/profile/profile.component';
-import { RandomComponent } from './routes/random/random.component';
-import { BirthdayComponent } from './routes/birthdays/birthday.component';
+import { HomeComponent } from './routes/homepage/home/home.component';
+import { SearchComponent } from './routes/mask/search/search.component';
+import { SuperSearchComponent } from './routes/mask/super-search/super-search.component';
+import { UpdateComponent } from './routes/mask/update/update.component';
+import { ProfileComponent } from './routes/mask/profile/profile.component';
+import { RandomComponent } from './routes/mask/random/random.component';
+import { BirthdayComponent } from './routes/mask/birthdays/birthday.component';
 
 
 const routes: Routes = [

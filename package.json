@@ -8,11 +8,9 @@
     "start-port": "ng serve --host 0.0.0.0   --port 4200 --disable-host-check",
     "build": "ng build --prod --base-href=/",
     "build:dev": "ng build -prod --base-href /dev --deploy-url /dev",
-    "test": "snyk test && ng test",
+    "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "snyk-protect": "snyk protect",
-    "prepare": "npm run snyk-protect"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {

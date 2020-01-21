@@ -6,10 +6,10 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
-import { AuthService, RequestService, MaskRequestService } from '../../../shared-ng/services/services';
-import { User, ProfileFull } from '../../../shared-ng/interfaces/interfaces';
-import { FieldSections, SelectFields, SearchableFields } from '../../shared/fields';
-import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS } from '../../../shared-ng/config';
+import { AuthService, RequestService, MaskRequestService } from '../../../../shared-ng/services/services';
+import { User, ProfileFull } from '../../../../shared-ng/interfaces/interfaces';
+import { FieldSections, SelectFields, SearchableFields } from '../fields';
+import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS } from '../../../../shared-ng/config';
 
 @Component({
   selector: 'update-profile',
