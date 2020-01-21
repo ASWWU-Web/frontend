@@ -3,6 +3,18 @@ name: Node CI
 on: [push]
 
 jobs:
+  security-check:
+    runs-on: [ubuntu-latest]
+    steps:
+    - uses: actions/checkout@v1
+    - name: Run Snyk to check for vulnerabilities
+      uses: snyk/actions/node@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+      with:
+        command: test
+        args: --workdir ./homepage --severity-threshold=high
+          
   build:
 
     runs-on: ubuntu-latest
@@ -19,7 +31,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
       run: |
-        cd ./homepage
         git submodule update --init --recursive
         npm ci
         npm run build
