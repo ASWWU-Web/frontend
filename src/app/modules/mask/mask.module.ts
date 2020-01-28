@@ -3,8 +3,6 @@ import { CommonModule, Location } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -12,7 +10,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { UnescapePipe } from './unescape';
 import { MaskRoutes } from './mask.routes';
 
-import { HermesService } from '../../../shared-ng/services/hermes.service';
+import { HermesService, MaskRequestService } from '../../../shared-ng/services/services';
 import { SubNavbarLink } from '../../../shared-ng/interfaces/interfaces';
 
 import {
@@ -68,7 +66,7 @@ import {
     SearchResultsComponent,
   ],
   providers: [
-
+    MaskRequestService
   ],
   entryComponents: [
     ProfileModalComponent,

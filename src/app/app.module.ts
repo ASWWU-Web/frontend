@@ -21,18 +21,8 @@ import {
 import {
   RequestService,
   HermesService,
-  HomepageRequestService,
   AuthService,
-  MaskRequestService,
 } from '../shared-ng/services/services';
-
-// homepage project components
-import { SuperDuperService } from './services/services';
-import { SuperDuperComponent } from './modules/homepage/components/super-duper/super-duper.component';
-import { UpcomingComponent } from './modules/homepage/components/upcoming/upcoming.component';
-import { CalendarService } from './services/calendar.service';
-import { HomeComponent } from './modules/homepage/components/home/home.component';
-import { OpenForumComponent } from './modules/homepage/components/open-forum/open-forum.component';
 
 import { AppComponent } from './app.component';
 
@@ -42,11 +32,7 @@ import { AppComponent } from './app.component';
     NavBarComponent,
     FooterComponent,
     HeaderComponent,
-    UpcomingComponent,
     UserBubbleComponent,
-    HomeComponent,
-    SuperDuperComponent,
-    OpenForumComponent,
     SharedNgContainerComponent,
   ],
   imports: [
@@ -61,12 +47,8 @@ import { AppComponent } from './app.component';
   ],
   providers: [
     RequestService,
-    CalendarService,
-    SuperDuperService,
     HermesService,
-    HomepageRequestService,
     AuthService,
-    MaskRequestService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
