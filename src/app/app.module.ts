@@ -26,31 +26,13 @@ import {
   MaskRequestService,
 } from '../shared-ng/services/services';
 
-// mask project components
-import {
-  ProfileComponent,
-  SearchComponent,
-  UpdateComponent,
-  RandomComponent,
-  BirthdayComponent,
-  SuperSearchComponent
-} from './routes/routes';
-import {
-  ProfileFullComponent,
-  ProfileSmComponent,
-  SearchResultsComponent,
-  UnescapePipe,
-  ProfileModalComponent,
-  ProfileModalContentComponent
-} from './routes/routes';
-
 // homepage project components
 import { SuperDuperService } from './services/services';
-import { SuperDuperComponent } from './routes/homepage/super-duper/super-duper.component';
-import { UpcomingComponent } from './routes/homepage/upcoming/upcoming.component';
+import { SuperDuperComponent } from './modules/homepage/components/super-duper/super-duper.component';
+import { UpcomingComponent } from './modules/homepage/components/upcoming/upcoming.component';
 import { CalendarService } from './services/calendar.service';
-import { HomeComponent } from './routes/homepage/home/home.component';
-import { OpenForumComponent } from './routes/homepage/open-forum/open-forum.component';
+import { HomeComponent } from './modules/homepage/components/home/home.component';
+import { OpenForumComponent } from './modules/homepage/components/open-forum/open-forum.component';
 
 import { AppComponent } from './app.component';
 
@@ -66,18 +48,6 @@ import { AppComponent } from './app.component';
     SuperDuperComponent,
     OpenForumComponent,
     SharedNgContainerComponent,
-    ProfileComponent,
-    SearchComponent,
-    UpdateComponent,
-    RandomComponent,
-    BirthdayComponent,
-    SuperSearchComponent,
-    ProfileFullComponent,
-    ProfileSmComponent,
-    ProfileModalComponent,
-    ProfileModalContentComponent,
-    SearchResultsComponent,
-    UnescapePipe,
   ],
   imports: [
     BrowserModule,
@@ -100,8 +70,7 @@ import { AppComponent } from './app.component';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    ProfileModalComponent,
-    ProfileModalContentComponent
+
   ]
 })
 export class AppModule {
