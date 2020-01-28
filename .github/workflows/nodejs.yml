@@ -31,7 +31,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
       run: |
-        cd ./homepage
         git submodule update --init --recursive
         npm ci
         npm run build
@@ -44,4 +43,4 @@ jobs:
         # Artifact name
         name: dist-frontend
         # Directory containing files to upload
-        path: dist/frontend
+        path: dist
