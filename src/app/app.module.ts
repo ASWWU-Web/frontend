@@ -16,7 +16,8 @@ import {
   FooterComponent,
   HeaderComponent,
   UserBubbleComponent,
-  SharedNgContainerComponent
+  SharedNgContainerComponent,
+  ErrorPageComponent,
 } from '../shared-ng/components/components';
 import {
   RequestService,
@@ -34,6 +35,7 @@ import { AppComponent } from './app.component';
     HeaderComponent,
     UserBubbleComponent,
     SharedNgContainerComponent,
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,
