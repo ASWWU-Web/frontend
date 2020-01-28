@@ -43,4 +43,4 @@ jobs:
         # Artifact name
         name: dist-frontend
         # Directory containing files to upload
-        path: frontend/dist/frontend
+        path: dist/frontend
