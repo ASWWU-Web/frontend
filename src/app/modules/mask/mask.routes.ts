@@ -10,6 +10,10 @@ import {
 
 export const MaskRoutes: Route[] = [
   {
+    path: '',
+    component: SearchComponent
+  },
+  {
     path: 'search',
     component: SearchComponent
   },
