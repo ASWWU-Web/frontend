@@ -31,6 +31,7 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - name: npm install, build, and test
       run: |
+        cd ./homepage
         git submodule update --init --recursive
         npm ci
         npm run build
