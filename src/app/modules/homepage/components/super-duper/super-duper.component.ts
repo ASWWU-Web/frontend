@@ -27,16 +27,16 @@ export class SuperDuperComponent implements OnInit {
   // placeholder options
   placeholders: string[] = ['search the mask...', /*'search pages...', 'search jobs...'*/];
   // default placeholder
-  placeHolder: string = 'search the mask...';
+  placeHolder = 'search the mask...';
   // default dropdown option
-  selectSites: string = 'Mask';
+  selectSites = 'Mask';
 
   searchPageroute = 'search';
 
   // new page routes
-  maskPageRoute = 'mask?query=';
-  pagesPageRoute = 'pages?query=';
-  jobsPageRoute = 'jobs?query=';
+  maskPageRoute = 'mask/search?query=';
+  pagesPageRoute = ''; // search route with query
+  jobsPageRoute = ''; // search route with query
   formGroup: FormGroup;
 
   constructor(private hprs: HomepageRequestService, private router: Router) {
