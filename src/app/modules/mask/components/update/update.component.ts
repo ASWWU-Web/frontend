@@ -104,8 +104,7 @@ export class UpdateComponent implements OnInit {
         }
       }
       return data;
-    }
-    else {
+    } else {
       return undefined;
     }
   }
@@ -114,7 +113,7 @@ export class UpdateComponent implements OnInit {
   UploadProfile(): void {
 
     this.mrs.updateProfile(this.fullProfile.username, this.fullProfile).subscribe((data) => {
-      this.router.navigate(['/profile',{username: this.fullProfile.username}]);
+      this.router.navigate(['/mask/profile', {username: this.fullProfile.username}]);
     }, undefined);
   }
 
