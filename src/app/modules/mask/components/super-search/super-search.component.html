@@ -31,7 +31,7 @@
                 <!--TODO: put ryan's datalist component in here instead of basic html datalist-->
 
                 <!-- REMOVE BUTTON -->
-                <button class="btn super-search-box mask-search-query remove-button" (click)="removeField(i)"><span class="fas fa-times"></span></button>
+                <button class="btn super-search-box mask-search-query remove-button" [disabled]="singleField" (click)="removeField(i)"><span class="fas fa-times"></span></button>
             </div>
             <!-- YEAR SELECTOR -->
             <div class="text-center">
@@ -49,7 +49,7 @@
                         <option value="1213">2012-2013</option>
                     </select>
                 </div>
-                <button class="btn btn-success btn-sm" (click)="criteria.push(['', ''])">Add search field</button>
+                <button class="btn btn-success btn-sm" (click)="addField()">Add search field</button>
             </div>
             <button class="btn btn-primary search-button col col-md-4 offset-md-4" (click)="updateQuery()">Search!</button>
         </div>
