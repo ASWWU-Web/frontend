@@ -24,6 +24,7 @@ export class SuperSearchComponent implements OnInit {
     fieldsInOrder: string[] = FieldsForSearching;
     selectables: any = SelectFields;
     searchables: any = SearchableFields;
+    singleField = true;
 
     private subscription: Subscription;
 
@@ -53,7 +54,7 @@ export class SuperSearchComponent implements OnInit {
     updateQuery() {
         let tempstring = '';
         for (const value of this.criteria) {
-            if (value[0] !== 'year' && value[1] !== ''){
+            if (value[0] !== 'year' && value[1] !== '') {
                 tempstring += value[0] + '=' + value[1] + '&';
             } else if (value[0] === 'year') {
                 this.year = value[1];
@@ -62,17 +63,18 @@ export class SuperSearchComponent implements OnInit {
         tempstring = tempstring.slice(0, -1);
         this.query = tempstring;
         this.serverQuery = this.query.replace('&', ';');
-        this.location.replaceState('/super-search?' + this.query);
+        this.location.replaceState('/mask/super-search?' + this.query);
+    }
+
+    addField() {
+      this.criteria.push(['', '']);
+      this.singleField = false;
     }
 
     removeField(i) {
         this.criteria.splice(i, 1);
-        // let i = 0;
-        // for(let pair of this.criteria) {
-        //     if(pair[1].indexOf(search)){
-        //         this.criteria.splice(i, 1);
-        //     }
-        //     i++;
-        // }
+        if (this.criteria.length === 1) {
+          this.singleField = true;
+        }
     }
 }
