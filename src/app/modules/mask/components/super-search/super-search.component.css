@@ -67,6 +67,10 @@
   background-color: var(--color-aswwu-danger);
 }
 
+.remove-button:hover:disabled {
+  background-color: grey;
+}
+
 /* for mobile */
 
 #search-area {
