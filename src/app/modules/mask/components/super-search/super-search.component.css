@@ -51,6 +51,10 @@
   color: white;
 }
 
+option {
+  background-color: black;
+}
+
 /* add this for other browsers */
 
 .form-control {
