@@ -56,7 +56,7 @@ export class SubmitComponent implements OnInit {
         // GET request to retrieve previous application answers
         this.rs.get('/forms/application/view/1/' + this.currentUser.username).subscribe((data) => {
           this.gApp = data.application;
-          if (data.status == 'Application not found' || this.gApp.answers.length == 0) {
+          if (data.status === 'Application not found' || this.gApp.answers.length === 0) {
             // build the empty answers array
             this.gForm.questions.forEach((entry) => {
               const answerObj = {
@@ -122,6 +122,10 @@ export class SubmitComponent implements OnInit {
     }
   }
 
+  navigateToDone(formID: number) {
+    this.router.navigateByUrl('/done/' + this.formID);
+  }
+
   onSubmit() {
     this.submitText = 'Submitting...';
     const submission: ApplicationPOST = { jobID: this.formID, username: this.currentUser.username, answers: this.answers};
@@ -133,28 +137,32 @@ export class SubmitComponent implements OnInit {
             try {
               if (data.error) {
                 console.log('(a) Error:', data.error);
-                window.alert('Error: '+ data.error);
+                window.alert('Error: ' + data.error);
                 this.submitText = 'Submit';
-              } else if (data.status == 'submitted') {
+              } else if (data.status === 'submitted') {
                 // File Upload
-                this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
-                  console.log('ImageUpload:uploaded:', item, status);
-                  if (status < 200 || status > 299) {
-                    console.log('(b) Error: ', JSON.parse(response).message);
-                    alert(JSON.parse(response).message);
-                    this.submitText = 'Submit';
-                  } else {
-                    this.router.navigateByUrl('/done/'+ this.formID);
-                  }
-                };
-                this.uploader.onBuildItemForm = (item, form) => {
-                  form.append('jobID', this.formID);
-                  item.withCredentials = false;
-                };
-                this.uploader.uploadAll();
+                if (this.uploader.getNotUploadedItems().length > 0) {
+                  this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
+                    console.log('ImageUpload:uploaded:', item, status);
+                    if (status < 200 || status > 299) {
+                      console.log('(b) Error: ', JSON.parse(response).message);
+                      alert(JSON.parse(response).message);
+                      this.submitText = 'Submit';
+                    } else {
+                      this.navigateToDone(this.formID);
+                    }
+                  };
+                  this.uploader.onBuildItemForm = (item, form) => {
+                    form.append('jobID', this.formID);
+                    item.withCredentials = false;
+                  };
+                  this.uploader.uploadAll();
+                } else {
+                  this.navigateToDone(this.formID);
+                }
               } else {
                 console.log('form status: ', data.status);
-                window.alert('form status: '+ data.status);
+                window.alert('form status: ' + data.status);
                 this.submitText = 'Submit';
               }
             } catch (err) {
