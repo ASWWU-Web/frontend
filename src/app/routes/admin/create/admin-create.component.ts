@@ -10,13 +10,14 @@ import { RequestService } from '../../../../shared-ng/services/services';
 })
 
 export class AdminCreateComponent implements OnInit {
-  jobName: string = '';
-  jobDesc: string = '';
-  visibility: number = 1;
-  owner: string = '';
-  imgLink: string = '';
+  jobName = '';
+  jobDesc = '';
+  visibility = false;
+  owner = '';
+  imgLink = '';
   questions: any[] = [{question: ''}];
-  department: string = '';
+  department = '';
+  featured = false;
 
   constructor(private rs: RequestService, private router: Router) {}
 
@@ -26,31 +27,34 @@ export class AdminCreateComponent implements OnInit {
 
   addQuestion() {
     this.questions.push({question: ''});
-    //document.getElementsByName((this.questions.length - 1).toString())[0].focus();
   }
   submitForm() {
     const data = {
       job_name: this.jobName,
       job_description: this.jobDesc,
       visibility: this.visibility,
+      featured: this.featured,
       department: this.department,
       owner: this.owner,
       image: this.imgLink,
       questions: this.questions
     };
-    this.rs.post('/forms/job/new', data).subscribe((data) => {
-      if(data.status == 'submitted'){
+    this.rs.post('/forms/job/new', data, null, 'urlencoded').subscribe((responseData) => {
+      if (responseData.status === 'submitted') {
         this.jobName = '';
         this.jobDesc = '';
-        this.visibility = 1;
+        this.visibility = false;
+        this.featured = false;
         this.owner = '';
         this.imgLink = '';
         this.questions = [{question: ''}];
         this.department = '';
       } else {
-        window.alert('An unknown error occurred.');
+        window.alert('failed to submit');
       }
-    }, (error) => {window.alert('ERROR: \n' + error) });
+    }, (error) => {
+      window.alert(error.error.status);
+    });
   }
 
   removeQuestion(index: number) {

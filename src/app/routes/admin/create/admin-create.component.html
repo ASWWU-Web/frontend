@@ -37,8 +37,14 @@
 
 <label for="visibility">Visibility</label>
 <select class="form-control" [(ngModel)]="visibility">
-       <option selected [value]="1"> Visible</option>
-       <option [value]="0"> Hidden</option>
+  <option selected [value]="true"> Visible</option>
+  <option [value]="false"> Hidden</option>
+</select>
+
+<label for="featured">Featured</label>
+<select class="form-control" [(ngModel)]="featured">
+  <option selected [value]="false"> Not featured</option>
+  <option [value]="true"> Featured</option>
 </select>
 
 <label for="imgLink">Image Link</label>
