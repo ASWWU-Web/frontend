@@ -23,7 +23,7 @@ export const FieldsForSearching: string[] = FieldSections.reduce((a, b) => { ret
 export const SelectFields: Object = {
     relationship_status: ["","A's before baes","Attached","Available","Call me!","Content","Creep","Dating","Desperate","Engaged","Free for tea","Hermit","I'll pay","I'm a cheap date","In a relationship","In engineering...","In pursuit","Just ask me","Lonely","Looking","Married","Married to my books","Not available","Pick me! Pick me!","Senior, single, and ready to mingle","Single","Single but not set on it","Social life? what's that?","Socially inept","Taken","Undecided","Very available","Waiting","Waiting for my ring","Will date for coffee","Yoda hasn't told me yet"],
     personality: ["","ENFJ - Teacher","ENFP - Champion","ENTJ - Field Marshall","ENTP - Inventor","ESFJ - Provider","ESFP - Performer","ESTJ - Supervisor","ESTP - Promoter","INFJ - Counselor","INFP - Healer","INTJ - Mastermind","INTP - Architect","ISFJ - Protector","ISFP - Composer","ISTJ - Inspector","ISTP - Crafter","No personality"],
-    gender: ["","Male","Female"],
+    gender: ["", "Male","Female", "Other"],
     class_standing: ["Freshman","Sophomore","Junior","Senior","Super Senior","Undecided"],
     privacy: ["Must Be Logged In", "Public"]
 };
