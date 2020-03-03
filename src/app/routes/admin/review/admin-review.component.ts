@@ -61,7 +61,7 @@ export class AdminReviewComponent implements OnInit {
         image: '',
         color: '',
         title: item.username.replace('.', ' '),
-        subTitle: '',
+        subTitle: item.updated_at,
         body: item.status,
         buttonText: 'View Application',
         buttonLink: `/admin/review/${item.jobID}/${item.username}`
