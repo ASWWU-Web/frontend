@@ -2,7 +2,10 @@
 
 # compiled output
 /dist
+<<<<<<< HEAD
 /dist-server
+=======
+>>>>>>> elections/master
 /tmp
 /out-tsc
 
@@ -37,6 +40,8 @@ testem.log
 # e2e
 /e2e/*.js
 /e2e/*.map
+
+yarn-error.log
 
 # System Files
 .DS_Store
