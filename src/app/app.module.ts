@@ -11,6 +11,7 @@ import { AppComponent } from './app.component';
 import {
   HomeComponent,
   SubmitComponent,
+  NewSubmitComponent,
   DoneComponent,
   AdminComponent,
   AdminCreateComponent,
@@ -49,6 +50,7 @@ import {
     AppComponent,
     HomeComponent,
     SubmitComponent,
+    NewSubmitComponent,
     DoneComponent,
     AdminComponent,
     AdminCreateComponent,

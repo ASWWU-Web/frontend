@@ -4,6 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 import {
   HomeComponent,
   SubmitComponent,
+  NewSubmitComponent,
   DoneComponent,
   AdminComponent,
   AdminCreateComponent,
@@ -19,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'submit/:formID',
-    component: SubmitComponent
+    component: NewSubmitComponent
   },
   {
     path: 'done/:formID',
