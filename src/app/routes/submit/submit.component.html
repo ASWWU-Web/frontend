@@ -1,77 +1,114 @@
-<div id="border1" class="side"></div>
-<div id="border2" class="side"></div>
+<div class="container">
+  <div *ngIf="currentUser">
 
-<div *ngIf="currentUser">
-  <div id="jumbotron" class="container">
-    <div class="row">
-      <div class="col col-sm-12 col-md-8 offset-md-2">
-      </div>
-      </div>
-      <div class="row" style="padding-top: 20px;">
-        <div class="col col-sm-12 col-md-10 offset-md-1">
-          <p *ngFor="let paragraph of form?.job_description.split('\n')" style="margin-bottom: .25rem;">{{paragraph}}&nbsp;</p>
-          <hr>
-          <p>To hold an elected or non-elected position in the ASWWU, an individual must at least:</p>
-            <ul>
-              <li>Be a student of Walla Walla University,</li>
-              <li>Be enrolled for a minimum of six (6) credit hours, and</li>
-              <li>Have and maintain a GPA above 2.5 (or 3.0 for administrator positions) on a 4.0 scale.</li>
-              <li>Be a dues paying member of the ASWWU, and</li>
-              <li>Physically attend classes on a Walla Walla University campus.</li>
-            </ul>
-        </div>
-      </div>
+    <!-- Job Info Section -->
+    <div style="padding-top: 20px;">
+        <p *ngFor="let paragraph of formContent[formSection.specific].job?.job_description.split('\n')"
+           style="margin-bottom: .25rem;">
+          {{paragraph}}&nbsp;
+        </p>
+        <hr>
+        <p *ngFor="let paragraph of formContent[formSection.generic].job?.job_description.split('\n')"
+           style="margin-bottom: .25rem;">
+          {{paragraph}}&nbsp;
+        </p>
     </div>
-  <div id="questions" class="container">
-    <form (ngSubmit)="onSubmit()" #submitForm="ngForm" id="form{{form?.formID}}">
-    <h2 style="padding-top: 20px;">ASWWU Questions</h2>
-    <p>These questions will be the same for all of your ASWWU applications</p>
-    <hr>
-      <div class="row">
-        <div *ngFor="let question of gForm?.questions; let i = index;" class="form-group">
-          <div *ngIf="question&&gAnswers&&gAnswers[i]">
-            <div *ngIf="i <= 13 " class="col">
-              <label for="gen{{question?.id}}">{{question.question}}</label>
-              <input [(ngModel)]="gAnswers[i].answer" name="gen{{question?.id}}" type="text" class="form-control" id="gen{{question?.id}}" required/>
-            </div>
-            <div *ngIf="!(i <= 13)" class="col">
-              <label for="gen{{question?.id}}">{{question.question}}</label>
-              <textarea type="text" class="form-control" id="gen{{question?.id}}"
-                    required
-                    [(ngModel)]="gAnswers[i].answer" name="gen{{question?.id}}"></textarea>
+
+    <!-- Appication Question Section -->
+    <div id="questions">
+      <form (ngSubmit)="onSubmit()" #submitForm="ngForm" id="form{{formID}}">
+
+        <!-- Generic Questions -->
+        <div *ngIf="formContent">
+          <h2 style="padding-top: 20px;">ASWWU Questions</h2>
+          <p>These questions will be the same for all of your ASWWU applications</p>
+          <hr>
+
+          <div class="row">
+
+            <div *ngFor="let question of formContent[formSection.generic].job?.questions;
+                         let i = index;" class="form-group">
+              <div *ngIf="question && formContent[formSection.generic].application?.answers
+                                   && formContent[formSection.generic].application?.answers[i]">
+                <!-- The first 13 questions in the general form are short answers -->
+                <div *ngIf="i <= 13 " class="col">
+                  <label for="general-short-question-id{{question?.id}}">{{question.question}}</label>
+                  <input [(ngModel)]="formContent[formSection.generic].application?.answers[i].answer"
+                         name="general-short-question-id{{question?.id}}"
+                         type="text" class="form-control"
+                         id="general-short-question-id{{question?.id}}"
+                         required/>
+                </div>
+                <!-- The remaining questions in the general form are long answers -->
+                <div *ngIf="i > 13" class="col">
+                  <label for="general-long-question-id{{question?.id}}">{{question.question}}</label>
+                  <textarea type="text"
+                            class="form-control"
+                            id="general-long-question-id{{question?.id}}"
+                            required
+                            [(ngModel)]="formContent[formSection.generic].application?.answers[i].answer"
+                            name="general-long-question-id{{question?.id}}"></textarea>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <h2 style="padding-top: 20px;">{{form?.job_name}} Questions</h2>
-      <p>These questions are specific to this application</p>
-      <hr>
-      <div *ngFor="let question of form?.questions; let i = index;" class="form-group">
-        <div *ngIf="question&&answers&&answers[i]">
-          <label for="{{question?.id}}">{{question.question}}</label>
-          <textarea type="text" class="form-control" id="{{question?.id}}"
-                 required
-                 [(ngModel)]="answers[i].answer" name="{{question?.id}}"></textarea>
+        <!-- Specific Questions -->
+        <div *ngIf="formContent">
+          <h2 style="padding-top: 20px;">{{formContent[formSection.specific].job?.job_name}} Questions</h2>
+          <p>These questions are specific to this application</p>
+          <hr>
+          <div *ngFor="let question of formContent[formSection.specific].job?.questions;
+                       let i = index;" class="form-group">
+            <div *ngIf="question && formContent[formSection.specific].application?.answers
+                                 && formContent[formSection.specific].application?.answers[i]">
+              <label for="{{question?.id}}">{{question.question}}</label>
+              <textarea type="text" class="form-control" id="{{question?.id}}"
+                        required
+                        [(ngModel)]="formContent[formSection.specific].application?.answers[i].answer"
+                        name="{{question?.id}}"></textarea>
+            </div>
+          </div>
         </div>
-      </div>
 
-      <div class="form-group" style="padding-top: 20px;">
-        <div *ngIf="form?.department == 'Atlas'">
-          <label for="resume"><strong>Cover letter</strong> and resume with references</label>
-        </div>
-        <div *ngIf="!(form?.department == 'Atlas')">
-          <label for="resume">Resume with References</label>
-        </div>
-        <input type="file" class="form-control-file bt" id="resume" ng2FileSelect [uploader]="uploader" required>
-        <small class="form-text text-muted">Supported file types are PDF, Word, and Open Office files. Any previously submitted documents will be overwritten.</small>
-      </div>
+        <!-- Resume Upload Section -->
 
-      <button type="submit" class="btn btn-success" style="margin-top: 20px;">{{submitText}}</button>
-    </form>
+        <div>
+          <h2 style="padding-top: 20px;">Resume</h2>
+          <p>Upload your resume with references.</p>
+          <hr>
+          <div class="input-group">
+            <div class="custom-file">
+              <input type="file" class="custom-file-input" id="resume" ng2FileSelect [uploader]="uploader" (onFileSelected)="resumeUploadStatus='upload'" required>
+              <label class="custom-file-label"
+                     for="resume">{{uploader.queue[0]?.file?.name || 'Choose File'}}</label>
+            </div>
+            <div class="input-group-append">
+              <input type="button" class="btn"
+                     [ngClass]="{'btn-danger': resumeUploadStatus==='failed',
+                                 'btn-success': resumeUploadStatus==='success',
+                                 'btn-primary': resumeUploadStatus==='upload'}"
+                     (click)="uploadResume()"
+                     value="{{resumeUploadStatus}}"
+                     [disabled]="uploader.getNotUploadedItems().length === 0">
+            </div>
+          </div>
+          <small class="form-text text-muted">
+            Supported file types are PDF, Word, and Open Office files.
+            Any previously submitted documents will be overwritten.
+          </small>
+        </div>
+        <small class="text-danger">{{errorText}}</small>
+        <br>
+        <button type="submit" class="btn btn-success" style="margin-top: 20px;"
+                [disabled]="resumeUploadStatus!=='success' || !submitForm.form.valid">{{submitText}}</button>
+      </form>
+    </div>
   </div>
-</div>
-<div class="container" *ngIf="!currentUser">
-  <p>This page can only be viewed by someone logged in, please click the button to log in:</p>
-  <a class="btn btn-primary" [href]="buildLoginLink()">Log in</a>
+
+  <div *ngIf="!currentUser">
+    <p>This page can only be viewed by someone logged in, please click the button to log in:</p>
+    <a class="btn btn-primary" [href]="buildLoginLink()">Log in</a>
+  </div>
 </div>
