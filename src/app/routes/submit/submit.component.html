@@ -80,15 +80,16 @@
           <hr>
           <div class="input-group">
             <div class="custom-file">
-              <input type="file" class="custom-file-input" id="resume" ng2FileSelect [uploader]="uploader" (onFileSelected)="resumeUploadStatus='upload'" required>
+              <input type="file" class="custom-file-input" id="resume" ng2FileSelect [uploader]="uploader"
+                     (onFileSelected)="resumeUploadStatus=resumeUploadStatusOptions.upload" required>
               <label class="custom-file-label"
                      for="resume">{{uploader.queue[0]?.file?.name || 'Choose File'}}</label>
             </div>
             <div class="input-group-append">
               <input type="button" class="btn"
-                     [ngClass]="{'btn-danger': resumeUploadStatus==='failed',
-                                 'btn-success': resumeUploadStatus==='success',
-                                 'btn-primary': resumeUploadStatus==='upload'}"
+                     [ngClass]="{'btn-danger': resumeUploadStatus===resumeUploadStatusOptions.failed,
+                                 'btn-success': resumeUploadStatus===resumeUploadStatusOptions.success,
+                                 'btn-primary': resumeUploadStatus===resumeUploadStatusOptions.upload}"
                      (click)="uploadResume()"
                      value="{{resumeUploadStatus}}"
                      [disabled]="uploader.getNotUploadedItems().length === 0">
@@ -102,7 +103,8 @@
         <small class="text-danger">{{errorText}}</small>
         <br>
         <button type="submit" class="btn btn-success" style="margin-top: 20px;"
-                [disabled]="resumeUploadStatus!=='success' || !submitForm.form.valid">{{submitText}}</button>
+                [disabled]="resumeUploadStatus!==resumeUploadStatusOptions.success
+                || !submitForm.form.valid">{{submitText}}</button>
       </form>
     </div>
   </div>

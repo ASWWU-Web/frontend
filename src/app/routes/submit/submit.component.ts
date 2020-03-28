@@ -28,6 +28,20 @@ export class SubmitComponent implements OnInit {
 
   genericFormId = 1;
 
+  submitTextOptions = {
+    submit: 'Submit',
+    submitting: 'Submitting...',
+  };
+  errorTextOptions = {
+    submissionFailed: 'Submission Failed. Try again, then send an email to aswwu.webmaster@wallawalla.edu.',
+    noError: '',
+  };
+  resumeUploadStatusOptions = {
+    upload: 'Upload',
+    success: 'Success',
+    failed: 'Failed',
+  };
+
   formSection = {generic: 0, specific: 1};
   formContent: FormPairView[] = [
     {job: null, application: null},
@@ -36,13 +50,13 @@ export class SubmitComponent implements OnInit {
 
   formID: number;
   currentUser: User;
-  submitText = 'Submit';
+  submitText = this.submitTextOptions.submit;
   file: any;
   public uploader: FileUploader = new FileUploader({url: environment.SERVER_URL + '/forms/resume/upload'});
   buildLoginLink: () => string;
   userInfoSubscription: Subscription;
-  resumeUploadStatus = 'upload';
-  errorText = '';
+  resumeUploadStatus = this.resumeUploadStatusOptions.upload;
+  errorText = this.errorTextOptions.noError;
 
   constructor(private route: ActivatedRoute, private rs: RequestService, private jrs: JobsRequestService,
               private as: AuthService, private router: Router, private hermesService: HermesService) {
@@ -64,9 +78,9 @@ export class SubmitComponent implements OnInit {
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status);
       if (status < 200 || status > 299) {
-        this.resumeUploadStatus = 'failed';
+        this.resumeUploadStatus = this.resumeUploadStatusOptions.failed;
       } else {
-        this.resumeUploadStatus = 'success';
+        this.resumeUploadStatus = this.resumeUploadStatusOptions.success;
       }
     };
 
@@ -80,7 +94,7 @@ export class SubmitComponent implements OnInit {
       const latestFile = this.uploader.queue[this.uploader.queue.length - 1];
       this.uploader.queue = [];
       this.uploader.queue.push(latestFile);
-    }
+    };
   }
 
   updateFormJob(formSection: number, data: JobView): void {
@@ -124,17 +138,17 @@ export class SubmitComponent implements OnInit {
   }
 
   failedSubmission() {
-    this.errorText = 'Submission Failed. Try again, then send an email to aswwu.webmaster@wallawalla.edu.';
-    this.submitText = 'Submit';
+    this.errorText = this.errorTextOptions.submissionFailed;
+    this.submitText = this.submitTextOptions.submit;
   }
 
   successfulSubmission() {
-    this.errorText = '';
+    this.errorText = this.errorTextOptions.noError;
     this.navigateToDone(this.formID);
   }
 
-  onSubmit(errorData) {
-    this.submitText = 'Submitting...';
+  onSubmit() {
+    this.submitText = this.submitTextOptions.submitting;
     const specificSubmission: ApplicationPOST = { jobID: this.formID, username: this.currentUser.username,
                                                   answers: this.formContent[this.formSection.specific].application.answers };
     const genericSubmission: ApplicationPOST = { jobID: this.genericFormId, username: this.currentUser.username,
