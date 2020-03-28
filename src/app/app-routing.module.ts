@@ -12,6 +12,8 @@ import {
   AdminReviewApplicationComponent,
 } from './routes/routes';
 
+import {ErrorPageComponent} from '../shared-ng/components/error-page/error-page.component';
+
 const routes: Routes = [
   {
     path: '',
@@ -44,6 +46,10 @@ const routes: Routes = [
   {
     path: 'admin/review/:formID/:username',
     component: AdminReviewApplicationComponent
+  },
+  {
+    path: '**',
+    component: ErrorPageComponent
   },
 ];
 

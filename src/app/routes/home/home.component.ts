@@ -1,4 +1,4 @@
-import { Component, NgModule } from '@angular/core';
+import {Component, NgModule, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { RequestService, HermesService } from '../../../shared-ng/services/servi
   providers: [ RequestService ]
 })
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
     query: string = '';
     department: string = '';
     filtered: any[] = [];
@@ -20,8 +20,12 @@ export class HomeComponent {
     cards: any[] = [];
 
     constructor(private rs: RequestService, private hermesService: HermesService) {
-      hermesService.sendHeaderTitle('What is ASWWU?');
-      rs.get('/forms/job/view/all').subscribe((data) => {
+    }
+
+    ngOnInit(): void {
+      this.hermesService.sendShowHeader(true);
+      this.hermesService.sendHeaderTitle('What is ASWWU?');
+      this.rs.get('/forms/job/view/all').subscribe((data) => {
         this.forms = data.forms.filter((el) => {
           return el.visibility;
         });
@@ -29,7 +33,7 @@ export class HomeComponent {
       }, null);
     }
 
-    filterFeatured() {
+  filterFeatured() {
       this.filtered = this.forms.filter((form) => {
         return form.featured;
       });

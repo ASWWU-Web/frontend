@@ -33,7 +33,8 @@ import {
   FooterComponent,
   NavBarComponent,
   UserBubbleComponent,
-  HeaderComponent
+  HeaderComponent,
+  ErrorPageComponent
 } from '../shared-ng/components/components';
 import {
   RequestService, AuthService, HermesService
@@ -56,7 +57,8 @@ import {
     AdminReviewComponent,
     AdminReviewApplicationComponent,
     // FileSelectDirective,
-    CardListComponent
+    CardListComponent,
+    ErrorPageComponent
   ],
   imports: [
     NgbModule,
