@@ -7,15 +7,13 @@ import { RequestService } from '../../../shared-ng/services/request.service';
 import {environment} from '../../../shared-ng/environments/environment';
 import { AuthService, HermesService, JobsRequestService } from '../../../shared-ng/services/services';
 import {
-  AnswerObject,
   ApplicationPOST,
   JobView,
   ApplicationView,
   User,
-  QuestionObject,
   FormPairView
 } from 'src/shared-ng/interfaces/interfaces';
-import { Subscription } from 'rxjs';
+import {concat, forkJoin, Subscription} from 'rxjs';
 import {concatMap, switchMap, tap} from 'rxjs/operators';
 
 @Component({
@@ -153,8 +151,15 @@ export class SubmitComponent implements OnInit {
                                                   answers: this.formContent[this.formSection.specific].application.answers };
     const genericSubmission: ApplicationPOST = { jobID: this.genericFormId, username: this.currentUser.username,
                                                  answers: this.formContent[this.formSection.generic].application.answers };
-    this.jrs.postSubmission(genericSubmission).subscribe(data => this.successfulSubmission(), error => this.failedSubmission());
-    this.jrs.postSubmission(specificSubmission).subscribe(data => this.successfulSubmission(), error => this.failedSubmission());
+    const generalObservable = this.jrs.postSubmission(genericSubmission);
+    const specificObservable = this.jrs.postSubmission(specificSubmission);
+
+    // run `general` first so we don't get applications where `general` failed but `specific` succeeded.
+    concat(generalObservable, specificObservable).subscribe(
+      data => this.successfulSubmission(),
+      error => this.failedSubmission(),
+      () => {},
+    );
   }
 
 }
