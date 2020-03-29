@@ -37,7 +37,7 @@ jobs:
       env:
         CI: true
     - name: prepare artifact
-      - run: |
+      run: |
         mkdir frontend-artifact
         mkdir frontend-payload
         cp -r dist frontend-artifact/frontend-payload/dist-frontend
