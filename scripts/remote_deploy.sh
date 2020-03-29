@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # IMPORTANT:
-# make sure you understand _exactly_ what these command are
+# make sure you understand _exactly_ what these commands are
 # doing BEFORE USING or CHANGING this script or build scripts.
 
 # this script is not idempotent, if it fails the first time, do
@@ -15,40 +15,30 @@
 # the site to be deployed.
 
 SERVER_USER_HOST=$1  # e.g. <username>@<server_ip>
-LOCAL_ZIP_FILE=$2  # e.g. ./dist-<project_name>.zip
+DEPLOYMENT_PAYLOAD=$2  # e.g. ./<project_name>-payload/
 
 PROJECT_NAME="frontend"
-PROJECT_DIR="/var/www/html/$PROJECT_NAME"
-SERVER_ZIP_FILE_NAME="dist-$PROJECT_NAME.zip"
-PROD_DIR="$PROJECT_DIR/prod"
-PROD_BAK_DIR="$PROD_DIR.bak"
+
+SERVER_PAYLOAD_LOCATION="/tmp/$PROJECT_NAME-payload"
+SITE_FILES_PAYLOAD_LOCATION="$SERVER_PAYLOAD_LOCATION/dist-$PROJECT_NAME"
+SERVER_DEPLOY_SCRIPT="server_deploy.sh"
+SERVER_DEPLOY_SCRIPT_LOCATION="$SERVER_PAYLOAD_LOCATION/$SERVER_DEPLOY_SCRIPT"
 
 echo ""
 echo "Have you read and followed the warnings and instructions associated with this script since its last modification?"
 select yn in "Yes" "No"; do
     case $yn in
-        Yes ) echo "Ok. Deploying $LOCAL_ZIP_FILE as $SERVER_USER_HOST."; break;;
+        Yes ) echo "Ok. Deploying $PROJECT_NAME as $SERVER_USER_HOST."; break;;
         No ) echo "Canceling deployment."; exit 1;;
     esac
 done
 echo ""
 
-echo "[INFO] (1) copy $LOCAL_ZIP_FILE to server" &&
-scp "$LOCAL_ZIP_FILE" "$SERVER_USER_HOST:$SERVER_ZIP_FILE_NAME" &&
+echo "[INFO] copy $DEPLOYMENT_PAYLOAD to server" &&
+scp -r "$DEPLOYMENT_PAYLOAD" "$SERVER_USER_HOST:$SERVER_PAYLOAD_LOCATION" &&
 
 ssh -t "$SERVER_USER_HOST" "
-  echo \"[INFO] (2) remove $PROD_BAK_DIR\" &&
-  sudo rm -rvf $PROD_BAK_DIR &&
-  echo \"[INFO] (3) move $PROD_DIR to $PROD_BAK_DIR\" &&
-  sudo mv -v $PROD_DIR $PROD_BAK_DIR &&
-  echo \"[INFO] (4) create directory $PROD_DIR\" &&
-  sudo mkdir -v $PROD_DIR &&
-  echo \"[INFO] (5) unzip \$HOME/$SERVER_ZIP_FILE_NAME into $PROD_DIR\" &&
-  sudo unzip -d $PROD_DIR \$HOME/$SERVER_ZIP_FILE_NAME &&
-  echo \"[INFO] (6) reload nginx\" &&
-  sudo nginx -s reload &&
-  echo \"[INFO] (7) remove \$HOME/$SERVER_ZIP_FILE_NAME\" &&
-  sudo rm -rv \$HOME/$SERVER_ZIP_FILE_NAME
-" &&
+  bash $SERVER_DEPLOY_SCRIPT_LOCATION \"$PROJECT_NAME\" \"$SITE_FILES_PAYLOAD_LOCATION\"" &&
+
 echo ""
 echo "done. Verify that nothing was broken."
