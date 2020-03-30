@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ElectionsRequestService } from 'src/shared-ng/services/elections.request.service';
 import { Election, Position, Vote } from 'src/shared-ng/interfaces/elections';
 
@@ -33,7 +33,10 @@ export class VoteComponent implements OnInit {
   votes: Vote[] = [];
   visiblePositions: Position[] = [];  // the positions based on the election type
 
-  constructor(private ers: ElectionsRequestService) { }
+  constructor(private ers: ElectionsRequestService, private elementRef: ElementRef) {
+    // sets background color
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+   }
 
   ngOnInit() {
     // get the current election

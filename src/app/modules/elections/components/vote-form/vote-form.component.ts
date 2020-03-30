@@ -7,7 +7,7 @@ import { CURRENT_YEAR, MEDIA_SM, DEFAULT_PHOTO } from 'src/shared-ng/config';
 import { Observable, of, forkJoin } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
 
-import { PageTransitions } from 'src/app/routes/vote/vote.component';
+import { PageTransitions } from 'src/app/modules/elections/components/vote/vote.component';
 import { Election, Position, Candidate, Vote, VotePOST } from 'src/shared-ng/interfaces/elections';
 
 @Component({

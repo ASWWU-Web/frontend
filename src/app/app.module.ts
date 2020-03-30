@@ -23,33 +23,9 @@ import {
   RequestService,
   HermesService,
   AuthService,
-  ElectionsRequestService
 } from '../shared-ng/services/services';
 
 import { AppComponent } from './app.component';
-
-// project components
-import {
-  HomeComponent,
-  VoteComponent,
-  AdminComponent
-} from './routes/routes';
-import {
-  CountdownComponent,
-  AdminElectionsComponent,
-  AdminElectionsCandidateModalComponent,
-  AdminCandidatesRowComponent,
-  AdminElectionsRowComponent,
-  AdminPositionsComponent,
-  AdminPositionsRowComponent,
-  AdminBallotsComponent,
-  VoteFormComponent,
-  MultiPositionHandlerComponent,
-  DistrictSelectionComponent,
-  NavigatorComponent,
-  AdminBallotModalComponent,
-  AdminBallotModalContentComponent
-} from './shared/shared';
 
 
 @NgModule({
@@ -61,24 +37,6 @@ import {
     UserBubbleComponent,
     SharedNgContainerComponent,
     ErrorPageComponent,
-    HomeComponent,
-    VoteComponent,
-    AdminComponent,
-    CountdownComponent,
-    AdminElectionsComponent,
-    AdminCandidatesRowComponent,
-    AdminBallotsComponent,
-    AdminPositionsComponent,
-    VoteFormComponent,
-    MultiPositionHandlerComponent,
-    DistrictSelectionComponent,
-    NavigatorComponent,
-    AdminBallotModalComponent,
-    AdminElectionsCandidateModalComponent,
-    AdminElectionsRowComponent,
-    AdminPositionsRowComponent,
-    AdminBallotModalContentComponent
-
   ],
   imports: [
     NgbModule,
@@ -94,15 +52,11 @@ import {
   providers: [
     RequestService,
     HermesService,
-    ElectionsRequestService,
     AuthService,
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    AdminElectionsCandidateModalComponent,
-    AdminElectionsRowComponent,
-    AdminPositionsRowComponent,
-    AdminBallotModalContentComponent
+
   ]
 })
 export class AppModule {

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { ElectionsRequestService, AuthService } from '../../../shared-ng/services/services';
+import { Component, OnInit, ElementRef } from '@angular/core';
+import { ElectionsRequestService, AuthService } from '../../../../../shared-ng/services/services';
 import { Router } from '@angular/router';
 import * as momentTz from 'moment-timezone';
 import * as moment from 'moment';
@@ -23,8 +23,10 @@ export class HomeComponent implements OnInit {
   dates = null;
 
   constructor(private ers: ElectionsRequestService, private as: AuthService,
-              private _router: Router) {
+              private _router: Router, private elementRef: ElementRef) {
     this.router = _router;
+    // sets background color
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
   }
 
   ngOnInit() {

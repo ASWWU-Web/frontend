@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ElectionsRequestService } from 'src/shared-ng/services/services';
 import { forkJoin } from 'rxjs';
 import { CURRENT_YEAR } from 'src/shared-ng/config';
@@ -14,7 +14,10 @@ export class AdminComponent implements OnInit {
   electionsData: Election[] = [];
   positionsData: Position[] = [];
 
-  constructor(private ers: ElectionsRequestService) { }
+  constructor(private ers: ElectionsRequestService, private elementRef: ElementRef) {
+    // sets background color
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+   }
 
   ngOnInit() {
     const startDate: string = '20' + CURRENT_YEAR.slice(0, 2) + '-09-01 00:00:00.000000';
