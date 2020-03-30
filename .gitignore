@@ -2,10 +2,7 @@
 
 # compiled output
 /dist
-<<<<<<< HEAD
 /dist-server
-=======
->>>>>>> elections/master
 /tmp
 /out-tsc
 
