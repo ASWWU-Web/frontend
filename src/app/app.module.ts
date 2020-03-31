@@ -27,6 +27,25 @@ import {
 
 import { AppComponent } from './app.component';
 
+// start of jobs imports
+import {
+  HomeComponent,
+  SubmitComponent,
+  DoneComponent,
+  AdminComponent,
+  AdminCreateComponent,
+  AdminEditComponent,
+  AdminReviewComponent,
+  AdminReviewApplicationComponent,
+} from './routes/routes';
+
+import { CardListComponent } from './shared/shared-components';
+
+import {
+  // FileSelectDirective
+  FileUploadModule
+} from 'ng2-file-upload';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -36,6 +55,17 @@ import { AppComponent } from './app.component';
     UserBubbleComponent,
     SharedNgContainerComponent,
     ErrorPageComponent,
+    HomeComponent,
+    SubmitComponent,
+    DoneComponent,
+    AdminComponent,
+    AdminCreateComponent,
+    AdminEditComponent,
+    AdminReviewComponent,
+    AdminReviewApplicationComponent,
+    // FileSelectDirective,
+    CardListComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +76,8 @@ import { AppComponent } from './app.component';
     NgbModule,
     AppRoutingModule,
     FontAwesomeModule,
+    NgbModule.forRoot(),
+    FileUploadModule
   ],
   providers: [
     RequestService,
