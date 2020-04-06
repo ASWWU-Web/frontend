@@ -1,11 +1,11 @@
-import {Component, NgModule, OnInit} from '@angular/core';
+import {Component, NgModule, OnInit, ElementRef} from '@angular/core';
 import {ActivatedRoute, Router } from '@angular/router';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload';
 
-import { RequestService } from '../../../shared-ng/services/request.service';
+import { RequestService } from '../../../../../shared-ng/services/request.service';
 
-import {environment} from '../../../shared-ng/environments/environment';
-import { AuthService, HermesService, JobsRequestService } from '../../../shared-ng/services/services';
+import {environment} from '../../../../../shared-ng/environments/environment';
+import { AuthService, HermesService, JobsRequestService } from '../../../../../shared-ng/services/services';
 import {
   ApplicationPOST,
   JobView,
@@ -57,7 +57,9 @@ export class SubmitComponent implements OnInit {
   errorText = this.errorTextOptions.noError;
 
   constructor(private route: ActivatedRoute, private rs: RequestService, private jrs: JobsRequestService,
-              private as: AuthService, private router: Router, private hermesService: HermesService) {
+              private as: AuthService, private router: Router, private hermesService: HermesService, private elementRef: ElementRef) {
+    // sets background color
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
   }
 
   ngOnInit() {

@@ -1,8 +1,8 @@
-import {Component, NgModule} from '@angular/core';
+// tslint:disable:no-string-literal
+import {Component, NgModule, ElementRef} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { RequestService } from '../../../shared-ng/services/request.service';
-import { HermesService } from 'src/shared-ng/services/services';
+import { RequestService, HermesService } from '../../../../../shared-ng/services/services';
 
 @Component({
   selector: 'admin',
@@ -19,15 +19,18 @@ import { HermesService } from 'src/shared-ng/services/services';
 })
 
 export class AdminComponent {
-	formID: number;
+  formID: number;
   forms: any[] = [];
   cards: any[] = [];
 
-	constructor(route: ActivatedRoute, private rs: RequestService, private hs: HermesService) {
+  constructor(route: ActivatedRoute, private rs: RequestService, private hs: HermesService, private elementRef: ElementRef) {
+    // sets background color
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+
     hs.sendHeaderTitle('Admin Review');
-		this.formID = +route.snapshot.params['formID'];
+    this.formID = +route.snapshot.params['formID'];
     this.loadForms();
-	}
+  }
   loadForms() {
     this.rs.get('/forms/job/view/all').subscribe((data) => {
       this.forms = data.forms;
@@ -36,10 +39,10 @@ export class AdminComponent {
   }
 
   shorten(description: string) {
-    if(typeof description === "string") {
-      return description.split("\n")[0];
+    if (typeof description === 'string') {
+      return description.split('\n')[0];
     }
-    return "";
+    return '';
   }
 
   buildCards(forms: any[]) {

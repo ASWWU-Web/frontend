@@ -1,7 +1,7 @@
-import {Component, NgModule, OnInit} from '@angular/core';
+import {Component, NgModule, OnInit, ElementRef} from '@angular/core';
 import { Router } from '@angular/router';
 
-import { RequestService } from '../../../../shared-ng/services/services';
+import { RequestService } from '../../../../../../shared-ng/services/services';
 
 @Component({
   selector: 'admin-create',
@@ -19,7 +19,10 @@ export class AdminCreateComponent implements OnInit {
   department = '';
   featured = false;
 
-  constructor(private rs: RequestService, private router: Router) {}
+  constructor(private rs: RequestService, private router: Router, private elementRef: ElementRef) {
+    // sets background color
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+  }
 
   ngOnInit() {
     // TODO: Check to make sure the user is logged in. This isn't that important because this page is for admins.

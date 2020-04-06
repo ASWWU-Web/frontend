@@ -1,9 +1,9 @@
-import { Component, NgModule, OnDestroy, OnInit } from '@angular/core';
+import { Component, NgModule, OnDestroy, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { RequestService, AuthService, HermesService } from '../../../../shared-ng/services/services';
-import { environment } from '../../../../shared-ng/environments/environment';
-import { User } from '../../../../shared-ng/interfaces/interfaces';
+import { RequestService, AuthService, HermesService } from '../../../../../../shared-ng/services/services';
+import { environment } from '../../../../../../shared-ng/environments/environment';
+import { User } from '../../../../../../shared-ng/interfaces/interfaces';
 import { Subscription } from 'rxjs/internal/Subscription';
 
 @Component({
@@ -28,12 +28,15 @@ export class AdminReviewApplicationComponent implements OnInit, OnDestroy {
   buildLoginLink: () => string;
   userInfoSubscription: Subscription;
 
-  constructor(private route: ActivatedRoute, private rs: RequestService, private as: AuthService, private hs: HermesService) {
+  constructor(private route: ActivatedRoute, private rs: RequestService, private as: AuthService,
+              private hs: HermesService, private elementRef: ElementRef) {
+    // sets background color
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
   }
 
   ngOnInit(): void {
-    //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-    //Add 'implements OnInit' to the class.
+    // Called after the constructor, initializing input properties, and the first call to ngOnChanges.
+    // Add 'implements OnInit' to the class.
     this.hs.sendHeaderTitle('Admin Application Review');
     this.buildLoginLink = this.as.buildLoginLink;
     this.formID = +this.route.snapshot.params.formID;

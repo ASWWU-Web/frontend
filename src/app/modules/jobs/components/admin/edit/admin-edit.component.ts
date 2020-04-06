@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { RequestService, AuthService, HermesService, TypeAheadRequestService } from '../../../../shared-ng/services/services';
+import { RequestService, AuthService, HermesService, TypeAheadRequestService } from '../../../../../../shared-ng/services/services';
 import { User } from 'src/shared-ng/interfaces/user';
 import { Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';
@@ -30,7 +30,9 @@ export class AdminEditComponent implements OnInit, OnDestroy {
   userInfoSubscription: Subscription;
 
   constructor(private rs: RequestService, private as: AuthService, private router: Router, private route: ActivatedRoute,
-              private hs: HermesService, private tas: TypeAheadRequestService) {
+              private hs: HermesService, private tas: TypeAheadRequestService, private elementRef: ElementRef) {
+    // sets background color
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
   }
 
   ngOnInit() {

@@ -1,8 +1,8 @@
-import {Component, NgModule, OnInit} from '@angular/core';
+import {Component, NgModule, OnInit, ElementRef} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
-import { RequestService, HermesService } from '../../../shared-ng/services/services';
+import { RequestService, HermesService } from '../../../../../shared-ng/services/services';
 
 @Component({
   selector: 'home',
@@ -12,14 +12,16 @@ import { RequestService, HermesService } from '../../../shared-ng/services/servi
 })
 
 export class HomeComponent implements OnInit {
-    query: string = '';
-    department: string = '';
+    query = '';
+    department = '';
     filtered: any[] = [];
     forms: any[] = [];
-    initialLoad: boolean = true;
+    initialLoad = true;
     cards: any[] = [];
 
-    constructor(private rs: RequestService, private hermesService: HermesService) {
+    constructor(private rs: RequestService, private hermesService: HermesService, private elementRef: ElementRef) {
+      // sets background color
+      this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
     }
 
     ngOnInit(): void {
@@ -45,12 +47,12 @@ export class HomeComponent implements OnInit {
       this.initialLoad = false;
       // Remove the Generic form
       this.filtered = this.forms.filter((el) => {
-        if (el.jobID == 1) {
+        if (el.jobID === 1) {
           return false;
         }
         return true;
       });
-      //Remove all other departments.
+      // Remove all other departments.
       this.filtered = this.filtered.filter((el) => {
          return el.department.toLowerCase().indexOf(this.department.toLowerCase()) > -1;
       });
@@ -58,10 +60,10 @@ export class HomeComponent implements OnInit {
     }
 
     shorten(description: string) {
-      if(typeof description === "string") {
-        return description.split("\n")[0];
+      if (typeof description === 'string') {
+        return description.split('\n')[0];
       }
-      return "";
+      return '';
     }
 
     deptToCardColor(dept: string) {
@@ -83,7 +85,7 @@ export class HomeComponent implements OnInit {
           subTitle: item.department,
           body: this.shorten(item.job_description),
           buttonText: 'View Opportunity',
-          buttonLink: `/submit/${item.jobID}`
+          buttonLink: `submit/${item.jobID}`
         };
       });
     }

@@ -1,8 +1,8 @@
-import {Component, NgModule, OnInit} from '@angular/core';
+import {Component, NgModule, OnInit, ElementRef} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import { RequestService, AuthService, HermesService } from '../../../../shared-ng/services/services';
+import { RequestService, AuthService, HermesService } from '../../../../../../shared-ng/services/services';
 import { Subject, Subscription } from 'rxjs';
-import { User } from '../../../../shared-ng/interfaces/interfaces';
+import { User } from '../../../../../../shared-ng/interfaces/interfaces';
 
 @Component({
   selector: 'admin-review',
@@ -33,7 +33,9 @@ export class AdminReviewComponent implements OnInit {
   userInfoSubscription: Subscription;
 
   constructor(private route: ActivatedRoute, private rs: RequestService,
-              private as: AuthService, private hs: HermesService) {
+              private as: AuthService, private hs: HermesService, private elementRef: ElementRef) {
+    // sets background color
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
   }
 
   ngOnInit() {

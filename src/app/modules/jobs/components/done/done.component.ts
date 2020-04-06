@@ -1,4 +1,4 @@
-import {Component, NgModule} from '@angular/core';
+import {Component, NgModule, ElementRef} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import { HermesService } from 'src/shared-ng/services/services';
 
@@ -19,8 +19,11 @@ import { HermesService } from 'src/shared-ng/services/services';
 export class DoneComponent {
   formID: number;
 
-  constructor(route: ActivatedRoute, private hermesService: HermesService) {
+  constructor(route: ActivatedRoute, private hermesService: HermesService, private elementRef: ElementRef) {
     hermesService.sendHeaderTitle('You\'re all set!');
     this.formID = +route.snapshot.params.formID;
+
+    // sets background color
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
   }
 }
