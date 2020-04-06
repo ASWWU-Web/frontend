@@ -13,6 +13,10 @@ const routes: Routes = [
     loadChildren: './modules/mask/mask.module#MaskModule'
   },
   {
+    'path': 'elections',
+    loadChildren: './modules/elections/elections.module#ElectionsModule'
+  },
+  {
     path: '**',
     component: ErrorPageComponent
   }

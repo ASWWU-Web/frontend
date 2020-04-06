@@ -27,6 +27,7 @@ import {
 
 import { AppComponent } from './app.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,6 +39,7 @@ import { AppComponent } from './app.component';
     ErrorPageComponent,
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     HttpModule,
     HttpClientModule,

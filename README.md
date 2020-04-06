@@ -8,6 +8,12 @@ An online yearbook created by ASWWU for Walla Walla University using **Angular 5
 
 Live version: [aswwu.com/mask](https://aswwu.com/mask/)
 
+# Elections
+
+An online voting system created by ASWWU for Walla Walla University using **Angular 7**.
+
+Live version: [aswwu.com/elections](https://aswwu.com/elections)
+
 ## Setup  
 After you have cloned the repository, run `npm install` to install the necessary node modules.  
 Once that has finished run `git submodule update --init --recursive`. This will add the necessary source files to the [shared-ng](https://github.com/ASWWU-Web/shared-ng) repository 
