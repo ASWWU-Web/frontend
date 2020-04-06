@@ -128,7 +128,7 @@ export class SubmitComponent implements OnInit {
   }
 
   navigateToDone(formID: number) {
-    this.router.navigateByUrl('/done/' + this.formID);
+    this.router.navigateByUrl('jobs/done/' + this.formID);
   }
 
   uploadResume() {

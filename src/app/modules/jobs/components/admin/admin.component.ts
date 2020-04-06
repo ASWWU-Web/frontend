@@ -54,7 +54,7 @@ export class AdminComponent {
         subTitle: item.department,
         body: this.shorten(item.job_description),
         buttonText: 'View Applications',
-        buttonLink: `/admin/review/${item.jobID}`
+        buttonLink: `/jobs/admin/review/${item.jobID}`
       };
     });
   }

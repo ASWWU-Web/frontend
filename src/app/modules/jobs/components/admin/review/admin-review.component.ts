@@ -9,7 +9,7 @@ import { User } from '../../../../../../shared-ng/interfaces/interfaces';
   template: `
   <!-- Job Applications  -->
   <div *ngIf="currentUser" id="jobApps" class="container">
-      <a class="btn btn-primary mb-5" [routerLink]="'/admin/edit/' + formID">Edit this Form</a>
+      <a class="btn btn-primary mb-5" [routerLink]="'/jobs/admin/edit/' + formID">Edit this Form</a>
       <card-list [cards]="cards"></card-list>
       <div *ngIf="applications?.length == 0" class="col col-sm-12 col-md-6 col-lg-3 text-center">
               <p> No results found.</p>
@@ -66,7 +66,7 @@ export class AdminReviewComponent implements OnInit {
         subTitle: item.updated_at,
         body: item.status,
         buttonText: 'View Application',
-        buttonLink: `/admin/review/${item.jobID}/${item.username}`
+        buttonLink: `/jobs/admin/review/${item.jobID}/${item.username}`
       };
     });
   }

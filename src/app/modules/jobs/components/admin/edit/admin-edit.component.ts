@@ -84,7 +84,7 @@ export class AdminEditComponent implements OnInit, OnDestroy {
       (data) => {
         // If the request was successful redirect to the admin page.
         if (data.status === 'Form Updated') {
-          this.router.navigate(['admin']);
+          this.router.navigate(['/jobs/admin']);
         } else {
           window.alert('An unknown error ocurred.');
         }
