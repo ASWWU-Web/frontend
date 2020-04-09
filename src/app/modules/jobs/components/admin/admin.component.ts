@@ -9,6 +9,8 @@ import { RequestService, HermesService } from '../../../../../shared-ng/services
   template: `
   <!-- Job Opportunities  -->
   <div id="jobOpps" class="container">
+  <button class="btn btn-primary" routerLink="create">Create Job</button><br>
+  <br>
   <card-list [cards]="cards"></card-list>
     <div *ngIf="forms.length == 0" class="col col-sm-12 col-md-6 col-lg-3 text-center">
           <p> No results found.</p>

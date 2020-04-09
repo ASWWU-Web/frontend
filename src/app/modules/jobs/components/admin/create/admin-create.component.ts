@@ -1,7 +1,10 @@
 import {Component, NgModule, OnInit, ElementRef} from '@angular/core';
 import { Router } from '@angular/router';
 
-import { RequestService } from '../../../../../../shared-ng/services/services';
+import { RequestService, AuthService, HermesService } from '../../../../../../shared-ng/services/services';
+
+import { User } from '../../../../../../shared-ng/interfaces/interfaces';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'admin-create',
@@ -18,14 +21,25 @@ export class AdminCreateComponent implements OnInit {
   questions: any[] = [{question: ''}];
   department = '';
   featured = false;
+  currentUser: any;
+  buildLoginLink: () => string;
+  userInfoSubscription: Subscription;
 
-  constructor(private rs: RequestService, private router: Router, private elementRef: ElementRef) {
+  constructor(private rs: RequestService, private router: Router, private elementRef: ElementRef,
+              private as: AuthService, private hs: HermesService) {
     // sets background color
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
   }
 
   ngOnInit() {
     // TODO: Check to make sure the user is logged in. This isn't that important because this page is for admins.
+    this.buildLoginLink = this.as.buildLoginLink;
+    this.userInfoSubscription = this.as.getUserInfo().subscribe(
+      (data: User) => {
+        this.currentUser = data;
+      }
+    );
+    this.hs.sendHeaderTitle('Create Job');
   }
 
   addQuestion() {
