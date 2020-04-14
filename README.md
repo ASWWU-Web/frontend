@@ -1,45 +1,65 @@
 # Frontend
 
-Aswwu's five sites all reside within this repository. Homepage, Mask, Jobs, Pages, and Elections. 
+Aswwu's five sites (will) all reside within this repository. Homepage, Mask, Jobs, Pages, and Elections. 
 
-# The Mask
+## Homepage
 
-An online yearbook created by ASWWU for Walla Walla University using **Angular 5**.
+The homepage for the Associated Students of Walla Walla University.
+Live version: [aswwu.com](https://aswwu.com)
 
+## The Mask
+
+An online student directory and yearbook created by ASWWU for Walla Walla University with __Angular/Typescript__.
 Live version: [aswwu.com/mask](https://aswwu.com/mask/)
 
-# Jobs
+## Jobs
 
-Site for ASWWU application forms
-Live version: [aswwu.com/jobs](https://aswwu.com/jobs/)
-# Elections
+An online job site for students to search for and apply for positions at ASWWU.
+Live Version: [aswwu.com/jobs](https://aswwu.com/jobs)
 
-An online voting system created by ASWWU for Walla Walla University using **Angular 7**.
+## Pages
 
-Live version: [aswwu.com/elections](https://aswwu.com/elections)
+_not yet migrated_ 
+Currently at [github.com/aswwu-web/pages](https://github.com/aswwu-web/pages)
+Live Version: [aswwu.com/pages](https://aswwu.com/pages)
 
-## Setup  
-After you have cloned the repository, run `npm install` to install the necessary node modules.  
-Once that has finished run `git submodule update --init --recursive`. This will add the necessary source files to the [shared-ng](https://github.com/ASWWU-Web/shared-ng) repository 
+## Elections
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+An online voting system designed to allow students to vote for positions in either Senate or ASWWU.
+Live Version: [aswwu.com/elections](https://aswwu.com/elections)
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
+# Getting Started
 
-Because the live version of the server is run at `aswwu.com/mask` you must build the project as follows.
-```
-ng build -prod --base-href /mask --deploy-url /mask
-```
-You can also run `npm run build`.
+## Setup
 
-## Further help
+- `git clone git@github.com:ASWWU-Web/frontend.git`
+- `cd frontend`
+- `git submodule update --init --recursive`
+- `npm install`
 
-### Angular CLI
+
+## Run in Development
+
+- `cd frontend`
+- `npm run start`
+- Navigate to `http://localhost:4200/` in your browser. The site will reload when source files are modified.
+
+
+## Deploy to Production
+
+- Download the GitHub Action build artifact
+- unzip the build artifact on your computer to get the `frontend-artifact/` folder
+- `cd frontend-artifact/`
+- `bash remote_deploy.sh <server_username>@<server_ip_address> frontend-payload/`
+
+
+# Further help
+
+## Angular CLI
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-### Contact
+## Contact
 
 Contact [ASWWU.webmaster@wallawalla.edu](mailto:aswwu.webmaster@wallawalla.edu) for additional information about this project.
