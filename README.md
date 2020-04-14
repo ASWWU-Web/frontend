@@ -14,8 +14,7 @@ Live version: [aswwu.com/mask](https://aswwu.com/mask/)
 
 ## Jobs
 
-_not yet migrated_ 
-Currently at [github.com/aswwu-web/jobs](https://github.com/aswwu-web/jobs)
+An online job site for students to search for and apply for positions at ASWWU.
 Live Version: [aswwu.com/jobs](https://aswwu.com/jobs)
 
 ## Pages
@@ -26,8 +25,7 @@ Live Version: [aswwu.com/pages](https://aswwu.com/pages)
 
 ## Elections
 
-_not yet migrated_ 
-Currently at [github.com/aswwu-web/elections](https://github.com/aswwu-web/elections)
+An online voting system designed to allow students to vote for positions in either Senate or ASWWU.
 Live Version: [aswwu.com/elections](https://aswwu.com/elections)
 
 
