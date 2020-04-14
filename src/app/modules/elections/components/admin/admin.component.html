@@ -1,0 +1,21 @@
+<div>
+  <div class="container">
+    <ngb-tabset>
+      <ngb-tab title="Elections">
+        <ng-template ngbTabContent>
+          <app-admin-elections [data]="electionsData" [positions]="positionsData"></app-admin-elections>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Positions">
+        <ng-template ngbTabContent>
+          <app-admin-positions [data]="positionsData"></app-admin-positions>
+        </ng-template>
+      </ngb-tab>
+      <ngb-tab title="Ballots">
+        <ng-template ngbTabContent>
+          <app-admin-ballots [electionsData]="electionsData" [positionsData]="positionsData"></app-admin-ballots>
+        </ng-template>
+      </ngb-tab>
+    </ngb-tabset>
+  </div>
+</div>

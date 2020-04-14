@@ -13,13 +13,21 @@ const routes: Routes = [
     loadChildren: './modules/mask/mask.module#MaskModule'
   },
   {
+    path: 'jobs',
+    loadChildren: './modules/jobs/jobs.module#JobsModule'
+  },
+  {
+    'path': 'elections',
+    loadChildren: './modules/elections/elections.module#ElectionsModule'
+  },
+  {
     path: '**',
     component: ErrorPageComponent
-  }
+  },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
