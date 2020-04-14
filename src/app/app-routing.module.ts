@@ -17,6 +17,10 @@ const routes: Routes = [
     loadChildren: './modules/jobs/jobs.module#JobsModule'
   },
   {
+    'path': 'elections',
+    loadChildren: './modules/elections/elections.module#ElectionsModule'
+  },
+  {
     path: '**',
     component: ErrorPageComponent
   },

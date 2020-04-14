@@ -12,6 +12,11 @@ Live version: [aswwu.com/mask](https://aswwu.com/mask/)
 
 Site for ASWWU application forms
 Live version: [aswwu.com/jobs](https://aswwu.com/jobs/)
+# Elections
+
+An online voting system created by ASWWU for Walla Walla University using **Angular 7**.
+
+Live version: [aswwu.com/elections](https://aswwu.com/elections)
 
 ## Setup  
 After you have cloned the repository, run `npm install` to install the necessary node modules.  

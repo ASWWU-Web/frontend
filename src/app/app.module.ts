@@ -39,6 +39,7 @@ import { AppComponent } from './app.component';
     ErrorPageComponent,
   ],
   imports: [
+    NgbModule,
     BrowserModule,
     HttpModule,
     HttpClientModule,
