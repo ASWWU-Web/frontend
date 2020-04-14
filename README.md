@@ -8,6 +8,10 @@ An online yearbook created by ASWWU for Walla Walla University using **Angular 5
 
 Live version: [aswwu.com/mask](https://aswwu.com/mask/)
 
+# Jobs
+
+Site for ASWWU application forms
+Live version: [aswwu.com/jobs](https://aswwu.com/jobs/)
 # Elections
 
 An online voting system created by ASWWU for Walla Walla University using **Angular 7**.

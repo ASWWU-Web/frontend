@@ -48,6 +48,7 @@ import { AppComponent } from './app.component';
     NgbModule,
     AppRoutingModule,
     FontAwesomeModule,
+    NgbModule.forRoot(),
   ],
   providers: [
     RequestService,
