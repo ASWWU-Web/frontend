@@ -1,68 +1,120 @@
 <div class="container" *ngIf="currentUser">
   <h1>New Application</h1>
-  <label for="jobName">Job Name</label>
-  <input type="text" class="form-control" id="jobName"
-        required
-        [(ngModel)]="jobName" name="jobName">
 
-  <label for="jobDesc">Job description</label>
-  <textarea type="text" class="form-control" id="jobDesc"
-        required
-        [(ngModel)]="jobDesc" name="jobDesc"></textarea>
-        <small>The first line of the description will be what appears on the homepage.</small>
-  <br />
-  <label for="owner">Owner</label>
-  <input type="text" class="form-control" id="owner" required [(ngModel)]="owner" name="owner">
+  <form [formGroup]="newApplication" (ngSubmit)="submitForm()">
+    <div class="form-group">
+      <label class="form-group">
+        Job Name <br>
+      </label>
+      <input type="text" id="jobName" class="form-control"  formControlName="jobName" required>
+      <div *ngIf="jobName.invalid">
+        <div *ngIf="jobName.errors.required" style="color: var(--color-aswwu-danger);">
+          Job name is required
+        </div>
+      </div>
+    </div>
 
-  <label for="Department">Department</label>
-  <div class="form-group">
-      <select class="custom-select col col-sm-12" name="jobDesc" [(ngModel)]="department">
-        <option selected [value]="''">Select a department...</option>
-        <option [value]="'Executive'">Executive</option>
-        <option [value]="'Senate'">Senate</option>
-        <option [value]="'Social'">Social</option>
-        <option [value]="'Spiritual'">Spiritual</option>
-        <option [value]="'Global Service'">Global Service</option>
-        <option [value]="'Marketing'">Marketing</option>
-        <option [value]="'Web'">Web</option>
-        <option [value]="'Collegian'">The Collegian</option>
-        <option [value]="'Video'">Video</option>
-        <option [value]="'Photo'">Photo</option>
-        <option [value]="'Mountain Ash'">Mountain Ash</option>
-        <option [value]="'Atlas'">The Atlas</option>
-        <option [value]="'Tread Shed'">The Tread Shed</option>
-        <option [value]="'Outdoors'">Outdoors</option>
-        <option [value]="'Department Head'">Department Head</option>
-      </select>
-  </div>
+    <br>
 
-  <label for="visibility">Visibility</label>
-  <select class="form-control" [(ngModel)]="visibility">
-    <option selected [value]="true"> Visible</option>
-    <option [value]="false"> Hidden</option>
-  </select>
+    <label>
+      Job Decription <br>
+    </label>
+    <textarea type="text" id="jobDesc" class="form-control" formControlName="jobDesc" required></textarea>
+    <small>The first line of teh description will be what appears on the homepage.</small>
+    <div *ngIf="jobDesc.invalid">
+      <div *ngIf="jobDesc.errors.required" style="color: var(--color-aswwu-danger);">
+        Job Description is required
+      </div>
+    </div>
 
-  <label for="featured">Featured</label>
-  <select class="form-control" [(ngModel)]="featured">
-    <option selected [value]="false"> Not featured</option>
-    <option [value]="true"> Featured</option>
-  </select>
+    <br>
 
-  <label for="imgLink">Image Link</label>
-  <input type="text" class="form-control" id="imgLink" required [(ngModel)]="imgLink" name="imgLink">
+    <label>
+      Owner <br>
+    </label>
+    <input type="text" id="owner" class="form-control" formControlName="owner" required>
+    <div *ngIf="owner.invalid">
+      <div *ngIf="owner.errors.required" style="color: var(--color-aswwu-danger);">
+        Owner is required
+      </div>
+    </div>
 
-  <label for="imgTest">Test Image</label>
-  <img src="{{imgLink}}" name="imgTest" style="height:100px; width: auto;"/>
+    <br>
 
+    <label>
+      Department: &nbsp; <br>
+    </label>
+    <select class="form-group" (change)="changeDept($event)" formControlNam="department">
+      <option value="" disabled>Select a Department</option>
+      <option *ngFor="let dept of departments" [ngValue]="dept">{{dept}}</option>
+    </select>
+    <div *ngIf="department.invalid">
+      <div *ngIf="department.errors.required" style="color: var(--color-aswwu-danger);">
+        Department is required
+      </div>
+    </div>
 
-  <div *ngFor="let question of questions; let i = index;" class="form-group">
-      <label for="{{i}}">Question {{i + 1}}</label>
-      <textarea type="text" class="form-control" required [(ngModel)]="questions[i].question" name="{{i}}"></textarea>
-      <button class="btn btn-danger" (click)="removeQuestion(i)">Remove Question</button>
-  </div>
+    <br>
 
-  <button class="btn btn-secondary"(click)="addQuestion()">Add a question</button>
-  <button class="btn btn-success" (click)="submitForm()">Submit</button>
+    <label>
+      Visibility: &nbsp; <br>
+    </label>
+    <select class="form-group" (change)="changeVis($event)" formControlName="visibility">
+      <option value="" disabled>Select Visibility</option>
+      <option *ngFor="let vis of visibilityOptions; let i = index" [ngValue]="visibilityOptions[i].value">{{visibilityOptions[i].name}}</option>
+    </select>
+    <div *ngIf="visibility.invalid">
+      <div *ngIf="visibility.errors.required" style="color: var(--color-aswwu-danger);">
+        Visibility option required
+      </div>
+    </div>
+
+    <br>
+
+    <label>
+      Featured: &nbsp; <br>
+    </label>
+    <select class="form-group" (change)="changeFeat($event)" formControlName="featured">
+      <option value="" disabled>Select Feature Option</option>
+      <option *ngFor="let feat of featuredOptions; let i = index" [ngValue]="featuredOptions[i].value">{{featuredOptions[i].name}}</option>
+    </select>
+    <div *ngIf="featured.invalid">
+      <div *ngIf="featured.errors.required" style="color: var(--color-aswwu-danger);">
+        Featured option required
+      </div>
+    </div>
+
+    <br> 
+
+    <label>
+      Image Link <br>
+    </label>
+    <input type="text" id="imgLink" class="form-control" formControlName="imgLink">
+
+    <br> 
+
+    <label>
+      Test Image <br>
+    </label>
+    <img src="{{imgLink.value}}" id="testImage" style="height: 100px; width: auto;">
+
+    <br>
+
+    <ng-container formArrayName="questions">
+      <div *ngFor="let q of questions.controls; let i = index;" class="form-group">
+        <ng-container [formGroupName]="i">
+          <label for="{{i}}">Question {{i + 1}}</label>
+          <textarea type="text" class="form-control" formControlName="question"></textarea>
+          <button type="button" class="btn btn-danger" (click)="removeQuestion(i)">Remove Question</button>
+        </ng-container>
+        
+      </div>
+    </ng-container>
+
+    <button type="button" class="btn btn-secondary"(click)="addQuestion()">Add a question</button> <br>
+    <br>
+    <button type="submit" class="btn btn-success" [disabled]="!newApplication.valid">Submit</button>
+  </form>
 </div>
 
 <div class="container" *ngIf="!currentUser">
