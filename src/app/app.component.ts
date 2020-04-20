@@ -8,7 +8,5 @@ import { HermesService } from 'src/shared-ng/services/services';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  constructor(private hermesService: HermesService) {
-    this.hermesService.sendHeaderTitle('Elections');
-  }
+  constructor() { }
 }
