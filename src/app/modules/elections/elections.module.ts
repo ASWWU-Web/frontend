@@ -7,7 +7,7 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { ElectionsRequestService } from '../../../shared-ng/services/services';
+import { ElectionsRequestService, HermesService } from '../../../shared-ng/services/services';
 import { ElectionRoutes } from './elections.routes';
 
 import {
@@ -89,4 +89,8 @@ import {
     AdminBallotModalContentComponent
   ]
 })
-export class ElectionsModule { }
+export class ElectionsModule { 
+  constructor(private hs: HermesService) {
+    this.hs.sendHeaderTitle('Elections');
+  }
+}
