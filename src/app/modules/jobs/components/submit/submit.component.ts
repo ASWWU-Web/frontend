@@ -16,6 +16,9 @@ import {
 import {concat, forkJoin, Subscription} from 'rxjs';
 import {concatMap, switchMap, tap} from 'rxjs/operators';
 
+import { FormArray, FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { forEach } from '@angular/router/src/utils/collection';
+
 @Component({
   selector: 'submit',
   templateUrl: 'submit.component.html',
@@ -55,8 +58,9 @@ export class SubmitComponent implements OnInit {
   userInfoSubscription: Subscription;
   resumeUploadStatus = this.resumeUploadStatusOptions.upload;
   errorText = this.errorTextOptions.noError;
+  applicationForm : FormGroup;
 
-  constructor(private route: ActivatedRoute, private rs: RequestService, private jrs: JobsRequestService,
+  constructor(private route: ActivatedRoute, private rs: RequestService, private jrs: JobsRequestService, private fb: FormBuilder,
               private as: AuthService, private router: Router, private hermesService: HermesService, private elementRef: ElementRef) {
     // sets background color
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
@@ -95,6 +99,22 @@ export class SubmitComponent implements OnInit {
       this.uploader.queue = [];
       this.uploader.queue.push(latestFile);
     };
+
+    // TODO: remove before pushing code 
+    console.log(this.formContent);
+
+    this.applicationForm = this.fb.group({
+        questions: this.fb.array([
+          this.fb.control('', Validators.required)
+        ])
+    });
+  
+
+    
+  }
+
+  get questions() {
+    return this.applicationForm.get('questions') as FormArray;
   }
 
   updateFormJob(formSection: number, data: JobView): void {
