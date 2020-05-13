@@ -109,12 +109,22 @@ export class SubmitComponent implements OnInit {
         ])
     });
   
-
+    // assign formcontrols to all questions in form
+    // this.formContent.forEach( (form) => {
+    //     console.log(form);
+    //     for (let q in form.application.answers) {
+    //       console.log(q);
+    //     }
+    // });
     
   }
 
   get questions() {
     return this.applicationForm.get('questions') as FormArray;
+  }
+
+  addQuestions () {
+    this.questions.push(this.fb.control('', Validators.required))
   }
 
   updateFormJob(formSection: number, data: JobView): void {

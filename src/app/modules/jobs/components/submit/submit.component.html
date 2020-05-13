@@ -35,7 +35,6 @@
                     <div *ngFor="let question of questions.controls; let j=index">
                       <label for="general-short-question-id{{question?.id}}">{{question.question}}</label>
                       <input 
-                        [(ngModel)]="formContent[formSection.generic].application?.answers[i].answer"
                         name="general-short-question-id{{question?.id}}"
                         type="text" class="form-control"
                         id="general-short-question-id{{question?.id}}"
@@ -52,7 +51,6 @@
                         type="text"
                         class="form-control"
                         id="general-long-question-id{{question?.id}}"
-                        [(ngModel)]="formContent[formSection.generic].application?.answers[i].answer"
                         name="general-long-question-id{{question?.id}}"
                         [formControlName]="j"
                         required>
@@ -79,7 +77,6 @@
                     type="text" 
                     class="form-control" 
                     id="{{question?.id}}"
-                    [(ngModel)]="formContent[formSection.specific].application?.answers[i].answer"
                     name="{{question?.id}}"
                     [formControlName]="j"
                     required>
