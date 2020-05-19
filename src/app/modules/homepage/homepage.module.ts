@@ -27,6 +27,9 @@ import {
 
 // Routes
 import { HomepageRoutes } from './homepage.routes';
+import { NotificationAdminComponent } from './components/notification/notification-admin/notification-admin.component';
+import { NotificationEditComponent } from './components/notification/notification-edit/notification-edit.component';
+import { NotificationViewComponent } from './components/notification/notification-view/notification-view.component';
 
 
 @NgModule({
@@ -34,7 +37,10 @@ import { HomepageRoutes } from './homepage.routes';
     HomeComponent,
     OpenForumComponent,
     SuperDuperComponent,
-    UpcomingComponent
+    UpcomingComponent,
+    NotificationAdminComponent,
+    NotificationEditComponent,
+    NotificationViewComponent
   ],
   imports: [
     CommonModule,
