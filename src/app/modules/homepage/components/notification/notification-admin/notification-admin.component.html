@@ -1,3 +1,17 @@
-<p>
-  notification-admin works!
-</p>
+<br>
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Text</th>
+      <th scope="col">Links</th>
+      <th scope="col">Start / End</th>
+      <th scope="col">Severity</th>
+      <th scope="col">Visibility</th>
+      <th scope="col">Archived</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="notifications">
+  <tr notifications-row *ngFor="let notification of notifications" >{{ notification }}</tr>
+  </tbody>
+</table>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Notification} from "../../../../../../shared-ng/interfaces/homepage";
+import {NotificationRequestService} from "../../../../../../shared-ng/services/notification.request.service";
 
 @Component({
   selector: 'app-notification-admin',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NotificationAdminComponent implements OnInit {
 
-  constructor() { }
+  constructor(private nrs: NotificationRequestService) { }
+
+  notifications: Notification[];
 
   ngOnInit() {
+    this.nrs.listNotifications({visible: 1}).subscribe(data => {
+      this.notifications = data;
+    }, error => {}, () => {});
   }
 
 }
