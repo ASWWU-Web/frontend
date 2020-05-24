@@ -1,5 +1,36 @@
 /* TODO: this file needs to be cleaned */
 
+.star-wars {
+  display: flex;
+  justify-content: center;
+  position: relative;
+  font-family: 'Pathway Gothic One', sans-serif;
+  font-weight: 600;
+  letter-spacing: 6px;
+  line-height: 150%;
+  perspective: 400px;
+  text-align: center;
+  margin: 10px;
+}
+
+.star-wars:hover {
+  background: none;
+}
+
+.sith {
+  color: #feda4a;
+  background: black;
+}
+
+.jedi {
+  color: white;
+  background: darkviolet;
+}
+
+.final-link {
+  text-decoration: underline;
+}
+
 .aswwu-logo {
     -webkit-filter: drop-shadow(5px 5px 30px rgba(0,0,0,0.5)); filter: drop-shadow(5px 5px 30px rgba(0,0,0,0.5));
 }
@@ -50,9 +81,13 @@ hr {
   background-position: center;
   background-attachment: fixed;
 }
+.parallax-window-expanding {
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
 .parallax-center {
   position: relative;
-
 }
 
 /*Footer*/
@@ -143,6 +178,10 @@ hr {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+.column-content {
+  display: flex;
+  flex-direction: column;
 }
 .text-giant {
   font-size: 3rem;
