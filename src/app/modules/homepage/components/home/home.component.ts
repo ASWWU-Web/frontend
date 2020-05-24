@@ -22,7 +22,7 @@ export class HomeComponent implements OnInit {
     "What happened to him?",
     "He became so glitchy… the only place he remained real was in his ability to generate the ultimate bug, which eventually, of course, he did. Unfortunately, he placed comments throughout his code, so other developers could wipe out his progress during his sleep. Ironic. He could save others' bugs from death, but not his own.",
     "Is it possible to learn this power?",
-    "Only from his Github Repo."
+    ""
   ];
 
   constructor(private hermesService: HermesService, private elementRef: ElementRef) {

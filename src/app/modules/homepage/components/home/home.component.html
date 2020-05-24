@@ -12,7 +12,9 @@
 <div id="atlas" class="parallax-window-expanding column-content" style="background-image: url('https://usercontent2.hubstatic.com/14357021_f1024.jpg'); background-repeat: no-repeat;">
   <div *ngFor="let message of messages; index as i; odd as isOdd; last as isLast" class="container">
     <a class="btn btn-outline-secondary btn-lg star-wars" [ngClass]="{'jedi': isOdd, 'sith': !isOdd}" *ngIf="showMessages >= i && !isLast" (click)="setMessage(i+1)">{{message}}</a>
-    <a class="btn btn-outline-secondary btn-lg star-wars final-link" [ngClass]="{'jedi': isOdd, 'sith': !isOdd}" *ngIf="showMessages >= i && isLast" href="https://github.com/PlasmaIntec">{{message}}</a>
+    <p class="btn btn-outline-secondary btn-lg star-wars" [ngClass]="{'jedi': isOdd, 'sith': !isOdd}" *ngIf="showMessages >= i && isLast">
+      My GitHub account is found <a class="final-link" [ngClass]="{'jedi': isOdd, 'sith': !isOdd}" href="https://github.com/PlasmaIntec">here</a>
+    </p>
   </div>
 </div>
 
