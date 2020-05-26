@@ -40,7 +40,13 @@ hr {
   margin-top:1.2em;
   margin-bottom:1.5em;
 }
-
+hr.calebshr {
+  width: 36px;
+  border-color: #ffd700;
+  border-width: 5px;
+  margin-top:1.5em;
+  margin-bottom:0em;
+}
 
 /*Parallax window attributes*/
 .parallax-window {
