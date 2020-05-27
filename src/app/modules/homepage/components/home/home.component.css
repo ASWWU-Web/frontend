@@ -50,6 +50,15 @@ hr {
   background-position: center;
   background-attachment: fixed;
 }
+/*Edits in code for challenge - Garrett Moody*/
+.parallax-window1 {
+  height: 500px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
 .parallax-center {
   position: relative;
 
@@ -109,6 +118,40 @@ hr {
   margin-bottom: .8em;
 }
 
+/*Edits in code for challenge - Garrett Moody*/
+.gitHubButton {
+	box-shadow:inset 0px 0px 0px 0px #cf866c;
+	background:linear-gradient(to bottom, #d0451b 5%, #bc3315 100%);
+	background-color:#d0451b;
+	border-radius:42px;
+	border:3px solid #942911;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Georgia;
+	font-size:16px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:3px 1px 0px #854629;
+}
+.gitHubButton:hover {
+	background:linear-gradient(to bottom, #bc3315 5%, #d0451b 100%);
+	background-color:#bc3315;
+}
+.gitHubButton:active {
+	position:relative;
+	top:1px;
+}
+/*Edits in code for challenge - Garrett Moody*/
+.logo1{
+    width: 600px;
+    display: inline-flex;
+    margin-top:-15em;
+    margin-bottom: -15em;
+}
+
+
 .full_height_parent{
   display: flex;
 }
@@ -144,6 +187,7 @@ hr {
   justify-content: center;
   align-items: center;
 }
+
 .text-giant {
   font-size: 3rem;
   font-weight: 700;
