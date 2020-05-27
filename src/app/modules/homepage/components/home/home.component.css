@@ -41,6 +41,19 @@ hr {
   margin-bottom:1.5em;
 }
 
+/*Edits in code for challenge - Garrett Moody*/
+.txtbtn {
+  border: none;
+  background-color: inherit;
+  padding: 0px 0px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+.txtbtn:hover {
+  text-decoration: none;
+}
 
 /*Parallax window attributes*/
 .parallax-window {
