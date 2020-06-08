@@ -34,7 +34,6 @@
     "font-awesome": "^4.7.0",
     "ng2-file-upload": "^1.4.0",
     "moment-timezone": "^0.5.28",
-    "node-sass": "^4.13.1",
     "rxjs": "~6.3.3",
     "tslib": "^1.11.1",
     "zone.js": "~0.8.26"
@@ -55,6 +54,7 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "node-sass": "^4.14.1",
     "protractor": "~5.4.0",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
