@@ -1,0 +1,19 @@
+<div id="profiledatadiv" *ngIf="profileData" style="display:block;overflow:auto;" class="">
+  <div *ngIf="showPhoto" class="float-left h-100">
+    <div class="mr-3 d-inline-block" style="height:50px;width:50px;border-radius:50%;overflow:hidden;">
+      <a href="{{ MASK }}/{{profileData?.username}}">
+        <img style="width:50px;height:auto;" src="{{ getPhotoLink(profileData.photo) }}">
+      </a>
+    </div>
+  </div>
+  <div id="textdiv" class="d-inline-block align-middle">
+    <h6 class="m-0">
+      <a *ngIf="profileData.username" href="{{ MASK }}/{{profileData.username}}" class="text-dark">{{ profileData.full_name }}</a>
+      <span *ngIf="!profileData.username" >{{ profileData.full_name }}</span>
+    </h6>
+    <div *ngFor="let element of fields"><small *ngIf="profileData[element]">{{profileData[element]}}<br></small></div>
+    <a *ngIf="showEmail" class="m-0 text-dark" href="mailto:{{ profileData.email }}">
+      {{ profileData.email }}
+    </a>
+  </div>
+</div>

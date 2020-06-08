@@ -1,0 +1,4 @@
+<div class="row">
+  <page-card *ngFor="let page of requestData" class="mx-auto" [page]="page" [showMeta]="showMeta"></page-card>
+</div>
+<p *ngIf="requestData == null || requestData.length == 0" class="text-center mb-5">No pages found!</p>

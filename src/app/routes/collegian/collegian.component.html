@@ -1,0 +1,20 @@
+<div class="page-container mb-3">
+  <!-- content -->
+  <div class="container">
+    <!-- this week -->
+    <p class="text-center mb-3">Welcome to the Collegian, the ASWWU student newspaper!</p>
+    <hr />
+    <h2 class="text-center text-uppercase">This Week</h2>
+    <page-results [requestData]="thisWeek" showMeta="1"></page-results>
+    <hr />
+    <!-- older articles -->
+    <h2 class="text-center text-uppercase mb-4">Older Articles</h2>
+    <div class="input-group mb-5 w-75 mx-auto">
+      <input type="text" class="form-control" [(ngModel)]="searchText" (keyUp.enter)="search()" placeholder="Search">
+      <div class="input-group-append">
+        <button class="btn btn-secondary" (click)="search()"><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+    <page-scroll-cards [requestData]="archives" showMeta="1"></page-scroll-cards>
+  </div>
+</div>

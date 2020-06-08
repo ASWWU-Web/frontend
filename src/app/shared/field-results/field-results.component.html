@@ -1,0 +1,4 @@
+<div class="row">
+  <field-card *ngFor="let item of requestData" class="mx-auto" [item]="item" [searchKey]="searchKey"></field-card>
+</div>
+<p *ngIf="requestData == null || requestData.length == 0" class="text-center mb-5">No fields found!</p>

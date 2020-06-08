@@ -19,7 +19,6 @@ Live Version: [aswwu.com/jobs](https://aswwu.com/jobs)
 
 ## Pages
 
-_not yet migrated_ 
 Currently at [github.com/aswwu-web/pages](https://github.com/aswwu-web/pages)
 Live Version: [aswwu.com/pages](https://aswwu.com/pages)
 

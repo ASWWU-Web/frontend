@@ -1,0 +1,7 @@
+#events-header {
+    background-image: url(../../../assets/events.jpg);
+    background-size: 100%;
+}
+#results {
+  min-height: 240px;
+}

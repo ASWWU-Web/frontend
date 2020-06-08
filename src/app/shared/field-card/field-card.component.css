@@ -1,0 +1,24 @@
+.card {
+  width: 240px;
+  /* https://www.w3schools.com/css/css3_shadows.asp */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  transition: .3s;
+  margin: auto;
+}
+@media only screen and (min-width: 360px) {
+  .card {
+    width: 285px;
+  }
+}
+@media only screen and (min-width: 391px) {
+  .card {
+    width: 300px;
+  }
+}
+.card:hover {
+  background-color: #f7f7f7;
+  transition: .3s;
+}
+.clickable:hover {
+  cursor: pointer;
+}

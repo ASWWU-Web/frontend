@@ -1,0 +1,31 @@
+<div class="page-container mb-3">
+  <!-- content -->
+  <div class="container">
+    <!-- search -->
+    <div class="input-group mb-5 w-75 mx-auto">
+      <input type="text" class="form-control" [(ngModel)]="searchText" (keyUp.enter)="search()" placeholder="Search">
+      <div class="input-group-append">
+        <button class="btn btn-secondary" (click)="search()"><i class="fa fa-search"></i></button>
+      </div>
+    </div>
+    <!-- featureds -->
+    <div *ngIf="featureds.length > 0">
+      <h2 class="text-uppercase text-center mb-3">Featured</h2>
+      <page-scroll-cards [requestData]=featureds showMeta="1"></page-scroll-cards>
+    </div>
+    <hr />
+    <!-- events -->
+    <div *ngIf="events.length > 0">
+      <h2 class="text-uppercase text-center mb-3">Events</h2>
+      <page-scroll-cards [requestData]=events showMeta="0"></page-scroll-cards>
+    </div>
+    <hr />
+    <!-- categories -->
+    <h2 class="text-uppercase text-center mb-3">Categories</h2>
+    <field-scroll-cards [requestData]=categories searchKey="category" [sort]="true"></field-scroll-cards>
+    <hr />
+    <!-- departments -->
+    <h2 class="text-uppercase text-center mb-3">Departments</h2>
+    <field-scroll-cards [requestData]=departments searchKey="department" [sort]="true"></field-scroll-cards>
+  </div>
+</div>

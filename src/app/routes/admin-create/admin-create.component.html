@@ -1,0 +1,46 @@
+<div class="container-fluid">
+  <div class="row mt-3 pl-2 pr-2">
+    <div class="mx-auto col-sm-12 col-md-6">
+      <form (ngSubmit)="onSubmit()">
+        
+        <div class="form-group mb-3 row"> <!-- Title input -->
+          <label for="title">Title</label>
+          <input type="text" class="form-control" placeholder="title" aria-label="title" aria-describedby="basic-addon1" [(ngModel)]="newPage.title" (keyup)="titleEdit()" name="title">
+        </div>
+
+        <div class="form-group mb-3 row"> <!-- URL input -->
+          <label for="title">URL</label>
+          <div class="input-group">
+            <div class="input-group-prepend">
+              <span class="input-group-text" id="basic-addon1">aswwu.com/page/</span>
+            </div>
+            <input type="text" class="form-control" placeholder="url" aria-label="url" aria-describedby="basic-addon1" [ngStyle]="{'background-color':urlInvalid ? '#ff8080' : '' }" [(ngModel)]="newPage.url" (keyup)="urlEdit()" name="url">
+            <small class="form-text" style="width:100%;" [ngClass]="{'text-danger':urlInvalid,'text-muted':!urlInvalid}">Use only lowercase alphanumeric characters and hyphens.</small>
+            <small class="form-text text-muted" style="width:100%;">The URL cannot be changed once the page is created.</small>
+          </div>
+        </div>
+
+        <div class="form-group mb-3 row"> <!-- Category dropdown -->
+          <label for="title">Category</label>
+          <!-- <input type="text" class="form-control" placeholder="category" aria-label="category" aria-describedby="basic-addon1" [(ngModel)]="newPage.category" name="category"> -->
+          <select class="form-control"[(ngModel)]="newPage.category" name="category">
+            <option *ngFor="let c of categories" [ngValue]="c.category">{{c.category}}</option>
+          </select>
+        </div>
+
+        <div class="form-group mb-3 row"> <!-- Department dropdown -->
+          <label for="title">Department</label>
+          <!-- <input type="text" class="form-control" placeholder="department" aria-label="department" aria-describedby="basic-addon1" [(ngModel)]="newPage.department" name="department"> -->
+          <select class="form-control"[(ngModel)]="newPage.department" name="department">
+            <option *ngFor="let c of departments" [ngValue]="c.department">{{c.department}}</option>
+          </select>
+        </div>
+        
+        <div class="form-group row"> <!-- Submit button -->
+          <button type="submit" class="btn btn-primary">Create</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+

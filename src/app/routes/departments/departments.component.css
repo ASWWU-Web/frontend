@@ -1,0 +1,7 @@
+#results {
+  min-height: 240px;
+}
+#departments-header {
+    background-image: url(../../../assets/departments.jpg);
+    background-size: 100%;
+}

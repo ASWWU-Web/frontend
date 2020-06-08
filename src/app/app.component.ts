@@ -1,6 +1,4 @@
-import { Component, NgModule, OnInit } from '@angular/core';
-import { Routes, Router } from '@angular/router';
-import { HermesService } from 'src/shared-ng/services/services';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',

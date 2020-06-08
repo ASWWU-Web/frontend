@@ -1,0 +1,31 @@
+<div class="container">
+  <!-- header -->
+  <div class="row">
+    <div class="col-sm-12 col-md-6 offset-md-3 text-center">
+      <h1>Revisions</h1>
+    </div>
+  </div>
+  <!-- content -->
+  <div class="row">
+    <page class="col-xl-9 mb-3" requestURL="{{revisionURL}}"></page>
+    <!-- sidebar -->
+    <div class="col-xl-3 list-group">
+      <!-- buttons -->
+      <div class="row mb-3">
+        <div class="btn-group mx-auto">
+          <a [routerLink]="['/admin/edit', pageURL]" class="btn btn-light">Edit Page</a>
+          <button (click)="restoreRevision()" [disabled]="viewingRevisionID == currentRevisionID" class="btn btn-success float-right">Restore Revision</button>
+        </div>
+      </div>
+      <!-- revision list -->
+      <div class="row mb-3 revision-list mx-auto">
+        <button [ngStyle]="getStyle(currentRevisionID)" (click)="loadRevision(currentRevisionID)" class="list-group-item list-group-item-action text-center">
+          Current
+        </button>
+        <button [ngStyle]="getStyle(revision.id)" *ngFor="let revision of revisions" (click)="loadRevision(revision.id)" class="list-group-item list-group-item-action text-center">
+          {{getDateTime(revision.last_updated)}}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

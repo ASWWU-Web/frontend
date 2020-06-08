@@ -1,0 +1,36 @@
+<div class="page-container mb-3">
+  <h1 class="text-center text-light text-uppercase m-0 readable-shadow" style="line-height:6.3rem;">Search</h1>
+  <!-- content -->
+  <div class="container">
+    <div class="input-group mb-3" *ngFor="let criterion of criteria; let i = index;">
+      <!-- searchable fields -->
+      <select id="searchables-select" class="custom-select" [(ngModel)]="criteria[i][0]">
+        <option *ngFor="let field of searchableFields" value="{{field}}">{{formatField(field)}}</option>
+      </select>
+
+      <!-- input field -->
+      <input class="form-control" *ngIf="criteria[i][0] != 'category' && criteria[i][0] != 'department'" [(ngModel)]="criteria[i][1]" (keyUp.enter)="search()" />
+      <select class="custom-select" *ngIf="criteria[i][0] == 'category'" [(ngModel)]="criteria[i][1]">
+        <option *ngFor="let category of categories" value="{{category}}">{{category}}</option>
+      </select>
+      <select class="custom-select" *ngIf="criteria[i][0] == 'department'" [(ngModel)]="criteria[i][1]">
+        <option *ngFor="let department of departments" value="{{department}}">{{department}}</option>
+      </select>
+
+      <!-- removal button -->
+      <div class="input-group-append">
+        <button class="btn btn-secondary" (click)="removeField(i)"><i class="fa fa-times"></i></button>
+      </div>
+    </div>
+
+    <div class="btn-group">
+      <button class="btn btn-secondary" (click)="search()">Search</button>
+      <button class="btn bt-light" (click)="addField()">Add Field</button>
+    </div>
+  </div>
+  <br>
+  <!-- results -->
+  <div id="results" class="container">
+    <page-results [requestData]="searchResults" showMeta="1"></page-results>
+  </div>
+</div>

@@ -1,0 +1,20 @@
+<div *ngIf="page" class="container-fluid p-0">
+  <!-- <div id="header" class="w-100 bg-success bg-cover" [ngStyle]="{'background': ( 'url(' + getCoverImage(page.cover_image, media_uri) + ')' ), 'background-size': 'cover'}">
+    <button *ngIf="isEditor" (click)="goToEdit()" type="button" class="btn btn-primary position-absolute m-3">Edit</button>
+    <h1 class="text-center text-light text-uppercase m-0 readable-shadow">
+      {{ page.title }}
+    </h1>
+  </div> -->
+
+  <div id="content" class="mb-3 mt-3 container fr-view" [innerHTML]="page?.content | bypassSecurity: 'html'"> <!-- CONTENT SECTION -->
+  </div>
+
+  <div id="author" class="container mb-3 mt-5 pl-md-5"> <!-- AUTHOR SECTION -->
+    <profile-info *ngIf="pageProfile" [profileUserName]="pageProfile" [showPhoto]="true" [showEmail]="true" [fields]="['majors', 'minors']"></profile-info>
+  </div>
+
+  <div id="pre-footer" class="w-100 bg-success bg-cover readable-shadow" [ngStyle]="{'background': ( 'url(' + getCoverImage(page.cover_image, media_uri) + ')' ), 'background-size': 'cover'}"> <!-- CONTENT FOOTER SECTION -->
+    <h1 class="text-center m-0" style="line-height:15rem;"></h1>
+  </div>
+
+</div>
