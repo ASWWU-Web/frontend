@@ -18,6 +18,7 @@ import {
   UserBubbleComponent,
   SharedNgContainerComponent,
   ErrorPageComponent,
+  UploadModalComponent
 } from '../shared-ng/components/components';
 import {
   RequestService,
@@ -37,6 +38,7 @@ import { AppComponent } from './app.component';
     UserBubbleComponent,
     SharedNgContainerComponent,
     ErrorPageComponent,
+    UploadModalComponent
   ],
   imports: [
     NgbModule,
