@@ -14,14 +14,14 @@ import {
 } from '../../../shared-ng/services/services';
 import {
   CalendarService,
-  SuperDuperService
+  SuperHomepageSearchService
 } from './services/services';
 
 // Local Components
 import {
   HomeComponent,
   OpenForumComponent,
-  SuperDuperComponent,
+  SuperHomepageSearchComponent,
   UpcomingComponent
 } from './components/home.component';
 
@@ -33,7 +33,7 @@ import { HomepageRoutes } from './homepage.routes';
   declarations: [
     HomeComponent,
     OpenForumComponent,
-    SuperDuperComponent,
+    SuperHomepageSearchComponent,
     UpcomingComponent
   ],
   imports: [
@@ -49,11 +49,11 @@ import { HomepageRoutes } from './homepage.routes';
   exports: [
     HomeComponent,
     OpenForumComponent,
-    SuperDuperComponent,
+    SuperHomepageSearchComponent,
     UpcomingComponent
   ],
   providers: [
-    SuperDuperService,
+    SuperHomepageSearchService,
     CalendarService,
     HomepageRequestService,
   ]

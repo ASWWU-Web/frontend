@@ -12,10 +12,10 @@ import { FormGroup, FormControl } from '@angular/forms';
 
 @Component({
   selector: 'super-duper',
-  templateUrl: './super-duper.component.html',
-  styleUrls: ['./super-duper.component.css']
+  templateUrl: './super-homepage-search.component.html',
+  styleUrls: ['./super-homepage-search.component.css']
 })
-export class SuperDuperComponent implements OnInit {
+export class SuperHomepageSearchComponent implements OnInit {
 
   @Input() model: string = null;
   searching = false;

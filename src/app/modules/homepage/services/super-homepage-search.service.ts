@@ -8,7 +8,7 @@ import { RequestService } from '../../../../shared-ng/services/services';
 import { CURRENT_YEAR } from '../../../../shared-ng/config';
 
 @Injectable()
-export class SuperDuperService {
+export class SuperHomepageSearchService {
 
   jobsUri = '/forms/job/view/all';
   maskUri = '/mask/search/' + CURRENT_YEAR + '/';
