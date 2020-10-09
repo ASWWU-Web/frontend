@@ -89,7 +89,7 @@ import {
     AdminBallotModalContentComponent
   ]
 })
-export class ElectionsModule { 
+export class ElectionsModule {
   constructor(private hs: HermesService) {
     this.hs.sendHeaderTitle('Elections');
   }

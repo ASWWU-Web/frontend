@@ -17,8 +17,12 @@ const routes: Routes = [
     loadChildren: './modules/jobs/jobs.module#JobsModule'
   },
   {
-    'path': 'elections',
+    path: 'elections',
     loadChildren: './modules/elections/elections.module#ElectionsModule'
+  },
+  {
+    path: 'pages',
+    loadChildren: './modules/pages/pages.module#PagesModule'
   },
   {
     path: '**',

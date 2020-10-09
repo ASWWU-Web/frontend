@@ -10,9 +10,6 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
-import { TagInputModule } from 'ngx-chips';
-
 // shared-ng components
 import {
   NavBarComponent,
@@ -35,38 +32,6 @@ import {
 
 import { AppComponent } from './app.component';
 
-import {
-  ViewPageComponent,
-  EditComponent,
-  RevisionsComponent,
-  AdminComponent,
-  AdminCreateComponent,
-  AdminViewComponent,
-  DirectoryComponent,
-  SearchComponent,
-  DepartmentsComponent,
-  EventsComponent,
-  CollegianComponent
-} from './routes/routes';
-
-import {
-  PageComponent,
-  ProfileSmComponent,
-  SubNavBarComponent,
-  MobileNavComponent,
-  UnescapePipe,
-  BypassSecurityPipe,
-  PageScrollCardsComponent,
-  FieldScrollCardsComponent,
-  PageResultsComponent,
-  PageCardComponent,
-  FieldResultsComponent,
-  FieldCardComponent,
-  ProfileInfoComponent
-} from './shared/shared';
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,30 +41,6 @@ import {
     UserBubbleComponent,
     SharedNgContainerComponent,
     ErrorPageComponent,
-    PageComponent,
-    EditComponent,
-    RevisionsComponent,
-    ProfileSmComponent,
-    SubNavBarComponent,
-    MobileNavComponent,
-    UnescapePipe,
-    BypassSecurityPipe,
-    DirectoryComponent,
-    PageScrollCardsComponent,
-    FieldScrollCardsComponent,
-    PageCardComponent,
-    AdminComponent,
-    AdminCreateComponent,
-    AdminViewComponent,
-    SearchComponent,
-    PageResultsComponent,
-    DepartmentsComponent,
-    FieldResultsComponent,
-    EventsComponent,
-    CollegianComponent,
-    ViewPageComponent,
-    FieldCardComponent,
-    ProfileInfoComponent
   ],
   imports: [
     NgbModule,
@@ -111,50 +52,7 @@ import {
     NgbModule,
     AppRoutingModule,
     FontAwesomeModule,
-    FroalaViewModule.forRoot(),
-    FroalaEditorModule.forRoot(),
     NgbModule.forRoot(),
-    RouterModule.forRoot([
-      {
-        // MUST BE FIRST
-        'path': 'admin',
-        component: AdminComponent
-      }, {
-        'path': 'admin/edit/:pageURL',
-        component: EditComponent
-      }, {
-        'path': 'admin/create',
-        component: AdminCreateComponent
-      }, {
-        'path': 'admin/edit/:pageURL/revisions',
-        component: RevisionsComponent
-      }, {
-        'path': 'admin/:pageURL',
-        component: AdminViewComponent
-      }, {
-        'path': 'search',
-        component: SearchComponent
-      }, {
-        'path': 'search:queryComponent',
-        component: SearchComponent
-      }, {
-        'path': 'departments',
-        component: DepartmentsComponent
-      }, {
-        'path': 'events',
-        component: EventsComponent
-      }, {
-        'path': 'collegian',
-        component: CollegianComponent
-      }, {
-        // MUST BE LAST
-        'path': ':pageURL',
-        component: ViewPageComponent
-      }, {
-        'path': '',
-        component: DirectoryComponent
-      }
-    ])
   ],
   providers: [
     RequestService,
