@@ -7,15 +7,15 @@ import * as momentTz from 'moment-timezone';
   styleUrls: ['./countdown.component.css']
 })
 export class CountdownComponent implements OnInit {
-  @Input() date: momentTz;
-  @Input() now:  momentTz;
+  @Input() date: moment.Moment;
+  @Input() now:  moment.Moment;
   @Input() status: string;
 
   constructor() { }
 
   ngOnInit() {
     const display = document.querySelector('#time');
-    const difference = Math.abs(this.date - this.now);
+    const difference = Math.abs(Number(this.date) - Number(this.now));
 
     this.startTimer(difference, display);
   }

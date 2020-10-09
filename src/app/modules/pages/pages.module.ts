@@ -69,7 +69,6 @@ import { PagesRoutes } from './pages.routes';
     ViewPageComponent,
     FieldCardComponent,
     ProfileInfoComponent,
-    TagInputModule,
   ],
   imports: [
     CommonModule,
@@ -80,6 +79,7 @@ import { PagesRoutes } from './pages.routes';
     ReactiveFormsModule,
     NgbModule,
     FontAwesomeModule,
+    TagInputModule,
     FroalaViewModule.forRoot(),
     FroalaEditorModule.forRoot(),
     RouterModule.forChild(PagesRoutes),
