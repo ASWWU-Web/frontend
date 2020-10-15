@@ -160,6 +160,7 @@ hr {
   height: 400px;
   flex-grow: 1;
   flex-basis: 0;
+  /*align-self: flex-end;*/
 }
 
 #atlas  {
@@ -175,7 +176,7 @@ hr {
 }
 
 #outdoors {
-  padding-top: 160px;
+  padding-top: 180px;
   background-image: url('https://photos.smugmug.com/photos/i-kk6GPjs/0/X2/i-kk6GPjs-X2.jpg');
   background-position: right;
   background-size: cover;
@@ -183,4 +184,33 @@ hr {
 
 .bottom-aligned-text {
   padding-top: 100px;
+}
+
+@media only screen and (max-width: 600px) {
+  .flex-container {
+    display: inline;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .flex-container {
+    display: inline;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+}
+
+@media only screen and (min-width: 768px) {
+
+}
+
+/* Large devices (laptops/desktops, 992px and up) */
+@media only screen and (min-width: 992px) {
+
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 1200px) {
+
 }
