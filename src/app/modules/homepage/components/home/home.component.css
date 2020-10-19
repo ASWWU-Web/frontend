@@ -214,19 +214,36 @@ hr {
     display:none;
   }
 
+  section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+
+  #large {
+    padding-bottom: 0px;
+  }
+
   .atlas {
-    padding-top: 30px;
+    padding-top: 35px;
     height: 350px;
   }
 
   .collegian {
-    padding-top: 65px;
+    padding-top: 75px;
     height: 350px;
   }
 
   .outdoors {
-    padding-top: 80px;
+    padding-top: 120px;
     height: 350px;
+  }
+
+  #open-forum {
+    padding-top: 0px;
+  }
+
+  .outdoors > h1 {
+    font-size: 50px;
   }
 }
 
@@ -243,19 +260,27 @@ hr {
     display:none;
   }
 
+  #large {
+    padding-bottom: 0px;
+  }
+
   .atlas {
-    padding-top: 10px;
+    padding-top: 80px;
     height: 400px;
   }
 
   .collegian {
-    padding-top: 40px;
+    padding-top: 85px;
     height: 400px;
   }
 
   .outdoors {
-    padding-top: 100px;
+    padding-top: 135px;
     height: 400px;
+  }
+
+  .outdoors > h1 {
+    font-size: 65px;
   }
 }
 
@@ -281,15 +306,22 @@ hr {
   }
 
   .atlas {
-    height: 300px;
+    padding-top: 18px;
+    height: 320px;
   }
 
   .collegian {
-    height: 300px;
+    padding-top: 60px;
+    height: 320px;
   }
 
   .outdoors {
-    height: 300px;
+    padding-top: 115px;
+    height: 320px;
+  }
+
+  .outdoors > h1 {
+    font-size: 50px;
   }
 }
 
@@ -315,15 +347,22 @@ hr {
   }
 
   .atlas {
-    height: 350px;
-  }
-
-  .collegian {
+    padding-top: 50px;
     height: 350px;
   }
 
   .outdoors {
+    padding-top: 120px;
     height: 350px;
+  }
+
+  .collegian {
+    padding-top: 65px;
+    height: 350px;
+  }
+
+  .outdoors > h1 {
+    font-size: 65px;
   }
 }
 
@@ -339,5 +378,25 @@ hr {
 
   .flex-container-small {
     display:none;
+  }
+
+  .atlas {
+    padding-top: 80px;
+    height: 400px;
+  }
+
+  .collegian {
+    padding-top: 133px;
+    height: 400px;
+  }
+
+  .outdoors {
+    font-size: 65px;
+    padding-top: 140px;
+    height: 400px;
+  }
+
+  .outdoors > h1 {
+    font-size: 65px;
   }
 }
