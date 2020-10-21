@@ -1,13 +1,13 @@
 <a *ngIf="this.year == this.current_year" (click)="ballotModal.open(searchResult.username, this.year)">
   <div class="circle">
-    <img class="img-fluid" src="{{getPhotoLink(searchResult.photo)}}" alt="{{searchResult.full_name}}"/>
+    <img class="img-fluid" src="{{link}}" alt="{{searchResult.full_name}}"/>
   </div>
   <h4 class=" text-black">{{searchResult.full_name | unescape}}</h4>
 </a>
 
 <a *ngIf="this.year != this.current_year" (click)="ballotModal.open(searchResult.username, (this.year) ? this.year: this.current_year)">
   <div class="circle">
-    <img class="img-fluid" src="{{getPhotoLink(searchResult.photo)}}" alt="{{searchResult.full_name}}"/>
+    <img class="img-fluid" src="{{link}}" alt="{{searchResult.full_name}}"/>
   </div>
   <h4 id="full-name">{{searchResult.full_name | unescape}}</h4>
 </a>
