@@ -75,6 +75,10 @@ export class SubmitComponent implements OnInit {
       this.currentUser = data;
     });
 
+    if (!this.currentUser) {
+      this.as.repeatUserInfo();
+    }
+
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       console.log('ImageUpload:uploaded:', item, status);
       if (status < 200 || status > 299) {
