@@ -1,13 +1,17 @@
-/* TODO: this file needs to be cleaned */
-
-.aswwu-logo {
-    -webkit-filter: drop-shadow(5px 5px 30px rgba(0,0,0,0.5)); filter: drop-shadow(5px 5px 30px rgba(0,0,0,0.5));
-}
-
+/*Generic*/
 .text-white {
   color: white;
 }
+.center-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+/*Logo*/
+.aswwu-logo {
+  -webkit-filter: drop-shadow(5px 5px 30px rgba(0,0,0,0.5)); filter: drop-shadow(5px 5px 30px rgba(0,0,0,0.5));
+}
 #aswwuLogo{
   display: flex;
   align-items: center;
@@ -30,29 +34,12 @@ section {
   padding-top: 20px;
   padding-bottom: 50px;
 }
-section.dark {
-  background-color: #f4f4f4;
-}
 hr {
   width: 36px;
   border-color: #2f2e2e;
   border-width: 3px;
   margin-top:1.2em;
   margin-bottom:1.5em;
-}
-
-
-/*Parallax window attributes*/
-.parallax-window {
-  height: 400px;
-  overflow: hidden;
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
-.parallax-center {
-  position: relative;
-
 }
 
 /*Footer*/
@@ -71,49 +58,6 @@ hr {
 .footerLink:hover, .footerLink:active, .footerLink:focus{
   color:white!important;
   text-decoration: none;
-}
-
-/*Social*/
-#social {
-  list-style: none;
-  list-style-type: none;
-  padding-left: 0;
-}
-#social li {
-  display: inline-block;
-  padding-right: 10px;
-}
-#social li a svg {
-  height: 30px;
-  width: 30px;
-  fill:#a7abae;
-  transition: fill .2s;
-  overflow: hidden;
-}
-#social li a svg:hover {
-  fill:white;
-}
-#brand {
-  color:#cdcfd0;
-}
-
-/*Random utilities*/
-.m-x-auto {
-  display: block;
-}
-
-.logo {
-  max-width: 400px;
-  width:100%!important;
-  height: auto;
-  margin-bottom: .8em;
-}
-
-.full_height_parent{
-  display: flex;
-}
-.full_height_child {
-  align-items: stretch;
 }
 
 /*Giant link styles */
@@ -139,13 +83,209 @@ hr {
   border-color: #8c8c8c!important;
 }
 
-.center-content {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/*Middle Dynamic Sections*/
+.logo {
+  max-width: 400px;
+  width:100%!important;
+  height: auto;
+  margin-bottom: .8em;
 }
-.text-giant {
-  font-size: 3rem;
-  font-weight: 700;
-  text-align: center;
+.flex-container-large {
+  display:none;
+  width: 100%;
+}
+.flex-container-medium {
+  display:none;
+  width: 100%;
+  padding-bottom: 0;
+}
+.flex-container-small {
+  display:none;
+  width: 100%;
+  padding-top: 0;
+}
+.flex-item {
+  flex-grow: 1;
+  flex-basis: 0;
+}
+
+/*Middle Dynamic Content*/
+.atlas  {
+  height: 400px;
+  background-image: url('https://aswwu.com/media/images/home_page/atlas-background.jpg');
+  background-size: cover;
+}
+.collegian  {
+  height: 400px;
+  background-image: url('https://aswwu.com/media/images/home_page/collegian-background.jpg');
+  background-size: cover;
+}
+.outdoors {
+  height: 400px;
+  line-height: 1px;
+  background-image: url('https://aswwu.com/media/images/home_page/outdoors-background.jpg');
+  background-position: right;
+  background-size: cover;
+}
+
+@media only screen and (max-width: 600px) {
+  .flex-container-large {
+    display: inline;
+  }
+  .flex-container-medium {
+    display: none;
+  }
+  .flex-container-small {
+    display: none;
+  }
+  section {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .atlas {
+    padding-top: 35px;
+    height: 350px;
+  }
+  .collegian {
+    padding-top: 75px;
+    height: 350px;
+  }
+  .outdoors {
+    padding-top: 115px;
+    height: 350px;
+  }
+  #open-forum {
+    padding-top: 0px;
+  }
+  .outdoors > h1 {
+    font-size: 59px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .flex-container-large {
+    display: inline;
+  }
+  .flex-container-medium {
+    display: none;
+  }
+  .flex-container-small {
+    display: none;
+  }
+  #large {
+    padding-bottom: 0px;
+  }
+  .atlas {
+    padding-top: 80px;
+    height: 400px;
+  }
+  .collegian {
+    padding-top: 85px;
+    height: 400px;
+  }
+  .outdoors {
+    padding-top: 130px;
+    height: 400px;
+  }
+  .outdoors > h1 {
+    font-size: 70px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .flex-container-large {
+    display: none;
+  }
+  .flex-container-medium {
+    display:flex;
+  }
+  .flex-container-small {
+    display:flex;
+  }
+  #medium {
+    padding-bottom: 0px;
+  }
+  #small {
+    padding-top: 0px;
+  }
+  .atlas {
+    padding-top: 40px;
+    height: 320px;
+  }
+  .collegian {
+    padding-top: 60px;
+    height: 320px;
+  }
+  .outdoors {
+    padding-top: 113px;
+    height: 320px;
+  }
+  .outdoors > h1 {
+    font-size: 50px;
+  }
+  .constrain-height{
+    width: 330px;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .flex-container-large {
+    display: none;
+  }
+  .flex-container-medium {
+    display:flex;
+  }
+  .flex-container-small {
+    display:flex;
+  }
+  #medium {
+    padding-bottom: 0px;
+  }
+  #small {
+    padding-top: 0px;
+  }
+  .atlas {
+    padding-top: 83px;
+    height: 350px;
+  }
+  .outdoors {
+    padding-top: 120px;
+    height: 350px;
+  }
+  .collegian {
+    padding-top: 65px;
+    height: 350px;
+  }
+  .outdoors > h1 {
+    font-size: 65px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  .flex-container-large {
+    display: flex;
+  }
+  .flex-container-medium {
+    display: none;
+  }
+  .flex-container-small {
+    display: none;
+  }
+  .atlas {
+    padding-top: 75px;
+    height: 400px;
+  }
+  .collegian {
+    padding-top: 115px;
+    height: 400px;
+  }
+  .outdoors {
+    font-size: 60px;
+    padding-top: 140px;
+    height: 400px;
+  }
+  .outdoors > h1 {
+    font-size: 65px;
+  }
 }
