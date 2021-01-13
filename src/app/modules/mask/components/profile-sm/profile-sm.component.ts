@@ -17,24 +17,32 @@ export class ProfileSmComponent {
   constructor(private rs: RequestService) {}
 
   ngOnInit() {
-    this.getPhotoLink(this.searchResult.photo)
+    this.link = this.getPhotoLinkSync(this.searchResult.photo);
+    this.getPhotoLinkAsync(this.searchResult.photo)
       .then((link: string) => this.link = link);
   }
 
   @Input() searchResult: any;
   @Input('year') year: String = undefined;
   current_year = CURRENT_YEAR;
+
   // Photo url to link function returns proper url and BLANK photo if photo == "None"
-  getPhotoLink(url: string) {
+  getPhotoLinkSync(url: string) {    
+    var link = "";
+    if (url && url != 'None') {
+      link = MEDIA_SM + '/' + url;
+    } else {
+      link = MEDIA_SM + '/' + DEFAULT_PHOTO;
+    }
+    return link;
+  }
+  // Photo url to link function returns proper url and BLANK photo if photo == "None"
+  getPhotoLinkAsync(url: string) {
     return new Promise((resolve, reject) => {      
-      var link = "";
-      if (url && url != 'None') {
-        link = MEDIA_SM + '/' + url;
-      } else {
-        link = MEDIA_SM + '/' + DEFAULT_PHOTO;
-      }
-      this.rs.get(link, { responseType: 'blob' }).subscribe(
-        (data: any) => {
+      var link = this.getPhotoLinkSync(url);
+      
+      this.rs.get(link).subscribe(
+          (data: any) => {
           resolve(link);
         },
         (response: HttpErrorResponse) => { // why does requesting an image resource always respond with error?
