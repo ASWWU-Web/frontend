@@ -1,0 +1,401 @@
+/* TODO: this file needs to be cleaned */
+
+/*Section */
+#about-us {
+  padding-top: 20px;
+}
+hr {
+  width: 36px;
+  border-color: #2f2e2e;
+  border-width: 3px;
+  margin-top:1.2em;
+  margin-bottom:1.5em;
+}
+#main-picture-section {
+  padding-top: 0px;
+  position: relative;
+  width: 100%;
+  height: 920px;
+  z-index: 1;
+  background: black;
+}
+#atlas-background{
+  position: absolute;
+  background: url(https://i.ibb.co/zWdm8vW/i-MFf-NHTs-X3.jpg);
+  background-size: cover;
+  width: 100%;
+  height: 920px;
+  z-index: -1;
+  opacity: .4;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#atlas-logo {
+  position: absolute;
+  max-width: 600px;
+  margin: 0;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+.hours-large {
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+}
+.hours-small {
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 20px;
+}
+.hours-padding {
+  padding-top: 10px;
+}
+
+/*Employee and Instagram Section*/
+#content-section {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 0px;
+}
+.content-holder {
+  background-color: #fefaf5;
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  width: 95%;
+}
+
+/*Buttons*/
+.tab-buttons {
+  height: 50px;
+  font-size: 25px;
+  display: flex;
+  width: 100%;
+
+}
+.button-class {
+  flex-grow: 1;
+  opacity: 1;
+  border: 0;
+}
+
+/*Our Baristas*/
+.person {
+  text-align: center;
+  margin-bottom: 40px;
+}
+.person .img-container {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  overflow: hidden;
+  margin: 0 auto 0 auto;
+}
+.person .name {
+  font-size: 24px;
+  color: #373a3c;
+}
+.person a:hover{
+  text-decoration: none;
+}
+.person .position {
+  text-transform: uppercase;
+  color: #c3c3c3;
+  margin-bottom: 30px;
+  letter-spacing: 2px;
+}
+.img-container img{
+  width:100%;
+  height: auto;
+
+}
+
+/*Instagram Section*/
+#insta-section {
+  display: none;
+  text-align: center;
+  padding-bottom: 0px;
+  align-content: center;
+  justify-content: center;
+}
+.insta-widget-grid {
+  display: none;
+  width: 60%;
+  height: 750px;
+  border:none;
+  overflow:hidden;
+}
+.insta-widget-grid-sm {
+  width: 70%;
+  height: 1150px;
+  border:none;
+  overflow:hidden;
+}
+
+@media only screen and (max-width: 600px) {
+  #main-picture-section {
+    height: 300px;
+  }
+  #atlas-background{
+    height: 300px;
+  }
+  #atlas-logo {
+    max-width: 300px;
+  }
+  .atlas-info {
+    text-align: center;
+  }
+  /*Information Div*/
+  #atlas-paragraph {
+    padding-top: 0px;
+    padding-bottom: 20px;
+  }
+  #map {
+    margin-right: auto;
+    margin-left: auto;
+    height: 350px;
+    width: 350px;
+  }
+  .hours-small {
+    display: inline;
+    padding-top: 20px;
+  }
+  .hours-large {
+    display: none;
+  }
+  .hours-padding {
+    padding-top: 5px;
+  }
+  .hours-title {
+    padding-top: 20px;
+  }
+  #formstack-link {
+    padding-top: 15px;
+  }
+
+  /*Insta Widgets*/
+  .insta-widget-grid-sm {
+    width: 300px;
+    height: 1000px;
+    border:none;
+    overflow:hidden;
+  }
+  .insta-widget-grid {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  #main-picture-section {
+    height: 520px;
+  }
+  #atlas-background{
+    height: 520px;
+  }
+  #atlas-logo {
+    max-width: 500px;
+  }
+  /*Top Div*/
+  #atlas-paragraph {
+    padding-top: 0px;
+    padding-bottom: 20px;
+  }
+  #map {
+    margin-right: auto;
+    margin-left: auto;
+    height: 500px;
+    width: 500px;
+  }
+  .hours-small {
+    display: inline;
+    padding-top: 20px;
+  }
+  .hours-large {
+    display: none;
+  }
+  .hours-padding {
+    padding-top: 5px;
+  }
+  .hours-title {
+    padding-top: 25px;
+  }
+  #formstack-link {
+    padding-top: 20px;
+  }
+
+  /*Insta Widgets*/
+  .insta-widget-grid-sm {
+    width: 400px;
+    height: 1200px;
+    border:none;
+    overflow:hidden;
+    padding-bottom: 20px;
+  }
+  .insta-widget-grid {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  #main-picture-section {
+    height: 620px;
+  }
+  #atlas-background{
+    height: 620px;
+  }
+  #atlas-logo {
+    max-width: 500px;
+  }
+
+  /*Top Div*/
+  #atlas-paragraph {
+    padding-top: 25px;
+    padding-bottom: 30px;
+  }
+  #map {
+    margin-right: auto;
+    margin-left: auto;
+    height: 360px;
+    width: 360px;
+  }
+  .hours-small {
+    display: inline;
+  }
+  .hours-large {
+    display: none;
+  }
+  .hours-padding {
+    padding-top: 10px;
+  }
+  .hours-title {
+    padding-top: 0px;
+  }
+  #formstack-link {
+    padding-top: 10px;
+  }
+
+  /* Insta Widget*/
+  .insta-widget-grid-sm {
+    display: none;
+  }
+  .insta-widget-grid {
+    display: inline;
+    width: 700px;
+    height: 700px;
+    border:none;
+    overflow:hidden;
+    padding-bottom: 18px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  #main-picture-section {
+    height: 720px;
+  }
+  #atlas-background{
+    height: 720px;
+  }
+  #atlas-logo {
+    max-width: 550px;
+  }
+  /*Top Div*/
+  /*Insta Widget*/
+  #atlas-paragraph {
+    padding-top: 0px;
+    padding-bottom: 0px;
+  }
+  #map {
+    margin-right: auto;
+    margin-left: auto;
+    height: 460px;
+    width: 460px;
+  }
+  .hours-small {
+    display: none;
+    padding-top: 20px;
+  }
+  .hours-large {
+    display: inline;
+  }
+  .hours-padding {
+    padding-top: 5px;
+  }
+  .hours-title {
+    padding-top: 0px;
+  }
+  #formstack-link {
+    padding-top: 15px;
+  }
+
+  /*Insta Widget*/
+  .insta-widget-grid-sm {
+    display: none;
+  }
+  .insta-widget-grid {
+    display: inline;
+    width: 800px;
+    height: 800px;
+    border:none;
+    overflow:hidden;
+    padding-bottom: 20px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #main-picture-section {
+    height: 940px;
+  }
+  #atlas-background{
+    height: 940px;
+  }
+  #atlas-logo {
+    max-width: 600px;
+  }
+  /*Insta Widget*/
+  #atlas-paragraph {
+    padding-top: 30px;
+    padding-bottom: 0px;
+  }
+  #map {
+    margin-right: auto;
+    margin-left: auto;
+    height: 500px;
+    width: 500px;
+  }
+  .hours-small {
+    display: none;
+  }
+  .hours-large {
+    display: inline;
+  }
+  .hours-title {
+    padding-top: 0px;
+  }
+  .hours-padding {
+    padding-top: 5px;
+  }
+  #formstack-link {
+    padding-top: 20px;
+  }
+  /*Top Div*/
+  .insta-widget-grid-sm {
+    display: none;
+  }
+  .insta-widget-grid {
+    display: inline;
+    width: 1000px;
+    height: 1000px;
+    border:none;
+    overflow:hidden;
+    padding-bottom: 25px;
+  }
+}

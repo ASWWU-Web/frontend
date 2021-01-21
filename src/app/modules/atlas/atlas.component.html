@@ -1,0 +1,95 @@
+
+<!-- ASWWU Main Picture -->
+<section id="main-picture-section">
+  <div id="atlas-background"></div>
+  <img id="atlas-logo" src="https://aswwu.com/media/images/home_page/atlas-logo.png" />
+</section>
+
+
+<!-- About US -->
+<section id="about-us">
+  <div class="container">
+    <h1 class="text-center text-uppercase">About Us</h1>
+    <hr>
+    <div class="row atlas-info">
+      <div class="col-md-6 custom-col">
+        <p id="atlas-paragraph">Humbly serving you since 2011, The Atlas is a specialty coffee and tea house located at Walla Walla University and operated by its students. Our focus is crafting some of the highest quality coffee and tea beverages available in the Walla Walla Valley while maintaining a rustic, community based atmosphere. All are invited to read, chat, collaborate, or simply enjoy the space; perfect for a long haul study session or a quick drink with a friend. So whether you are a student or not, drop by, grab a drink, and relax! We think you’ll like it here.</p>
+        <div class="hours-large">
+          <h5 class="hours-title"><b>Hours</b></h5>
+          <div class="hours-div">
+            <div>Mon: 07:30AM - 08:00PM</div>
+            <div class="hours-padding text-bold">Tues: 07:30AM - 10:30AM & 12:00PM - 08:00PM</div>
+            <div class="hours-padding">Wed: 07:30AM - 08:00PM</div>
+            <div class="hours-padding">Thurs: 07:30AM - 08:00PM</div>
+            <div class="hours-padding">Fri: 07:30AM - 12:00PM</div>
+            <div class="hours-padding">Sat: Closed</div>
+            <div class="hours-padding">Sun: 09:00AM - 08:00PM</div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 custom-col">
+        <div #map id="map"></div>
+      </div>
+    </div>
+    <div class="text-center hours-small">
+      <h5 class="hours-title"><b>Hours</b></h5>
+      <div>
+        <div>Mon: 07:30AM - 08:00PM</div>
+        <div class="hours-padding">Tues: 07:30AM - 10:30AM</div>
+        <div>   & 12:00PM - 08:00PM</div>
+        <div class="hours-padding">Wed: 07:30AM - 08:00PM</div>
+        <div class="hours-padding">Thurs: 07:30AM - 08:00PM</div>
+        <div class="hours-padding">Fri: 07:30AM - 12:00PM</div>
+        <div class="hours-padding">Sat: Closed</div>
+        <div class="hours-padding">Sun: 09:00AM - 08:00PM</div>
+      </div>
+    </div>
+    <div id="formstack-link" class="text-center">
+      <small>The Atlas is not open during summer quarter or during interims.</small>
+      <p>
+        You can book the atlas for your group by filling out the <a href="https://wwuform.formstack.com/forms/atlas_booking">Atlas Booking Form</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<section id="content-section">
+  <div class="content-holder">
+    <div class="tab-buttons">
+      <button id="barista" class="button-class"
+              [ngStyle]="baristaButtonStyle()"
+              (click)="displayEmployee()">Our Baristas</button>
+      <button id="instagram" class="button-class"
+              [ngStyle]="instagramButtonStyle()"
+              (click)="displayInstagram()">Our Feed</button>
+    </div>
+    <!--Atlas Employees-->
+    <section id="team" [ngStyle]="{'display': employeeDisplayed ? 'block' : 'none' }">
+      <h1 class="text-center text-uppercase">Our Baristas</h1>
+      <hr>
+      <div class="text-center">
+        <div  id='baristas' class="row container mx-auto">
+          <div *ngFor="let employee of atlasEmployees" class="person col col-md-4">
+            <a href="https://aswwu.com/mask/profile/{{employee.username}}/1920" target="_blank">
+              <div class="img-container">
+                <img src="https://aswwu.com/media/img-sm/{{employee.photoURL}}" alt="{{employee.full_name}}">
+              </div>
+              <h3 class="name">{{employee.full_name}}</h3>
+              <div class="position">{{employee.role}}</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Instagram Section -->
+    <section id="insta-section" [ngStyle]="{'display': employeeDisplayed ? 'none' : 'block'}">
+      <div class="div-item">
+        <h1 class="text-center text-uppercase">Instagram</h1>
+        <hr>
+        <!-- SnapWidget -->
+        <iframe src="https://snapwidget.com/embed/891507" class="insta-widget-grid" allowtransparency="true" frameborder="0" scrolling="no"></iframe>
+        <iframe src="https://snapwidget.com/embed/907164" class="insta-widget-grid-sm" allowtransparency="true" frameborder="0" scrolling="no"></iframe>
+      </div>
+    </section>
+  </div>
+</section>

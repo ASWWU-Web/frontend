@@ -30,6 +30,7 @@ import {
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
+import {AtlasComponent} from "./modules/atlas/atlas.component";
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { AppComponent } from './app.component';
     SharedNgContainerComponent,
     ErrorPageComponent,
     UploadModalComponent,
-    ContentModerationComponent
+    ContentModerationComponent,
+    AtlasComponent
   ],
   imports: [
     NgbModule,
@@ -55,7 +57,7 @@ import { AppComponent } from './app.component';
     AppRoutingModule,
     FontAwesomeModule,
     NgbModule.forRoot(),
-    BrowserAnimationsModule, 
+    BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-left'
