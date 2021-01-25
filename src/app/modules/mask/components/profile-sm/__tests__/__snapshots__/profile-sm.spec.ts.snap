@@ -1,0 +1,28 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ProfileSmComponent Should display a flight 1`] = `
+<profile-sm
+  current_year={[Function String]}
+  link={[Function String]}
+  rs={[Function MockRequestService]}
+  searchResult={[Function Object]}
+  year="undefined"
+>
+  <a>
+    <div
+      class="circle"
+    >
+      <img
+        alt="tester"
+        class="img-fluid"
+        src="https://localhost:8888/media/img-sm/images/default_mask/default.jpg"
+      />
+    </div>
+    <h4
+      id="full-name"
+    >
+      tester
+    </h4>
+  </a><app-profile-modal />
+</profile-sm>
+`;
