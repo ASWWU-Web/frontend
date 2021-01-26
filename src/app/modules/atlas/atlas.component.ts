@@ -73,7 +73,8 @@ export class AtlasComponent implements OnInit {
     return {
       'background-color': this.employeeDisplayed ? '#fefaf5' : 'white',
       'border-style': this.employeeDisplayed ? 'none' : 'solid',
-      'border-width': '0.1px'
+      'border-width': '0.1px',
+      'box-shadow': this.employeeDisplayed ? 'none' : '-0.5px 1px 1px black'
     };
   }
 
@@ -81,7 +82,8 @@ export class AtlasComponent implements OnInit {
     return {
       'background-color': this.employeeDisplayed ? 'white' : '#fefaf5',
       'border-style': this.employeeDisplayed ? 'solid' : 'none',
-      'border-width': '0.1px'
+      'border-width': '0.1px',
+      'box-shadow': this.employeeDisplayed ? '-0.5px 1px 1px black' : 'none'
     };
   }
 }
