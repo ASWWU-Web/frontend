@@ -16,18 +16,16 @@ export class AtlasComponent implements OnInit {
   map: google.maps.Map;
 
   atlasEmployees: { role: string, username: string, photoURL: string, full_name: string }[] = [
-    {role: 'Manager', username: 'Brian.Paredes', photoURL: '/profiles/1920/1840-2024509.jpg', full_name: 'Brian Andrew Paredes'},
-    {role: 'Assistant Manger', username: 'Hunter.Giesbrecht', photoURL: 'profiles/1819/03160-2038751.jpg', full_name: 'Hunter Giesbrecht'},
-    {role: 'Marketing Coordinator', username: 'Charmaine.Tan', photoURL: 'profiles/1920/1249-2049290.jpg', full_name: 'Charmaine Tan'},
-    {role: 'Beverage Specialist', username: 'Annalise.Harvey', photoURL: 'profiles/1819/01002-2022270.jpg', full_name: 'Annalise Harvey'},
+    {role: 'Manager', username: 'Charmaine.Tan', photoURL: 'profiles/1920/2592-2049290.jpg', full_name: 'Charmaine Tan'},
+    {role: 'Assistant Manger', username: 'Jonathan.Gillespie', photoURL: 'profiles/1920/1744-2054485.jpg', full_name: 'Jonathan Gillespie'},
+    {role: 'Syrup Specialist', username: 'Braeley.Nelson', photoURL: 'profiles/1920/580-2071081.jpg', full_name: 'Braeley Nelson'},
+    {role: 'Head Barista', username: 'Brooklyn.Anderson', photoURL: 'profiles/1819/00966-2044615.jpg', full_name: 'Brooklyn Anderson'},
     {role: 'Barista', username: 'Andrew.Nascimento', photoURL: 'profiles/1819/02776-2052796.jpg', full_name: 'Andrew Nascimento'},
     {role: 'Barista', username: 'Breanna.Scully', photoURL: 'profiles/1920/1129-2034359.jpg', full_name: 'Breanna Scully'},
-    {role: 'Barista', username: 'Brooklyn.Anderson', photoURL: 'profiles/1819/00966-2044615.jpg', full_name: 'Brooklyn Anderson'},
     {role: 'Barista', username: 'Gregory.Birge', photoURL: '/profiles/1920/2262-2019445.jpg', full_name: 'Gregory Birge'},
-    {role: 'Barista', username: 'Jonathan.Gillespie', photoURL: 'profiles/1819/02220-2054485.jpg', full_name: 'Jonathan Gillespie'},
     {role: 'Barista', username: 'Ryan.Rojas', photoURL: 'profiles/1718/00358-2036350.jpg', full_name: 'Ryan Rojas'},
-    {role: 'Barista', username: 'Zachary.Macomber', photoURL: '/profiles/1920/966-2048546.jpg', full_name: 'Zachary Macomber'},
-    {role: 'Barista', username: 'Zack.Hoffer', photoURL: '/profiles/1920/1739-2037147.jpg', full_name: 'Zack Hoffer'}
+    {role: 'Barista', username: 'Angie.Rodriguez', photoURL: 'images/default_mask/default.jpg', full_name: 'Angie Brizuela Rodriguez'},
+    {role: 'Barista', username: 'Leili.VonBergen', photoURL: 'images/default_mask/default.jpg', full_name: 'Leili VonBergen'},
   ];
   employeeDisplayed = true;
 
