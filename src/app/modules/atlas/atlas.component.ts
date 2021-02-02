@@ -1,6 +1,6 @@
 import {Component, OnInit, ElementRef, ViewChild} from '@angular/core';
-import { HermesService } from '../../../shared-ng/services/services';
-import { } from 'googlemaps';
+import {HermesService} from '../../../shared-ng/services/services';
+import {} from 'googlemaps';
 
 @Component({
   selector: 'atlas',
@@ -8,9 +8,6 @@ import { } from 'googlemaps';
   styleUrls: ['./atlas.component.css']
 })
 export class AtlasComponent implements OnInit {
-
-  bgLink = 'https://aswwu.com/media/images/background/background.jpg';
-  bgLinkChanged = 'url(' + this.bgLink + ')';
 
   @ViewChild('map') mapElement: any;
   map: google.maps.Map;
@@ -35,7 +32,7 @@ export class AtlasComponent implements OnInit {
     // hides header and sub nav bar
     hermesService.sendShowHeader(false);
     hermesService.sendShowSubNav(false);
-   }
+  }
 
   ngOnInit(): void {
     const mapProperties = {
