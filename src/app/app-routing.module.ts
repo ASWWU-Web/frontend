@@ -1,12 +1,17 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ErrorPageComponent } from '../shared-ng/components/error-page/error-page.component';
+import {AtlasComponent} from "../app/modules/atlas/atlas.component";
 
 
 const routes: Routes = [
   {
     path: '',
     loadChildren: './modules/homepage/homepage.module#HomepageModule'
+  },
+  {
+    path: 'atlas',
+    component: AtlasComponent
   },
   {
     path: 'mask',
