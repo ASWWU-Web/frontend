@@ -35,7 +35,10 @@ Live Version: [aswwu.com/elections](https://aswwu.com/elections)
 
 - `git clone git@github.com:ASWWU-Web/frontend.git`
 - `cd frontend`
-- `git submodule update --init --recursive`
+- DOES NOT WORK`git submodule update --init --recursive`
+- `cd src`
+- `git clone git@github.com:ASWWU-Web/shared-ng.git`
+- `cd ..`
 - `npm install`
 
 
