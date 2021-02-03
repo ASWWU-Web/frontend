@@ -40,7 +40,7 @@ export class HomeComponent implements OnInit {
   social_candidates: { username: string, photoURL: string, full_name: string }[] = [
     {"username": "Brendan.Sickau", "photoURL": "Brendan_Sickau.jpg", "full_name": "Brendan Sickau"},
     {"username": "Jack.Darrow", "photoURL": "Jack_Darrow.jpg", "full_name": "Jack Darrow"},
-    {"username": "Joshua.Peinado", "photoURL": "Joshua_Peinado.jpg", "full_name": "Joshua Peinado"}
+    {"username": "Joshua.Peinado", "photoURL": "Joshua_Peinado.png", "full_name": "Joshua Peinado"}
   ];
 
   constructor(private ers: ElectionsRequestService, private as: AuthService,
