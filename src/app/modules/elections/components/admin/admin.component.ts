@@ -20,9 +20,10 @@ export class AdminComponent implements OnInit {
    }
 
   ngOnInit() {
-    const startDate: string = '20' + CURRENT_YEAR.slice(0, 2) + '-09-01 00:00:00.000000';
-    const endDate: string = '20' + CURRENT_YEAR.slice(2, 4) + '-07-01 00:00:00.000000';
-    const electionsObservable = this.ers.listElection({start_after: startDate, end_before: endDate});
+    const startDate: string = '20' + CURRENT_YEAR.slice(0, 2) + '-01-01 00:00:00.000000'; // WHY IS THIS HARDCODED?!?
+    const endDate: string = '20' + CURRENT_YEAR.slice(2, 4) + '-04-01 00:00:00.000000';
+    const electionsObservable = this.ers.listElection(); // no constraints
+    // const electionsObservable = this.ers.listElection({start_after: startDate, end_before: endDate});
     const positionsObservable = this.ers.listPosition();
     forkJoin([electionsObservable, positionsObservable]).subscribe(
       (data: [Election[], Position[]]) => {
