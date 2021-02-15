@@ -3,26 +3,14 @@
     <!-- <div *ngIf="!response">
       <h2 class="text-center">No Elections</h2>
     </div> -->
-    <div *ngIf="response">
-      <div *ngIf="dates['start'] > dates['now']">
-        <h1 class="text-center">{{response.name}}</h1>
-        <p class="text-center">Starts: {{getDateTime(dates['start'])}}<br/>Ends: {{getDateTime(dates['end'])}}</p>
-        <countdown [status]="status" [date]="dates['start']" [now]="dates['now']"></countdown>
-      </div>
-    </div>
-    <div *ngIf="response">
-      <div *ngIf="dates['start'] < dates['now']">
-        <h1 class="text-center">{{response.name}}</h1>
-        <a *ngIf="isLoggedIn" href="vote" class="btn btn-primary btn-block btn-lg" role="button">Vote Now!</a>
-        <a *ngIf="!isLoggedIn" class="btn btn-primary btn-block btn-lg" [href]="'https://saml.aswwu.com/?redirectURI=/elections'+ router.url">Log in</a>
-        <countdown [status]="status" [date]="dates['end']" [now]="dates['now']"></countdown>
-      </div>
-    </div>
 
-    <div>
-      <p align="center">
+    <div class="row">
+      <div class="column">
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/l_Hbn9Xh_L8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+      <div class="column">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/Lc_IJetYpQI" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-      </p>
+      </div>
     </div>
 
     <div>
@@ -94,6 +82,21 @@
         </div>
       </div>
     </div>
-    
+    <hr>
+    <div *ngIf="response">
+      <div *ngIf="dates['start'] > dates['now']">
+        <h1 class="text-center">{{response.name}}</h1>
+        <p class="text-center">Starts: {{getDateTime(dates['start'])}}<br/>Ends: {{getDateTime(dates['end'])}}</p>
+        <countdown [status]="status" [date]="dates['start']" [now]="dates['now']"></countdown>
+      </div>
+    </div>
+    <div *ngIf="response">
+      <div *ngIf="dates['start'] < dates['now']">
+        <h1 class="text-center">{{response.name}}</h1>
+        <a *ngIf="isLoggedIn" href="elections/vote" class="btn btn-primary btn-block btn-lg" role="button">Vote Now!</a>
+        <a *ngIf="!isLoggedIn" class="btn btn-primary btn-block btn-lg" [href]="'https://saml.aswwu.com/?redirectURI=/elections'+ router.url">Log in</a>
+        <countdown [status]="status" [date]="dates['end']" [now]="dates['now']"></countdown>
+      </div>
+    </div>
   </div>
 </div>
