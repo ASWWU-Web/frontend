@@ -30,7 +30,6 @@ export class HomeComponent implements OnInit {
   spiritual_candidates: { username: string, photoURL: string, full_name: string }[] = [
     {"username": "Lydia.Tupper", "photoURL": "Lydia_Tupper.jpg", "full_name": "Lydia Tupper"},
     {"username": "Mitchell.Powers", "photoURL": "Mitchell_Powers.jpg", "full_name": "Mitchell Powers"},
-    {"username": "Natasha.Mwansa", "photoURL": "Natasha_Mwansa.png", "full_name": "Natasha Mwansa"}
   ];
 
   executive_candidates: { username: string, photoURL: string, full_name: string }[] = [
