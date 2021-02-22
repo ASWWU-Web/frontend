@@ -8,6 +8,12 @@
   align-items: center;
 }
 
+a {
+	color: black;
+	background-color: transparent;
+	text-decoration: none;
+  }
+
 /*Logo*/
 .aswwu-logo {
   -webkit-filter: drop-shadow(5px 5px 30px rgba(0,0,0,0.5)); filter: drop-shadow(5px 5px 30px rgba(0,0,0,0.5));
