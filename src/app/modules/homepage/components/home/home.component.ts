@@ -10,7 +10,7 @@ import { HermesService } from '../../../../../shared-ng/services/services';
 export class HomeComponent implements OnInit {
 
   // bgLink = 'https://aswwu.com/media/images/background/background.jpg';
-  bgLink = 'https://aswwu.com/media/images/home_page/Elections_HomeImage_4.jpg';
+  bgLink = 'https://aswwu.com/media/images/home_page/Elections_HomeImage_5.jpg';
   bgLinkChanged = 'url(' + this.bgLink + ')';
 
   constructor(private hermesService: HermesService, private elementRef: ElementRef) {

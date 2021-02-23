@@ -8,11 +8,18 @@
   align-items: center;
 }
 
-a {
-	color: black;
-	background-color: transparent;
-	text-decoration: none;
-  }
+#electionsLogo {
+  background-color: #F7931E;
+  color: white;
+  padding: 15px 15px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+}
+
+#electionsLogo:hover {
+  background-color: #f9ab53;
+}
 
 /*Logo*/
 .aswwu-logo {
