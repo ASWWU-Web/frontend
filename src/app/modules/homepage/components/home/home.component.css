@@ -9,16 +9,16 @@
 }
 
 #electionsLogo {
-  background-color: #F7931E;
+  background-color: #FF0000;
   color: white;
-  padding: 15px 15px;
+  padding: 5px 15px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
 }
 
 #electionsLogo:hover {
-  background-color: #f9ab53;
+  background-color: #ff6666;
 }
 
 /*Logo*/
