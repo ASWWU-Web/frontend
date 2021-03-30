@@ -24,7 +24,8 @@ import {
   ProfileSmComponent,
   SearchResultsComponent,
   ProfileModalComponent,
-  ProfileModalContentComponent
+  ProfileModalContentComponent,
+  AdminComponent
 } from './components/mask.components';
 
 @NgModule({
@@ -41,6 +42,7 @@ import {
     ProfileModalContentComponent,
     SearchResultsComponent,
     UnescapePipe,
+    AdminComponent
   ],
   imports: [
     CommonModule,

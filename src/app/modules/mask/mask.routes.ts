@@ -6,6 +6,7 @@ import {
   RandomComponent,
   BirthdayComponent,
   SuperSearchComponent,
+  AdminComponent
 } from './components/mask.components';
 
 export const MaskRoutes: Route[] = [
@@ -52,5 +53,9 @@ export const MaskRoutes: Route[] = [
   {
     path: 'birthdays',
     component: BirthdayComponent
-  }
+  },
+  {
+    path: 'admin',
+    component: AdminComponent
+  },
 ];

@@ -1,0 +1,34 @@
+<div class="bg-dark  text-white text-center">
+
+  <form [formGroup]="myForm">
+
+    <div class="form-group">
+      <label for="fileInput">CSV file </label>
+      <div>
+        <input type='file' (change)="convertFile($event)" id='fileInput'>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="file">File</label>
+      <input
+        formControlName="file"
+        id="file"
+        type="file"
+        class="form-control"
+        multiple=""
+        (change)="onFileChange($event)">
+      <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
+        <div *ngIf="f.file.errors.required">File is required.</div>
+      </div>
+      <div class="toast-top-center" style="height:120px;width:auto;
+              border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
+        <li *ngFor='let name of images; let i = index'>Photo: {{name.photo}}, Student ID: {{name.studentID}}
+          <a [ngStyle]="{'display': images[i].uploaded ? 'inline' : 'none'}">
+            <i class="fas fa-check"></i>
+          </a>
+        </li>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success" style="margin-top: 20px;" (click)="submit()">Submit</button>
+  </form>
+</div>

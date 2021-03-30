@@ -8,3 +8,4 @@ export * from './search/search.component';
 export * from './search-results/search-results.component';
 export * from './super-search/super-search.component';
 export * from './update/update.component';
+export * from './admin/admin.component';
