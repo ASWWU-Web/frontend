@@ -22,23 +22,8 @@ export class HomeComponent implements OnInit {
   router: any;
   dates = null;
 
-  president_candidates: { username: string, photoURL: string, full_name: string }[] = [
-    {"username": "Andrew.Bussell", "photoURL": "Andrew_Bussel.JPG", "full_name": "Andrew Bussell"},
-    {"username": "Trevor.Haugen", "photoURL": "Trevor_Haugan.jpeg", "full_name": "Trevor Haugen"}
-  ];
-
-  spiritual_candidates: { username: string, photoURL: string, full_name: string }[] = [
-    {"username": "Lydia.Tupper", "photoURL": "Lydia_Tupper.jpg", "full_name": "Lydia Tupper"},
-    {"username": "Mitchell.Powers", "photoURL": "Mitchell_Powers.jpg", "full_name": "Mitchell Powers"},
-  ];
-
-  executive_candidates: { username: string, photoURL: string, full_name: string }[] = [
-    {"username": "Wils.Haffner", "photoURL": "Wils_Haffner.png", "full_name": "Wils Haffner"}
-  ];
-
-  social_candidates: { username: string, photoURL: string, full_name: string }[] = [
-    {"username": "Brendan.Sickau", "photoURL": "Brendan_Sickau.jpg", "full_name": "Brendan Sickau"},
-    {"username": "Jack.Darrow", "photoURL": "Jack_Darrow.jpg", "full_name": "Jack Darrow"},
+  senate_candidates: { username: string, photoURL: string, full_name: string }[] = [
+    {"username": "Austin.Dietrich", "photoURL": "Austin_Dietrich.jpg", "full_name": "Austin Dietrich"},
   ];
 
   constructor(private ers: ElectionsRequestService, private as: AuthService,
