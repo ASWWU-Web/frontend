@@ -1,13 +1,22 @@
 import {Component, OnInit, ElementRef, ChangeDetectorRef} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {RequestService, AuthService, HermesService} from '../../../../../shared-ng/services/services';
-import {Observable, Subscription, BehaviorSubject } from 'rxjs';
+import {
+  RequestService,
+  AuthService,
+  HermesService,
+  MaskRequestService
+} from '../../../../../shared-ng/services/services';
+import {Observable, Subscription, BehaviorSubject} from 'rxjs';
 import {User} from '../../../../../shared-ng/interfaces/interfaces';
 import {FormGroup, FormControl, Validators} from '@angular/forms';
+import {FileUploader} from 'ng2-file-upload';
+import {environment} from '../../../../../shared-ng/environments/environment';
+import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   templateUrl: 'admin.component.html',
-  providers: [RequestService]
+  providers: [RequestService],
+  styleUrls: ['admin.styles.css']
 })
 
 export class AdminComponent implements OnInit {
@@ -20,14 +29,24 @@ export class AdminComponent implements OnInit {
   csvinput = {};
   csvExists = false;
 
+  // Mathew
+  closeResult = '';
+  fileToUpload: File = null;
+  srcString: any = null;
+  profile: User;
+  // End Mathew
+
+  public uploader: FileUploader = new FileUploader({url: environment.SERVER_URL + '/forms/resume/upload'});
+
   myForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     file: new FormControl('', [Validators.required]),
     fileSource: new FormControl('', [Validators.required])
   });
 
-  constructor(private route: ActivatedRoute, private rs: RequestService,
-              private as: AuthService, private hs: HermesService, private elementRef: ElementRef) {
+  constructor(private route: ActivatedRoute,
+              private as: AuthService, private hs: HermesService, private elementRef: ElementRef,
+              private mrs: MaskRequestService, private modalService: NgbModal) {
     // sets background color
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
   }
@@ -73,6 +92,10 @@ export class AdminComponent implements OnInit {
   }
 
   convertFile(event) {
+    this.images = [];
+    this.csvinput = {};
+    this.csvExists = false;
+
     const input = document.getElementById('fileInput');
     const reader = new FileReader();
     reader.onload = () => {
@@ -83,13 +106,19 @@ export class AdminComponent implements OnInit {
   }
 
   onFileChange(event) {
+    this.images = [];
+
     if (event.target.files && event.target.files[0]) {
       for (let i = 0; i < event.target.files.length; i++) {
+        const file = event.target.files[i];
         const reader = new FileReader();
-        reader.onload = () => {
+
+        reader.onload = e => {
           const photoNumber = event.target.files[i].name.split('.');
+
           this.images.push({
-            photo: event.target.files[i].name,
+            srcString: reader.result,
+            photo: event.target.files.item(i),
             studentID: this.csvinput[photoNumber[0]],
             uploaded: false
           });
@@ -97,31 +126,56 @@ export class AdminComponent implements OnInit {
             fileSource: this.images
           });
         };
-        reader.readAsDataURL(event.target.files[i]);
+        reader.readAsDataURL(file);
       }
+    }
+  }
+
+  handleFileInput(event: any): void {
+    console.log(event.target.files);
+    if (event.target.files && event.target.files[0]) {
+      for (let i = 0; i < event.target.files.length; i++) {
+        const file = event.target.files[i];
+
+        const reader = new FileReader();
+
+        reader.onload = e => {
+          this.srcString = reader.result;
+          this.fileToUpload = event.target.files.item(0);
+        };
+
+        reader.readAsDataURL(file);
+      }
+
     }
   }
 
   // Temporary
   async delay(ms: number) {
-    await new Promise(resolve => setTimeout(() => resolve(), ms)).then(() => console.log('fired'));
+    await new Promise(resolve => setTimeout(() => resolve(), ms));
   }
 
   async submit() {
     console.log('Finished');
-    console.log(this.images);
     for (const i of Object.keys(this.images)) {
-      const newImages = this.images;
-      newImages[i].uploaded = true;
-      this.images = newImages;
-      // Temporary
-      await this.delay(1000);
+      await this.postFile(this.images[i].photo, i, this.images[i].studentID).then(() => {
+        const newImages = this.images;
+        newImages[i].uploaded = true;
+        this.images = newImages;
+      });
     }
     console.log(this.images);
-    // this.rs.post('http://localhost:8001/upload.php', this.myForm.value)
-    //   .subscribe(res => {
-    //     console.log(res);
-    //     alert('Uploaded Successfully.');
-    //   });
+  }
+
+  async postFile(fileToUpload: File, photoID: string, studentID: string) {
+    const d = new Date();
+    const name = `${d.getDay()}-${d.getMonth()}-${d.getFullYear()}-ID${d.getMinutes()}${d.getSeconds()}${photoID}_${studentID}.jpeg`;
+    const $uploadPhoto = await this.mrs.uploadProfilePhotoDirect(fileToUpload, name);
+    $uploadPhoto.subscribe({
+      error: (err) => {
+        console.log('Err');
+      },
+      complete: () => console.log('SUCCESS')
+    });
   }
 }

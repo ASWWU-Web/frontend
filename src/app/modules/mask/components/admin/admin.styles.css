@@ -1,0 +1,26 @@
+.input-file-format  {
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  width: 50%;
+  min-width: 350px;
+}
+
+.scroll-box {
+  height:120px;
+  overflow: scroll;
+  scrollbar-face-color: white;
+
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: white;
+  outline: 1px solid lightblue;
+}
+
+.submit-button  {
+
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}

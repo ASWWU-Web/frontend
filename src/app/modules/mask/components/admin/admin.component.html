@@ -1,34 +1,50 @@
-<div class="bg-dark  text-white text-center">
-
+<div *ngIf="currentUser" class="bg-dark text-white input-file-format">
   <form [formGroup]="myForm">
 
-    <div class="form-group">
-      <label for="fileInput">CSV file </label>
-      <div>
-        <input type='file' (change)="convertFile($event)" id='fileInput'>
+    <!--CSV File Upload    -->
+    <div>
+      <div>CSV File</div>
+      <div class="input-group">
+        <div class="custom-file">
+          <input type='file' class='custom-file-input' id='fileInput' (change)="convertFile($event)"
+                 accept="text/csv" ng2FileSelect
+                 required
+                 [uploader]="uploader"/>
+          <label class="custom-file-label"
+                 for="fileInput">{{uploader.queue[0]?.file?.name || 'Upload CVS File Here'}}</label>
+        </div>
+        <div class="input-group-append">
+          <input type="button" class="btn">
+        </div>
       </div>
     </div>
-    <div class="form-group">
-      <label for="file">File</label>
-      <input
-        formControlName="file"
-        id="file"
-        type="file"
-        class="form-control"
-        multiple=""
-        (change)="onFileChange($event)">
-      <div *ngIf="f.file.touched && f.file.invalid" class="alert alert-danger">
-        <div *ngIf="f.file.errors.required">File is required.</div>
+
+    <!--Multiple Files Upload-->
+    <div *ngIf="csvExists">
+      <div>Photo's</div>
+      <div class="input-group">
+        <div class="custom-file">
+          <input formControlName="file" type='file' class='custom-file-input form-control' id='file' multiple=""
+                 accept="image/x-png,image/jpeg"
+                 (change)="onFileChange($event)" required/>
+          <label class="custom-file-label" for="file">Upload Photos Here</label>
+        </div>
+        <div class="input-group-append">
+          <input type="button" class="btn">
+        </div>
       </div>
-      <div class="toast-top-center" style="height:120px;width:auto;
-              border:1px solid #ccc;font:16px/26px Georgia, Garamond, Serif;overflow:auto;">
-        <li *ngFor='let name of images; let i = index'>Photo: {{name.photo}}, Student ID: {{name.studentID}}
-          <a [ngStyle]="{'display': images[i].uploaded ? 'inline' : 'none'}">
-            <i class="fas fa-check"></i>
-          </a>
-        </li>
+      <div class="scroll-box">
+        <span>
+          <li class="test" *ngFor='let info of images; let i = index'>Photo: {{info.photo.name}}, Student ID: {{info.studentID}}
+            <a [ngStyle]="{'display': images[i].uploaded ? 'inline' : 'none'}">
+              <i class="fas fa-check"></i>
+            </a>
+          </li>
+        </span>
       </div>
     </div>
-    <button type="submit" class="btn btn-success" style="margin-top: 20px;" (click)="submit()">Submit</button>
+    <br>
+    <!--Submit-->
+    <button type="submit" class="btn btn-success submit-button" (click)="submit()">Submit</button>
   </form>
 </div>
