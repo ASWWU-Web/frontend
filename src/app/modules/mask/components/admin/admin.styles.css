@@ -24,3 +24,10 @@ body::-webkit-scrollbar-thumb {
   margin-right: auto;
   justify-content: center;
 }
+
+.csv-image  {
+  min-width: 250px;
+  max-width: 500px;
+  width: 40%;
+  padding-bottom: 20px;
+}

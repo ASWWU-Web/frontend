@@ -1,4 +1,20 @@
-<div *ngIf="currentUser" class="bg-dark text-white input-file-format">
+<div *ngIf="currentUser && permissions" class="bg-dark text-white input-file-format">
+  <div>
+    <h2>Batch Upload Mask Photos</h2>
+    <ul>
+      <li>Clean Excel file by deleting all information besides student id and the numbers associating photos</li>
+      <li>Column one should contain the student ID, and column two should contain the photo numbers associated that student id</li>
+      <li>Make sure that the photo numbers are separated with a space instead of a comma (can use the excel replace all function)</li>
+      <li>Save the excel file as a comma delimited csv file (click `save as` and click on drop down menu to save as a .csv file)</li>
+      <li>Upload CSV file below, and fix any  errors that pop up</li>
+      <li>Once all errors have been fixed select the photos you would like to upload, wait for them to load in, and then press submit</li>
+      <li>Wait for all the photos to process, and you're done</li>
+      <li>Notes: I recommend uploading 50 - 100 photos at a time because too many photos might force your browser to refresh</li>
+      <li>The final spreadsheet should look like the example below with as many lines as you need, but no extra information </li>
+    </ul>
+
+    <img class="csv-image" src="https://aswwu.com/media/images/default_mask/mask_csv_example.png"/>
+  </div>
   <form [formGroup]="myForm">
 
     <!--CSV File Upload    -->
@@ -17,10 +33,15 @@
           <input type="button" class="btn">
         </div>
       </div>
+      <span>
+          <li class="test" *ngFor='let err of error'>
+            {{err}}
+          </li>
+      </span>
     </div>
 
     <!--Multiple Files Upload-->
-    <div *ngIf="csvExists">
+    <div *ngIf="csvExists && !hasError">
       <div>Photo's</div>
       <div class="input-group">
         <div class="custom-file">
@@ -47,4 +68,7 @@
     <!--Submit-->
     <button type="submit" class="btn btn-success submit-button" (click)="submit()">Submit</button>
   </form>
+</div>
+<div *ngIf="!currentUser || !permissions" class="bg-dark text-white text-center">
+  <div>You are either not logged in or do not have permission to access this page.</div>
 </div>
