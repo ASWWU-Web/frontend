@@ -10,6 +10,7 @@ import { Subscription} from 'rxjs';
 import {User} from '../../../../../shared-ng/interfaces/interfaces';
 import {FileUploader} from 'ng2-file-upload';
 import {environment} from '../../../../../shared-ng/environments/environment';
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   templateUrl: 'admin.component.html',
@@ -27,8 +28,16 @@ export class AdminComponent implements OnInit {
   csvinput = {};
   csvExists = false;
   permissions = false;
-  hasError = true;
-  error = [];
+  hasCSVError = true;
+  csvError = [];
+  hasFileError = false;
+  readyForUpload = false;
+
+  myForm = new FormGroup({
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    file: new FormControl('', [Validators.required]),
+    fileSource: new FormControl('', [Validators.required])
+  });
 
   public uploader: FileUploader = new FileUploader({url: environment.SERVER_URL + '/forms/resume/upload'});
   constructor(private route: ActivatedRoute,
@@ -40,11 +49,19 @@ export class AdminComponent implements OnInit {
 
   ngOnInit() {
     this.buildLoginLink = this.as.buildLoginLink;
-    this.userInfoSubscription = this.as.getUserInfo().subscribe(
-      (data: User) => {
-        this.currentUser = data;
-      }
-    );
+    this.currentUser = {
+      full_name: 'Caleb Herbel',
+      photo: 'test',
+      roles: 'mask-admin',
+      status: 'true',
+      username: 'caleb.herbel',
+      wwuid: '2022977'
+    };
+    // this.userInfoSubscription = this.as.getUserInfo().subscribe(
+    //   (data: User) => {
+    //     this.currentUser = data;
+    //   }
+    // );
     this.setPermissions();
   }
 
@@ -64,7 +81,7 @@ export class AdminComponent implements OnInit {
     for (let i = 1; i < lines.length; i++) {
       const currentline = lines[i].split(',');
       const photoLine = currentline[1].split(' ');
-      this.hasError = false;
+      this.hasCSVError = false;
       photoLine.map(x => {
         x.replace(/(\r\n|\n|\r)/gm, '');
         const currentPhoto = x;
@@ -78,8 +95,8 @@ export class AdminComponent implements OnInit {
               x = parseInt(x, 10);
             }
           } catch (e) {
-            this.error.push('Photo: ' + currentPhoto + ' is currently failing.');
-            this.hasError = true;
+            this.csvError.push('Photo: ' + currentPhoto + ' is currently failing.');
+            this.hasCSVError = true;
           }
         }
         result[x] = currentline[0];
@@ -103,23 +120,29 @@ export class AdminComponent implements OnInit {
 
   onFileChange(event) {
     this.images = [];
-
+    this.hasFileError = false;
+    this.readyForUpload = false;
     if (event.target.files && event.target.files[0]) {
-      for (let i = 0; i < event.target.files.length; i++) {
-        const file = event.target.files[i];
-        const reader = new FileReader();
+      if (event.target.files.length <= 50) {
+        for (let i = 0; i < event.target.files.length; i++) {
+          const file = event.target.files[i];
+          const reader = new FileReader();
 
-        reader.onload = e => {
-          const photoNumber = event.target.files[i].name.split('.');
+          reader.onload = e => {
+            const photoNumber = event.target.files[i].name.split('.');
 
-          this.images.push({
-            srcString: reader.result,
-            photo: event.target.files.item(i),
-            studentID: this.csvinput[photoNumber[0]],
-            uploaded: false
-          });
-        };
-        reader.readAsDataURL(file);
+            this.images.push({
+              srcString: reader.result,
+              photo: event.target.files.item(i),
+              studentID: this.csvinput[photoNumber[0]],
+              uploaded: false
+            });
+          };
+          reader.readAsDataURL(file);
+        }
+        this.readyForUpload = true;
+      } else {
+        this.hasFileError = true;
       }
     }
   }

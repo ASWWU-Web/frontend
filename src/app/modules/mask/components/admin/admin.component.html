@@ -41,7 +41,7 @@
     </div>
 
     <!--Multiple Files Upload-->
-    <div *ngIf="csvExists && !hasError">
+    <div *ngIf="csvExists && !hasCSVError">
       <div>Photo's</div>
       <div class="input-group">
         <div class="custom-file">
@@ -54,7 +54,8 @@
           <input type="button" class="btn">
         </div>
       </div>
-      <div class="scroll-box">
+
+      <div *ngIf="!hasFileError" class="scroll-box">
         <span>
           <li class="test" *ngFor='let info of images; let i = index'>Photo: {{info.photo.name}}, Student ID: {{info.studentID}}
             <a [ngStyle]="{'display': images[i].uploaded ? 'inline' : 'none'}">
@@ -63,10 +64,15 @@
           </li>
         </span>
       </div>
+      <div *ngIf="hasFileError">
+        Can't upload more than 50 Files at a time.
+      </div>
     </div>
     <br>
     <!--Submit-->
-    <button type="submit" class="btn btn-success submit-button" (click)="submit()">Submit</button>
+    <div *ngIf="!hasFileError && readyForUpload">
+      <button type="submit" class="btn btn-success submit-button" (click)="submit()">Submit</button>
+    </div>
   </form>
 </div>
 <div *ngIf="!currentUser || !permissions" class="bg-dark text-white text-center">
