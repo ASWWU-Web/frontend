@@ -1,33 +1,52 @@
+.outer-div {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-item {
+  margin-right: 10px;
+  margin-left: 10px;
+  padding-bottom: 20px;
+}
+
+.info-item img {
+  max-width: 250px;
+
+}
+
 .input-file-format  {
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
+  min-width: 300px;
   width: 50%;
-  min-width: 350px;
 }
 
 .scroll-box {
   height:120px;
   overflow: scroll;
   scrollbar-face-color: white;
-
-}
-
-body::-webkit-scrollbar-thumb {
-  background-color: white;
-  outline: 1px solid lightblue;
 }
 
 .submit-button  {
-
   margin-left: auto;
   margin-right: auto;
   justify-content: center;
 }
 
-.csv-image  {
-  min-width: 250px;
-  max-width: 500px;
-  width: 40%;
-  padding-bottom: 20px;
+@media only screen and (max-width: 800px) {
+
+  .info-container {
+    display: block;
+  }
+
+  .info-item img {
+    text-align: center;
+  }
 }

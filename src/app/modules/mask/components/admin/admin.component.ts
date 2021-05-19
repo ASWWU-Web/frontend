@@ -10,7 +10,6 @@ import { Subscription} from 'rxjs';
 import {User} from '../../../../../shared-ng/interfaces/interfaces';
 import {FileUploader} from 'ng2-file-upload';
 import {environment} from '../../../../../shared-ng/environments/environment';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
   templateUrl: 'admin.component.html',
@@ -23,7 +22,6 @@ export class AdminComponent implements OnInit {
   buildLoginLink: () => string;
   userInfoSubscription: Subscription;
 
-  // Added
   images = [];
   csvinput = {};
   csvExists = false;
@@ -32,12 +30,6 @@ export class AdminComponent implements OnInit {
   csvError = [];
   hasFileError = false;
   readyForUpload = false;
-
-  myForm = new FormGroup({
-    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    file: new FormControl('', [Validators.required]),
-    fileSource: new FormControl('', [Validators.required])
-  });
 
   public uploader: FileUploader = new FileUploader({url: environment.SERVER_URL + '/forms/resume/upload'});
   constructor(private route: ActivatedRoute,
