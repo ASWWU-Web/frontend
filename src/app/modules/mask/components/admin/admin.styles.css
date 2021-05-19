@@ -1,0 +1,52 @@
+.outer-div {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.info-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.info-item {
+  margin-right: 10px;
+  margin-left: 10px;
+  padding-bottom: 20px;
+}
+
+.info-item img {
+  max-width: 250px;
+
+}
+
+.input-file-format  {
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+  min-width: 300px;
+  width: 50%;
+}
+
+.scroll-box {
+  height:120px;
+  overflow: scroll;
+  scrollbar-face-color: white;
+}
+
+.submit-button  {
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 800px) {
+
+  .info-container {
+    display: block;
+  }
+
+  .info-item img {
+    text-align: center;
+  }
+}

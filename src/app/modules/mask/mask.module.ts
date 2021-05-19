@@ -24,8 +24,10 @@ import {
   ProfileSmComponent,
   SearchResultsComponent,
   ProfileModalComponent,
-  ProfileModalContentComponent
+  ProfileModalContentComponent,
+  AdminComponent
 } from './components/mask.components';
+import {FileUploadModule} from "ng2-file-upload";
 
 @NgModule({
   declarations: [
@@ -41,17 +43,19 @@ import {
     ProfileModalContentComponent,
     SearchResultsComponent,
     UnescapePipe,
+    AdminComponent
   ],
-  imports: [
-    CommonModule,
-    HttpModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgbModule,
-    FontAwesomeModule,
-    RouterModule.forChild(MaskRoutes),
-  ],
+    imports: [
+        CommonModule,
+        HttpModule,
+        HttpClientModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgbModule,
+        FontAwesomeModule,
+        RouterModule.forChild(MaskRoutes),
+        FileUploadModule,
+    ],
   exports: [
     ProfileComponent,
     SearchComponent,
