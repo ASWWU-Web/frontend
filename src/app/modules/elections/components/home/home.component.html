@@ -1,8 +1,9 @@
 <div>
   <div class="container">
-    <div *ngIf="!response">
+    <!-- <div *ngIf="!response">
       <h2 class="text-center">No Elections</h2>
-    </div>
+    </div> -->
+
     <div *ngIf="response">
       <div *ngIf="dates['start'] > dates['now']">
         <h1 class="text-center">{{response.name}}</h1>
@@ -13,9 +14,27 @@
     <div *ngIf="response">
       <div *ngIf="dates['start'] < dates['now']">
         <h1 class="text-center">{{response.name}}</h1>
-        <a *ngIf="isLoggedIn" href="vote" class="btn btn-primary btn-block btn-lg" role="button">Vote Now!</a>
+        <a *ngIf="isLoggedIn" href="elections/vote" class="btn btn-primary btn-block btn-lg" role="button">Vote Now!</a>
         <a *ngIf="!isLoggedIn" class="btn btn-primary btn-block btn-lg" [href]="'https://saml.aswwu.com/?redirectURI=/elections'+ router.url">Log in</a>
         <countdown [status]="status" [date]="dates['end']" [now]="dates['now']"></countdown>
+      </div>
+    </div>
+
+    <div>
+      <hr>
+      <h1 class="text-center text-uppercase">Senate Candidates</h1>
+      <hr>
+      <div class="text-center">
+        <div id='senate_candidates' class="row container mx-auto text-center">
+          <div *ngFor="let candidate of senate_candidates" class="person col">
+            <a href="https://aswwu.com/mask/profile/{{candidate.username}}/1920" target="_blank">
+              <div class="img-container">
+                <img src="https://aswwu.com/media/img-md/{{candidate.photoURL}}" alt="{{candidate.full_name}}">              </div>
+              <h3 class="name">{{candidate.full_name}}</h3>
+              <h5>{{candidate.district}}</h5>
+            </a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

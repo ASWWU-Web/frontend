@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -18,6 +19,8 @@ import {
   UserBubbleComponent,
   SharedNgContainerComponent,
   ErrorPageComponent,
+  UploadModalComponent,
+  ContentModerationComponent
 } from '../shared-ng/components/components';
 import {
   RequestService,
@@ -25,10 +28,16 @@ import {
   PagesRequestService,
   AuthService,
 } from '../shared-ng/services/services';
+import { ToastrModule } from 'ngx-toastr';
 
+<<<<<<< HEAD
 import {
   SubNavbarLink
 } from '../shared-ng/interfaces/interfaces';
+=======
+import { AppComponent } from './app.component';
+import {AtlasComponent} from "./modules/atlas/atlas.component";
+>>>>>>> 5ce80ee06e83e300e6d7a7683f6a24846791ddd4
 
 import { AppComponent } from './app.component';
 
@@ -41,6 +50,9 @@ import { AppComponent } from './app.component';
     UserBubbleComponent,
     SharedNgContainerComponent,
     ErrorPageComponent,
+    UploadModalComponent,
+    ContentModerationComponent,
+    AtlasComponent
   ],
   imports: [
     NgbModule,
@@ -52,7 +64,16 @@ import { AppComponent } from './app.component';
     NgbModule,
     AppRoutingModule,
     FontAwesomeModule,
+<<<<<<< HEAD
     NgbModule,
+=======
+    NgbModule.forRoot(),
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      timeOut: 3000,
+      positionClass: 'toast-bottom-left'
+    })
+>>>>>>> 5ce80ee06e83e300e6d7a7683f6a24846791ddd4
   ],
   providers: [
     RequestService,

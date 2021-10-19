@@ -9,11 +9,14 @@ import { User } from '../../../../../../shared-ng/interfaces/interfaces';
   template: `
   <!-- Job Applications  -->
   <div *ngIf="currentUser" id="jobApps" class="container">
-      <a class="btn btn-primary mb-5" [routerLink]="'/jobs/admin/edit/' + formID">Edit this Form</a>
+      <a *ngIf="!hasInsufficientPermissions" class="btn btn-primary mb-5" [routerLink]="'/jobs/admin/edit/' + formID">Edit this Form</a>
       <card-list [cards]="cards"></card-list>
       <div *ngIf="applications?.length == 0" class="col col-sm-12 col-md-6 col-lg-3 text-center">
               <p> No results found.</p>
       </div>
+  </div>
+  <div class="container" *ngIf="hasInsufficientPermissions">
+      <p>You do not have sufficient permissions</p>
   </div>
   <div class="container" *ngIf="!currentUser">
       <p>This page can only be viewed by someone logged in, please click the button to log in:</p>
@@ -31,6 +34,7 @@ export class AdminReviewComponent implements OnInit {
   cards: any[] = [];
   buildLoginLink: () => string;
   userInfoSubscription: Subscription;
+  hasInsufficientPermissions: boolean = false;
 
   constructor(private route: ActivatedRoute, private rs: RequestService,
               private as: AuthService, private hs: HermesService, private elementRef: ElementRef) {
@@ -50,7 +54,12 @@ export class AdminReviewComponent implements OnInit {
       (data) => {
         this.applications = data.applications;
         this.cards = this.buildCards(this.applications);
-      }, null);
+      }, (err) => {
+        console.log(err);
+        if (err.error.status == "Insufficient Permissions") {
+          this.hasInsufficientPermissions = true;
+        }
+      });
     this.rs.get('/forms/job/view/' + this.formID).subscribe((data) => {
         this.form = data.form;
         this.hs.sendHeaderTitle(this.form.job_name + ' Review');

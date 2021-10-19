@@ -1,11 +1,11 @@
-<div class="search-bar input-group mb-3"> 
+<div class="search-bar input-group mb-3">
     <ng-template #rt let-r="result" let-t="term">
         <div (click)="superSearch(r.username)">
-        <ngb-highlight [result]="r.full_name" [term]="t"></ngb-highlight>
+          <ngb-highlight [result]="r.full_name" [term]="t"></ngb-highlight>
         </div>
     </ng-template>
   <form [formGroup]="formGroup" (ngSubmit)="superSearch(1)" class="input-group"> <!-- TODO: add the user's current text as the first item in the dropdown -->
-    <input #nameInput formControlName="name" type="search" id="search-input" class="form-control search-outline" (keyup.enter)="superSearch()" [resultTemplate]="rt" [inputFormatter]="formatter" [ngbTypeahead]="search" placeholder="{{placeHolder}}">
+    <input #nameInput formControlName="name" type="search" id="search-input" class="form-control search-outline" (keyup.enter)="superSearch()" [resultTemplate]="rt" [inputFormatter]="formatter" [ngbTypeahead]="search" [focusFirst]="false"  placeholder="{{placeHolder}}">
     <div ngbDropdown>
       <button id="search-dropdown" type="button" class="btn search-outline" ngbDropdownToggle>{{ selectSites }}</button>
       <div class="dropdown-menu" ngbDropdownMenu>
