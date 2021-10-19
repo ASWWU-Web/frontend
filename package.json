@@ -29,16 +29,6 @@
     "@fortawesome/free-regular-svg-icons": "^5.13.0",
     "@fortawesome/free-solid-svg-icons": "^5.13.0",
     "@ng-bootstrap/ng-bootstrap": "^4",
-<<<<<<< HEAD
-    "angular-froala-wysiwyg": "^3.1.1-1",
-    "bootstrap-scss": "^4.2.1",
-    "core-js": "^2.5.4",
-    "font-awesome": "^4.7.0",
-    "moment": "^2.27.0",
-    "moment-timezone": "^0.5.31",
-    "ng2-file-upload": "^1.4.0",
-    "ngx-chips": "^2.1.0",
-=======
     "@types/googlemaps": "^3.43.2",
     "bootstrap-scss": "^4.2.1",
     "core-js": "^2.5.4",
@@ -47,7 +37,6 @@
     "ng2-file-upload": "^1.4.0",
     "ngx-toastr": "^10.1.0",
     "node-sass": "^4.13.1",
->>>>>>> 5ce80ee06e83e300e6d7a7683f6a24846791ddd4
     "rxjs": "~6.3.3",
     "tslib": "^1.11.1",
     "zone.js": "~0.8.26"
