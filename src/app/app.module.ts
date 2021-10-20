@@ -30,14 +30,8 @@ import {
 } from '../shared-ng/services/services';
 import { ToastrModule } from 'ngx-toastr';
 
-<<<<<<< HEAD
-import {
-  SubNavbarLink
-} from '../shared-ng/interfaces/interfaces';
-=======
 import { AppComponent } from './app.component';
 import {AtlasComponent} from "./modules/atlas/atlas.component";
->>>>>>> 5ce80ee06e83e300e6d7a7683f6a24846791ddd4
 
 import { AppComponent } from './app.component';
 
@@ -64,16 +58,12 @@ import { AppComponent } from './app.component';
     NgbModule,
     AppRoutingModule,
     FontAwesomeModule,
-<<<<<<< HEAD
-    NgbModule,
-=======
     NgbModule.forRoot(),
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
       positionClass: 'toast-bottom-left'
     })
->>>>>>> 5ce80ee06e83e300e6d7a7683f6a24846791ddd4
   ],
   providers: [
     RequestService,
