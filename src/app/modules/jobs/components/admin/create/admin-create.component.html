@@ -59,7 +59,7 @@
     <label>
       Visibility: &nbsp; <br>
     </label>
-    <select class="form-group" (change)="changeVis($event)" formControlName="visibility">
+    <select class="form-group" (change)="changeVisibility($event)" formControlName="visibility">
       <option value="" disabled>Select Visibility</option>
       <option *ngFor="let vis of visibilityOptions; let i = index" [ngValue]="visibilityOptions[i].value">{{visibilityOptions[i].name}}</option>
     </select>
