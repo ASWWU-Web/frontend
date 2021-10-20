@@ -92,8 +92,8 @@ export class AdminCreateComponent implements OnInit {
   }
 
   // change visibility using select dropdown
-  changeVis(e) {
-    this.visibility.setValue(e.target.value, {
+  changeVisibility(selectDropdown) {
+    this.visibility.setValue(selectDropdown.target.value, {
       onlySelf: true
     })
   }
