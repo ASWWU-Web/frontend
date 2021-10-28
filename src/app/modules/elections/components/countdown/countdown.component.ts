@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import * as momentTz from 'moment-timezone';
+import * as moment from 'moment-timezone';
 
 @Component({
   selector: 'countdown',

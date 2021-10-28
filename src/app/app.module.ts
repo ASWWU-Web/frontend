@@ -11,6 +11,8 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { SubNavbarLink } from '../shared-ng/interfaces/interfaces';
+
 // shared-ng components
 import {
   NavBarComponent,
@@ -32,8 +34,6 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import {AtlasComponent} from "./modules/atlas/atlas.component";
-
-import { AppComponent } from './app.component';
 
 @NgModule({
   declarations: [

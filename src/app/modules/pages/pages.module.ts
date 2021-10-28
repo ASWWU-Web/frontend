@@ -1,11 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { library } from '@fortawesome/fontawesome-svg-core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SubNavbarLink } from '../../../shared-ng/interfaces/interfaces';
 
 import {
   ViewPageComponent,
@@ -92,6 +95,21 @@ import { PagesRoutes } from './pages.routes';
     PagesRequestService
   ]
 })
+
 export class PagesModule {
-  constructor() {}
-}
+  constructor(private hs: HermesService) {
+    library.add(faSearch);
+
+    // sub navbar links
+    const links: SubNavbarLink[] = [
+      {linkText: 'Directory', linkURI: ''},
+      {linkText: 'Search', linkURI: '/search'},
+      {linkText: 'Collegian', linkURI: '/collegian'},
+      {linkText: 'Events', linkURI: '/events'},
+      {linkText: 'Departments', linkURI: '/departments'}
+    ];
+
+    // send sub navbar links
+    this.hs.sendSubNavbarLinks(links);
+  }
+ }
