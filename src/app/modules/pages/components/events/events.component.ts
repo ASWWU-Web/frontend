@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Router, Routes, ActivatedRoute } from '@angular/router';
 
 import { RequestService, HermesService } from '../../../../../shared-ng/services/services';
@@ -11,7 +11,9 @@ export class EventsComponent {
   events: any;
 
   constructor(private rs: RequestService, private route: ActivatedRoute, private router: Router,
-              private hs: HermesService) {
+              private hs: HermesService, private elementRef: ElementRef) {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+
     this.rs.get('/pages/search?category=Event').subscribe((data) => {
       this.events = data.results.reverse();
     });

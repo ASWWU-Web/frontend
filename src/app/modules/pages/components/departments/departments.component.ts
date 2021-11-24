@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Router, Routes, ActivatedRoute } from '@angular/router';
 
 import { RequestService, HermesService } from '../../../../../shared-ng/services/services';
@@ -11,15 +11,17 @@ export class DepartmentsComponent {
   departments: any = [];
 
   constructor(private rs: RequestService, private route: ActivatedRoute, private router: Router,
-              private hs: HermesService) {
+              private hs: HermesService, private elementRef: ElementRef) {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+
     // get departments data
     this.rs.get('/pages/departments').subscribe((data) => {
       this.departments = data.departments;
     });
 
     this.hs.sendShowHeader(true);
-    this.hs.sendHeaderImageUri('../../../assets/departments.jpg');
     this.hs.sendHeaderTitle('Departments');
+    this.hs.sendHeaderImageUri('../../../../assets/departments.jpg')
     this.hs.sendHeaderInvert(true);
     this.hs.sendShowSubNav(true);
   }

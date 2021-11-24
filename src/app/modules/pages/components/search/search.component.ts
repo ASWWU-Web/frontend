@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { Router, Routes, ActivatedRoute } from '@angular/router';
 
 import { RequestService, HermesService } from '../../../../../shared-ng/services/services';
@@ -17,7 +17,9 @@ export class SearchComponent implements OnInit {
   searchResults: any;
 
   constructor(private rs: RequestService, private route: ActivatedRoute, private router: Router,
-              private hs: HermesService) {
+              private hs: HermesService, private elementRef: ElementRef) {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+
     // check for query params in url
     this.route.queryParamMap.subscribe( params => {
       this.criteria = [];

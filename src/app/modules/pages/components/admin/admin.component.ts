@@ -1,21 +1,27 @@
-import { Component, OnInit } from '@angular/core';
-import { RequestService } from '../../../../../shared-ng/services/request.service';
-import { Router } from '@angular/router';
+import { Component, OnInit, ElementRef } from '@angular/core';
+import { RequestService, HermesService } from '../../../../../shared-ng/services/services';
+import { Router} from '@angular/router';
 
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
-  styleUrls: ['./admin.component.css']
+  styleUrls: ['./admin.component.css'],
+  providers: [ RequestService ]
 })
 export class AdminComponent implements OnInit {
 
   admin: any = [];
 
-  constructor( private rs: RequestService, private router: Router ) {  }
+  constructor( private rs: RequestService, private hs: HermesService, private router: Router, private elementRef: ElementRef ) { 
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+  }
 
   ngOnInit() {
+    this.hs.sendHeaderTitle('Admin');
+    this.hs.sendShowHeader(true);
+    this.hs.sendShowSubNav(true);
     this.rs.get( ('/pages/admin')).subscribe((data) => this.admin = data.results);
-   }
+  }
 
   shorten( text: string ) {
     if (text) {
@@ -30,7 +36,7 @@ export class AdminComponent implements OnInit {
   }
 
   createNew() {
-    this.router.navigate(['admin/create']);
+    this.router.navigate(['/admin/create']);
   }
 
 }

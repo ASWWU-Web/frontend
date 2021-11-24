@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { RequestService, HermesService } from '../../../../../shared-ng/services/services';
 import { resolveCoverImage } from '../shared/resolveCoverImage';
@@ -16,7 +16,9 @@ export class ViewPageComponent implements OnInit {
   getCoverImage: any = resolveCoverImage;
   media_lg = MEDIA_LG;
 
-  constructor( private route: ActivatedRoute, private rs: RequestService, private hs: HermesService) {
+  constructor( private route: ActivatedRoute, private rs: RequestService, private hs: HermesService, private elementRef: ElementRef) {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+
     this.route.params.subscribe( (params) => this.pageURL = params.pageURL );
     this.rs.get('/pages/' + this.pageURL).subscribe((data) => {
       this.page = data;

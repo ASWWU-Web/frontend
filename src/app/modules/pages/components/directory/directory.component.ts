@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { Router, ActivatedRoute, RouterModule, NavigationExtras } from '@angular/router';
 
 import { RequestService, HermesService } from '../../../../../shared-ng/services/services';
@@ -16,7 +16,9 @@ export class DirectoryComponent {
   departments: any = [];
 
   constructor(private rs: RequestService, private route: ActivatedRoute, private router: Router,
-              private hs: HermesService) {
+              private hs: HermesService, private elementRef: ElementRef) {
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+
     // get featureds data
     this.rs.get('/pages/featureds').subscribe((data) => {
       this.featureds = data.featureds.reverse();
@@ -34,9 +36,9 @@ export class DirectoryComponent {
       this.departments = data.departments;
     });
 
-    this.hs.sendShowHeader(true);
     this.hs.sendHeaderTitle('Directory');
-    this.hs.sendHeaderInvert(false);
+    this.hs.sendShowHeader(true);
+    this.hs.sendHeaderInvert(true);
     this.hs.sendHeaderImageUri('../../../assets/directory.jpg');
     this.hs.sendShowSubNav(true);
   }
@@ -44,7 +46,7 @@ export class DirectoryComponent {
   search() {
     const json = {};
     json[GENERAL_SEARCH_FIELD] = this.searchText;
-    this.router.navigate(['/search'], {
+    this.router.navigate(['/pages/search'], {
       queryParams: json
     });
   }

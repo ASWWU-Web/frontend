@@ -1,5 +1,5 @@
-import { Component, OnInit, NgModule } from '@angular/core';
-import { RequestService } from '../../../../../shared-ng/services/request.service';
+import { Component, OnInit, NgModule, ElementRef } from '@angular/core';
+import { RequestService, HermesService } from '../../../../../shared-ng/services/services';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -19,7 +19,9 @@ export class AdminCreateComponent implements OnInit {
   regexGlobal = /[^a-z0-9-]/g;
   urlInvalid = false;
 
-  constructor( private rs: RequestService, private router: Router ) {  }
+  constructor( private rs: RequestService, private router: Router, private hs: HermesService, private elementRef: ElementRef ) {  
+    this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
+  }
 
   onSubmit() {
     if (!this.urlInvalid) {
@@ -70,6 +72,7 @@ export class AdminCreateComponent implements OnInit {
   ngOnInit() {
     this.rs.get( ('/pages/categories')).subscribe((data) => this.categories = data.categories);
     this.rs.get( ('/pages/departments')).subscribe((data) => this.departments = data.departments);
+    this.hs.sendHeaderTitle('Create');
   }
 
 }

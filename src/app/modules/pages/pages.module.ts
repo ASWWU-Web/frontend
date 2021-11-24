@@ -37,10 +37,10 @@ import {
   PageCardComponent,
   FieldResultsComponent,
   FieldCardComponent,
-  ProfileInfoComponent
+  ProfileInfoComponent,
 } from './components/shared/shared';
 
-import { PagesRequestService, HermesService } from '../../../shared-ng/services/services';
+import { PagesRequestService, HermesService, RequestService } from '../../../shared-ng/services/services';
 
 import { FroalaEditorModule, FroalaViewModule } from 'angular-froala-wysiwyg';
 import { TagInputModule } from 'ngx-chips';
@@ -71,7 +71,7 @@ import { PagesRoutes } from './pages.routes';
     CollegianComponent,
     ViewPageComponent,
     FieldCardComponent,
-    ProfileInfoComponent,
+    ProfileInfoComponent
   ],
   imports: [
     CommonModule,
@@ -91,7 +91,7 @@ import { PagesRoutes } from './pages.routes';
 
   ],
   providers: [
-    HermesService,
+    RequestService,
     PagesRequestService
   ]
 })
