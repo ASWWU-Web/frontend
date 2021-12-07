@@ -9,6 +9,8 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgxSpinnerModule } from "ngx-spinner";  // https://classic.yarnpkg.com/en/package/ngx-spinner
+
 
 // shared-ng components
 import {
@@ -40,6 +42,7 @@ import { AppComponent } from './app.component';
   ],
   imports: [
     NgbModule,
+    NgxSpinnerModule,
     BrowserModule,
     HttpModule,
     HttpClientModule,
