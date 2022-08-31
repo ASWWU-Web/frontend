@@ -33,7 +33,7 @@
     "bootstrap-scss": "^4.2.1",
     "core-js": "^2.5.4",
     "font-awesome": "^4.7.0",
-    "moment-timezone": "^0.5.28",
+    "moment-timezone": "^0.5.35",
     "ng2-file-upload": "^1.4.0",
     "ngx-toastr": "^10.1.0",
     "node-sass": "^4.13.1",
