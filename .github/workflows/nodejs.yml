@@ -6,48 +6,47 @@ jobs:
   security-check:
     runs-on: [ubuntu-latest]
     steps:
-    - uses: actions/checkout@v1
-    - name: Run Snyk to check for vulnerabilities
-      uses: snyk/actions/node@master
-      env:
-        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
-      with:
-        command: test
-        args: --workdir --severity-threshold=high
+      - uses: actions/checkout@v1
+      - name: Run Snyk to check for vulnerabilities
+        uses: snyk/actions/node@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          command: test
+          args: --workdir --severity-threshold=high
 
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
       matrix:
-        node-version: [11.x]
+        node-version: [16.x]
 
     steps:
-    - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - name: npm install, build, and test
-      run: |
-        git submodule update --init --recursive
-        npm ci
-        npm run build
-      env:
-        CI: true
-    - name: prepare artifact
-      run: |
-        mkdir frontend-artifact
-        mkdir frontend-artifact/frontend-payload
-        cp -r dist frontend-artifact/frontend-payload/dist-frontend
-        cp scripts/server_deploy.sh frontend-artifact/frontend-payload/
-        cp scripts/remote_deploy.sh frontend-artifact
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: npm install, build, and test
+        run: |
+          git submodule update --init --recursive
+          npm ci
+          npm run build
+        env:
+          CI: true
+      - name: prepare artifact
+        run: |
+          mkdir frontend-artifact
+          mkdir frontend-artifact/frontend-payload
+          cp -r dist frontend-artifact/frontend-payload/dist-frontend
+          cp scripts/server_deploy.sh frontend-artifact/frontend-payload/
+          cp scripts/remote_deploy.sh frontend-artifact
 
-    - name: Upload build output
-      uses: actions/upload-artifact@v1.0.0
-      with:
-        # Artifact name
-        name: frontend-artifact
-        # Directory containing files to upload
-        path: frontend-artifact
+      - name: Upload build output
+        uses: actions/upload-artifact@v1.0.0
+        with:
+          # Artifact name
+          name: frontend-artifact
+          # Directory containing files to upload
+          path: frontend-artifact
