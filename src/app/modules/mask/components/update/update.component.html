@@ -1,36 +1,121 @@
 <div *ngIf="isLoggedOn()" class="row">
   <div id="edit-profile" class="col-md-6" *ngIf="fullProfile">
     <h1 id="left-header-title" class="text-white">Profile Info</h1>
-    <hr class="top-hr">
+    <hr class="top-hr" />
 
     <!-- Profile photo options -->
     <div class="row possible-photo-container">
-      <br>
-      <div *ngFor="let url of possiblePhotos" class="possible-photo .col-sm-12" (click)="changePhoto(url); justClicked = url;">
-        <img src="{{ getPhotoLink(url) }}" class="rounded selected-photo" [class.checked]="url.split('/').pop() == fullProfile.photo.split('/').pop()" [ngClass]="{'selected-photo': justClicked == url }">
+      <br />
+      <div
+        *ngFor="let url of possiblePhotos"
+        class="possible-photo .col-sm-12"
+        (click)="changePhoto(url); justClicked = url"
+      >
+        <img
+          src="{{ getPhotoLink(url) }}"
+          class="rounded selected-photo"
+          [class.checked]="
+            url.split('/').pop() == fullProfile.photo.split('/').pop()
+          "
+          [ngClass]="{ 'selected-photo': justClicked == url }"
+        />
       </div>
     </div>
 
     <!-- Input fields -->
-    <div *ngFor="let section of sections;">
-      <hr>
+    <div *ngFor="let section of sections">
+      <hr />
       <div class="row">
-        <div *ngFor="let field of section;" class="col-md-6 pb-2 pt-2">
-          <div *ngIf="!(field == 'department' || field == 'office' || field == 'office_hours' )" class="text-white text-capitadivze">
-            <input *ngIf="!searchables.hasOwnProperty(field) && !selectables[field] && !(field == 'department' || field =='office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
-            <i class="text-capitalize field-title">{{field.split('_').join(' ')}}</i>
+        <div *ngFor="let field of section" class="col-md-6 pb-2 pt-2">
+          <div
+            *ngIf="
+              !(
+                field == 'department' ||
+                field == 'office' ||
+                field == 'office_hours'
+              )
+            "
+            class="text-white text-capitadivze"
+          >
+            <input
+              *ngIf="
+                !searchables.hasOwnProperty(field) &&
+                !selectables[field] &&
+                !(
+                  field == 'department' ||
+                  field == 'office' ||
+                  field == 'office_hours'
+                )
+              "
+              type="text"
+              class="form-control"
+              id="{{ field + 'input' }}"
+              [(ngModel)]="fullProfile[field]"
+            />
+            <i class="text-capitalize field-title">{{
+              field.split("_").join(" ")
+            }}</i>
           </div>
-          <div *ngIf="(field == 'department' || field == 'office' || field == 'office_hours' ) && (userStatus == 'Faculty' || userStatus == 'Staff')" class="text-white text-capitadivze">
-            <input *ngIf="!searchables.hasOwnProperty(field) && !selectables[field] && (field == 'department' || field =='office' || field == 'office_hours' )" type="text" class="form-control" id="{{field+'input'}}" [(ngModel)]="fullProfile[field]">
-            <i class="text-capitalize field-title">{{field.split('_').join(' ')}}</i>
+          <div
+            *ngIf="
+              (field == 'department' ||
+                field == 'office' ||
+                field == 'office_hours') &&
+              (userStatus == 'Faculty' || userStatus == 'Staff')
+            "
+            class="text-white text-capitadivze"
+          >
+            <input
+              *ngIf="
+                !searchables.hasOwnProperty(field) &&
+                !selectables[field] &&
+                (field == 'department' ||
+                  field == 'office' ||
+                  field == 'office_hours')
+              "
+              type="text"
+              class="form-control"
+              id="{{ field + 'input' }}"
+              [(ngModel)]="fullProfile[field]"
+            />
+            <i class="text-capitalize field-title">{{
+              field.split("_").join(" ")
+            }}</i>
           </div>
-          
+
           <div *ngIf="searchables.hasOwnProperty(field)">
-            <input *ngIf="field == 'majors'" id="typeahead-majors" type="text" class="form-control" [(ngModel)]="fullProfile[field]" [ngbTypeahead]="searchMajors">
-            <input *ngIf="field == 'minors'" id="typeahead-minors" type="text" class="form-control" [(ngModel)]="fullProfile[field]" [ngbTypeahead]="searchMinors">
+            <input
+              *ngIf="field == 'majors'"
+              id="typeahead-majors"
+              type="text"
+              class="form-control"
+              [(ngModel)]="fullProfile[field]"
+              [ngbTypeahead]="searchMajors"
+            />
+            <input
+              *ngIf="field == 'minors'"
+              id="typeahead-minors"
+              type="text"
+              class="form-control"
+              [(ngModel)]="fullProfile[field]"
+              [ngbTypeahead]="searchMinors"
+            />
           </div>
-          <select *ngIf="selectables.hasOwnProperty(field)" class="form-control" [(ngModel)]="fullProfile[field]">
-            <option *ngFor="let options of selectables[field]" [value]="field == 'privacy' ? selectables[field].indexOf(options) : options">{{options}}</option>
+          <select
+            *ngIf="selectables.hasOwnProperty(field)"
+            class="form-control"
+            [(ngModel)]="fullProfile[field]"
+          >
+            <option
+              *ngFor="let options of selectables[field]"
+              [value]="
+                field == 'privacy'
+                  ? selectables[field].indexOf(options)
+                  : options
+              "
+            >
+              {{ options }}
+            </option>
           </select>
         </div>
       </div>
@@ -38,14 +123,16 @@
 
     <!-- Submit button -->
     <div id="submit">
-      <button class="btn btn-primary" (click)="UploadProfile()">Update Profile</button>
+      <button class="btn btn-primary" (click)="UploadProfile()">
+        Update Profile
+      </button>
     </div>
   </div>
 
   <!-- Profile preview -->
   <div class="col-md-6" id="preview">
     <h1 class="text-white">Profile Preview</h1>
-    <hr class="top-hr">
+    <hr class="top-hr" />
     <profile-full [profile]="fullProfile"></profile-full>
   </div>
 </div>
@@ -53,5 +140,9 @@
 <!-- Not logged in prompt -->
 <div *ngIf="!isLoggedOn()">
   <h1 class="text-white">Hmm... You aren't logged in.</h1>
-  <a class="btn btn-primary" href="https://saml.aswwu.com/?redirectURI=/mask/update">Log in</a>
+  <a
+    class="btn btn-primary"
+    href="https://saml.aswwumask.com/?redirectURI=/mask/update"
+    >Log in</a
+  >
 </div>

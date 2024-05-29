@@ -16,19 +16,20 @@
 
 /*Logo*/
 .aswwu-logo {
-  -webkit-filter: drop-shadow(5px 5px 30px rgba(0,0,0,0.5)); filter: drop-shadow(5px 5px 30px rgba(0,0,0,0.5));
+  -webkit-filter: drop-shadow(5px 5px 30px rgba(0, 0, 0, 0.5));
+  filter: drop-shadow(5px 5px 30px rgba(0, 0, 0, 0.5));
 }
-#aswwuLogo{
+#aswwuLogo {
   display: flex;
   align-items: center;
   justify-content: center;
   transition: background-image 2s ease-in 1s;
   background: black;
-  background-size:cover;
-  height:95vh;
+  background-size: cover;
+  height: 95vh;
   width: 100%;
 }
-#aswwuLogo img{
+#aswwuLogo img {
   width: 100%;
   max-width: 800px;
   height: auto;
@@ -44,8 +45,8 @@ hr {
   width: 36px;
   border-color: #2f2e2e;
   border-width: 3px;
-  margin-top:1.2em;
-  margin-bottom:1.5em;
+  margin-top: 1.2em;
+  margin-bottom: 1.5em;
 }
 
 /*Footer*/
@@ -55,14 +56,16 @@ hr {
   padding-bottom: 34px;
 }
 #footerLogo {
-  max-width: 200px!important;
+  max-width: 200px !important;
 }
 .footerLink {
-  color:#a7abae;
-  transition: color .2s;
+  color: #a7abae;
+  transition: color 0.2s;
 }
-.footerLink:hover, .footerLink:active, .footerLink:focus{
-  color:white!important;
+.footerLink:hover,
+.footerLink:active,
+.footerLink:focus {
+  color: white !important;
   text-decoration: none;
 }
 
@@ -71,8 +74,8 @@ hr {
   color: white;
   border-radius: 0;
   border-width: 3px;
-  border-color:white;
-  transition: color .2s, border-color .2s;
+  border-color: white;
+  transition: color 0.2s, border-color 0.2s;
   font-weight: bold;
 }
 .giant-white {
@@ -83,30 +86,32 @@ hr {
   color: #373a3c;
   border-color: #373a3c;
 }
-.giant-link:hover, .giant-link:active, .giant-link:focus {
-  color: #8c8c8c!important;
-  background-color: transparent!important;
-  border-color: #8c8c8c!important;
+.giant-link:hover,
+.giant-link:active,
+.giant-link:focus {
+  color: #8c8c8c !important;
+  background-color: transparent !important;
+  border-color: #8c8c8c !important;
 }
 
 /*Middle Dynamic Sections*/
 .logo {
   max-width: 400px;
-  width:100%!important;
+  width: 100% !important;
   height: auto;
-  margin-bottom: .8em;
+  margin-bottom: 0.8em;
 }
 .flex-container-large {
-  display:none;
+  display: none;
   width: 100%;
 }
 .flex-container-medium {
-  display:none;
+  display: none;
   width: 100%;
   padding-bottom: 0;
 }
 .flex-container-small {
-  display:none;
+  display: none;
   width: 100%;
   padding-top: 0;
 }
@@ -116,20 +121,20 @@ hr {
 }
 
 /*Middle Dynamic Content*/
-.atlas  {
+.atlas {
   height: 400px;
-  background-image: url('https://aswwu.com/media/images/home_page/atlas-background.jpg');
+  background-image: url("https://aswwumask.com/media/images/home_page/atlas-background.jpg");
   background-size: cover;
 }
-.collegian  {
+.collegian {
   height: 400px;
-  background-image: url('https://aswwu.com/media/images/home_page/collegian-background.jpg');
+  background-image: url("https://aswwumask.com/media/images/home_page/collegian-background.jpg");
   background-size: cover;
 }
 .outdoors {
   height: 400px;
   line-height: 1px;
-  background-image: url('https://aswwu.com/media/images/home_page/outdoors-background.jpg');
+  background-image: url("https://aswwumask.com/media/images/home_page/outdoors-background.jpg");
   background-position: right;
   background-size: cover;
 }
@@ -203,10 +208,10 @@ hr {
     display: none;
   }
   .flex-container-medium {
-    display:flex;
+    display: flex;
   }
   .flex-container-small {
-    display:flex;
+    display: flex;
   }
   #medium {
     padding-bottom: 0px;
@@ -229,7 +234,7 @@ hr {
   .outdoors > h1 {
     font-size: 50px;
   }
-  .constrain-height{
+  .constrain-height {
     width: 330px;
     margin: auto;
   }
@@ -240,10 +245,10 @@ hr {
     display: none;
   }
   .flex-container-medium {
-    display:flex;
+    display: flex;
   }
   .flex-container-small {
-    display:flex;
+    display: flex;
   }
   #medium {
     padding-bottom: 0px;

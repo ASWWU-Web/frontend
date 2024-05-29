@@ -36,7 +36,7 @@ export class VoteComponent implements OnInit {
   constructor(private ers: ElectionsRequestService, private elementRef: ElementRef) {
     // sets background color
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
-   }
+  }
 
   ngOnInit() {
     // get the current election
@@ -44,8 +44,8 @@ export class VoteComponent implements OnInit {
     electionObservable.subscribe((electionData) => {
       this.election = electionData;
       // get positions for the election type
-      const positionObservable = this.ers.listPosition({'election_type': this.election.election_type, 'active': true});
-        positionObservable.subscribe((positionData) => {
+      const positionObservable = this.ers.listPosition({ 'election_type': this.election.election_type, 'active': true });
+      positionObservable.subscribe((positionData) => {
         this.positions = positionData;
         this.visiblePositions = positionData;
         this.switchState = Switches.Start;
@@ -68,21 +68,21 @@ export class VoteComponent implements OnInit {
       // switch to district selection state
       if (this.switchState === Switches.Start && this.election.election_type === 'senate') {
         this.switchState = Switches.District;
-      // switch to voting state
+        // switch to voting state
       } else if (this.switchState === Switches.Start && this.election.election_type !== 'senate') {
         this.switchState = Switches.Vote;
-      // start over if the function is called and the vote process is complete
+        // start over if the function is called and the vote process is complete
       } else if (this.switchState === Switches.Complete) {
         this.startOver();
-      // switch to the next state
+        // switch to the next state
       } else {
         this.switchState++;
       }
-    // start over
+      // start over
     } else if (transition === PageTransitions.StartOver) {
       this.startOver();
     } else if (transition === PageTransitions.ASWWU) {
-      window.location.href = 'https://aswwu.com';
+      window.location.href = 'https://aswwumask.com';
     }
   }
 

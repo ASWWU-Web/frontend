@@ -1,5 +1,5 @@
-import {Component, NgModule, ElementRef} from '@angular/core';
-import {ActivatedRoute} from '@angular/router';
+import { Component, NgModule, ElementRef } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { HermesService } from 'src/shared-ng/services/services';
 
 @Component({
@@ -10,7 +10,7 @@ import { HermesService } from 'src/shared-ng/services/services';
       <p>If you have any questions, contact <a href="mailto:aswwu@wallawalla.edu">ASWWU@wallawalla.edu</a> An ASWWU departmental head will be contacting you soon!</p>
       <br>
       <br>
-      <a class="btn" style="color: white; background-color: #803fa4;" href="https://aswwu.com/jobs">More Opportunities</a>
+      <a class="btn" style="color: white; background-color: #803fa4;" href="https://aswwumask.com/jobs">More Opportunities</a>
     </div>
   </div>
   `,
