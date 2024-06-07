@@ -1,4 +1,5 @@
 [submodule "src/shared-ng"]
 	path = src/shared-ng
 	url = https://github.com/ASWWU-Web/shared-ng.git
+	branch = master
 	
