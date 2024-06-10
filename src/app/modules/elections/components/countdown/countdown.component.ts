@@ -7,8 +7,8 @@ import { tz } from 'moment-timezone';
   styleUrls: ['./countdown.component.css']
 })
 export class CountdownComponent implements OnInit {
-  // @Input() date: momentTz;
-  // @Input() now: momentTz;
+  @Input() date: typeof tz;
+  @Input() now: typeof tz;
   @Input() status: string;
 
   constructor() { }
