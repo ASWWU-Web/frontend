@@ -6,7 +6,7 @@
     <br />
     <div class="align-items-center">
       <br />
-      <form #f="ng-form" (ngSubmit)="updateQuery()">
+      <form ngForm (ngSubmit)="updateQuery()">
         <div
           class="form-group row white-box"
           *ngFor="let pair of criteria; let i = index"
