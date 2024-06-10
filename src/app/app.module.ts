@@ -65,9 +65,6 @@ import { AtlasComponent } from "./modules/atlas/atlas.component";
     AuthService,
   ],
   bootstrap: [AppComponent],
-  entryComponents: [
-
-  ]
 })
 export class AppModule {
   constructor() {

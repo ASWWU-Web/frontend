@@ -79,12 +79,6 @@ import {
   ],
   providers: [
     ElectionsRequestService
-  ],
-  entryComponents: [
-    AdminElectionsCandidateModalComponent,
-    AdminElectionsRowComponent,
-    AdminPositionsRowComponent,
-    AdminBallotModalContentComponent
   ]
 })
 export class ElectionsModule {

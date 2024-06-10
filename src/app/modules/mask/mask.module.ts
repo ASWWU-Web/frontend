@@ -65,10 +65,6 @@ import {
   ],
   providers: [
     MaskRequestService
-  ],
-  entryComponents: [
-    ProfileModalComponent,
-    ProfileModalContentComponent
   ]
 })
 export class MaskModule {
