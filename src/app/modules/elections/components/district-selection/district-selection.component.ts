@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { Position, Election, Vote } from 'src/shared-ng/interfaces/elections';
 import { ElectionsRequestService } from 'src/shared-ng/services/services';
 
@@ -22,7 +22,7 @@ export class DistrictSelectionComponent implements OnInit {
 
   // member variables
   selectedDistrict: number = null;  // the currently selected district
-  districtFormGroup: FormGroup;  // the form group controller for choosing a district
+  districtFormGroup: UntypedFormGroup;  // the form group controller for choosing a district
   stagedVotes: {vote: Vote}[];
 
   constructor(private ers: ElectionsRequestService) {
@@ -35,8 +35,8 @@ export class DistrictSelectionComponent implements OnInit {
     for (const vote of this.votes) {
       this.stagedVotes.push({vote: vote});
     }
-    this.districtFormGroup = new FormGroup({
-      district: new FormControl()
+    this.districtFormGroup = new UntypedFormGroup({
+      district: new UntypedFormControl()
     });
   }
 

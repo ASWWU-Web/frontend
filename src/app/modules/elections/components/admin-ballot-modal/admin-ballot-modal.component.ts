@@ -1,7 +1,7 @@
 import { Component, OnInit, Output, Input } from '@angular/core';
 import { NgbModal, NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
+import { UntypedFormBuilder, UntypedFormGroup, UntypedFormArray, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { debounceTime, distinctUntilChanged, map, switchMap} from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -20,10 +20,10 @@ export class AdminBallotModalContentComponent implements OnInit {
   @Input() candidateData: Candidate[] = [];
   @Output() saveBallot: EventEmitter<BallotPOST> = new EventEmitter();
   @Output() closeModal: EventEmitter<null> = new EventEmitter();
-  ballotForm: FormGroup;
+  ballotForm: UntypedFormGroup;
   clostFormFlag = false;
 
-  constructor(public activeModal: NgbActiveModal, private fb: FormBuilder, private rs: RequestService) { }
+  constructor(public activeModal: NgbActiveModal, private fb: UntypedFormBuilder, private rs: RequestService) { }
 
   ngOnInit() {
     // set up the ballot form
@@ -35,7 +35,7 @@ export class AdminBallotModalContentComponent implements OnInit {
   }
 
   setPositions(): void {
-    const control = <FormArray>this.ballotForm.controls.positions;
+    const control = <UntypedFormArray>this.ballotForm.controls.positions;
     this.positionsData.forEach(position => {
       control.push(this.fb.group({
         candidates: this.setCandidates(position),
@@ -44,8 +44,8 @@ export class AdminBallotModalContentComponent implements OnInit {
     });
   }
 
-  setCandidates(position: Position): FormArray {
-    const arr = new FormArray([]);
+  setCandidates(position: Position): UntypedFormArray {
+    const arr = new UntypedFormArray([]);
     this.getCandidates(position).forEach(() => {
       arr.push(this.fb.group({
         candidate: false
@@ -54,8 +54,8 @@ export class AdminBallotModalContentComponent implements OnInit {
     return arr;
   }
 
-  setWriteIns(): FormArray {
-    const arr = new FormArray([]);
+  setWriteIns(): UntypedFormArray {
+    const arr = new UntypedFormArray([]);
     for (let w = 0; w < this.selectedElection.max_votes; w++) {
       arr.push(this.fb.group({
         writein: ''

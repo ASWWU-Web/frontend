@@ -2,7 +2,7 @@
 // tslint:disable:max-line-length
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { ElectionsRequestService } from 'src/shared-ng/services/services';
 import { debounceTime, distinctUntilChanged, map, switchMap} from 'rxjs/operators';
@@ -91,7 +91,7 @@ export class AdminCandidatesRowComponent implements OnInit {
   @Input() positions: Position[];
   @Output() notSaved: EventEmitter<boolean> = new EventEmitter();
   @Output() remove: EventEmitter<string> = new EventEmitter();
-  rowFormGroup: FormGroup;
+  rowFormGroup: UntypedFormGroup;
 
   constructor(public activeModal: NgbActiveModal, private ers: ElectionsRequestService) {
   }
@@ -104,10 +104,10 @@ export class AdminCandidatesRowComponent implements OnInit {
       }
     }
     this.positions = arr;
-      this.rowFormGroup = new FormGroup({
-          position: new FormControl(this.rowData.position, [Validators.required]),
-          username: new FormControl(this.rowData.username, [Validators.required]),
-          display_name: new FormControl(this.rowData.display_name, [Validators.required])
+      this.rowFormGroup = new UntypedFormGroup({
+          position: new UntypedFormControl(this.rowData.position, [Validators.required]),
+          username: new UntypedFormControl(this.rowData.username, [Validators.required]),
+          display_name: new UntypedFormControl(this.rowData.display_name, [Validators.required])
       });
   }
 

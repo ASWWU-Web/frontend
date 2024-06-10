@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ElectionsRequestService } from 'src/shared-ng/services/services';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { Position } from 'src/shared-ng/interfaces/elections';
 
@@ -13,7 +13,7 @@ import { Position } from 'src/shared-ng/interfaces/elections';
 export class AdminPositionsRowComponent implements OnInit {
 
   @Input() rowData: Position;
-  rowFormGroup: FormGroup;
+  rowFormGroup: UntypedFormGroup;
   positions: Position[];
 
   constructor(private modalService: NgbModal, private ers: ElectionsRequestService) { }
@@ -22,11 +22,11 @@ export class AdminPositionsRowComponent implements OnInit {
     // initialize class members
     // this.newRowData = Object.assign({}, this.rowData);
     this.positions = [];
-    this.rowFormGroup = new FormGroup({
-      election_type: new FormControl(this.rowData.election_type, [Validators.required]),
-      position: new FormControl(this.rowData.position, [Validators.required]),
-      active: new FormControl(this.rowData.active, [Validators.required]),
-      order: new FormControl(this.rowData.order, [Validators.required])
+    this.rowFormGroup = new UntypedFormGroup({
+      election_type: new UntypedFormControl(this.rowData.election_type, [Validators.required]),
+      position: new UntypedFormControl(this.rowData.position, [Validators.required]),
+      active: new UntypedFormControl(this.rowData.active, [Validators.required]),
+      order: new UntypedFormControl(this.rowData.order, [Validators.required])
     });
   }
 
