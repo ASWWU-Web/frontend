@@ -54,6 +54,7 @@ import { HomepageRoutes } from './homepage.routes';
     SuperDuperService,
     CalendarService,
     HomepageRequestService,
+    HermesService
   ]
 })
 export class HomepageModule { }
