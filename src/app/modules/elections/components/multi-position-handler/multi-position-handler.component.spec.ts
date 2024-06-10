@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { MultiPositionHandlerComponent } from './multi-position-handler.component';
 
@@ -6,7 +6,7 @@ describe('MultiPositionHandlerComponent', () => {
   let component: MultiPositionHandlerComponent;
   let fixture: ComponentFixture<MultiPositionHandlerComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ MultiPositionHandlerComponent ]
     })

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { AdminBallotModalComponent } from './admin-ballot-modal.component';
 
@@ -6,7 +6,7 @@ describe('AdminBallotModalComponent', () => {
   let component: AdminBallotModalComponent;
   let fixture: ComponentFixture<AdminBallotModalComponent>;
 
-  beforeEach(async(() => {
+  beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [ AdminBallotModalComponent ]
     })
