@@ -46,15 +46,13 @@ import { AtlasComponent } from "./modules/atlas/atlas.component";
     AtlasComponent
   ],
   imports: [
-    NgbModule,
     BrowserModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule,
     AppRoutingModule,
     FontAwesomeModule,
-    NgbModule.forRoot(),
+    NgbModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
