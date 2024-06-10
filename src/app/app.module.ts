@@ -7,7 +7,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -30,7 +29,7 @@ import {
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
-import {AtlasComponent} from "./modules/atlas/atlas.component";
+import { AtlasComponent } from "./modules/atlas/atlas.component";
 
 
 @NgModule({
@@ -49,7 +48,6 @@ import {AtlasComponent} from "./modules/atlas/atlas.component";
   imports: [
     NgbModule,
     BrowserModule,
-    HttpModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

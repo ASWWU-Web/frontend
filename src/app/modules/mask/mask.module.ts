@@ -3,7 +3,6 @@ import { CommonModule, Location } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -44,7 +43,6 @@ import {
   ],
   imports: [
     CommonModule,
-    HttpModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -92,10 +90,10 @@ export class MaskModule {
 
     // sub navbar links
     const links: SubNavbarLink[] = [
-      {linkText: 'Search', linkURI: '/mask/search'},
-      {linkText: 'Super Search', linkURI: '/mask/super-search'},
-      {linkText: 'Random Profile', linkURI: '/mask/random'},
-      {linkText: 'Birthdays', linkURI: '/mask/birthdays'}
+      { linkText: 'Search', linkURI: '/mask/search' },
+      { linkText: 'Super Search', linkURI: '/mask/super-search' },
+      { linkText: 'Random Profile', linkURI: '/mask/random' },
+      { linkText: 'Birthdays', linkURI: '/mask/birthdays' }
     ];
 
     // send links to page
