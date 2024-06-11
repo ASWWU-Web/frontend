@@ -1,12 +1,14 @@
 <!-- id -->
 <td>
-  {{rowData.id | slice:0:8 }}
+  {{ rowData.id | slice : 0 : 8 }}
 </td>
 <!-- position -->
 <td>
   <form [formGroup]="rowFormGroup">
     <select formControlName="position" class="custom-select">
-      <option *ngFor="let p of positions" [value]="p.id">{{p.position}}</option>
+      <option *ngFor="let p of positions" [value]="p.id">
+        {{ p.position }}
+      </option>
     </select>
   </form>
 </td>
@@ -15,7 +17,15 @@
   <form [formGroup]="rowFormGroup">
     <div class="form-group">
       <div class="input-group">
-        <div class="col-md-12 p-1"><input type="text" class="form-control" [ngbTypeahead]="search" editable placeholder="Username" formControlName="username" /></div>
+        <div class="col-md-12 p-1">
+          <input
+            type="text"
+            class="form-control"
+            [ngbTypeahead]="search"
+            placeholder="Username"
+            formControlName="username"
+          />
+        </div>
       </div>
     </div>
   </form>
@@ -25,7 +35,15 @@
   <form [formGroup]="rowFormGroup">
     <div class="form-group">
       <div class="input-group">
-          <div class="col-md-12 p-1"><input type="text" class="form-control" editable placeholder="Display name" formControlName="display_name" /></div>
+        <div class="col-md-12 p-1">
+          <input
+            type="text"
+            class="form-control"
+            editable
+            placeholder="Display name"
+            formControlName="display_name"
+          />
+        </div>
       </div>
     </div>
   </form>
@@ -33,7 +51,16 @@
 <!-- buttons -->
 <td>
   <form [formGroup]="rowFormGroup" (ngSubmit)="saveRow()">
-    <button type="submit" class="btn btn-success" [disabled]="rowFormGroup.invalid" [ngClass]="{'btn-danger': rowFormGroup.dirty}">Save</button>
-    <button type="button" class="btn btn-danger" (click)="deleteRow()">Remove</button>
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="rowFormGroup.invalid"
+      [ngClass]="{ 'btn-danger': rowFormGroup.dirty }"
+    >
+      Save
+    </button>
+    <button type="button" class="btn btn-danger" (click)="deleteRow()">
+      Remove
+    </button>
   </form>
 </td>

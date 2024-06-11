@@ -3,8 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { HttpClientModule } from '@angular/common/http';
@@ -67,7 +66,7 @@ import { AtlasComponent } from "./modules/atlas/atlas.component";
   bootstrap: [AppComponent],
 })
 export class AppModule {
-  constructor() {
-    library.add(faSearch);
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faSearch);
   }
 }

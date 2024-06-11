@@ -6,7 +6,7 @@ import { RequestService } from '../../../../../shared-ng/services/services';
 @Component({
   selector: 'profile-sm',
   templateUrl: 'profile-sm.component.html',
-  styleUrls: [ 'profile-sm.styles.css' ],
+  styleUrls: ['profile-sm.styles.css'],
   inputs: ['searchResult']
 })
 
@@ -14,7 +14,7 @@ import { RequestService } from '../../../../../shared-ng/services/services';
 export class ProfileSmComponent {
   link: string = "";
 
-  constructor(private rs: RequestService) {}
+  constructor(private rs: RequestService) { }
 
   ngOnInit() {
     this.link = this.getPhotoLinkSync(this.searchResult.photo);
@@ -23,11 +23,11 @@ export class ProfileSmComponent {
   }
 
   @Input() searchResult: any;
-  @Input('year') year: String = undefined;
+  @Input('year') year: string = undefined;
   current_year = CURRENT_YEAR;
 
   // Photo url to link function returns proper url and BLANK photo if photo == "None"
-  getPhotoLinkSync(url: string) {    
+  getPhotoLinkSync(url: string) {
     var link = "";
     if (url && url != 'None') {
       link = MEDIA_SM + '/' + url;
@@ -38,11 +38,11 @@ export class ProfileSmComponent {
   }
   // Photo url to link function returns proper url and BLANK photo if photo == "None"
   getPhotoLinkAsync(url: string) {
-    return new Promise((resolve, reject) => {      
+    return new Promise((resolve, reject) => {
       var link = this.getPhotoLinkSync(url);
-      
+
       this.rs.get(link).subscribe(
-          (data: any) => {
+        (data: any) => {
           resolve(link);
         },
         (response: HttpErrorResponse) => { // why does requesting an image resource always respond with error?
