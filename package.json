@@ -6,7 +6,7 @@
     "ng": "ng",
     "start": "ng serve",
     "start-port": "ng serve --host 0.0.0.0   --port 4200 --disable-host-check",
-    "build": "ng build --prod --base-href=/",
+    "build": "ng build --configuration production --deploy-url /",
     "build:dev": "ng build -prod --base-href /dev --deploy-url /dev",
     "test": "ng test",
     "lint": "ng lint",
