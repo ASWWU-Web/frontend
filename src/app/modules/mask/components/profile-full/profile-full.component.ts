@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { ProfileModel } from '../../profile.model';
 import { FieldsInOrder } from '../../fields';
 import { MEDIA_MD, DEFAULT_PHOTO, SAML_URL, CURRENT_YEAR } from '../../../../../shared-ng/config';
@@ -16,8 +16,10 @@ export class ProfileFullComponent {
 
   fieldsInOrder: string[] = FieldsInOrder;
   currentYear: string = CURRENT_YEAR;
-
-  constructor(public activeModal: NgbActiveModal, private as: AuthService) { }
+  public activeModal: NgbActiveModal;
+  constructor(private as: AuthService) {
+    this.activeModal = inject(NgbActiveModal);
+  }
 
   displayKey(key: string): string { return key.replace(/_/g, ' '); }
 
@@ -39,5 +41,8 @@ export class ProfileFullComponent {
       return '//' + website;
     }
     return website;
+  }
+  closeModal() {
+    this.activeModal.close('Close click');
   }
 }

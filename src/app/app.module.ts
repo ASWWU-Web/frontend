@@ -7,7 +7,7 @@ import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontaweso
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // shared-ng components
 import {
@@ -62,6 +62,7 @@ import { AtlasComponent } from "./modules/atlas/atlas.component";
     RequestService,
     HermesService,
     AuthService,
+    NgbActiveModal
   ],
   bootstrap: [AppComponent],
 })
