@@ -1,7 +1,7 @@
 // https://alligator.io/angular/reactive-forms-formarray-dynamic-fields/
 // tslint:disable:component-selector
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
-import { FormGroup, FormBuilder, FormArray, Validators, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormBuilder, FormArray, Validators, UntypedFormControl } from '@angular/forms';
 import { ElectionsRequestService } from 'src/shared-ng/services/services';
 import { CURRENT_YEAR, MEDIA_SM, DEFAULT_PHOTO } from 'src/shared-ng/config';
 import { Observable, of, forkJoin } from 'rxjs';
@@ -25,16 +25,16 @@ export class VoteFormComponent implements OnInit {
 
   candidates: {info: Candidate, photoUri: string}[] = [];
   stagedVotes: {vote: Vote, toDelete: boolean}[]; // only ever set toDelete to true if it also exists on the server (vote.id != null)
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
   defaultPhoto: string;
   numVotesToKeep: number;
   disableVoteStaging: boolean;
   serverErrorText: string;
   alertUser: boolean;
 
-  constructor(private fb: FormBuilder, private ers: ElectionsRequestService) {
+  constructor(private fb: UntypedFormBuilder, private ers: ElectionsRequestService) {
     this.defaultPhoto = MEDIA_SM + '/' + DEFAULT_PHOTO;
-    this.formGroup = new FormGroup({writeIn: new FormControl('')});
+    this.formGroup = new UntypedFormGroup({writeIn: new UntypedFormControl('')});
     this.stagedVotes = [];
     this.numVotesToKeep = 0;
     this.disableVoteStaging = false;

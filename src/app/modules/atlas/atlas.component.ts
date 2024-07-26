@@ -9,7 +9,7 @@ import {} from 'googlemaps';
 })
 export class AtlasComponent implements OnInit {
 
-  @ViewChild('map') mapElement: any;
+  @ViewChild('map', { static: true }) mapElement: any;
   map: google.maps.Map;
 
   atlasEmployees: { role: string, username: string, photoURL: string, full_name: string }[] = [

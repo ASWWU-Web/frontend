@@ -8,7 +8,7 @@ import { debounceTime, distinctUntilChanged, tap, catchError, switchMap, map } f
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 
 import { HomepageRequestService } from '../../../../../shared-ng/services/services';
-import { FormGroup, FormControl } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
 
 @Component({
   selector: 'super-duper',
@@ -37,10 +37,10 @@ export class SuperDuperComponent implements OnInit {
   maskPageRoute = 'mask/search?query=';
   pagesPageRoute = ''; // search route with query
   jobsPageRoute = ''; // search route with query
-  formGroup: FormGroup;
+  formGroup: UntypedFormGroup;
 
   constructor(private hprs: HomepageRequestService, private router: Router) {
-    this.formGroup = new FormGroup({name: new FormControl('')});
+    this.formGroup = new UntypedFormGroup({name: new UntypedFormControl('')});
   }
 
   ngOnInit() {}

@@ -9,7 +9,7 @@ import { HermesService } from '../../../../../shared-ng/services/services';
 })
 export class HomeComponent implements OnInit {
 
-  bgLink = 'https://aswwu.com/media/images/background/background.jpg';
+  bgLink = 'https://aswwumask.com/media/images/background/background.jpg';
   bgLinkChanged = 'url(' + this.bgLink + ')';
 
   constructor(private hermesService: HermesService, private elementRef: ElementRef) {
@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
     // hides header and subnav bar
     hermesService.sendShowHeader(false);
     hermesService.sendShowSubNav(false);
-   }
+  }
 
   ngOnInit() { }
 }

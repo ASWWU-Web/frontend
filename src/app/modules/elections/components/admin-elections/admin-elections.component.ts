@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ElectionsRequestService } from 'src/shared-ng/services/services';
 import { AbstractControl } from '@angular/forms';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { AdminElectionsCandidateModalComponent } from '../admin-candidates/admin-elections-candidate-modal.component';
 import { Election, Candidate, Position } from 'src/shared-ng/interfaces/elections';
@@ -15,7 +15,7 @@ import { Election, Candidate, Position } from 'src/shared-ng/interfaces/election
 export class AdminElectionsRowComponent implements OnInit {
   @Input() rowData: Election;
   @Input() positions: Position[];
-  rowFormGroup: FormGroup;
+  rowFormGroup: UntypedFormGroup;
   candidates: Candidate[];
 
   constructor(private modalService: NgbModal, private ers: ElectionsRequestService) { }
@@ -24,12 +24,12 @@ export class AdminElectionsRowComponent implements OnInit {
     // initialize class members
     // this.newRowData = Object.assign({}, this.rowData);
     this.candidates = [];
-    this.rowFormGroup = new FormGroup({
-      name: new FormControl(this.rowData.name, [Validators.required]),
-      election_type: new FormControl(this.rowData.election_type, [Validators.required]),
-      start: new FormControl(this.rowData.start, [Validators.required, this.dateValidator]),
-      end: new FormControl(this.rowData.end, [Validators.required, this.dateValidator]),
-      max_votes: new FormControl(this.rowData.max_votes, [Validators.required])
+    this.rowFormGroup = new UntypedFormGroup({
+      name: new UntypedFormControl(this.rowData.name, [Validators.required]),
+      election_type: new UntypedFormControl(this.rowData.election_type, [Validators.required]),
+      start: new UntypedFormControl(this.rowData.start, [Validators.required, this.dateValidator]),
+      end: new UntypedFormControl(this.rowData.end, [Validators.required, this.dateValidator]),
+      max_votes: new UntypedFormControl(this.rowData.max_votes, [Validators.required])
     });
     // get candidates for this row
     if (this.rowData.id !== '') {

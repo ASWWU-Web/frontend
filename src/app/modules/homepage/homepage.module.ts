@@ -3,7 +3,6 @@ import { CommonModule, Location } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -38,7 +37,6 @@ import { HomepageRoutes } from './homepage.routes';
   ],
   imports: [
     CommonModule,
-    HttpModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -56,6 +54,7 @@ import { HomepageRoutes } from './homepage.routes';
     SuperDuperService,
     CalendarService,
     HomepageRequestService,
+    HermesService
   ]
 })
 export class HomepageModule { }

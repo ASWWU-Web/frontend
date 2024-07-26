@@ -3,13 +3,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // shared-ng components
 import {
@@ -30,7 +28,7 @@ import {
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
-import {AtlasComponent} from "./modules/atlas/atlas.component";
+import { AtlasComponent } from "./modules/atlas/atlas.component";
 
 
 @NgModule({
@@ -47,16 +45,13 @@ import {AtlasComponent} from "./modules/atlas/atlas.component";
     AtlasComponent
   ],
   imports: [
-    NgbModule,
     BrowserModule,
-    HttpModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule,
     AppRoutingModule,
     FontAwesomeModule,
-    NgbModule.forRoot(),
+    NgbModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
@@ -67,14 +62,12 @@ import {AtlasComponent} from "./modules/atlas/atlas.component";
     RequestService,
     HermesService,
     AuthService,
+    NgbActiveModal
   ],
   bootstrap: [AppComponent],
-  entryComponents: [
-
-  ]
 })
 export class AppModule {
-  constructor() {
-    library.add(faSearch);
+  constructor(library: FaIconLibrary) {
+    library.addIcons(faSearch);
   }
 }

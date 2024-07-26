@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -52,7 +51,6 @@ import {
   ],
   imports: [
     CommonModule,
-    HttpModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
@@ -81,15 +79,9 @@ import {
   ],
   providers: [
     ElectionsRequestService
-  ],
-  entryComponents: [
-    AdminElectionsCandidateModalComponent,
-    AdminElectionsRowComponent,
-    AdminPositionsRowComponent,
-    AdminBallotModalContentComponent
   ]
 })
-export class ElectionsModule { 
+export class ElectionsModule {
   constructor(private hs: HermesService) {
     this.hs.sendHeaderTitle('Elections');
   }

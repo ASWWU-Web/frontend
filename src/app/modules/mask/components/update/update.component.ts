@@ -10,6 +10,7 @@ import { AuthService, RequestService, MaskRequestService } from '../../../../../
 import { User, ProfileFull } from '../../../../../shared-ng/interfaces/interfaces';
 import { FieldSections, SelectFields, SearchableFields } from '../../fields';
 import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS } from '../../../../../shared-ng/config';
+import { ProfileModel } from '../../profile.model';
 
 @Component({
   selector: 'update-profile',
@@ -23,10 +24,10 @@ import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS } from '../../../
  * This is the component that handles a user updating their profile.
  * */
 export class UpdateComponent implements OnInit {
-  constructor(private rs: RequestService, private as: AuthService, private mrs: MaskRequestService, private router: Router) {}
+  constructor(private rs: RequestService, private as: AuthService, private mrs: MaskRequestService, private router: Router) { }
 
   profile: User;
-  fullProfile: ProfileFull;
+  fullProfile: ProfileModel;
   sections: string[][] = FieldSections;
   selectables: any = SelectFields;
   searchables: any = SearchableFields;
@@ -113,7 +114,7 @@ export class UpdateComponent implements OnInit {
   UploadProfile(): void {
 
     this.mrs.updateProfile(this.fullProfile.username, this.fullProfile).subscribe((data) => {
-      this.router.navigate(['/mask/profile', {username: this.fullProfile.username}]);
+      this.router.navigate(['/mask/profile', { username: this.fullProfile.username }]);
     }, undefined);
   }
 

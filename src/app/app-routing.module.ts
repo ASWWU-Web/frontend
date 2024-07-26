@@ -7,7 +7,7 @@ import {AtlasComponent} from "../app/modules/atlas/atlas.component";
 const routes: Routes = [
   {
     path: '',
-    loadChildren: './modules/homepage/homepage.module#HomepageModule'
+    loadChildren: () => import('./modules/homepage/homepage.module').then(m => m.HomepageModule)
   },
   {
     path: 'atlas',
@@ -15,15 +15,15 @@ const routes: Routes = [
   },
   {
     path: 'mask',
-    loadChildren: './modules/mask/mask.module#MaskModule'
+    loadChildren: () => import('./modules/mask/mask.module').then(m => m.MaskModule)
   },
   {
     path: 'jobs',
-    loadChildren: './modules/jobs/jobs.module#JobsModule'
+    loadChildren: () => import('./modules/jobs/jobs.module').then(m => m.JobsModule)
   },
   {
     'path': 'elections',
-    loadChildren: './modules/elections/elections.module#ElectionsModule'
+    loadChildren: () => import('./modules/elections/elections.module').then(m => m.ElectionsModule)
   },
   {
     path: '**',
@@ -32,7 +32,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {scrollPositionRestoration: 'enabled'})],
+  imports: [RouterModule.forRoot(routes, { scrollPositionRestoration: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,11 +1,11 @@
 // tslint:disable:component-selector
 // tslint:disable:max-line-length
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { NgbActiveModal, NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
+import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { ElectionsRequestService } from 'src/shared-ng/services/services';
-import { debounceTime, distinctUntilChanged, map, switchMap} from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { Candidate, Position } from 'src/shared-ng/interfaces/elections';
 
@@ -13,7 +13,8 @@ import { Candidate, Position } from 'src/shared-ng/interfaces/elections';
 @Component({
   selector: 'app-admin-elections-candidate-modal',
   templateUrl: './admin-elections-candidate-modal.component.html',
-  styleUrls: ['./admin-elections-candidate.component.css']
+  styleUrls: ['./admin-elections-candidate.component.css'],
+
 })
 export class AdminElectionsCandidateModalComponent implements OnInit {
   @Input() electionID: string;
@@ -24,22 +25,23 @@ export class AdminElectionsCandidateModalComponent implements OnInit {
 
   constructor(public activeModal: NgbActiveModal, private ers: ElectionsRequestService) {
     this.notSaved = false;
+
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   addCandidate() {
-      const empty_candidate: Candidate = {
-          id: '',
-          election: '',
-          position: '',
-          username: '',
-          display_name: ''
-      };
-      this.candidates.push(empty_candidate);
+    const empty_candidate: Candidate = {
+      id: '',
+      election: '',
+      position: '',
+      username: '',
+      display_name: ''
+    };
+    this.candidates.push(empty_candidate);
 
-      // disable new candidate button until row is saved or removed
-      this.notSaved = true;
+    // disable new candidate button until row is saved or removed
+    this.notSaved = true;
   }
 
   /**
@@ -53,7 +55,7 @@ export class AdminElectionsCandidateModalComponent implements OnInit {
     if (candidate_id === '') {
       let index = this.candidates.findIndex(candidate => candidate.id === '');
       if (this.candidates.length > index) {
-        index ++;
+        index++;
       }
       this.candidates.splice(index, 1);
       this.notSaved = false;
@@ -62,12 +64,12 @@ export class AdminElectionsCandidateModalComponent implements OnInit {
       const userConfirm = confirm('Warning! This action is permanent.');
       if (userConfirm) {
         candidateObservable.subscribe(() => {
-            // get specific index of row that user wants to delete
-            const index = this.candidates.findIndex(candidate => candidate.id === candidate_id );
-            this.candidates.splice(index, 1);
-          }, () => {
-            alert('Something went wrong 😢');
-          }
+          // get specific index of row that user wants to delete
+          const index = this.candidates.findIndex(candidate => candidate.id === candidate_id);
+          this.candidates.splice(index, 1);
+        }, () => {
+          alert('Something went wrong 😢');
+        }
         );
       }
     }
@@ -91,7 +93,7 @@ export class AdminCandidatesRowComponent implements OnInit {
   @Input() positions: Position[];
   @Output() notSaved: EventEmitter<boolean> = new EventEmitter();
   @Output() remove: EventEmitter<string> = new EventEmitter();
-  rowFormGroup: FormGroup;
+  rowFormGroup: UntypedFormGroup;
 
   constructor(public activeModal: NgbActiveModal, private ers: ElectionsRequestService) {
   }
@@ -104,18 +106,18 @@ export class AdminCandidatesRowComponent implements OnInit {
       }
     }
     this.positions = arr;
-      this.rowFormGroup = new FormGroup({
-          position: new FormControl(this.rowData.position, [Validators.required]),
-          username: new FormControl(this.rowData.username, [Validators.required]),
-          display_name: new FormControl(this.rowData.display_name, [Validators.required])
-      });
+    this.rowFormGroup = new UntypedFormGroup({
+      position: new UntypedFormControl(this.rowData.position, [Validators.required]),
+      username: new UntypedFormControl(this.rowData.username, [Validators.required]),
+      display_name: new UntypedFormControl(this.rowData.display_name, [Validators.required])
+    });
   }
 
   getNames(query: string) {
     if (query === '') {
-      return of({results: []});
+      return of({ results: [] });
     }
-    return this.ers.get('search/names', {'full_name': query});
+    return this.ers.get('search/names', { 'full_name': query });
   }
 
   search = (text$: Observable<string>) => {
@@ -123,7 +125,7 @@ export class AdminCandidatesRowComponent implements OnInit {
       debounceTime(300),
       distinctUntilChanged(),
       switchMap(data => this.getNames(data)),
-      map((data: {results: {username: string, full_name: string}[]}) => {
+      map((data: { results: { username: string, full_name: string }[] }) => {
         return data.results.map((item) => item.username);
       })
     );
@@ -131,25 +133,25 @@ export class AdminCandidatesRowComponent implements OnInit {
 
   // TODO: have child component send updated candidate array back to parent once new candidate is saved
   saveRow() {
-      // Note: formData is in the same shape as what the server expects for a POST request (essentially an elections object without the id member)
-      // this is not type safe, but we are doing it becuase the server will complain if an id is included in a post request
-      const formData = Object.assign({}, this.rowFormGroup.value);
-      const newCandidate: boolean = this.rowData.id.length === 0;
-      let saveObservable: Observable<any>;
+    // Note: formData is in the same shape as what the server expects for a POST request (essentially an elections object without the id member)
+    // this is not type safe, but we are doing it becuase the server will complain if an id is included in a post request
+    const formData = Object.assign({}, this.rowFormGroup.value);
+    const newCandidate: boolean = this.rowData.id.length === 0;
+    let saveObservable: Observable<any>;
 
-      if (newCandidate) {
-          saveObservable = this.ers.createCandidate(this.electionID, formData);
-      } else {
-        formData['election'] = this.electionID;
-        formData['id'] = this.rowData.id;
-        saveObservable = this.ers.updateCandidate(formData, this.electionID, this.rowData.id);
-      }
-      saveObservable.subscribe(
-          (data) => {
-          this.rowData = Object.assign({}, data);
-          this.rowFormGroup.markAsPristine();
-          this.notSaved.emit(false);
-          }, (err) => {
+    if (newCandidate) {
+      saveObservable = this.ers.createCandidate(this.electionID, formData);
+    } else {
+      formData['election'] = this.electionID;
+      formData['id'] = this.rowData.id;
+      saveObservable = this.ers.updateCandidate(formData, this.electionID, this.rowData.id);
+    }
+    saveObservable.subscribe(
+      (data) => {
+        this.rowData = Object.assign({}, data);
+        this.rowFormGroup.markAsPristine();
+        this.notSaved.emit(false);
+      }, (err) => {
       });
 
   }

@@ -1,21 +1,30 @@
 <div>
   <div class="container">
-    <ngb-tabset>
-      <ngb-tab title="Elections">
+    <ul ngbNav #nav="ngbNav" class="tabs">
+      <li ngbNavItem>
+        <a ngbNavLink>Elections</a>
         <ng-template ngbTabContent>
-          <app-admin-elections [data]="electionsData" [positions]="positionsData"></app-admin-elections>
+          <app-admin-elections
+            [data]="electionsData"
+            [positions]="positionsData"
+          ></app-admin-elections>
         </ng-template>
-      </ngb-tab>
-      <ngb-tab title="Positions">
+      </li>
+      <li ngbNavItem>
+        <a ngbNavLink>Positions</a>
         <ng-template ngbTabContent>
           <app-admin-positions [data]="positionsData"></app-admin-positions>
         </ng-template>
-      </ngb-tab>
-      <ngb-tab title="Ballots">
+      </li>
+      <li>
+        <a ngbNavLink>Ballots</a>
         <ng-template ngbTabContent>
-          <app-admin-ballots [electionsData]="electionsData" [positionsData]="positionsData"></app-admin-ballots>
+          <app-admin-ballots
+            [electionsData]="electionsData"
+            [positionsData]="positionsData"
+          ></app-admin-ballots>
         </ng-template>
-      </ngb-tab>
-    </ngb-tabset>
+      </li>
+    </ul>
   </div>
 </div>
