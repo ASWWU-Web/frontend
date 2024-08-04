@@ -24,6 +24,7 @@ import {
   RequestService,
   HermesService,
   AuthService,
+  UrlService
 } from '../shared-ng/services/services';
 import { ToastrModule } from 'ngx-toastr';
 
@@ -62,7 +63,8 @@ import { AtlasComponent } from "./modules/atlas/atlas.component";
     RequestService,
     HermesService,
     AuthService,
-    NgbActiveModal
+    UrlService,
+    NgbActiveModal,
   ],
   bootstrap: [AppComponent],
 })
