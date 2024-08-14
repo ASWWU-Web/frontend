@@ -8,6 +8,7 @@
     "start-port": "ng serve --host 0.0.0.0   --port 4200 --disable-host-check",
     "build": "ng build --configuration production --deploy-url /",
     "build:dev": "ng build --configuration development --deploy-url /dev",
+    "build:staging": "ng build --configuration staging --deploy-url /",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
