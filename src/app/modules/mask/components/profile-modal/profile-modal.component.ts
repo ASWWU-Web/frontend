@@ -1,12 +1,11 @@
 import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
 import { NgbModal, NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-import { CURRENT_YEAR} from '../../../../../shared-ng/config';
+import { CURRENT_YEAR } from '../../../../../shared-ng/config';
 import { ProfileModel } from '../../profile.model';
 import { MaskRequestService } from '../../../../../shared-ng/services/services'
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { PlatformLocation } from '@angular/common';
 import { Router } from '@angular/router';
-import { ProfileFullComponent } from '../profile-full/profile-full.component';
 
 @Component({
   selector: 'app-profile-modal-content',
@@ -23,7 +22,7 @@ export class ProfileModalContentComponent implements OnInit {
   display_url: string;
 
   constructor(public activeModal: NgbActiveModal, private mrs: MaskRequestService, private activatedRoute: ActivatedRoute,
-              private router: Router) { }
+    private router: Router) { }
 
   ngOnInit() {
     this.year = this.year ? this.year : CURRENT_YEAR;
@@ -43,7 +42,7 @@ export class ProfileModalContentComponent implements OnInit {
       this.profile = new ProfileModel(data)
     }, undefined);
     // this.rs.get(url, (data) => this.profile = new ProfileModel(data), undefined);
-    const stateObj = { hello: 'there'};
+    const stateObj = { hello: 'there' };
     history.pushState(stateObj, 'Profile View', this.display_url);
   }
 }
@@ -68,11 +67,11 @@ export class ProfileModalComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   open(username: string, year: string): void {
     // save the modal reference so we can close it
-    this.modal = this.modalService.open(ProfileModalContentComponent, {size: 'lg', windowClass: 'modal-adaptive'});
+    this.modal = this.modalService.open(ProfileModalContentComponent, { size: 'lg', windowClass: 'modal-adaptive' });
     // pass data to the modal inputs
     this.modal.componentInstance.username = username;
     this.modal.componentInstance.year = year;
@@ -80,7 +79,7 @@ export class ProfileModalComponent implements OnInit {
     this.backButton = true;
 
     // Promise is rejected if click outside of modal or exit button is clicked; resolved if back button is clicked
-    this.modal.result.then(() => {}, () => {
+    this.modal.result.then(() => { }, () => {
       this.backButton = false;
       history.back();
     });
