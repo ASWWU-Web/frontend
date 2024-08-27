@@ -9,7 +9,7 @@ import { HermesService } from '../../../../../shared-ng/services/services';
 })
 export class HomeComponent implements OnInit {
   // TODO: make this support multiple image types
-  bgLink = '/media/images/background/background.webp';
+  bgLink = 'assets/bg/background.webp';
   bgLinkChanged = 'url(' + this.bgLink + ')';
 
   constructor(private hermesService: HermesService, private elementRef: ElementRef) {
