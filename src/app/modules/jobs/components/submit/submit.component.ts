@@ -1,10 +1,10 @@
-import {Component, NgModule, OnInit, ElementRef} from '@angular/core';
-import {ActivatedRoute, Router } from '@angular/router';
+import { Component, NgModule, OnInit, ElementRef } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload';
 
 import { RequestService } from '../../../../../shared-ng/services/request.service';
 
-import {environment} from '../../../../../shared-ng/environments/environment';
+import { environment } from '../../../../../shared-ng/environments/environment';
 import { AuthService, HermesService, JobsRequestService } from '../../../../../shared-ng/services/services';
 import {
   ApplicationPOST,
@@ -13,13 +13,13 @@ import {
   User,
   FormPairView
 } from 'src/shared-ng/interfaces/interfaces';
-import {concat, forkJoin, Subscription} from 'rxjs';
-import {concatMap, switchMap, tap} from 'rxjs/operators';
+import { concat, forkJoin, Subscription } from 'rxjs';
+import { concatMap, switchMap, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'submit',
   templateUrl: 'submit.component.html',
-  providers: [ RequestService, JobsRequestService ]
+  providers: [RequestService, JobsRequestService]
 })
 
 export class SubmitComponent implements OnInit {
@@ -40,24 +40,24 @@ export class SubmitComponent implements OnInit {
     failed: 'Failed',
   };
 
-  formSection = {generic: 0, specific: 1};
+  formSection = { generic: 0, specific: 1 };
   formContent: FormPairView[] = [
-    {job: null, application: null},
-    {job: null, application: null}
+    { job: null, application: null },
+    { job: null, application: null }
   ];
 
   formID: number;
   currentUser: User;
   submitText = this.submitTextOptions.submit;
   file: any;
-  public uploader: FileUploader = new FileUploader({url: environment.SERVER_URL + '/forms/resume/upload'});
+  public uploader: FileUploader = new FileUploader({ url: environment.API_URL + '/forms/resume/upload' });
   buildLoginLink: () => string;
   userInfoSubscription: Subscription;
   resumeUploadStatus = this.resumeUploadStatusOptions.upload;
   errorText = this.errorTextOptions.noError;
 
   constructor(private route: ActivatedRoute, private rs: RequestService, private jrs: JobsRequestService,
-              private as: AuthService, private router: Router, private hermesService: HermesService, private elementRef: ElementRef) {
+    private as: AuthService, private router: Router, private hermesService: HermesService, private elementRef: ElementRef) {
     // sets background color
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
   }
@@ -104,7 +104,7 @@ export class SubmitComponent implements OnInit {
   updateFormApplication(formSection: number, data: ApplicationView): void {
     const expectedAnswers = this.formContent[formSection].job.questions.length;
     if (data.answers.length !== expectedAnswers) {
-      data.answers = this.formContent[formSection].job.questions.map(value => ({questionID: value.id, answer: ''}));
+      data.answers = this.formContent[formSection].job.questions.map(value => ({ questionID: value.id, answer: '' }));
     }
     this.formContent[formSection].application = data;
   }
@@ -149,10 +149,14 @@ export class SubmitComponent implements OnInit {
 
   onSubmit() {
     this.submitText = this.submitTextOptions.submitting;
-    const specificSubmission: ApplicationPOST = { jobID: this.formID, username: this.currentUser.username,
-                                                  answers: this.formContent[this.formSection.specific].application.answers };
-    const genericSubmission: ApplicationPOST = { jobID: this.genericFormId, username: this.currentUser.username,
-                                                 answers: this.formContent[this.formSection.generic].application.answers };
+    const specificSubmission: ApplicationPOST = {
+      jobID: this.formID, username: this.currentUser.username,
+      answers: this.formContent[this.formSection.specific].application.answers
+    };
+    const genericSubmission: ApplicationPOST = {
+      jobID: this.genericFormId, username: this.currentUser.username,
+      answers: this.formContent[this.formSection.generic].application.answers
+    };
     const generalObservable = this.jrs.postSubmission(genericSubmission);
     const specificObservable = this.jrs.postSubmission(specificSubmission);
 
@@ -160,7 +164,7 @@ export class SubmitComponent implements OnInit {
     concat(generalObservable, specificObservable).subscribe(
       data => this.successfulSubmission(),
       error => this.failedSubmission(),
-      () => {},
+      () => { },
     );
   }
 

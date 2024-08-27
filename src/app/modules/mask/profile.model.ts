@@ -3,7 +3,7 @@
  */
 
 import { ProfileFull } from 'src/shared-ng/interfaces/mask';
-import { MEDIA_URI, DEFAULT_PHOTO } from '../../../shared-ng/config';
+import { MEDIA_URI, DEFAULT_PHOTO, MEDIA_SM } from '../../../shared-ng/config';
 
 export class ProfileModel implements ProfileFull {
   wwuid: string;
@@ -71,7 +71,7 @@ export class ProfileModel implements ProfileFull {
   * */
   getPhotoLink(uri: string): string {
     if (!uri || uri == '') uri = this.photo || DEFAULT_PHOTO;
-    let photo = MEDIA_URI + "/img-sm/" + uri.replace(MEDIA_URI, "");
+    let photo = MEDIA_SM + uri.replace(MEDIA_URI, "");
     photo = photo.replace("//", "/");
     return photo;
   }

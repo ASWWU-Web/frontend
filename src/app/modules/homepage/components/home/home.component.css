@@ -123,18 +123,18 @@ hr {
 /*Middle Dynamic Content*/
 .atlas {
   height: 400px;
-  background-image: url("https://aswwumask.com/media/images/home_page/atlas-background.jpg");
+  background-image: url("/media/images/home_page/atlas-background.jpg");
   background-size: cover;
 }
 .collegian {
   height: 400px;
-  background-image: url("https://aswwumask.com/media/images/home_page/collegian-background.jpg");
+  background-image: url("/media/images/home_page/collegian-background.jpg");
   background-size: cover;
 }
 .outdoors {
   height: 400px;
   line-height: 1px;
-  background-image: url("https://aswwumask.com/media/images/home_page/outdoors-background.jpg");
+  background-image: url("/media/images/home_page/outdoors-background.jpg");
   background-position: right;
   background-size: cover;
 }

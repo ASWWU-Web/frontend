@@ -22,7 +22,7 @@ hr {
 
 #atlas-background {
   position: absolute;
-  background: url(https://aswwumask.com/media/images/atlas/atlasBackground.jpg);
+  background: url(/media/images/atlas/atlasBackground.jpg);
   background-size: cover;
   width: 100%;
   height: 920px;

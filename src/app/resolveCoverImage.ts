@@ -9,7 +9,7 @@ export function resolveCoverImage(cover_image_URI: string, media_link: string = 
   } else {
     if (cover_image_URI) {
       const image = cover_image_URI.replace('cms', '');
-      return (environment.SERVER_URL + '/pages/media/static' + image);
+      return (environment.API_URL + '/pages/media/static' + image);
     } else {
       return '';
     }

@@ -8,8 +8,8 @@ import { HermesService } from '../../../../../shared-ng/services/services';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-
-  bgLink = 'https://aswwumask.com/media/images/background/background.jpg';
+  // TODO: make this support multiple image types
+  bgLink = '/media/images/background/background.webp';
   bgLinkChanged = 'url(' + this.bgLink + ')';
 
   constructor(private hermesService: HermesService, private elementRef: ElementRef) {

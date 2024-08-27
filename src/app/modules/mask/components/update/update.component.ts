@@ -9,7 +9,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { AuthService, RequestService, MaskRequestService } from '../../../../../shared-ng/services/services';
 import { User, ProfileFull } from '../../../../../shared-ng/interfaces/interfaces';
 import { FieldSections, SelectFields, SearchableFields } from '../../fields';
-import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS } from '../../../../../shared-ng/config';
+import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS, MEDIA_SM } from '../../../../../shared-ng/config';
 import { ProfileModel } from '../../profile.model';
 
 @Component({
@@ -88,7 +88,7 @@ export class UpdateComponent implements OnInit {
   // Get the link for a given photo
   getPhotoLink(uri: string): string {
     if (!uri || uri == '') uri = this.fullProfile.photo || DEFAULT_PHOTO;
-    let photo = MEDIA_URI + "/img-sm/" + uri.replace(MEDIA_URI, "");
+    let photo = MEDIA_SM + uri.replace(MEDIA_URI, "");
     return photo;
   }
 

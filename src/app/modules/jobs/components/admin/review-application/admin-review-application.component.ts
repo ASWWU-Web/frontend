@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 @Component({
   selector: 'admin-review-app',
   templateUrl: 'admin-review-application.component.html',
-  providers: [ RequestService ]
+  providers: [RequestService]
 })
 
 export class AdminReviewApplicationComponent implements OnInit, OnDestroy {
@@ -23,13 +23,13 @@ export class AdminReviewApplicationComponent implements OnInit, OnDestroy {
   gApp: any;
   answers: any[] = [];
   gAnswers: any[] = [];
-  SERVER_URL: string = environment.SERVER_URL;
+  SERVER_URL: string = environment.API_URL;
   isResume = false;
   buildLoginLink: () => string;
   userInfoSubscription: Subscription;
 
   constructor(private route: ActivatedRoute, private rs: RequestService, private as: AuthService,
-              private hs: HermesService, private elementRef: ElementRef) {
+    private hs: HermesService, private elementRef: ElementRef) {
     // sets background color
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'white';
   }
@@ -60,58 +60,58 @@ export class AdminReviewApplicationComponent implements OnInit, OnDestroy {
   }
 
   getJobData() {
-      this.rs.get('/forms/job/view/1').subscribe((formData) => {
-        this.gForm = formData.form;
-        // GET request to retrieve previous application answers
-        this.rs.get('/forms/application/view/1/' + this.username).subscribe((applicationData) => {
-          this.gApp = applicationData.application;
-          if (applicationData.status == 'Application not found' || this.gApp.answers.length === 0) {
-            // build the empty answers array
-            this.gForm.questions.forEach((entry) => {
-              const answerObj = {questionID: entry.id, answer: ''};
-              this.gAnswers.push(answerObj);
-            });
-          } else {
-            this.gApp.answers.forEach((entry) => {
-              const answerObj = {questionID: entry.questionID, answer: entry.answer};
-              this.gAnswers.push(answerObj);
-            });
-          }
-        }, (err) => {
+    this.rs.get('/forms/job/view/1').subscribe((formData) => {
+      this.gForm = formData.form;
+      // GET request to retrieve previous application answers
+      this.rs.get('/forms/application/view/1/' + this.username).subscribe((applicationData) => {
+        this.gApp = applicationData.application;
+        if (applicationData.status == 'Application not found' || this.gApp.answers.length === 0) {
+          // build the empty answers array
           this.gForm.questions.forEach((entry) => {
-            const answerObj = {questionID: entry.id, answer: ''};
+            const answerObj = { questionID: entry.id, answer: '' };
             this.gAnswers.push(answerObj);
           });
+        } else {
+          this.gApp.answers.forEach((entry) => {
+            const answerObj = { questionID: entry.questionID, answer: entry.answer };
+            this.gAnswers.push(answerObj);
+          });
+        }
+      }, (err) => {
+        this.gForm.questions.forEach((entry) => {
+          const answerObj = { questionID: entry.id, answer: '' };
+          this.gAnswers.push(answerObj);
         });
-      }, undefined);
-      // GET request to retrieve the form
-      this.rs.get('/forms/job/view/' + this.formID).subscribe((formData) => {
-        this.form = formData.form;
-        // GET request to retrieve previous application answers
-        this.rs.get('/forms/application/view/' + this.formID + '/' + this.username).subscribe(
-          (applicationData) => {
-            this.app = applicationData.application;
-            this.isResumeUploaded();
-            if (applicationData.status == 'Application not found' || this.app.answers.length === 0) {
-              // build the empty answers array
-              this.form.questions.forEach((entry) => {
-                const answerObj = {questionID: entry.id, answer: ''};
-                this.answers.push(answerObj);
-              });
-            } else {
-              this.app.answers.forEach((entry) => {
-                const answerObj = {questionID: entry.questionID, answer: entry.answer};
-                this.answers.push(answerObj);
-              });
-            }
-          }, (err) => {
+      });
+    }, undefined);
+    // GET request to retrieve the form
+    this.rs.get('/forms/job/view/' + this.formID).subscribe((formData) => {
+      this.form = formData.form;
+      // GET request to retrieve previous application answers
+      this.rs.get('/forms/application/view/' + this.formID + '/' + this.username).subscribe(
+        (applicationData) => {
+          this.app = applicationData.application;
+          this.isResumeUploaded();
+          if (applicationData.status == 'Application not found' || this.app.answers.length === 0) {
+            // build the empty answers array
             this.form.questions.forEach((entry) => {
-              const answerObj = {questionID: entry.id, answer: ''};
+              const answerObj = { questionID: entry.id, answer: '' };
+              this.answers.push(answerObj);
+            });
+          } else {
+            this.app.answers.forEach((entry) => {
+              const answerObj = { questionID: entry.questionID, answer: entry.answer };
               this.answers.push(answerObj);
             });
           }
-        );
-      }, undefined);
+        }, (err) => {
+          this.form.questions.forEach((entry) => {
+            const answerObj = { questionID: entry.id, answer: '' };
+            this.answers.push(answerObj);
+          });
+        }
+      );
+    }, undefined);
   }
 
 
