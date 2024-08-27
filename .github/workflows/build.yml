@@ -4,6 +4,8 @@ on: [push]
 
 jobs:
   build:
+    env:
+      BUILD_ENV: ${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
     runs-on: ubuntu-latest
 
     strategy:
@@ -16,11 +18,16 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: yarn install, build, and test
         run: |
           git submodule update --init --recursive
           yarn install --frozen-lockfile
-          yarn run build
+          if [[ ${{ env.BUILD_ENV }} == 'production' ]]; then
+            yarn run build
+          else
+            yarn run build:staging
+          fi
         env:
           CI: true
       - name: prepare artifact
