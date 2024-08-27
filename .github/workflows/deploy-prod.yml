@@ -25,4 +25,4 @@ jobs:
       - name: Deploy to production
         run: |
           cd /tmp/frontend-artifact/frontend-payload
-          ./server_deploy.sh ${{ github.event.repository.name }} /tmp/frontend-artifact/frontend-payload
+          ./server_deploy.sh ${{ github.event.repository.name }} /tmp/frontend-artifact/frontend-payload prod

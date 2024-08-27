@@ -16,6 +16,7 @@
 
 SERVER_USER_HOST=$1  # e.g. <username>@<server_ip>
 DEPLOYMENT_PAYLOAD=$2  # e.g. ./<project_name>-payload/
+ENVIRONMENT=$3  # e.g. production, staging, etc
 
 PROJECT_NAME="frontend"
 
@@ -37,7 +38,7 @@ echo "[INFO] copy $DEPLOYMENT_PAYLOAD to server" &&
 scp -r "$DEPLOYMENT_PAYLOAD" "$SERVER_USER_HOST:$SERVER_PAYLOAD_LOCATION" &&
 
 ssh -t "$SERVER_USER_HOST" "
-  bash $SERVER_DEPLOY_SCRIPT_LOCATION \"$PROJECT_NAME\" \"$SERVER_PAYLOAD_LOCATION\"" &&
+  bash $SERVER_DEPLOY_SCRIPT_LOCATION \"$PROJECT_NAME\" \"$SERVER_PAYLOAD_LOCATION\" \"$ENVIRONMENT\"" &&
 
 echo ""
 echo "done. Verify that nothing was broken."
