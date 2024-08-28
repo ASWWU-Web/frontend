@@ -16,8 +16,8 @@ export class NavigatorComponent implements OnInit {
   @Input() primaryEvent: number = PageTransitions.NextPage;
   @Input() dangerEvent: number = PageTransitions.StartOver;
   // button enabled/disabled states
-  @Input() primaryDisabled: boolean = false;
-  @Input() dangerDisabled: boolean = false;
+  @Input() primaryDisabled = false;
+  @Input() dangerDisabled = false;
   // navigation button event emitters
   @Output() onButtonClick: EventEmitter<number> = new EventEmitter<number>();
 
@@ -25,7 +25,7 @@ export class NavigatorComponent implements OnInit {
 
   ngOnInit() {
     // scroll to the top of the window after page transition
-    scrollTo(0,0);
+    scrollTo(0, 0);
   }
 
   primaryClick() {

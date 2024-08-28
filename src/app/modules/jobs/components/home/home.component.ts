@@ -71,7 +71,9 @@ export class HomeComponent implements OnInit {
       // converted to color strings in the custom aswwu stylesheet
       // with simple string manipulations. this may not always be
       // the case in the future.
-      if (dept === 'Department Head') { dept = 'aswwu-dark'; }
+      if (dept === 'Department Head') {
+ dept = 'aswwu-dark';
+}
       const deptPart = dept.replace(' ', '-').toLowerCase();
       return `var(--color-${deptPart})`;
     }

@@ -1,5 +1,5 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../../../../shared-ng/config';
 import { RequestService } from '../../../../../shared-ng/services/services';
 
@@ -11,8 +11,8 @@ import { RequestService } from '../../../../../shared-ng/services/services';
 })
 
 
-export class ProfileSmComponent {
-  link: string = "";
+export class ProfileSmComponent implements OnInit {
+  link = "";
 
   constructor(private rs: RequestService) { }
 
@@ -23,12 +23,12 @@ export class ProfileSmComponent {
   }
 
   @Input() searchResult: any;
-  @Input('year') year: string = undefined;
+  @Input() year: string = undefined;
   current_year = CURRENT_YEAR;
 
   // Photo url to link function returns proper url and BLANK photo if photo == "None"
   getPhotoLinkSync(url: string) {
-    var link = "";
+    let link = "";
     if (url && url != 'None') {
       link = MEDIA_SM + '/' + url;
       if (url == DEFAULT_PHOTO) link = DEFAULT_PHOTO;
@@ -40,7 +40,7 @@ export class ProfileSmComponent {
   // Photo url to link function returns proper url and BLANK photo if photo == "None"
   getPhotoLinkAsync(url: string) {
     return new Promise((resolve, reject) => {
-      var link = this.getPhotoLinkSync(url);
+      let link = this.getPhotoLinkSync(url);
 
       this.rs.get(link).subscribe(
         (data: any) => {

@@ -1,5 +1,3 @@
-// tslint:disable:component-selector
-// tslint:disable:max-line-length
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { NgbActiveModal, NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
@@ -91,8 +89,8 @@ export class AdminCandidatesRowComponent implements OnInit {
   @Input() electionID: string;
   @Input() election_type: string;
   @Input() positions: Position[];
-  @Output() notSaved: EventEmitter<boolean> = new EventEmitter();
-  @Output() remove: EventEmitter<string> = new EventEmitter();
+  @Output() notSaved = new EventEmitter<boolean>();
+  @Output() remove = new EventEmitter<string>();
   rowFormGroup: UntypedFormGroup;
 
   constructor(public activeModal: NgbActiveModal, private ers: ElectionsRequestService) {
@@ -117,7 +115,7 @@ export class AdminCandidatesRowComponent implements OnInit {
     if (query === '') {
       return of({ results: [] });
     }
-    return this.ers.get('search/names', { 'full_name': query });
+    return this.ers.get('search/names', { full_name: query });
   }
 
   search = (text$: Observable<string>) => {

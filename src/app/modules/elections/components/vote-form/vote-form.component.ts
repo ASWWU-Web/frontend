@@ -1,5 +1,4 @@
 // https://alligator.io/angular/reactive-forms-formarray-dynamic-fields/
-// tslint:disable:component-selector
 import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
 import { UntypedFormGroup, UntypedFormBuilder, FormArray, Validators, UntypedFormControl } from '@angular/forms';
 import { ElectionsRequestService } from 'src/shared-ng/services/services';
@@ -153,7 +152,7 @@ export class VoteFormComponent implements OnInit {
     const stagedVoteIndex = this.indexOfObj(this.stagedVotes, ['vote', 'vote'], candidateUsername);
     if (stagedVoteIndex === -1) {
       const voteToStage = {
-        vote: vote,
+        vote,
         toDelete: false
       };
       this.stagedVotes.push(voteToStage);
@@ -205,7 +204,7 @@ export class VoteFormComponent implements OnInit {
     if (query === '') {
       return of({results: []});
     }
-    return this.ers.get('search/names', {'full_name': query});
+    return this.ers.get('search/names', {full_name: query});
   }
 
   search = (text$: Observable<string>) => {

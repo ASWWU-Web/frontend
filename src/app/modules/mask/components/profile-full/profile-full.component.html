@@ -19,19 +19,19 @@
           >
             <br />
             <a
-              *ngIf="key == 'phone'"
+              *ngIf="key === 'phone'"
               class="text-black"
               href="tel:{{ attribute + (last ? '' : ',') | unescape }}"
               >{{ attribute + (last ? "" : ",") | unescape }}</a
             >
             <a
-              *ngIf="key == 'email'"
+              *ngIf="key === 'email'"
               class="text-black"
               href="mailto:{{ attribute + (last ? '' : ',') | unescape }}"
               >{{ attribute + (last ? "" : ",") | unescape }}</a
             >
             <a
-              *ngIf="key == 'website'"
+              *ngIf="key === 'website'"
               class="text-black"
               href="{{
                 generateWebsiteLink(attribute) + (last ? '' : ',') | unescape
@@ -39,7 +39,7 @@
               >{{ attribute + (last ? "" : ",") | unescape }}</a
             >
             <a
-              *ngIf="key != 'phone' && key != 'email' && key != 'website'"
+              *ngIf="key !== 'phone' && key !== 'email' && key !== 'website'"
               class="text-black"
               [routerLink]="['/mask/search']"
               [queryParams]="{ query: key + '=' + attribute }"

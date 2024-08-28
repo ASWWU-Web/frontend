@@ -18,8 +18,8 @@ export class AdminBallotModalContentComponent implements OnInit {
   @Input() selectedElection: Election = null;
   @Input() positionsData: Position[] = [];
   @Input() candidateData: Candidate[] = [];
-  @Output() saveBallot: EventEmitter<BallotPOST> = new EventEmitter();
-  @Output() closeModal: EventEmitter<null> = new EventEmitter();
+  @Output() saveBallot = new EventEmitter<BallotPOST>();
+  @Output() closeModal = new EventEmitter<null>();
   ballotForm: UntypedFormGroup;
   clostFormFlag = false;
 
@@ -35,7 +35,7 @@ export class AdminBallotModalContentComponent implements OnInit {
   }
 
   setPositions(): void {
-    const control = <UntypedFormArray>this.ballotForm.controls.positions;
+    const control = this.ballotForm.controls.positions as UntypedFormArray;
     this.positionsData.forEach(position => {
       control.push(this.fb.group({
         candidates: this.setCandidates(position),
@@ -72,7 +72,7 @@ export class AdminBallotModalContentComponent implements OnInit {
     if (query === '') {
       return of({results: []});
     }
-    return this.rs.get('search/names', {'full_name': query});
+    return this.rs.get('search/names', {full_name: query});
   }
 
   search = (text$: Observable<string>) => {
@@ -141,7 +141,7 @@ export class AdminBallotModalComponent implements OnInit {
   @Input() selectedElection: Election = null;
   @Input() positionsData: Position[] = [];
   @Input() candidateData: Candidate[] = [];
-  @Output() saveBallot: EventEmitter<BallotPOST> = new EventEmitter();
+  @Output() saveBallot = new EventEmitter<BallotPOST>();
   modal: NgbModalRef;
 
   constructor(private modalService: NgbModal) { }

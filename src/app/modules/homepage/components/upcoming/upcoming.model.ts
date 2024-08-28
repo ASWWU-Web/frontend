@@ -6,10 +6,10 @@ export class UpcomingModel {
   display: boolean;
   // startTime: string;
   // endTime: string;
-  constructor(summary:string, htmlLink:string, start, end){
+  constructor(summary: string, htmlLink: string, start, end){
       this.summary = summary.slice(6);
       this.htmlLink = htmlLink;
-      if(start.hasOwnProperty("date") && end.hasOwnProperty("date")){
+      if (start.hasOwnProperty("date") && end.hasOwnProperty("date")){
         // this.startDate = start.date;
         this.startDate = this.extractDate(start.date);
         this.endDate = this.extractDate(end.date);
@@ -30,16 +30,16 @@ export class UpcomingModel {
       // else { console.log("There's been an error") }
   }
 
-  private extractDate(date:string):string {
-      let months = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];
-      let day = +date.slice(8,10);
-      let month = months[+date.slice(5,7) - 1];
+  private extractDate(date: string): string {
+      const months = ["Jan.", "Feb.", "Mar.", "Apr.", "May", "Jun.", "Jul.", "Aug.", "Sep.", "Oct.", "Nov.", "Dec."];
+      const day = +date.slice(8, 10);
+      const month = months[+date.slice(5, 7) - 1];
       // let year = date.slice(0,4);
       return month + " " + day;
   }
 
-  private extractTime(date:string):string {
-      
+  private extractTime(date: string): string {
+
       return "hello";
   }
 }

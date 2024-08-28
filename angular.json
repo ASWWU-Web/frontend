@@ -116,15 +116,6 @@
               "src/**/*.ts",
               "src/**/*.html"
             ]
-          },
-          "configurations": {
-            "dev": {
-              "builder": "@angular-eslint/builder:lint",
-              "lintFilePatterns": [
-                "src/**/*.ts",
-                "src/**/*.html"
-              ]
-            }
           }
         }
       }

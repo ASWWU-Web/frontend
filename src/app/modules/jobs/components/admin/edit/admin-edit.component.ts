@@ -8,7 +8,6 @@ import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChang
 import { JobView } from 'src/shared-ng/interfaces/interfaces';
 
 @Component({
-// tslint:disable-next-line: component-selector
   selector: 'admin-edit',
   templateUrl: './admin-edit.component.html',
   providers: [ RequestService, TypeAheadRequestService ]

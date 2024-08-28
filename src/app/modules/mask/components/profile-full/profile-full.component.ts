@@ -21,7 +21,9 @@ export class ProfileFullComponent {
     this.activeModal = inject(NgbActiveModal);
   }
 
-  displayKey(key: string): string { return key.replace(/_/g, ' '); }
+  displayKey(key: string): string {
+ return key.replace(/_/g, ' ');
+}
 
   getPhotoLink(url: string) {
     if (url && url != 'None') {

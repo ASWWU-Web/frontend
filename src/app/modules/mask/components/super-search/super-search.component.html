@@ -60,7 +60,7 @@
               <option
                 *ngFor="let options of selectables[criteria[i][0]]"
                 [value]="
-                  criteria[i][0] == 'privacy'
+                  criteria[i][0] === 'privacy'
                     ? selectables[criteria[i][0]].indexOf(options)
                     : options
                 "

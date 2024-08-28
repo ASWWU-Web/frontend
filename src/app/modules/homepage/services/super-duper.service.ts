@@ -38,11 +38,11 @@ export class SuperDuperService {
   private mapMask(response) {
     const toReturn = response.results.slice(0, 3).map(result => {
       return {
-        'main': result.full_name,
-        'sub': '', // we could add a sub text for each result, like major for mask results
-        'source': 'Mask',
-        'link': this.maskLink + result.username,
-        'top': false,
+        main: result.full_name,
+        sub: '', // we could add a sub text for each result, like major for mask results
+        source: 'Mask',
+        link: this.maskLink + result.username,
+        top: false,
       };
     });
     toReturn[0].top = true;
@@ -52,11 +52,11 @@ export class SuperDuperService {
   private mapJobs(query, response) {
     const toReturn = response.forms.filter(item => this.filterJobs(query, item)).slice(0, 3).map(result => {
       return {
-        'main': result.job_name,
-        'sub': '',
-        'source': 'Jobs',
-        'link': this.jobLink + result.jobID,
-        'top': false,
+        main: result.job_name,
+        sub: '',
+        source: 'Jobs',
+        link: this.jobLink + result.jobID,
+        top: false,
       };
     });
     toReturn[0].top = true;
@@ -66,11 +66,11 @@ export class SuperDuperService {
   private mapPages(response) {
     const toReturn = response.results.slice(0, 3).map(result => {
       return {
-        'main': result.title,
-        'sub': '',
-        'source': 'Pages',
-        'link': this.pageLink + result.url,
-        'top': false,
+        main: result.title,
+        sub: '',
+        source: 'Pages',
+        link: this.pageLink + result.url,
+        top: false,
       };
     });
     toReturn[0].top = true;

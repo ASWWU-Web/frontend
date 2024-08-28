@@ -30,9 +30,9 @@
           <div
             *ngIf="
               !(
-                field == 'department' ||
-                field == 'office' ||
-                field == 'office_hours'
+                field === 'department' ||
+                field === 'office' ||
+                field === 'office_hours'
               )
             "
             class="text-white text-capitadivze"
@@ -42,9 +42,9 @@
                 !searchables.hasOwnProperty(field) &&
                 !selectables[field] &&
                 !(
-                  field == 'department' ||
-                  field == 'office' ||
-                  field == 'office_hours'
+                  field === 'department' ||
+                  field === 'office' ||
+                  field === 'office_hours'
                 )
               "
               type="text"
@@ -58,10 +58,10 @@
           </div>
           <div
             *ngIf="
-              (field == 'department' ||
-                field == 'office' ||
-                field == 'office_hours') &&
-              (userStatus == 'Faculty' || userStatus == 'Staff')
+              (field === 'department' ||
+                field === 'office' ||
+                field === 'office_hours') &&
+              (userStatus === 'Faculty' || userStatus === 'Staff')
             "
             class="text-white text-capitadivze"
           >
@@ -69,9 +69,9 @@
               *ngIf="
                 !searchables.hasOwnProperty(field) &&
                 !selectables[field] &&
-                (field == 'department' ||
-                  field == 'office' ||
-                  field == 'office_hours')
+                (field === 'department' ||
+                  field === 'office' ||
+                  field === 'office_hours')
               "
               type="text"
               class="form-control"
@@ -85,7 +85,7 @@
 
           <div *ngIf="searchables.hasOwnProperty(field)">
             <input
-              *ngIf="field == 'majors'"
+              *ngIf="field === 'majors'"
               id="typeahead-majors"
               type="text"
               class="form-control"
@@ -93,7 +93,7 @@
               [ngbTypeahead]="searchMajors"
             />
             <input
-              *ngIf="field == 'minors'"
+              *ngIf="field === 'minors'"
               id="typeahead-minors"
               type="text"
               class="form-control"
@@ -109,7 +109,7 @@
             <option
               *ngFor="let options of selectables[field]"
               [value]="
-                field == 'privacy'
+                field === 'privacy'
                   ? selectables[field].indexOf(options)
                   : options
               "

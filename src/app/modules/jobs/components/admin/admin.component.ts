@@ -1,4 +1,3 @@
-// tslint:disable:no-string-literal
 import {Component, NgModule, ElementRef} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 

@@ -41,10 +41,10 @@ export class ProfileModel implements ProfileFull {
   office_hours: string;
   year: string;
 
-  //If the data passed to the ProfileModel is a JSON, this constructor will parse it.
+  // If the data passed to the ProfileModel is a JSON, this constructor will parse it.
   constructor(data: any) {
     if (typeof data == "string") data = JSON.parse(data);
-    for (var key in data) {
+    for (const key in data) {
       if (data[key].length > 0 && data[key] != "None") {
         this[key] = data[key].trim();
       }
@@ -55,7 +55,7 @@ export class ProfileModel implements ProfileFull {
   }
 
   linkByField(key: string): string {
-    let value = this[key];
+    const value = this[key];
     let link = 'javascript:void(0);';
 
     if (key == "phone") link = 'tel:' + value;

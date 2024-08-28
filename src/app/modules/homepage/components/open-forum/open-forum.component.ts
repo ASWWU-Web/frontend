@@ -25,7 +25,7 @@ export class OpenForumComponent implements OnInit {
   maxChars = 1000;
   minChars = 10;
 
-  formReady: boolean = false;
+  formReady = false;
   sendStatus = '';
   showSendStatus = false;
   sendFailed = false;
@@ -43,15 +43,15 @@ export class OpenForumComponent implements OnInit {
   sendMessage() {
     const uri = 'homepage/open_forum';
     const data = {
-      'recipient': this.selectedOfficer,
-      'message_body': this.messageBody.slice(0, this.maxChars),
+      recipient: this.selectedOfficer,
+      message_body: this.messageBody.slice(0, this.maxChars),
     };
     const success = false;
     if (this.checkForm()) {
       this.showSendStatus = true;
       this.sendFailed = false;
       this.sendStatus = 'Loading...';
-      let createForumObservable = this.hprs.createForum(data);
+      const createForumObservable = this.hprs.createForum(data);
       createForumObservable.subscribe(
           (data) => {
             this.sendStatus = 'Message Sent';

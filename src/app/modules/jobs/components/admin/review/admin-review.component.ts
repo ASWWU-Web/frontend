@@ -34,7 +34,7 @@ export class AdminReviewComponent implements OnInit {
   cards: any[] = [];
   buildLoginLink: () => string;
   userInfoSubscription: Subscription;
-  hasInsufficientPermissions: boolean = false;
+  hasInsufficientPermissions = false;
 
   constructor(private route: ActivatedRoute, private rs: RequestService,
               private as: AuthService, private hs: HermesService, private elementRef: ElementRef) {

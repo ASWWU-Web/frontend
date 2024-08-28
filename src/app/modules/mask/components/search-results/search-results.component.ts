@@ -15,17 +15,17 @@ import { Profile } from '../../../../../shared-ng/interfaces/interfaces';
 })
 
 
-export class SearchResultsComponent {
+export class SearchResultsComponent implements OnChanges, OnInit {
   @Input() query: string;
-  @Input('year') year: string = undefined;
+  @Input() year: string = undefined;
   @Input() noResultsPrompt: string;
-  @Input() noResultsJust: string = "center";
+  @Input() noResultsJust = "center";
 
   results: Profile[] = [];
   shownResults: any[] = [];
-  shown: number = 0;
+  shown = 0;
   sub: Subscription = null;
-  searching: boolean = false;
+  searching = false;
 
   constructor (private mrs: MaskRequestService) {}
 
@@ -36,7 +36,7 @@ export class SearchResultsComponent {
   }
 
   ngOnInit() {
-    if(!this.query){
+    if (!this.query){
       this.query = "";
     }
   }
@@ -48,12 +48,12 @@ export class SearchResultsComponent {
     if (this.sub != null) {
       this.sub.unsubscribe();
     }
-    var query = this.query || "";
-    if(this.year == undefined || this.year == CURRENT_YEAR) {
+    const query = this.query || "";
+    if (this.year == undefined || this.year == CURRENT_YEAR) {
       const maskObservable = this.mrs.listProfile(CURRENT_YEAR, query);
       maskObservable.subscribe((data: Profile[]) => {
-        this.results = data.sort((p1,p2) => {
-          let views1: number = 0, views2: number = 0;
+        this.results = data.sort((p1, p2) => {
+          let views1 = 0; let views2 = 0;
           if (typeof p1.views !== 'string')
             views1 = p1.views;
           if (typeof p2.views !== 'string')
@@ -63,12 +63,11 @@ export class SearchResultsComponent {
         });
         this.showMore();
       }, undefined);
-    }
-    else {
+    } else {
       const maskObservable = this.mrs.listProfile(this.year, query);
       maskObservable.subscribe((data: Profile[]) => {
-        this.results = data.sort((p1,p2) => {
-          let views1: number = 0, views2: number = 0;
+        this.results = data.sort((p1, p2) => {
+          let views1 = 0; let views2 = 0;
           if (typeof p1.views !== 'string')
             views1 = p1.views;
           if (typeof p2.views !== 'string')
@@ -82,9 +81,9 @@ export class SearchResultsComponent {
   }
 
   showMore() {
-    var cIndex = this.shown;
-    var nIndex = cIndex + 24;
-    this.shownResults = this.shownResults.concat(this.results.slice(cIndex,nIndex));
+    const cIndex = this.shown;
+    const nIndex = cIndex + 24;
+    this.shownResults = this.shownResults.concat(this.results.slice(cIndex, nIndex));
     this.shown = nIndex;
     // Set searching to false
     this.searching = false;

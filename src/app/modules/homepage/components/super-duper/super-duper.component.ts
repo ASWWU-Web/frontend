@@ -23,9 +23,9 @@ export class SuperDuperComponent implements OnInit {
   hideSearchingWhenUnsubscribed = new Observable(() => () => this.searching = false);
 
   // dropdown menu options
-  sites: string[] = ['Mask', /*'Pages', 'Jobs'*/];
+  sites: string[] = ['Mask', /* 'Pages', 'Jobs'*/];
   // placeholder options
-  placeholders: string[] = ['search the mask...', /*'search pages...', 'search jobs...'*/];
+  placeholders: string[] = ['search the mask...', /* 'search pages...', 'search jobs...'*/];
   // default placeholder
   placeHolder = 'search the mask...';
   // default dropdown option

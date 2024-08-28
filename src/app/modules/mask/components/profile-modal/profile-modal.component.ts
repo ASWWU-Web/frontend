@@ -55,7 +55,7 @@ export class ProfileModalContentComponent implements OnInit {
 })
 export class ProfileModalComponent implements OnInit {
   modal: NgbModalRef;
-  backButton: Boolean = false;
+  backButton = false;
 
   constructor(private modalService: NgbModal, private location: PlatformLocation) {
     // Closes modal if back button is clicked

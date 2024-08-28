@@ -44,7 +44,7 @@ export class AdminElectionsRowComponent implements OnInit {
     }
   }
 
-  dateValidator(control: AbstractControl): {[key: string]: any} | null {
+  dateValidator(control: AbstractControl): Record<string, any> | null {
     const validRegex = /^(\d{4})-(\d{2})-(\d{2}) (\d{2}):(\d{2}):(\d{2})\.(\d{1,6})$/;
     // const validRegex = /^.?$/;
     const groups: RegExpExecArray = validRegex.exec(control.value);
@@ -61,7 +61,7 @@ export class AdminElectionsRowComponent implements OnInit {
                       && Number(groupsArray[4]) <= 24
                       && Number(groupsArray[5]) <= 60
                       && Number(groupsArray[6]) <= 60;
-    return rangeValid && fullValid ? null : {'invalidDate': {value: control.value}};
+    return rangeValid && fullValid ? null : {invalidDate: {value: control.value}};
   }
 
   saveRow() {

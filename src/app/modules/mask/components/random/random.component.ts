@@ -25,7 +25,7 @@ import { CURRENT_YEAR } from '../../../../../shared-ng/config';
 export class RandomComponent implements OnInit {
     allProfiles: any;
     selectedProfile: any;
-    isLoading: boolean = true;
+    isLoading = true;
 
     constructor(private mrs: MaskRequestService, private elementRef: ElementRef, private hermesService: HermesService) {
       // sets background color

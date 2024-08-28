@@ -14,7 +14,7 @@ export class CountdownComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    var display = document.querySelector('#time');
+    const display = document.querySelector('#time');
     // var difference = Math.abs(this.date - this.now);
 
     // this.startTimer(difference, display);
@@ -34,7 +34,7 @@ export class CountdownComponent implements OnInit {
   // Source: https://stackoverflow.com/questions/20618355/the-simplest-possible-javascript-countdown-timer
   startTimer(duration, display) {
     duration = duration / 1000;
-    var timer = duration, days, hours, minutes, seconds;
+    let timer = duration; let days; let hours; let minutes; let seconds;
     setInterval(function () {
       days = Math.floor(timer / 86400);
       hours = Math.floor((timer % 86400) / 3600);

@@ -16,7 +16,7 @@ export class MultiPositionHandlerComponent implements OnInit {
   @Output() onComplete: EventEmitter<number> = new EventEmitter<number>();
 
   // member variables
-  currentPosition: number = 0;  // current position being voted for
+  currentPosition = 0;  // current position being voted for
 
   constructor() { }
 

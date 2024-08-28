@@ -33,7 +33,7 @@ export class DistrictSelectionComponent implements OnInit {
     this.selectedDistrict = 0;
     this.onDistrictSelect.emit(this.selectedDistrict);
     for (const vote of this.votes) {
-      this.stagedVotes.push({vote: vote});
+      this.stagedVotes.push({vote});
     }
     this.districtFormGroup = new UntypedFormGroup({
       district: new UntypedFormControl()

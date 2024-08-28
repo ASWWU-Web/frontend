@@ -77,7 +77,7 @@ export class UpdateComponent implements OnInit {
     const photoObservable = this.mrs.listPhotos();
     photoObservable.subscribe((data: any) => {
       this.possiblePhotos = this.possiblePhotos.concat(data.photos);
-    }, undefined);
+    });
   }
 
   // Function to change which picture is set for a user. For use in the html to select a picture.
@@ -89,7 +89,7 @@ export class UpdateComponent implements OnInit {
   getPhotoLink(uri: string): string {
     if (!uri || uri == '') uri = this.fullProfile.photo || DEFAULT_PHOTO;
     if (uri == DEFAULT_PHOTO) return uri;
-    let photo = MEDIA_SM + uri.replace(MEDIA_URI, "").replace("//", "/");
+    const photo = MEDIA_SM + uri.replace(MEDIA_URI, "").replace("//", "/");
     return photo;
   }
 
@@ -100,7 +100,7 @@ export class UpdateComponent implements OnInit {
       let key: string;
       for (key in data) {
         if (data[key]) {
-          let div = document.createElement('div');
+          const div = document.createElement('div');
           div.innerHTML = data[key];
           data[key] = div.firstChild.nodeValue;
         }

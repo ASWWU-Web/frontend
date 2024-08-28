@@ -21,7 +21,7 @@ import { CURRENT_YEAR, MEDIA_MD, DEFAULT_PHOTO } from '../../../../../shared-ng/
     ],
 })
 
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
     username: string;
     year: string = CURRENT_YEAR;
     profile: ProfileModel;
@@ -34,7 +34,7 @@ export class ProfileComponent {
       (param: any) => {
         // param name specified in the app.module.ts file.
         this.username = param['username'];
-        this.year = param['year'] ? param['year']: CURRENT_YEAR;
+        this.year = param['year'] ? param['year'] : CURRENT_YEAR;
         const profileObservable = this.mrs.readProfile(this.year, this.username);
         profileObservable.subscribe((data) => {
           this.profile = new ProfileModel(data);
