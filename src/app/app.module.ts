@@ -29,7 +29,6 @@ import {
 import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
-import { AtlasComponent } from "./modules/atlas/atlas.component";
 
 
 @NgModule({
@@ -43,7 +42,6 @@ import { AtlasComponent } from "./modules/atlas/atlas.component";
     ErrorPageComponent,
     UploadModalComponent,
     ContentModerationComponent,
-    AtlasComponent
   ],
   imports: [
     BrowserModule,
