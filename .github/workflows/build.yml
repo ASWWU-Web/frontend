@@ -34,7 +34,7 @@ jobs:
         run: |
           mkdir frontend-artifact
           mkdir frontend-artifact/frontend-payload
-          cp -r dist frontend-artifact/frontend-payload/dist-frontend
+          cp -r dist/browser frontend-artifact/frontend-payload/dist-frontend
           cp scripts/server_deploy.sh frontend-artifact/frontend-payload/
           cp scripts/remote_deploy.sh frontend-artifact
 
