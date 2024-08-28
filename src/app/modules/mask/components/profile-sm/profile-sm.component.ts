@@ -31,8 +31,9 @@ export class ProfileSmComponent {
     var link = "";
     if (url && url != 'None') {
       link = MEDIA_SM + '/' + url;
+      if (url == DEFAULT_PHOTO) link = DEFAULT_PHOTO;
     } else {
-      link = MEDIA_SM + '/' + DEFAULT_PHOTO;
+      link = DEFAULT_PHOTO;
     }
     return link;
   }
@@ -47,7 +48,7 @@ export class ProfileSmComponent {
         },
         (response: HttpErrorResponse) => { // why does requesting an image resource always respond with error?
           if (response.status == 415) {
-            link = MEDIA_SM + '/' + DEFAULT_PHOTO;
+            link = DEFAULT_PHOTO;
             resolve(link);
           } else if (response.status == 200) {
             resolve(link);

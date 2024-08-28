@@ -71,9 +71,13 @@ export class ProfileModel implements ProfileFull {
   * */
   getPhotoLink(uri: string): string {
     if (!uri || uri == '') uri = this.photo || DEFAULT_PHOTO;
+    // hacky way to make sure that the default photo is
+    // being pulled from the static assets folder
+    if (uri == DEFAULT_PHOTO) return uri;
     let photo = MEDIA_SM + uri.replace(MEDIA_URI, "");
     photo = photo.replace("//", "/");
-    return photo;
+
+    return this.photo;
   }
   photoLink(): string {
     return this.getPhotoLink('');

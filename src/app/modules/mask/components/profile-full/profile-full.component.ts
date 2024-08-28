@@ -25,6 +25,9 @@ export class ProfileFullComponent {
 
   getPhotoLink(url: string) {
     if (url && url != 'None') {
+      // hacky way to make sure that the default photo is
+      // being pulled from the static assets folder
+      if (url == DEFAULT_PHOTO) return url;
       return MEDIA_MD + '/' + url;
     } else {
       return MEDIA_MD + '/' + DEFAULT_PHOTO;
