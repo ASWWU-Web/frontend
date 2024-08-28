@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { JobRoutes } from './jobs.routes';
@@ -23,30 +23,24 @@ import {
   CardListComponent
 } from './components/jobs.component';
 
-@NgModule({
-  declarations: [
-    HomeComponent,
-    SubmitComponent,
-    DoneComponent,
-    AdminComponent,
-    AdminCreateComponent,
-    AdminEditComponent,
-    AdminReviewComponent,
-    AdminReviewApplicationComponent,
-    CardListComponent,
-  ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgbModule,
-    FontAwesomeModule,
-    FileUploadModule,
-    RouterModule.forChild(JobRoutes),
-  ],
-  providers: [
-    JobsRequestService
-  ],
-})
+@NgModule({ declarations: [
+        HomeComponent,
+        SubmitComponent,
+        DoneComponent,
+        AdminComponent,
+        AdminCreateComponent,
+        AdminEditComponent,
+        AdminReviewComponent,
+        AdminReviewApplicationComponent,
+        CardListComponent,
+    ], imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgbModule,
+        FontAwesomeModule,
+        FileUploadModule,
+        RouterModule.forChild(JobRoutes)], providers: [
+        JobsRequestService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class JobsModule { }

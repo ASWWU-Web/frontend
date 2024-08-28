@@ -1,8 +1,8 @@
 import { Component, OnInit, ElementRef } from '@angular/core';
 import { ElectionsRequestService, AuthService } from '../../../../../shared-ng/services/services';
 import { Router } from '@angular/router';
-import * as momentTz from 'moment-timezone';
-import * as moment from 'moment';
+import momentTz from 'moment-timezone';
+import moment from 'moment';
 import { User } from 'src/shared-ng/interfaces/interfaces';
 
 
@@ -81,7 +81,7 @@ export class HomeComponent implements OnInit {
       const endDate = momentTz.tz(this.response['end'], serverTimeZone);
       endDate.tz(localTimeZone);
 
-      const localNow = momentTz(momentTz(moment(), dateFormat).tz(localTimeZone).format(dateFormat), dateFormat, localTimeZone);
+      const localNow = momentTz.tz(momentTz(moment(), dateFormat).tz(localTimeZone).format(dateFormat), dateFormat, localTimeZone);
 
       this.dates = {};
 

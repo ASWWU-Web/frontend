@@ -6,7 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // shared-ng components
@@ -31,41 +31,35 @@ import { ToastrModule } from 'ngx-toastr';
 import { AppComponent } from './app.component';
 
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    NavBarComponent,
-    FooterComponent,
-    HeaderComponent,
-    UserBubbleComponent,
-    SharedNgContainerComponent,
-    ErrorPageComponent,
-    UploadModalComponent,
-    ContentModerationComponent,
-  ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    AppRoutingModule,
-    FontAwesomeModule,
-    NgbModule,
-    BrowserAnimationsModule,
-    ToastrModule.forRoot({
-      timeOut: 3000,
-      positionClass: 'toast-bottom-left'
-    })
-  ],
-  providers: [
-    RequestService,
-    HermesService,
-    AuthService,
-    UrlService,
-    NgbActiveModal,
-  ],
-  bootstrap: [AppComponent],
-})
+@NgModule({ declarations: [
+        AppComponent,
+        NavBarComponent,
+        FooterComponent,
+        HeaderComponent,
+        UserBubbleComponent,
+        SharedNgContainerComponent,
+        ErrorPageComponent,
+        UploadModalComponent,
+        ContentModerationComponent,
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        FormsModule,
+        ReactiveFormsModule,
+        AppRoutingModule,
+        FontAwesomeModule,
+        NgbModule,
+        BrowserAnimationsModule,
+        ToastrModule.forRoot({
+            timeOut: 3000,
+            positionClass: 'toast-bottom-left'
+        })], providers: [
+        RequestService,
+        HermesService,
+        AuthService,
+        UrlService,
+        NgbActiveModal,
+        provideHttpClient(withInterceptorsFromDi()),
+    ] })
 export class AppModule {
   constructor(library: FaIconLibrary) {
     library.addIcons(faSearch);

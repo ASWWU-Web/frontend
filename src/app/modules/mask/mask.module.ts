@@ -3,7 +3,7 @@ import { CommonModule, Location } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { UnescapePipe } from './unescape';
@@ -26,47 +26,41 @@ import {
   ProfileModalContentComponent
 } from './components/mask.components';
 
-@NgModule({
-  declarations: [
-    ProfileComponent,
-    SearchComponent,
-    UpdateComponent,
-    RandomComponent,
-    BirthdayComponent,
-    SuperSearchComponent,
-    ProfileFullComponent,
-    ProfileSmComponent,
-    ProfileModalComponent,
-    ProfileModalContentComponent,
-    SearchResultsComponent,
-    UnescapePipe,
-  ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgbModule,
-    FontAwesomeModule,
-    RouterModule.forChild(MaskRoutes),
-  ],
-  exports: [
-    ProfileComponent,
-    SearchComponent,
-    UpdateComponent,
-    RandomComponent,
-    BirthdayComponent,
-    SuperSearchComponent,
-    ProfileFullComponent,
-    ProfileSmComponent,
-    ProfileModalComponent,
-    ProfileModalContentComponent,
-    SearchResultsComponent,
-  ],
-  providers: [
-    MaskRequestService
-  ]
-})
+@NgModule({ declarations: [
+        ProfileComponent,
+        SearchComponent,
+        UpdateComponent,
+        RandomComponent,
+        BirthdayComponent,
+        SuperSearchComponent,
+        ProfileFullComponent,
+        ProfileSmComponent,
+        ProfileModalComponent,
+        ProfileModalContentComponent,
+        SearchResultsComponent,
+        UnescapePipe,
+    ],
+    exports: [
+        ProfileComponent,
+        SearchComponent,
+        UpdateComponent,
+        RandomComponent,
+        BirthdayComponent,
+        SuperSearchComponent,
+        ProfileFullComponent,
+        ProfileSmComponent,
+        ProfileModalComponent,
+        ProfileModalContentComponent,
+        SearchResultsComponent,
+    ], imports: [CommonModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgbModule,
+        FontAwesomeModule,
+        RouterModule.forChild(MaskRoutes)], providers: [
+        MaskRequestService,
+        provideHttpClient(withInterceptorsFromDi())
+    ] })
 export class MaskModule {
   fade = 1;
   constructor(private hermes: HermesService, private loc: Location, private router: Router) {
