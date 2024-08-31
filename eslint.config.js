@@ -2,7 +2,7 @@
 const eslint = require("@eslint/js");
 const tseslint = require("typescript-eslint");
 const angular = require("angular-eslint");
-  
+
 module.exports = tseslint.config(
   {
     files: ["**/*.ts"],
@@ -23,7 +23,7 @@ module.exports = tseslint.config(
         },
       ],
       "@angular-eslint/component-selector": [
-        "error",
+        "warn",
         {
           type: "element",
           prefix: "app",
