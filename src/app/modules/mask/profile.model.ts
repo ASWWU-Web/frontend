@@ -42,8 +42,8 @@ export class ProfileModel implements ProfileFull {
   year: string;
 
   // If the data passed to the ProfileModel is a JSON, this constructor will parse it.
-  constructor(data: any) {
-    if (typeof data == "string") data = JSON.parse(data);
+  constructor(data: ProfileFull | string) {
+    if (typeof data == "string") data = JSON.parse(data) as ProfileFull;
     for (const key in data) {
       if (data[key].length > 0 && data[key] != "None") {
         this[key] = data[key].trim();
@@ -77,7 +77,7 @@ export class ProfileModel implements ProfileFull {
     let photo = MEDIA_SM + uri.replace(MEDIA_URI, "");
     photo = photo.replace("//", "/");
 
-    return this.photo;
+    return photo;
   }
   photoLink(): string {
     return this.getPhotoLink('');

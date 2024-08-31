@@ -6,6 +6,7 @@
     <!-- Profile photo options -->
     <div class="row possible-photo-container">
       <br />
+      <!-- TODO: Make this more accessible -->
       <div
         *ngFor="let url of possiblePhotos"
         class="possible-photo .col-sm-12"
@@ -18,6 +19,7 @@
             url.split('/').pop() == fullProfile.photo.split('/').pop()
           "
           [ngClass]="{ 'selected-photo': justClicked == url }"
+          alt="One of your profile photos"
         />
       </div>
     </div>

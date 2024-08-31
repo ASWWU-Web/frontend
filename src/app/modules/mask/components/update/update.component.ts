@@ -7,9 +7,9 @@ import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 import { AuthService, RequestService, MaskRequestService } from '../../../../../shared-ng/services/services';
-import { User, ProfileFull } from '../../../../../shared-ng/interfaces/interfaces';
+import { Status, User, ProfileFull } from '../../../../../shared-ng/interfaces/interfaces';
 import { FieldSections, SelectFields, SearchableFields } from '../../fields';
-import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, ARCHIVE_YEARS, MEDIA_SM } from '../../../../../shared-ng/config';
+import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, MEDIA_SM } from '../../../../../shared-ng/config';
 import { ProfileModel } from '../../profile.model';
 
 @Component({
@@ -29,12 +29,12 @@ export class UpdateComponent implements OnInit {
   profile: User;
   fullProfile: ProfileModel;
   sections: string[][] = FieldSections;
-  selectables: any = SelectFields;
-  searchables: any = SearchableFields;
+  selectables = SelectFields;
+  searchables = SearchableFields;
   possiblePhotos: string[];
   searchYears: string[];
   justClicked: string;
-  userStatus: any;  // Student, Faculty, etc.
+  userStatus: Status;  // Student, Faculty, etc.
 
   /*
   * On initialization of this component, call the verify function to ensure that the user is logged in.
@@ -70,12 +70,12 @@ export class UpdateComponent implements OnInit {
   }
 
   // This function gets the url's of all the possible photos for a user from the endpoint on the server.
-  getPhotos(): any {
+  getPhotos() {
     this.possiblePhotos = [DEFAULT_PHOTO];
     this.justClicked = this.profile.photo;
 
     const photoObservable = this.mrs.listPhotos();
-    photoObservable.subscribe((data: any) => {
+    photoObservable.subscribe((data) => {
       this.possiblePhotos = this.possiblePhotos.concat(data.photos);
     });
   }
@@ -95,8 +95,8 @@ export class UpdateComponent implements OnInit {
 
   // Takes url-safe strings and converts them into valid ASCII so that Javascript can handle them properly.
   // e.g. it takes a string like "peanut butter &amp; jelly" and turns it into "peanut butter & jelly"
-  Decode(data: any): any {
-    if (data.hasOwnProperty('username')) {
+  Decode(data: ProfileFull) {
+    if (data.username !== undefined && data.username !== null) {
       let key: string;
       for (key in data) {
         if (data[key]) {
@@ -105,7 +105,7 @@ export class UpdateComponent implements OnInit {
           data[key] = div.firstChild.nodeValue;
         }
       }
-      return data;
+      return new ProfileModel(data);
     } else {
       return undefined;
     }
@@ -114,15 +114,17 @@ export class UpdateComponent implements OnInit {
   // Lets a user upload their profile to the server.
   UploadProfile(): void {
 
-    this.mrs.updateProfile(this.fullProfile.username, this.fullProfile).subscribe((data) => {
+    this.mrs.updateProfile(this.fullProfile.username, this.fullProfile).subscribe(() => {
+      // refresh the user info
+      this.as.authenticateUser().subscribe()
       this.router.navigate(['/mask/profile', { username: this.fullProfile.username }]);
-    }, undefined);
+    });
   }
 
   getUserStatus() {
     const authObserverable = this.as.authenticateUser();
     authObserverable.subscribe(data => {
       this.userStatus = data.status;
-    }, undefined);
+    });
   }
 }
