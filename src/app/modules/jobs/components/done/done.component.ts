@@ -1,4 +1,4 @@
-import { Component, NgModule, ElementRef } from '@angular/core';
+import { Component, ElementRef, NgModule } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { HermesService } from 'src/shared-ng/services/services';
 

@@ -1,6 +1,6 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ElectionsRequestService } from 'src/shared-ng/services/services';
-import { Candidate, Election, Position, BallotPOST, Ballot } from 'src/shared-ng/interfaces/elections';
+import { Ballot, BallotPOST, Candidate, Election, Position } from 'src/shared-ng/interfaces/elections';
 
 @Component({
   selector: 'app-admin-ballots',

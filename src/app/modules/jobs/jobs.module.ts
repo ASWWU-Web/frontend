@@ -12,15 +12,15 @@ import { JobsRequestService } from '../../../shared-ng/services/services';
 import { FileUploadModule } from 'ng2-file-upload';
 
 import {
-  HomeComponent,
-  SubmitComponent,
-  DoneComponent,
   AdminComponent,
   AdminCreateComponent,
   AdminEditComponent,
-  AdminReviewComponent,
   AdminReviewApplicationComponent,
-  CardListComponent
+  AdminReviewComponent,
+  CardListComponent,
+  DoneComponent,
+  HomeComponent,
+  SubmitComponent
 } from './components/jobs.component';
 
 @NgModule({ declarations: [

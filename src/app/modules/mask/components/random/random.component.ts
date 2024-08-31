@@ -1,9 +1,9 @@
 /**
  * Created by ethan on 2/21/17.
  */
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { delay } from 'rxjs/operators';
-import { MaskRequestService, HermesService } from '../../../../../shared-ng/services/services';
+import { HermesService, MaskRequestService } from '../../../../../shared-ng/services/services';
 import { ProfileModel } from '../../profile.model';
 import { CURRENT_YEAR } from '../../../../../shared-ng/config';
 

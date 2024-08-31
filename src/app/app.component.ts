@@ -1,5 +1,5 @@
 import { Component, NgModule, OnInit } from '@angular/core';
-import { Routes, Router } from '@angular/router';
+import { Router, Routes } from '@angular/router';
 import { HermesService } from 'src/shared-ng/services/services';
 
 @Component({

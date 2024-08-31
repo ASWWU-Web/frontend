@@ -1,6 +1,6 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { Position, Election, Vote } from 'src/shared-ng/interfaces/elections';
+import { Election, Position, Vote } from 'src/shared-ng/interfaces/elections';
 import { ElectionsRequestService } from 'src/shared-ng/services/services';
 
 

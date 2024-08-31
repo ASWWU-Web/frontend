@@ -1,9 +1,9 @@
-import { Subscription ,  Observable } from 'rxjs';
+import { Observable ,  Subscription } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params } from '@angular/router';
-import { MaskRequestService, HermesService } from '../../../../../shared-ng/services/services';
+import { HermesService, MaskRequestService } from '../../../../../shared-ng/services/services';
 import { SearchableFields } from '../../fields';
 import { Profile } from '../../../../../shared-ng/interfaces/interfaces';
 

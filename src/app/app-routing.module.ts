@@ -1,12 +1,15 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ErrorPageComponent } from '../shared-ng/components/error-page/error-page.component';
 
 
 const routes: Routes = [
+  // at some point I'll redesign the home page to be a landing page...
+  // TODO: riley
   {
     path: '',
-    loadChildren: () => import('./modules/homepage/homepage.module').then(m => m.HomepageModule)
+    redirectTo: '/mask',
+    pathMatch: 'full'
   },
   {
     path: 'mask',

@@ -6,10 +6,10 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
-import { AuthService, RequestService, MaskRequestService } from '../../../../../shared-ng/services/services';
-import { Status, User, ProfileFull } from '../../../../../shared-ng/interfaces/interfaces';
-import { FieldSections, SelectFields, SearchableFields } from '../../fields';
-import { CURRENT_YEAR, MEDIA_URI, DEFAULT_PHOTO, MEDIA_SM } from '../../../../../shared-ng/config';
+import { AuthService, MaskRequestService, RequestService } from '../../../../../shared-ng/services/services';
+import { ProfileFull, Status, User } from '../../../../../shared-ng/interfaces/interfaces';
+import { FieldSections, SearchableFields, SelectFields } from '../../fields';
+import { CURRENT_YEAR, DEFAULT_PHOTO, MEDIA_SM, MEDIA_URI } from '../../../../../shared-ng/config';
 import { ProfileModel } from '../../profile.model';
 
 @Component({

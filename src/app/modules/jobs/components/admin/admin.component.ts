@@ -1,7 +1,7 @@
-import {Component, NgModule, ElementRef} from '@angular/core';
+import {Component, ElementRef, NgModule} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { RequestService, HermesService } from '../../../../../shared-ng/services/services';
+import { HermesService, RequestService } from '../../../../../shared-ng/services/services';
 
 @Component({
   selector: 'admin',

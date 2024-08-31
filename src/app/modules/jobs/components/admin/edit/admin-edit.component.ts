@@ -1,7 +1,7 @@
-import { Component, OnInit, OnDestroy, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
-import { RequestService, AuthService, HermesService, TypeAheadRequestService } from '../../../../../../shared-ng/services/services';
+import { AuthService, HermesService, RequestService, TypeAheadRequestService } from '../../../../../../shared-ng/services/services';
 import { User } from 'src/shared-ng/interfaces/user';
 import { Subscription } from 'rxjs';
 import { distinctUntilChanged } from 'rxjs/internal/operators/distinctUntilChanged';

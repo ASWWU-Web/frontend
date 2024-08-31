@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, Input, OnInit } from '@angular/core';
-import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../../../../shared-ng/config';
+import { CURRENT_YEAR, DEFAULT_PHOTO, MEDIA_SM } from '../../../../../shared-ng/config';
 import { RequestService } from '../../../../../shared-ng/services/services';
 
 @Component({

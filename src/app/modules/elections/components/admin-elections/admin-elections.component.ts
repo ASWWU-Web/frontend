@@ -1,11 +1,11 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ElectionsRequestService } from 'src/shared-ng/services/services';
 import { AbstractControl } from '@angular/forms';
-import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { AdminElectionsCandidateModalComponent } from '../admin-candidates/admin-elections-candidate-modal.component';
-import { Election, Candidate, Position } from 'src/shared-ng/interfaces/elections';
+import { Candidate, Election, Position } from 'src/shared-ng/interfaces/elections';
 
 @Component({
   selector: '[elections-row]',

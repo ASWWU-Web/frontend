@@ -3,7 +3,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
+import { FaIconLibrary, FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -11,19 +11,19 @@ import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // shared-ng components
 import {
-  NavBarComponent,
+  ContentModerationComponent,
+  ErrorPageComponent,
   FooterComponent,
   HeaderComponent,
-  UserBubbleComponent,
+  NavBarComponent,
   SharedNgContainerComponent,
-  ErrorPageComponent,
   UploadModalComponent,
-  ContentModerationComponent
+  UserBubbleComponent
 } from '../shared-ng/components/components';
 import {
-  RequestService,
-  HermesService,
   AuthService,
+  HermesService,
+  RequestService,
   UrlService
 } from '../shared-ng/services/services';
 import { ToastrModule } from 'ngx-toastr';

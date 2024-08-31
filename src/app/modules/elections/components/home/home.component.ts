@@ -1,5 +1,5 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
-import { ElectionsRequestService, AuthService } from '../../../../../shared-ng/services/services';
+import { Component, ElementRef, OnInit } from '@angular/core';
+import { AuthService, ElectionsRequestService } from '../../../../../shared-ng/services/services';
 import { Router } from '@angular/router';
 import momentTz from 'moment-timezone';
 import moment from 'moment';

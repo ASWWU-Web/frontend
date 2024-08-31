@@ -1,6 +1,6 @@
-import { Component, NgModule, OnInit, ElementRef } from '@angular/core';
+import { Component, ElementRef, NgModule, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { FileSelectDirective, FileDropDirective, FileUploader } from 'ng2-file-upload';
+import { FileDropDirective, FileSelectDirective, FileUploader } from 'ng2-file-upload';
 
 import { RequestService } from '../../../../../shared-ng/services/request.service';
 
@@ -8,12 +8,12 @@ import { environment } from '../../../../../shared-ng/environments/environment';
 import { AuthService, HermesService, JobsRequestService } from '../../../../../shared-ng/services/services';
 import {
   ApplicationPOST,
-  JobView,
   ApplicationView,
-  User,
-  FormPairView
+  FormPairView,
+  JobView,
+  User
 } from 'src/shared-ng/interfaces/interfaces';
-import { concat, forkJoin, Subscription } from 'rxjs';
+import { Subscription, concat, forkJoin } from 'rxjs';
 import { concatMap, switchMap, tap } from 'rxjs/operators';
 
 @Component({

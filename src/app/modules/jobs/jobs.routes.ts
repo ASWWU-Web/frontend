@@ -1,13 +1,13 @@
 import { Route } from '@angular/router';
 import {
-  HomeComponent,
-  SubmitComponent,
-  DoneComponent,
   AdminComponent,
   AdminCreateComponent,
   AdminEditComponent,
-  AdminReviewComponent,
   AdminReviewApplicationComponent,
+  AdminReviewComponent,
+  DoneComponent,
+  HomeComponent,
+  SubmitComponent,
 } from './components/jobs.component';
 
 export const JobRoutes: Route[] = [

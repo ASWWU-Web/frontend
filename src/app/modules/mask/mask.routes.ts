@@ -1,11 +1,11 @@
 import { Route } from '@angular/router';
 import {
-  ProfileComponent,
-  SearchComponent,
-  UpdateComponent,
-  RandomComponent,
   BirthdayComponent,
+  ProfileComponent,
+  RandomComponent,
+  SearchComponent,
   SuperSearchComponent,
+  UpdateComponent,
 } from './components/mask.components';
 
 export const MaskRoutes: Route[] = [

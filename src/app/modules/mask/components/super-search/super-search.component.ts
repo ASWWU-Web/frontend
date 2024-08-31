@@ -1,5 +1,5 @@
 import { Subscription } from 'rxjs';
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -7,8 +7,8 @@ import { CURRENT_YEAR } from '../../../../../shared-ng/config';
 import { HermesService } from '../../../../../shared-ng/services/services';
 
 import {
-    FieldsInOrder, SelectFields, SearchableFields,
-    FieldsForSearching
+    FieldsForSearching, FieldsInOrder, SearchableFields,
+    SelectFields
 } from '../../fields';
 
 @Component({

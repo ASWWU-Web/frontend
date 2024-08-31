@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
-import { CommonModule, Location } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { CommonModule } from '@angular/common';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 // Services
@@ -28,27 +28,32 @@ import {
 import { HomepageRoutes } from './homepage.routes';
 
 
-@NgModule({ declarations: [
-        HomeComponent,
-        OpenForumComponent,
-        SuperDuperComponent,
-        UpcomingComponent
-    ],
-    exports: [
-        HomeComponent,
-        OpenForumComponent,
-        SuperDuperComponent,
-        UpcomingComponent
-    ], imports: [CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgbModule,
-        FontAwesomeModule,
-        RouterModule.forChild(HomepageRoutes)], providers: [
-        SuperDuperService,
-        CalendarService,
-        HomepageRequestService,
-        HermesService,
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
+@NgModule({
+  declarations: [
+    HomeComponent,
+    OpenForumComponent,
+    SuperDuperComponent,
+    UpcomingComponent
+  ],
+  exports: [
+    HomeComponent,
+    OpenForumComponent,
+    SuperDuperComponent,
+    UpcomingComponent
+  ],
+  imports: [CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    FontAwesomeModule,
+    RouterModule.forChild(HomepageRoutes)
+  ],
+  providers: [
+    SuperDuperService,
+    CalendarService,
+    HomepageRequestService,
+    HermesService,
+    provideHttpClient(withInterceptorsFromDi())
+  ]
+})
 export class HomepageModule { }

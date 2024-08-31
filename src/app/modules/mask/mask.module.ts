@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule, Location } from '@angular/common';
-import { RouterModule, Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
@@ -13,17 +13,17 @@ import { HermesService, MaskRequestService } from '../../../shared-ng/services/s
 import { SubNavbarLink } from '../../../shared-ng/interfaces/interfaces';
 
 import {
-  ProfileComponent,
-  SearchComponent,
-  UpdateComponent,
-  RandomComponent,
   BirthdayComponent,
-  SuperSearchComponent,
+  ProfileComponent,
   ProfileFullComponent,
-  ProfileSmComponent,
-  SearchResultsComponent,
   ProfileModalComponent,
-  ProfileModalContentComponent
+  ProfileModalContentComponent,
+  ProfileSmComponent,
+  RandomComponent,
+  SearchComponent,
+  SearchResultsComponent,
+  SuperSearchComponent,
+  UpdateComponent
 } from './components/mask.components';
 
 @NgModule({ declarations: [

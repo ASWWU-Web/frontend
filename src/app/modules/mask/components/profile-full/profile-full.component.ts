@@ -1,7 +1,7 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
 import { ProfileModel } from '../../profile.model';
 import { FieldsInOrder } from '../../fields';
-import { MEDIA_MD, DEFAULT_PHOTO, SAML_URL, CURRENT_YEAR } from '../../../../../shared-ng/config';
+import { CURRENT_YEAR, DEFAULT_PHOTO, MEDIA_MD, SAML_URL } from '../../../../../shared-ng/config';
 import { AuthService } from '../../../../../shared-ng/services/services'
 import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 

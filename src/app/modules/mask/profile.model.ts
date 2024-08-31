@@ -3,7 +3,7 @@
  */
 
 import { ProfileFull } from 'src/shared-ng/interfaces/mask';
-import { MEDIA_URI, DEFAULT_PHOTO, MEDIA_SM } from '../../../shared-ng/config';
+import { DEFAULT_PHOTO, MEDIA_SM, MEDIA_URI } from '../../../shared-ng/config';
 
 export class ProfileModel implements ProfileFull {
   wwuid: string;

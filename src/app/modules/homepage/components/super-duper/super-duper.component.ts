@@ -1,14 +1,14 @@
-import { Component, OnInit, EventEmitter, Input } from '@angular/core';
-import { RouterModule, Routes, Router } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { Router, RouterModule, Routes } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 
 import { Observable } from 'rxjs/internal/Observable';
-import { of, merge } from 'rxjs';
-import { debounceTime, distinctUntilChanged, tap, catchError, switchMap, map } from 'rxjs/operators';
+import { merge, of } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
 
 import { HomepageRequestService } from '../../../../../shared-ng/services/services';
-import { UntypedFormGroup, UntypedFormControl } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 
 @Component({
   selector: 'super-duper',

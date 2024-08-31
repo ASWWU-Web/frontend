@@ -10,23 +10,23 @@ import { ElectionsRequestService, HermesService } from '../../../shared-ng/servi
 import { ElectionRoutes } from './elections.routes';
 
 import {
-  HomeComponent,
-  VoteComponent,
-  AdminComponent,
-  CountdownComponent,
-  AdminElectionsComponent,
-  AdminElectionsCandidateModalComponent,
+  AdminBallotModalComponent,
+  AdminBallotModalContentComponent,
+  AdminBallotsComponent,
   AdminCandidatesRowComponent,
+  AdminComponent,
+  AdminElectionsCandidateModalComponent,
+  AdminElectionsComponent,
   AdminElectionsRowComponent,
   AdminPositionsComponent,
   AdminPositionsRowComponent,
-  AdminBallotsComponent,
-  VoteFormComponent,
-  MultiPositionHandlerComponent,
+  CountdownComponent,
   DistrictSelectionComponent,
+  HomeComponent,
+  MultiPositionHandlerComponent,
   NavigatorComponent,
-  AdminBallotModalComponent,
-  AdminBallotModalContentComponent
+  VoteComponent,
+  VoteFormComponent
 } from './components/elections.component';
 
 @NgModule({ declarations: [

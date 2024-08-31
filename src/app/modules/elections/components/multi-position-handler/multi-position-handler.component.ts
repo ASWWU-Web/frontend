@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { PageTransitions } from 'src/app/modules/elections/components/vote/vote.component';
 import { Election, Position, Vote } from 'src/shared-ng/interfaces/elections';
 

@@ -1,8 +1,8 @@
 import { Route } from '@angular/router';
 import {
+  AdminComponent,
   HomeComponent,
   VoteComponent,
-  AdminComponent,
 } from './components/elections.component';
 
 export const ElectionRoutes: Route[] = [

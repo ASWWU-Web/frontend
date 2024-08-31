@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ElectionsRequestService } from 'src/shared-ng/services/services';
 import { forkJoin } from 'rxjs';
 import { CURRENT_YEAR } from 'src/shared-ng/config';

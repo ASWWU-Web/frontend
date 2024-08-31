@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs/internal/Observable';
-import { of, forkJoin } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { forkJoin, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 import { RequestService } from '../../../../shared-ng/services/services';
 import { CURRENT_YEAR } from '../../../../shared-ng/config';

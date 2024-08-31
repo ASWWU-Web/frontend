@@ -1,8 +1,8 @@
-import {Component, NgModule, OnInit, ElementRef} from '@angular/core';
+import {Component, ElementRef, NgModule, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
-import { RequestService, HermesService } from '../../../../../shared-ng/services/services';
+import { HermesService, RequestService } from '../../../../../shared-ng/services/services';
 
 @Component({
   selector: 'home',

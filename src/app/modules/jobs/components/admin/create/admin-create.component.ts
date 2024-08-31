@@ -1,7 +1,7 @@
-import {Component, NgModule, OnInit, ElementRef} from '@angular/core';
+import {Component, ElementRef, NgModule, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
 
-import { RequestService, AuthService, HermesService } from '../../../../../../shared-ng/services/services';
+import { AuthService, HermesService, RequestService } from '../../../../../../shared-ng/services/services';
 
 import { User } from '../../../../../../shared-ng/interfaces/interfaces';
 import { Subscription } from 'rxjs';

@@ -1,5 +1,5 @@
-import { Component, OnInit, Input, ViewEncapsulation } from '@angular/core';
-import { NgbModal, NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit, ViewEncapsulation } from '@angular/core';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { CURRENT_YEAR } from '../../../../../shared-ng/config';
 import { ProfileModel } from '../../profile.model';
 import { MaskRequestService } from '../../../../../shared-ng/services/services'

@@ -1,13 +1,13 @@
 // https://alligator.io/angular/reactive-forms-formarray-dynamic-fields/
-import { Component, Input, Output, OnInit, EventEmitter } from '@angular/core';
-import { UntypedFormGroup, UntypedFormBuilder, FormArray, Validators, UntypedFormControl } from '@angular/forms';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { ElectionsRequestService } from 'src/shared-ng/services/services';
-import { CURRENT_YEAR, MEDIA_SM, DEFAULT_PHOTO } from 'src/shared-ng/config';
-import { Observable, of, forkJoin } from 'rxjs';
-import { debounceTime, distinctUntilChanged, switchMap, map } from 'rxjs/operators';
+import { CURRENT_YEAR, DEFAULT_PHOTO, MEDIA_SM } from 'src/shared-ng/config';
+import { Observable, forkJoin, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 
 import { PageTransitions } from 'src/app/modules/elections/components/vote/vote.component';
-import { Election, Position, Candidate, Vote, VotePOST } from 'src/shared-ng/interfaces/elections';
+import { Candidate, Election, Position, Vote, VotePOST } from 'src/shared-ng/interfaces/elections';
 
 @Component({
   selector: 'vote-form',

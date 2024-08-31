@@ -1,12 +1,12 @@
-import { Component, OnInit, Output, Input } from '@angular/core';
-import { NgbModal, NgbModalRef, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
+import { Component, Input, OnInit, Output } from '@angular/core';
+import { NgbActiveModal, NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { EventEmitter } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, UntypedFormArray, Validators } from '@angular/forms';
+import { UntypedFormArray, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { Observable } from 'rxjs/internal/Observable';
 import { debounceTime, distinctUntilChanged, map, switchMap} from 'rxjs/operators';
 import { of } from 'rxjs';
 import { RequestService } from 'src/shared-ng/services/services';
-import { Candidate, Election, Position, BallotPOST } from 'src/shared-ng/interfaces/elections';
+import { BallotPOST, Candidate, Election, Position } from 'src/shared-ng/interfaces/elections';
 
 @Component({
   selector: 'app-ballot-modal-content',

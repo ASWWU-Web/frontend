@@ -1,4 +1,4 @@
-import { Component, OnInit, ElementRef } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { ElectionsRequestService } from 'src/shared-ng/services/elections.request.service';
 import { Election, Position, Vote } from 'src/shared-ng/interfaces/elections';
 
