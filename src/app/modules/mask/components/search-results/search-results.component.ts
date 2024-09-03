@@ -1,19 +1,16 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from "@angular/core";
 
+import { Subscription } from "rxjs";
 
-import { Subscription } from 'rxjs';
-
-import { MaskRequestService } from '../../../../../shared-ng/services/services';
-import { CURRENT_YEAR } from '../../../../../shared-ng/config';
-import { PartialProfile } from '../../../../../shared-ng/interfaces/interfaces';
+import { MaskRequestService } from "../../../../../shared-ng/services/services";
+import { CURRENT_YEAR } from "../../../../../shared-ng/config";
+import { PartialProfile } from "../../../../../shared-ng/interfaces/interfaces";
 
 @Component({
   selector: "search-results",
   templateUrl: "search-results.component.html",
-  styleUrls: ["search-results.component.css"]
+  styleUrls: ["search-results.component.css"],
 })
-
-
 export class SearchResultsComponent implements OnChanges, OnInit {
   @Input() query: string;
   @Input() year: string = undefined;
@@ -26,7 +23,7 @@ export class SearchResultsComponent implements OnChanges, OnInit {
   sub: Subscription = null;
   searching = false;
 
-  constructor(private mrs: MaskRequestService) { }
+  constructor(private mrs: MaskRequestService) {}
 
   ngOnChanges() {
     this.shownResults = [];
@@ -66,7 +63,9 @@ export class SearchResultsComponent implements OnChanges, OnInit {
   showMore() {
     const cIndex = this.shown;
     const nIndex = cIndex + 24;
-    this.shownResults = this.shownResults.concat(this.results.slice(cIndex, nIndex));
+    this.shownResults = this.shownResults.concat(
+      this.results.slice(cIndex, nIndex),
+    );
     this.shown = nIndex;
     // Set searching to false
     this.searching = false;

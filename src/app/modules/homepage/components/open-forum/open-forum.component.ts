@@ -1,39 +1,45 @@
-import { Component, OnInit } from '@angular/core';
-import { HomepageRequestService } from '../../../../../shared-ng/services/services';
-import { AuthService } from '../../../../../shared-ng/services/auth.service';
+import { Component, OnInit } from "@angular/core";
+import { HomepageRequestService } from "../../../../../shared-ng/services/services";
+import { AuthService } from "../../../../../shared-ng/services/auth.service";
 
 @Component({
-  selector: 'open-forum',
-  templateUrl: './open-forum.component.html',
-  styleUrls: ['./open-forum.component.css']
+  selector: "open-forum",
+  templateUrl: "./open-forum.component.html",
+  styleUrls: ["./open-forum.component.css"],
 })
 export class OpenForumComponent implements OnInit {
-
-  constructor(private hprs: HomepageRequestService, private auth: AuthService) { }
+  constructor(
+    private hprs: HomepageRequestService,
+    private auth: AuthService,
+  ) {}
 
   officers = [
-    'President',
-    'Vice President',
-    'Financial VP',
-    'Social VP',
-    'Spiritual VP',
-    'Marketing VP'
+    "President",
+    "Vice President",
+    "Financial VP",
+    "Social VP",
+    "Spiritual VP",
+    "Marketing VP",
   ];
 
-  selectedOfficer = 'President';
-  messageBody = '';
+  selectedOfficer = "President";
+  messageBody = "";
   maxChars = 1000;
   minChars = 10;
 
   formReady = false;
-  sendStatus = '';
+  sendStatus = "";
   showSendStatus = false;
   sendFailed = false;
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   checkForm(): boolean {
-    if (this.messageBody.length >= this.minChars && this.selectedOfficer !== '' && this.auth.isLoggedIn()) {
+    if (
+      this.messageBody.length >= this.minChars &&
+      this.selectedOfficer !== "" &&
+      this.auth.isLoggedIn()
+    ) {
       return true;
     } else {
       return false;
@@ -41,7 +47,7 @@ export class OpenForumComponent implements OnInit {
   }
 
   sendMessage() {
-    const uri = 'homepage/open_forum';
+    const uri = "homepage/open_forum";
     const data = {
       recipient: this.selectedOfficer,
       message_body: this.messageBody.slice(0, this.maxChars),
@@ -50,17 +56,19 @@ export class OpenForumComponent implements OnInit {
     if (this.checkForm()) {
       this.showSendStatus = true;
       this.sendFailed = false;
-      this.sendStatus = 'Loading...';
+      this.sendStatus = "Loading...";
       const createForumObservable = this.hprs.createForum(data);
       createForumObservable.subscribe(
-          (data) => {
-            this.sendStatus = 'Message Sent';
-            this.selectedOfficer = '';
-            this.messageBody = '';
-          }, (data) => {
-            this.sendFailed = true;
-            this.sendStatus = 'Delivery failed! Please contact aswwu.webmaster@wallawalla.edu for further assistance.';
-          }
+        (data) => {
+          this.sendStatus = "Message Sent";
+          this.selectedOfficer = "";
+          this.messageBody = "";
+        },
+        (data) => {
+          this.sendFailed = true;
+          this.sendStatus =
+            "Delivery failed! Please contact aswwu.webmaster@wallawalla.edu for further assistance.";
+        },
       );
     }
   }

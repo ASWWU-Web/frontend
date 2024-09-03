@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { OpenForumComponent } from './open-forum.component';
+import { OpenForumComponent } from "./open-forum.component";
 
-describe('OpenForumComponent', () => {
+describe("OpenForumComponent", () => {
   let component: OpenForumComponent;
   let fixture: ComponentFixture<OpenForumComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ OpenForumComponent ]
-    })
-    .compileComponents();
+      declarations: [OpenForumComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('OpenForumComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

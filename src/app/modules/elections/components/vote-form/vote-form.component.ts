@@ -1,29 +1,46 @@
 // https://alligator.io/angular/reactive-forms-formarray-dynamic-fields/
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormArray, UntypedFormBuilder, UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
-import { ElectionsRequestService } from 'src/shared-ng/services/services';
-import { CURRENT_YEAR, DEFAULT_PHOTO, MEDIA_SM } from 'src/shared-ng/config';
-import { Observable, forkJoin, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import {
+  FormArray,
+  UntypedFormBuilder,
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from "@angular/forms";
+import { ElectionsRequestService } from "src/shared-ng/services/services";
+import { CURRENT_YEAR, DEFAULT_PHOTO, MEDIA_SM } from "src/shared-ng/config";
+import { Observable, forkJoin, of } from "rxjs";
+import {
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  switchMap,
+} from "rxjs/operators";
 
-import { PageTransitions } from 'src/app/modules/elections/components/vote/vote.component';
-import { Candidate, Election, Position, Vote, VotePOST } from 'src/shared-ng/interfaces/elections';
+import { PageTransitions } from "src/app/modules/elections/components/vote/vote.component";
+import {
+  Candidate,
+  Election,
+  Position,
+  Vote,
+  VotePOST,
+} from "src/shared-ng/interfaces/elections";
 
 @Component({
-  selector: 'vote-form',
-  templateUrl: './vote-form.component.html',
-  styleUrls: ['./vote-form.component.css']
+  selector: "vote-form",
+  templateUrl: "./vote-form.component.html",
+  styleUrls: ["./vote-form.component.css"],
 })
 export class VoteFormComponent implements OnInit {
   // request data
-  @Input() election: Election;  // the current election
-  @Input() position: Position;  // the list of district positions
+  @Input() election: Election; // the current election
+  @Input() position: Position; // the list of district positions
   @Input() votes: Vote[] = [];
   // completion emitter
   @Output() valueChange: EventEmitter<number> = new EventEmitter<number>();
 
-  candidates: {info: Candidate, photoUri: string}[] = [];
-  stagedVotes: {vote: Vote, toDelete: boolean}[]; // only ever set toDelete to true if it also exists on the server (vote.id != null)
+  candidates: { info: Candidate; photoUri: string }[] = [];
+  stagedVotes: { vote: Vote; toDelete: boolean }[]; // only ever set toDelete to true if it also exists on the server (vote.id != null)
   formGroup: UntypedFormGroup;
   defaultPhoto: string;
   numVotesToKeep: number;
@@ -31,9 +48,14 @@ export class VoteFormComponent implements OnInit {
   serverErrorText: string;
   alertUser: boolean;
 
-  constructor(private fb: UntypedFormBuilder, private ers: ElectionsRequestService) {
-    this.defaultPhoto = MEDIA_SM + '/' + DEFAULT_PHOTO;
-    this.formGroup = new UntypedFormGroup({writeIn: new UntypedFormControl('')});
+  constructor(
+    private fb: UntypedFormBuilder,
+    private ers: ElectionsRequestService,
+  ) {
+    this.defaultPhoto = MEDIA_SM + "/" + DEFAULT_PHOTO;
+    this.formGroup = new UntypedFormGroup({
+      writeIn: new UntypedFormControl(""),
+    });
     this.stagedVotes = [];
     this.numVotesToKeep = 0;
     this.disableVoteStaging = false;
@@ -42,41 +64,55 @@ export class VoteFormComponent implements OnInit {
   ngOnInit() {
     this.setCandidates();
     this.stageExistingVotes();
-    this.serverErrorText = '';
+    this.serverErrorText = "";
   }
 
   setCandidates() {
     function setCandidatePhoto(username, index, rs, candidates) {
-      const uri = '/profile/' + CURRENT_YEAR + '/' + username;
+      const uri = "/profile/" + CURRENT_YEAR + "/" + username;
       const profileObservable = rs.get(uri);
       profileObservable.subscribe(
         (data) => {
-          let photoUri = MEDIA_SM + '/';
-          photoUri += (data.photo !== 'None') ? data.photo : null;
+          let photoUri = MEDIA_SM + "/";
+          photoUri += data.photo !== "None" ? data.photo : null;
           candidates[index].photoUri = photoUri;
-        }, (err) => {
+        },
+        (err) => {
           // TODO (stephen)
-        }, () => {
+        },
+        () => {
           // TODO (stephen)
-        }
+        },
       );
     }
 
     // const getUri = 'elections/election/' + this.election.id + '/candidate';
     // const getCandidatesObservable = this.ers.get(getUri, {position: this.position.id});
-    const candidateObservable = this.ers.listCandidates(this.election.id, {position: this.position.id});
+    const candidateObservable = this.ers.listCandidates(this.election.id, {
+      position: this.position.id,
+    });
     candidateObservable.subscribe(
       (data) => {
-        const candidates = data.map((item: Candidate) => ({info: item, photoUri: ''}));
+        const candidates = data.map((item: Candidate) => ({
+          info: item,
+          photoUri: "",
+        }));
         this.candidates = candidates;
         this.candidates.forEach((candidate, index) => {
-          setCandidatePhoto(candidate.info.username, index, this.ers, this.candidates);
+          setCandidatePhoto(
+            candidate.info.username,
+            index,
+            this.ers,
+            this.candidates,
+          );
         });
-      }, (err) => {
+      },
+      (err) => {
         // TODO
-      }, () => {
+      },
+      () => {
         // TODO
-      }
+      },
     );
   }
 
@@ -90,15 +126,17 @@ export class VoteFormComponent implements OnInit {
             this.stageVote(vote);
           }
         }
-      }, (err) => {
-      }, () => {
+      },
+      (err) => {},
+      () => {
         // disable cast votes button if stagedVotes array length is 0
         if (this.stagedVotes.length === 0) {
           this.alertUser = true;
         } else {
           this.alertUser = false;
         }
-    });
+      },
+    );
   }
 
   indexOfObj(array, propertyPath: string[], value) {
@@ -149,11 +187,15 @@ export class VoteFormComponent implements OnInit {
     // if no vote is staged by that name, stage the vote, otherwise,
     // just make sure the vote isn't set to be deleted.
     const candidateUsername = vote.vote;
-    const stagedVoteIndex = this.indexOfObj(this.stagedVotes, ['vote', 'vote'], candidateUsername);
+    const stagedVoteIndex = this.indexOfObj(
+      this.stagedVotes,
+      ["vote", "vote"],
+      candidateUsername,
+    );
     if (stagedVoteIndex === -1) {
       const voteToStage = {
         vote,
-        toDelete: false
+        toDelete: false,
       };
       this.stagedVotes.push(voteToStage);
       // this.numVotesToKeep = this.numVotesToKeep + 1;
@@ -201,10 +243,10 @@ export class VoteFormComponent implements OnInit {
   }
 
   getNames(query: string) {
-    if (query === '') {
-      return of({results: []});
+    if (query === "") {
+      return of({ results: [] });
     }
-    return this.ers.get('search/names', {full_name: query});
+    return this.ers.get("search/names", { full_name: query });
   }
 
   search = (text$: Observable<string>) => {
@@ -212,11 +254,11 @@ export class VoteFormComponent implements OnInit {
       debounceTime(300),
       distinctUntilChanged(),
       switchMap((data) => this.getNames(data)),
-      map((data: {results: {username: string, full_name: string}[]}) => {
+      map((data: { results: { username: string; full_name: string }[] }) => {
         return data.results.map((item) => item.username);
-      })
+      }),
     );
-  }
+  };
 
   stageWriteIn() {
     const writeIn = this.formGroup.value.writeIn;
@@ -226,7 +268,7 @@ export class VoteFormComponent implements OnInit {
         election: this.election.id,
         position: this.position.id,
         username: null, // this should be filled in when we submit if we end up updating a vote
-        vote: writeIn
+        vote: writeIn,
       };
       this.stageVote(voteToStage);
     }
@@ -239,7 +281,7 @@ export class VoteFormComponent implements OnInit {
       election: this.election.id,
       position: this.position.id,
       username: null,
-      vote: candidateUsername
+      vote: candidateUsername,
     };
     this.stageVote(voteToStage);
   }
@@ -247,9 +289,11 @@ export class VoteFormComponent implements OnInit {
   pageTransition(transition: number) {
     let i;
     if (this.alertUser) {
-      i = confirm('There are no votes in the queue. Click + ' +
-                  'next to write-in to add write-in ' +
-                  'or select a candidate. Select ok to exit voting.');
+      i = confirm(
+        "There are no votes in the queue. Click + " +
+          "next to write-in to add write-in " +
+          "or select a candidate. Select ok to exit voting.",
+      );
     }
     if (i === undefined || i === true) {
       this.valueChange.emit(transition);
@@ -259,14 +303,14 @@ export class VoteFormComponent implements OnInit {
   }
 
   buildRequestArrayObservable() {
-    const updatableVotes: {vote: Vote, toDelete: boolean}[] = [];
+    const updatableVotes: { vote: Vote; toDelete: boolean }[] = [];
     const newVotes: Vote[] = [];
 
     // sort votes into new votes and votes that can be updated or deleted
     for (const vote of this.stagedVotes) {
       if (vote.vote.id && vote.toDelete) {
         updatableVotes.push(vote);
-      } else if ( !vote.vote.id ) {
+      } else if (!vote.vote.id) {
         newVotes.push(vote.vote);
       } else {
         // do nothing, this means the current vote exists on the server, but will not be deleted or overwritten
@@ -288,11 +332,13 @@ export class VoteFormComponent implements OnInit {
           const voteToPost: VotePOST = {
             election: this.election.id,
             position: this.position.id,
-            vote: newVotes[i].vote
+            vote: newVotes[i].vote,
           };
           requestArray.push(this.ers.createVote(voteToPost));
         } else {
-          console.error('buildRequestArrayObservable second sort, this error should never happen.');
+          console.error(
+            "buildRequestArrayObservable second sort, this error should never happen.",
+          );
         }
       }
     }
@@ -303,15 +349,18 @@ export class VoteFormComponent implements OnInit {
     const requestArrayObservable = this.buildRequestArrayObservable();
     requestArrayObservable.subscribe(
       (data) => {
-        this.serverErrorText = '';
-      }, (err) => {
+        this.serverErrorText = "";
+      },
+      (err) => {
         // show user error text from the server
         console.log(err);
-        this.serverErrorText = 'Something went wrong, make sure all entered usernames are valid.';
+        this.serverErrorText =
+          "Something went wrong, make sure all entered usernames are valid.";
         this.pageTransition(PageTransitions.NextPage);
-      }, () => {
+      },
+      () => {
         this.pageTransition(PageTransitions.NextPage);
-      }
+      },
     );
   }
 }

@@ -1,36 +1,38 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { PageTransitions } from 'src/app/modules/elections/components/vote/vote.component';
-import { Election, Position, Vote } from 'src/shared-ng/interfaces/elections';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { PageTransitions } from "src/app/modules/elections/components/vote/vote.component";
+import { Election, Position, Vote } from "src/shared-ng/interfaces/elections";
 
 @Component({
-  selector: 'multi-position-handler',
-  templateUrl: './multi-position-handler.component.html',
-  styleUrls: ['./multi-position-handler.component.css']
+  selector: "multi-position-handler",
+  templateUrl: "./multi-position-handler.component.html",
+  styleUrls: ["./multi-position-handler.component.css"],
 })
 export class MultiPositionHandlerComponent implements OnInit {
   // request data
-  @Input() election: Election = null;  // the current election
-  @Input() positions: Position[] = [];  // the list of district positions
+  @Input() election: Election = null; // the current election
+  @Input() positions: Position[] = []; // the list of district positions
   @Input() votes: Vote[] = [];
   // completion emitter
   @Output() onComplete: EventEmitter<number> = new EventEmitter<number>();
 
   // member variables
-  currentPosition = 0;  // current position being voted for
+  currentPosition = 0; // current position being voted for
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   formChange(transition: number = PageTransitions.NextPage) {
     // go back to the start page
     if (transition == PageTransitions.StartOver) {
       this.onComplete.emit(PageTransitions.StartOver);
-    // go to the next position to vote for
-    } else if (transition == PageTransitions.NextPage && this.currentPosition + 1 < this.positions.length) {
+      // go to the next position to vote for
+    } else if (
+      transition == PageTransitions.NextPage &&
+      this.currentPosition + 1 < this.positions.length
+    ) {
       this.currentPosition++;
-    // got to the completion page
+      // got to the completion page
     } else {
       this.onComplete.emit(PageTransitions.NextPage);
     }

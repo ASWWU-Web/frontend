@@ -1,16 +1,33 @@
 <td>
-  {{rowData.id | slice:0:8 }}
+  {{ rowData.id | slice: 0 : 8 }}
 </td>
 
 <!-- ELECTION TYPE -->
 <td>
   <form [formGroup]="rowFormGroup">
-    <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioBasic" formControlName="election_type">
-      <label ngbButtonLabel class="btn-outline-primary" [ngClass]="{'btn-outline-danger': rowFormGroup.controls.election_type.invalid}">
-        <input ngbButton type="radio" value="aswwu"> ASWWU
+    <div
+      class="btn-group btn-group-toggle"
+      ngbRadioGroup
+      name="radioBasic"
+      formControlName="election_type"
+    >
+      <label
+        ngbButtonLabel
+        class="btn-outline-primary"
+        [ngClass]="{
+          'btn-outline-danger': rowFormGroup.controls.election_type.invalid,
+        }"
+      >
+        <input ngbButton type="radio" value="aswwu" /> ASWWU
       </label>
-      <label ngbButtonLabel class="btn-outline-primary" [ngClass]="{'btn-outline-danger': rowFormGroup.controls.election_type.invalid}">
-        <input ngbButton type="radio" value="senate"> Senate
+      <label
+        ngbButtonLabel
+        class="btn-outline-primary"
+        [ngClass]="{
+          'btn-outline-danger': rowFormGroup.controls.election_type.invalid,
+        }"
+      >
+        <input ngbButton type="radio" value="senate" /> Senate
       </label>
     </div>
   </form>
@@ -21,7 +38,13 @@
   <form [formGroup]="rowFormGroup">
     <div class="form-group">
       <div class="input-group">
-        <input id="position" class="form-control" placeholder="Position title" formControlName="position" [ngClass]="{'is-invalid': rowFormGroup.controls.position.invalid}">
+        <input
+          id="position"
+          class="form-control"
+          placeholder="Position title"
+          formControlName="position"
+          [ngClass]="{ 'is-invalid': rowFormGroup.controls.position.invalid }"
+        />
       </div>
     </div>
   </form>
@@ -32,7 +55,7 @@
   <form [formGroup]="rowFormGroup">
     <div class="btn-group btn-group-toggle">
       <label ngbButtonLabel class="btn-outline-primary">
-        <input ngbButton type="checkbox" formControlName="active">Active
+        <input ngbButton type="checkbox" formControlName="active" />Active
       </label>
     </div>
   </form>
@@ -43,7 +66,14 @@
   <form [formGroup]="rowFormGroup">
     <div class="form-group">
       <div class="input-group">
-        <input id="order" class="form-control" type="number" placeholder="Number" formControlName="order" [ngClass]="{'is-invalid': rowFormGroup.controls.order.invalid}">
+        <input
+          id="order"
+          class="form-control"
+          type="number"
+          placeholder="Number"
+          formControlName="order"
+          [ngClass]="{ 'is-invalid': rowFormGroup.controls.order.invalid }"
+        />
       </div>
     </div>
   </form>
@@ -52,6 +82,13 @@
 <!-- SAVE -->
 <td>
   <form [formGroup]="rowFormGroup" (ngSubmit)="saveRow()">
-    <button type="submit" class="btn btn-success" [disabled]="rowFormGroup.invalid" [ngClass]="{'btn-danger': rowFormGroup.dirty}">Save</button>
+    <button
+      type="submit"
+      class="btn btn-success"
+      [disabled]="rowFormGroup.invalid"
+      [ngClass]="{ 'btn-danger': rowFormGroup.dirty }"
+    >
+      Save
+    </button>
   </form>
 </td>

@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { VoteComponent } from './vote.component';
+import { VoteComponent } from "./vote.component";
 
-describe('VoteComponent', () => {
+describe("VoteComponent", () => {
   let component: VoteComponent;
   let fixture: ComponentFixture<VoteComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ VoteComponent ]
-    })
-    .compileComponents();
+      declarations: [VoteComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('VoteComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

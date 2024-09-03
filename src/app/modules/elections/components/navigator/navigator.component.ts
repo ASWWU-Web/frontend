@@ -1,12 +1,11 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 
-import { PageTransitions } from 'src/app/modules/elections/components/vote/vote.component'
-
+import { PageTransitions } from "src/app/modules/elections/components/vote/vote.component";
 
 @Component({
-  selector: 'navigator',
-  templateUrl: './navigator.component.html',
-  styleUrls: ['./navigator.component.css']
+  selector: "navigator",
+  templateUrl: "./navigator.component.html",
+  styleUrls: ["./navigator.component.css"],
 })
 export class NavigatorComponent implements OnInit {
   // The name of the buttons, if set to null the buttons will not appear
@@ -21,7 +20,7 @@ export class NavigatorComponent implements OnInit {
   // navigation button event emitters
   @Output() onButtonClick: EventEmitter<number> = new EventEmitter<number>();
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
     // scroll to the top of the window after page transition

@@ -17,7 +17,7 @@
       </div>
       <div class="row mb-4">
         <div class="col col-sm-12 col-md-8 offset-md-2">
-          <h1> your next job opportunity</h1>
+          <h1>your next job opportunity</h1>
         </div>
       </div>
     </div>
@@ -27,8 +27,12 @@
       <div class="row justify-content-center text-center">
         <div class="col col-sm-12 col-md-8">
           <h3>Select a department</h3>
-          <div class="form-group ">
-            <select class="custom-select col col-sm-12" [(ngModel)]="department" (change)="filterItems()">
+          <div class="form-group">
+            <select
+              class="custom-select col col-sm-12"
+              [(ngModel)]="department"
+              (change)="filterItems()"
+            >
               <option selected [value]="''">Select a department...</option>
               <option [value]="'Executive'">Executive</option>
               <option [value]="'Senate'">Senate</option>
@@ -52,20 +56,23 @@
       </div>
     </div>
 
-    <hr>
+    <hr />
 
     <!-- Job Opportunities  -->
     <div id="jobOpps" class="container">
       <!-- card list header -->
       <div class="justify-content-center text-center my-3">
         <h1 *ngIf="filtered.length !== 0 && initialLoad">Featured Jobs</h1>
-        <h1 *ngIf="!initialLoad && department !== ''">{{department}} Jobs</h1>
+        <h1 *ngIf="!initialLoad && department !== ''">{{ department }} Jobs</h1>
         <h1 *ngIf="!initialLoad && department === ''">All Jobs</h1>
       </div>
       <!-- Cards -->
       <card-list [cards]="cards"></card-list>
-      <div *ngIf="filtered.length === 0 && !initialLoad" class="col col-sm-12 col-md-6 col-lg-3 text-center text-danger">
-        <p> No results found.</p>
+      <div
+        *ngIf="filtered.length === 0 && !initialLoad"
+        class="col col-sm-12 col-md-6 col-lg-3 text-center text-danger"
+      >
+        <p>No results found.</p>
       </div>
     </div>
   </div>

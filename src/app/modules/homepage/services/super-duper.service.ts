@@ -1,28 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 
-import { Observable } from 'rxjs/internal/Observable';
-import { forkJoin, of } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable } from "rxjs/internal/Observable";
+import { forkJoin, of } from "rxjs";
+import { catchError, map } from "rxjs/operators";
 
-import { RequestService } from '../../../../shared-ng/services/services';
-import { CURRENT_YEAR } from '../../../../shared-ng/config';
+import { RequestService } from "../../../../shared-ng/services/services";
+import { CURRENT_YEAR } from "../../../../shared-ng/config";
 
 @Injectable()
 export class SuperDuperService {
+  jobsUri = "/forms/job/view/all";
+  maskUri = "/mask/search/" + CURRENT_YEAR + "/";
+  pagesUri = "/pages/search?general=";
 
-  jobsUri = '/forms/job/view/all';
-  maskUri = '/mask/search/' + CURRENT_YEAR + '/';
-  pagesUri = '/pages/search?general=';
+  jobLink = "https://aswwumask.com/jobs/submit/";
+  maskLink = "https://aswwumask.com/mask/profile/";
+  pageLink = "https://aswwumask.com/pages/";
 
-  jobLink = 'https://aswwumask.com/jobs/submit/';
-  maskLink = 'https://aswwumask.com/mask/profile/';
-  pageLink = 'https://aswwumask.com/pages/';
-
-  constructor(private requests: RequestService) { }
+  constructor(private requests: RequestService) {}
 
   private parseQuery(query: string): string {
     // TODO: switch regex with the method used in pages search component
-    query = query.toLowerCase().replace(/[!@#$%^&*()=+]/g, '').replace(/[_ -]/g, '%20');
+    query = query
+      .toLowerCase()
+      .replace(/[!@#$%^&*()=+]/g, "")
+      .replace(/[_ -]/g, "%20");
     return query;
   }
 
@@ -36,11 +38,11 @@ export class SuperDuperService {
   }
 
   private mapMask(response) {
-    const toReturn = response.results.slice(0, 3).map(result => {
+    const toReturn = response.results.slice(0, 3).map((result) => {
       return {
         main: result.full_name,
-        sub: '', // we could add a sub text for each result, like major for mask results
-        source: 'Mask',
+        sub: "", // we could add a sub text for each result, like major for mask results
+        source: "Mask",
         link: this.maskLink + result.username,
         top: false,
       };
@@ -50,25 +52,28 @@ export class SuperDuperService {
   }
 
   private mapJobs(query, response) {
-    const toReturn = response.forms.filter(item => this.filterJobs(query, item)).slice(0, 3).map(result => {
-      return {
-        main: result.job_name,
-        sub: '',
-        source: 'Jobs',
-        link: this.jobLink + result.jobID,
-        top: false,
-      };
-    });
+    const toReturn = response.forms
+      .filter((item) => this.filterJobs(query, item))
+      .slice(0, 3)
+      .map((result) => {
+        return {
+          main: result.job_name,
+          sub: "",
+          source: "Jobs",
+          link: this.jobLink + result.jobID,
+          top: false,
+        };
+      });
     toReturn[0].top = true;
     return toReturn;
   }
 
   private mapPages(response) {
-    const toReturn = response.results.slice(0, 3).map(result => {
+    const toReturn = response.results.slice(0, 3).map((result) => {
       return {
         main: result.title,
-        sub: '',
-        source: 'Pages',
+        sub: "",
+        source: "Pages",
         link: this.pageLink + result.url,
         top: false,
       };
@@ -80,22 +85,26 @@ export class SuperDuperService {
   SearchAndReturnObservableArray(query) {
     const queryUri = this.parseQuery(query);
     const maskObservable = this.requests.get(this.maskUri + queryUri).pipe(
-      map(response => this.mapMask(response)),
-      catchError(err => of([]))
+      map((response) => this.mapMask(response)),
+      catchError((err) => of([])),
     );
     const pagesObservable = this.requests.get(this.pagesUri + queryUri).pipe(
-      map(response => this.mapPages(response)),
-      catchError(err => of([]))
+      map((response) => this.mapPages(response)),
+      catchError((err) => of([])),
     );
     const jobsObservable = this.requests.get(this.jobsUri).pipe(
-      map(response => this.mapJobs(query, response)),
-      catchError(err => of([]))
+      map((response) => this.mapJobs(query, response)),
+      catchError((err) => of([])),
     ); // don't parseQuery()
     // uses: https://stackoverflow.com/questions/44141569/how-to-concat-two-observable-arrays-into-a-single-array
-    const toReturn = forkJoin(maskObservable, pagesObservable, jobsObservable).pipe(
+    const toReturn = forkJoin(
+      maskObservable,
+      pagesObservable,
+      jobsObservable,
+    ).pipe(
       map(([s1, s2, s3]) => {
         return [...s1, ...s2, ...s3];
-      })
+      }),
     );
     return toReturn;
   }
@@ -103,16 +112,18 @@ export class SuperDuperService {
   SearchAndReturnObservableResults(query) {
     const queryUri = this.parseQuery(query);
     const maskObservable = this.requests.get(this.maskUri + queryUri).pipe(
-      map(response => response.results),
-      catchError(err => of([]))
+      map((response) => response.results),
+      catchError((err) => of([])),
     );
     const pagesObservable = this.requests.get(this.pagesUri + queryUri).pipe(
-      map(response => response.results),
-      catchError(err => of([]))
+      map((response) => response.results),
+      catchError((err) => of([])),
     );
     const jobsObservable = this.requests.get(this.jobsUri).pipe(
-      map(response => response.forms.filter(result => this.filterJobs(query, result))),
-      catchError(err => of([]))
+      map((response) =>
+        response.forms.filter((result) => this.filterJobs(query, result)),
+      ),
+      catchError((err) => of([])),
     ); // don't parseQuery()
     // let jobsObservable = this.requests.getObservable( this.jobsUri ).map(response => this.mapJobs(query, response)).catch(err => of([])); // don't parseQuery()
 
@@ -120,6 +131,4 @@ export class SuperDuperService {
     const toReturn = forkJoin(maskObservable, pagesObservable, jobsObservable);
     return toReturn;
   }
-
-
 }

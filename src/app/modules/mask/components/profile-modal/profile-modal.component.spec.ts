@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { ProfileModalComponent } from './profile-modal.component';
+import { ProfileModalComponent } from "./profile-modal.component";
 
-describe('ProfileModalComponent', () => {
+describe("ProfileModalComponent", () => {
   let component: ProfileModalComponent;
   let fixture: ComponentFixture<ProfileModalComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ProfileModalComponent ]
-    })
-    .compileComponents();
+      declarations: [ProfileModalComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('ProfileModalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

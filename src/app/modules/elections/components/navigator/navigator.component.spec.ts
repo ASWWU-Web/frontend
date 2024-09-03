@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { NavigatorComponent } from './navigator.component';
+import { NavigatorComponent } from "./navigator.component";
 
-describe('NavigatorComponent', () => {
+describe("NavigatorComponent", () => {
   let component: NavigatorComponent;
   let fixture: ComponentFixture<NavigatorComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ NavigatorComponent ]
-    })
-    .compileComponents();
+      declarations: [NavigatorComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('NavigatorComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

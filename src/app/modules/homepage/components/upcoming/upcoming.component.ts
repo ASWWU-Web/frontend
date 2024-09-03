@@ -1,21 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { CalendarService } from '../../services/calendar.service';
-import { UpcomingModel } from './upcoming.model';
+import { CalendarService } from "../../services/calendar.service";
+import { UpcomingModel } from "./upcoming.model";
 
 @Component({
-  selector: 'upcoming',
-  templateUrl: './upcoming.component.html',
-  styleUrls: ['./upcoming.component.css']
+  selector: "upcoming",
+  templateUrl: "./upcoming.component.html",
+  styleUrls: ["./upcoming.component.css"],
 })
 export class UpcomingComponent implements OnInit {
-
   upcomings: UpcomingModel[];
   results: any;
   ready: boolean;
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   // TODO:
   // • jump out of for loop when upcomings array has 5 elements to keep it from getting huge
@@ -26,12 +24,19 @@ export class UpcomingComponent implements OnInit {
   constructor(private calendarService: CalendarService) {
     this.ready = false;
     this.upcomings = new Array<UpcomingModel>();
-    calendarService.getUpcomings().then(res => {
+    calendarService.getUpcomings().then((res) => {
       this.results = res.items;
       for (const key in this.results) {
         if (this.results.hasOwnProperty(key)) {
-          if (this.results[key].summary.slice(0, 5) === 'ASWWU') {
-            this.upcomings.push(new UpcomingModel(this.results[key].summary, this.results[key].htmlLink, this.results[key].start, this.results[key].end));
+          if (this.results[key].summary.slice(0, 5) === "ASWWU") {
+            this.upcomings.push(
+              new UpcomingModel(
+                this.results[key].summary,
+                this.results[key].htmlLink,
+                this.results[key].start,
+                this.results[key].end,
+              ),
+            );
           }
         }
       }

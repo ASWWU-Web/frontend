@@ -1,4 +1,4 @@
-<br>
+<br />
 
 <p>Note: time must be entered in a 24-hour format (5pm = 17:00, 8am = 08:00)</p>
 
@@ -13,7 +13,12 @@
     </tr>
   </thead>
   <tbody *ngIf="data">
-    <tr elections-row *ngFor="let row of data" [rowData]="row" [positions]="positions"></tr>
+    <tr
+      elections-row
+      *ngFor="let row of data"
+      [rowData]="row"
+      [positions]="positions"
+    ></tr>
   </tbody>
 </table>
 

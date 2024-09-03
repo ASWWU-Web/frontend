@@ -1,20 +1,20 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { tz } from 'moment-timezone';
+import { Component, Input, OnInit } from "@angular/core";
+import { tz } from "moment-timezone";
 
 @Component({
-  selector: 'countdown',
-  templateUrl: './countdown.component.html',
-  styleUrls: ['./countdown.component.css']
+  selector: "countdown",
+  templateUrl: "./countdown.component.html",
+  styleUrls: ["./countdown.component.css"],
 })
 export class CountdownComponent implements OnInit {
   @Input() date: typeof tz;
   @Input() now: typeof tz;
   @Input() status: string;
 
-  constructor() { }
+  constructor() {}
 
   ngOnInit() {
-    const display = document.querySelector('#time');
+    const display = document.querySelector("#time");
     // var difference = Math.abs(this.date - this.now);
 
     // this.startTimer(difference, display);
@@ -34,7 +34,11 @@ export class CountdownComponent implements OnInit {
   // Source: https://stackoverflow.com/questions/20618355/the-simplest-possible-javascript-countdown-timer
   startTimer(duration, display) {
     duration = duration / 1000;
-    let timer = duration; let days; let hours; let minutes; let seconds;
+    let timer = duration;
+    let days;
+    let hours;
+    let minutes;
+    let seconds;
     setInterval(function () {
       days = Math.floor(timer / 86400);
       hours = Math.floor((timer % 86400) / 3600);
@@ -46,7 +50,8 @@ export class CountdownComponent implements OnInit {
       minutes = minutes < 10 ? "0" + minutes : minutes;
       seconds = seconds < 10 ? "0" + seconds : seconds;
 
-      display.textContent = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+      display.textContent =
+        days + "d " + hours + "h " + minutes + "m " + seconds + "s";
 
       if (--timer < 0) {
         // window.location.reload(true);

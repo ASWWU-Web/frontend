@@ -36,7 +36,9 @@ body {
 .search-area-element {
   font-family: "Raleway", sans-serif;
   color: white;
-  transition: color 0.2s, background-color 0.2s;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
   font-weight: bold;
   background-color: transparent;
   border: none;
@@ -46,6 +48,16 @@ body {
   box-shadow: inset 0px 0px 0px 2px white;
   border: 1px solid white;
   border-radius: 5px;
+  max-width: 75%;
+  width: 480px;
+}
+
+/* mobile only */
+@media only screen and (max-aspect-ratio: 3/5) {
+  .search-area-border {
+    max-width: 100%;
+    width: 90%;
+  }
 }
 
 #mask-search-query {
@@ -81,6 +93,8 @@ body {
 
 .search-area-element:focus {
   color: white;
+  box-shadow: none;
+  border: none;
 }
 .search-area-element:focus::placeholder {
   color: black;

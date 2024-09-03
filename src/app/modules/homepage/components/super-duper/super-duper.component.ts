@@ -1,55 +1,68 @@
-import { Component, EventEmitter, Input, OnInit } from '@angular/core';
-import { Router, RouterModule, Routes } from '@angular/router';
-import { ActivatedRoute } from '@angular/router';
+import { Component, EventEmitter, Input, OnInit } from "@angular/core";
+import { Router, RouterModule, Routes } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 
-import { Observable } from 'rxjs/internal/Observable';
-import { merge, of } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
-import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { Observable } from "rxjs/internal/Observable";
+import { merge, of } from "rxjs";
+import {
+  catchError,
+  debounceTime,
+  distinctUntilChanged,
+  map,
+  switchMap,
+  tap,
+} from "rxjs/operators";
+import { NgbDropdown } from "@ng-bootstrap/ng-bootstrap";
 
-import { HomepageRequestService } from '../../../../../shared-ng/services/services';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { HomepageRequestService } from "../../../../../shared-ng/services/services";
+import { UntypedFormControl, UntypedFormGroup } from "@angular/forms";
 
 @Component({
-  selector: 'super-duper',
-  templateUrl: './super-duper.component.html',
-  styleUrls: ['./super-duper.component.css']
+  selector: "super-duper",
+  templateUrl: "./super-duper.component.html",
+  styleUrls: ["./super-duper.component.css"],
 })
 export class SuperDuperComponent implements OnInit {
-
   @Input() model: string = null;
   searching = false;
   searchFailed = false;
-  hideSearchingWhenUnsubscribed = new Observable(() => () => this.searching = false);
+  hideSearchingWhenUnsubscribed = new Observable(
+    () => () => (this.searching = false),
+  );
 
   // dropdown menu options
-  sites: string[] = ['Mask', /* 'Pages', 'Jobs'*/];
+  sites: string[] = ["Mask" /* 'Pages', 'Jobs'*/];
   // placeholder options
-  placeholders: string[] = ['search the mask...', /* 'search pages...', 'search jobs...'*/];
+  placeholders: string[] = [
+    "search the mask..." /* 'search pages...', 'search jobs...'*/,
+  ];
   // default placeholder
-  placeHolder = 'search the mask...';
+  placeHolder = "search the mask...";
   // default dropdown option
-  selectSites = 'Mask';
+  selectSites = "Mask";
 
-  searchPageroute = 'search';
+  searchPageroute = "search";
 
   // new page routes
-  maskPageRoute = 'mask/search?query=';
-  pagesPageRoute = ''; // search route with query
-  jobsPageRoute = ''; // search route with query
+  maskPageRoute = "mask/search?query=";
+  pagesPageRoute = ""; // search route with query
+  jobsPageRoute = ""; // search route with query
   formGroup: UntypedFormGroup;
 
-  constructor(private hprs: HomepageRequestService, private router: Router) {
-    this.formGroup = new UntypedFormGroup({name: new UntypedFormControl('')});
+  constructor(
+    private hprs: HomepageRequestService,
+    private router: Router,
+  ) {
+    this.formGroup = new UntypedFormGroup({ name: new UntypedFormControl("") });
   }
 
   ngOnInit() {}
 
   getNames(query: string) {
-    if (query === '') {
-      return of({results: []});
+    if (query === "") {
+      return of({ results: [] });
     }
-    return this.hprs.get('search/names', {full_name: query});
+    return this.hprs.get("search/names", { full_name: query });
   }
 
   search = (text$: Observable<string>) => {
@@ -57,22 +70,22 @@ export class SuperDuperComponent implements OnInit {
       debounceTime(300),
       distinctUntilChanged(),
       switchMap((data) => this.getNames(data)),
-      map((data: {results: {username: string, full_name: string}[]}) => {
+      map((data: { results: { username: string; full_name: string }[] }) => {
         return data.results;
-      })
+      }),
     );
-  }
+  };
 
-  formatter = (x: {username: string, full_name: string}) => x.full_name;
+  formatter = (x: { username: string; full_name: string }) => x.full_name;
 
   // allows dropdown menu button to change based on user selection
   ChangeSite(newSite: string) {
     this.selectSites = newSite;
-    if (newSite === 'Mask') {
+    if (newSite === "Mask") {
       this.placeHolder = this.placeholders[0];
-    } else if (newSite === 'Pages') {
+    } else if (newSite === "Pages") {
       this.placeHolder = this.placeholders[1];
-    } else if (newSite === 'Jobs') {
+    } else if (newSite === "Jobs") {
       this.placeHolder = this.placeholders[2];
     }
   }
@@ -95,7 +108,7 @@ export class SuperDuperComponent implements OnInit {
     }
 
     // redirects user to mask query page
-    if (this.selectSites === 'Mask') {
+    if (this.selectSites === "Mask") {
       window.location.href = this.maskPageRoute + userinput;
     }
     /* Not implemented yet
@@ -105,6 +118,4 @@ export class SuperDuperComponent implements OnInit {
       window.location.href = this.jobsPageRoute + userInput;
     }*/
   }
-
 }
-
