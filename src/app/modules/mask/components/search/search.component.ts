@@ -1,11 +1,11 @@
-import { Observable ,  Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { distinctUntilChanged, map } from 'rxjs/operators';
 import { Component, ElementRef, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, Params } from '@angular/router';
 import { HermesService, MaskRequestService } from '../../../../../shared-ng/services/services';
 import { SearchableFields } from '../../fields';
-import { Profile } from '../../../../../shared-ng/interfaces/interfaces';
+import { PartialProfile } from '../../../../../shared-ng/interfaces/interfaces';
 
 
 @Component({
@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
   typeaheadSub: Subscription;
 
   constructor(private activatedRoute: ActivatedRoute, private mrs: MaskRequestService, private location: Location,
-              private elementRef: ElementRef, private hermesService: HermesService) {
+    private elementRef: ElementRef, private hermesService: HermesService) {
     // sets background color
     this.elementRef.nativeElement.ownerDocument.body.style.backgroundColor = 'black';
     // displays header and subnav bar
@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit() {
     // Get the Params from the URL.
-    this.activatedRoute.queryParamMap.subscribe( params => {
+    this.activatedRoute.queryParamMap.subscribe(params => {
       this.typedQuery = params.get('query');
       if (this.typedQuery) {
         this.runSearch();
@@ -38,10 +38,10 @@ export class SearchComponent implements OnInit {
     });
     const profileObservable = this.mrs.listProfile();
     profileObservable.subscribe(
-      (data: Profile[]) => {
+      (data: PartialProfile[]) => {
         this.allProfiles = data;
         this.setupTypeAhead();
-      }, (err) => {});
+      }, (err) => { });
   }
 
   // Converts 'majors=Computer Engineering' to 'Major: Computer Engineering'

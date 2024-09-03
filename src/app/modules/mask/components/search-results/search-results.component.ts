@@ -1,12 +1,11 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
-import { Observable , Subscription} from 'rxjs';
+
+import { Subscription } from 'rxjs';
 
 import { MaskRequestService } from '../../../../../shared-ng/services/services';
-import { ProfileSmComponent } from '../profile-sm/profile-sm.component';
 import { CURRENT_YEAR } from '../../../../../shared-ng/config';
-import { Profile } from '../../../../../shared-ng/interfaces/interfaces';
+import { PartialProfile } from '../../../../../shared-ng/interfaces/interfaces';
 
 @Component({
   selector: "search-results",
@@ -21,13 +20,13 @@ export class SearchResultsComponent implements OnChanges, OnInit {
   @Input() noResultsPrompt: string;
   @Input() noResultsJust = "center";
 
-  results: Profile[] = [];
-  shownResults: any[] = [];
+  results: PartialProfile[] = [];
+  shownResults: PartialProfile[] = [];
   shown = 0;
   sub: Subscription = null;
   searching = false;
 
-  constructor (private mrs: MaskRequestService) {}
+  constructor(private mrs: MaskRequestService) { }
 
   ngOnChanges() {
     this.shownResults = [];
@@ -36,7 +35,7 @@ export class SearchResultsComponent implements OnChanges, OnInit {
   }
 
   ngOnInit() {
-    if (!this.query){
+    if (!this.query) {
       this.query = "";
     }
   }
@@ -51,32 +50,16 @@ export class SearchResultsComponent implements OnChanges, OnInit {
     const query = this.query || "";
     if (this.year == undefined || this.year == CURRENT_YEAR) {
       const maskObservable = this.mrs.listProfile(CURRENT_YEAR, query);
-      maskObservable.subscribe((data: Profile[]) => {
-        this.results = data.sort((p1, p2) => {
-          let views1 = 0; let views2 = 0;
-          if (typeof p1.views !== 'string')
-            views1 = p1.views;
-          if (typeof p2.views !== 'string')
-            views2 = p2.views;
-
-          return views2 - views1;
-        });
+      maskObservable.subscribe((data) => {
+        this.results = data;
         this.showMore();
-      }, undefined);
+      });
     } else {
       const maskObservable = this.mrs.listProfile(this.year, query);
-      maskObservable.subscribe((data: Profile[]) => {
-        this.results = data.sort((p1, p2) => {
-          let views1 = 0; let views2 = 0;
-          if (typeof p1.views !== 'string')
-            views1 = p1.views;
-          if (typeof p2.views !== 'string')
-            views2 = p2.views;
-
-            return views2 - views1;
-        });
+      maskObservable.subscribe((data: PartialProfile[]) => {
+        this.results = data;
         this.showMore();
-      }, undefined);
+      });
     }
   }
 

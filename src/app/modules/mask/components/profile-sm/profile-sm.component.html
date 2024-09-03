@@ -1,15 +1,43 @@
-<a *ngIf="this.year == this.current_year" (click)="ballotModal.open(searchResult.username, this.year)">
+<a
+  *ngIf="this.year === this.current_year"
+  (click)="ballotModal.open(searchResult.username, this.year)"
+  (keyup.enter)="ballotModal.open(searchResult.username, this.year)"
+  tabindex="0"
+>
   <div class="circle">
-    <img class="img-fluid" src="{{link}}" alt="{{searchResult.full_name}}"/>
+    <img
+      class="img-fluid"
+      src="{{ link }}"
+      alt="{{ searchResult.full_name }}"
+    />
   </div>
-  <h4 class=" text-black">{{searchResult.full_name | unescape}}</h4>
+  <h4 class="text-black">{{ searchResult.full_name | unescape }}</h4>
 </a>
 
-<a *ngIf="this.year != this.current_year" (click)="ballotModal.open(searchResult.username, (this.year) ? this.year: this.current_year)">
+<a
+  *ngIf="this.year !== this.current_year"
+  (click)="
+    ballotModal.open(
+      searchResult.username,
+      this.year ? this.year : this.current_year
+    )
+  "
+  (keyup.enter)="
+    ballotModal.open(
+      searchResult.username,
+      this.year ? this.year : this.current_year
+    )
+  "
+  tabindex="0"
+>
   <div class="circle">
-    <img class="img-fluid" src="{{link}}" alt="{{searchResult.full_name}}"/>
+    <img
+      class="img-fluid"
+      src="{{ link }}"
+      alt="{{ searchResult.full_name }}"
+    />
   </div>
-  <h4 id="full-name">{{searchResult.full_name | unescape}}</h4>
+  <h4 id="full-name">{{ searchResult.full_name | unescape }}</h4>
 </a>
 
 <app-profile-modal #ballotModal></app-profile-modal>

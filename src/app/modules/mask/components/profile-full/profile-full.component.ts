@@ -11,7 +11,7 @@ import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['profile-full.styles.css'],
 })
 export class ProfileFullComponent {
-  @Input('User') username: string;
+  @Input() username: string;
   @Input() profile: ProfileModel;
 
   fieldsInOrder: string[] = FieldsInOrder;
@@ -22,8 +22,8 @@ export class ProfileFullComponent {
   }
 
   displayKey(key: string): string {
- return key.replace(/_/g, ' ');
-}
+    return key.replace(/_/g, ' ');
+  }
 
   getPhotoLink(url: string) {
     if (url && url != 'None') {
@@ -32,7 +32,7 @@ export class ProfileFullComponent {
       if (url == DEFAULT_PHOTO) return url;
       return MEDIA_MD + '/' + url;
     } else {
-      return MEDIA_MD + '/' + DEFAULT_PHOTO;
+      return DEFAULT_PHOTO;
     }
   }
   isLoggedOn() {

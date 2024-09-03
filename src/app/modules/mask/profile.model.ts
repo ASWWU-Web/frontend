@@ -6,46 +6,47 @@ import { ProfileFull } from 'src/shared-ng/interfaces/mask';
 import { DEFAULT_PHOTO, MEDIA_SM, MEDIA_URI } from '../../../shared-ng/config';
 
 export class ProfileModel implements ProfileFull {
-  wwuid: string;
-  username: string;
-  full_name: string;
-  photo: string;
-  gender: string;
-  birthday: string;
-  email: string;
-  phone: string;
-  website: string;
-  majors: string;
-  minors: string;
-  graduate: string;
-  preprofessional: string;
-  class_standing: string;
-  high_school: string;
-  class_of: string;
-  relationship_status: string;
-  attached_to: string;
-  quote: string;
-  quote_author: string;
-  hobbies: string;
-  career_goals: string;
-  favorite_books: string;
-  favorite_food: string;
-  favorite_movies: string;
-  favorite_music: string;
-  pet_peeves: string;
-  personality: string;
-  views: string;
-  privacy: string;
-  department: string;
-  office: string;
-  office_hours: string;
-  year: string;
+  wwuid = "";
+  username = "";
+  full_name = "";
+  photo = "";
+  gender = "";
+  birthday = "";
+  email = "";
+  phone = "";
+  website = "";
+  majors = "";
+  minors = "";
+  graduate = "";
+  preprofessional = "";
+  class_standing = "";
+  high_school = "";
+  class_of = "";
+  relationship_status = "";
+  attached_to = "";
+  quote = "";
+  quote_author = "";
+  hobbies = "";
+  career_goals = "";
+  favorite_books = "";
+  favorite_food = "";
+  favorite_movies = "";
+  favorite_music = "";
+  pet_peeves = "";
+  personality = "";
+  views = "";
+  privacy = "";
+  department = "";
+  office = "";
+  office_hours = "";
+  year = "";
+
 
   // If the data passed to the ProfileModel is a JSON, this constructor will parse it.
-  constructor(data: ProfileFull | string) {
+  constructor(data: ProfileFull | string | Partial<ProfileFull>) {
     if (typeof data == "string") data = JSON.parse(data) as ProfileFull;
     for (const key in data) {
-      if (data[key].length > 0 && data[key] != "None") {
+      if (data[key].length > 0 && data[key] != "None" || data[key] != "") {
         this[key] = data[key].trim();
       }
     }

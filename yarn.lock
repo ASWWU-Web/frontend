@@ -3333,10 +3333,10 @@ boolbase@^1.0.0:
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==
 
-bootstrap-scss@^4.6.0:
-  version "4.6.2"
-  resolved "https://registry.yarnpkg.com/bootstrap-scss/-/bootstrap-scss-4.6.2.tgz#bcd4246826b8fce8a282ca901696f2ffc34f68cc"
-  integrity sha512-emVpCI/S9aeFV1/qqKrztPZLiyow4XfRWLxOAu2SR/67Vau0y6IHNRukQrTx8+OUQ+aVPDhql40eDHSxGoAceA==
+bootstrap-scss@5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/bootstrap-scss/-/bootstrap-scss-5.0.0.tgz#7c1f35357c07fb51ec539bbfa7e9a23abc47f7b0"
+  integrity sha512-aVxG2brFlJxuS7tco3Hb3L9Sx9ixsT5UpWzNtJjobgGmPkpRYSHKZUKM/6wGsEIh2Be7GZ1Oqjlv2+2Ze5fv/g==
 
 brace-expansion@^1.1.7:
   version "1.1.11"

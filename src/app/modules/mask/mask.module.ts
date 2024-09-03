@@ -26,41 +26,43 @@ import {
   UpdateComponent
 } from './components/mask.components';
 
-@NgModule({ declarations: [
-        ProfileComponent,
-        SearchComponent,
-        UpdateComponent,
-        RandomComponent,
-        BirthdayComponent,
-        SuperSearchComponent,
-        ProfileFullComponent,
-        ProfileSmComponent,
-        ProfileModalComponent,
-        ProfileModalContentComponent,
-        SearchResultsComponent,
-        UnescapePipe,
-    ],
-    exports: [
-        ProfileComponent,
-        SearchComponent,
-        UpdateComponent,
-        RandomComponent,
-        BirthdayComponent,
-        SuperSearchComponent,
-        ProfileFullComponent,
-        ProfileSmComponent,
-        ProfileModalComponent,
-        ProfileModalContentComponent,
-        SearchResultsComponent,
-    ], imports: [CommonModule,
-        FormsModule,
-        ReactiveFormsModule,
-        NgbModule,
-        FontAwesomeModule,
-        RouterModule.forChild(MaskRoutes)], providers: [
-        MaskRequestService,
-        provideHttpClient(withInterceptorsFromDi())
-    ] })
+@NgModule({
+  declarations: [
+    ProfileComponent,
+    SearchComponent,
+    UpdateComponent,
+    RandomComponent,
+    BirthdayComponent,
+    SuperSearchComponent,
+    ProfileFullComponent,
+    ProfileSmComponent,
+    ProfileModalComponent,
+    ProfileModalContentComponent,
+    SearchResultsComponent,
+    UnescapePipe,
+  ],
+  exports: [
+    ProfileComponent,
+    SearchComponent,
+    UpdateComponent,
+    RandomComponent,
+    BirthdayComponent,
+    SuperSearchComponent,
+    ProfileFullComponent,
+    ProfileSmComponent,
+    ProfileModalComponent,
+    ProfileModalContentComponent,
+    SearchResultsComponent,
+  ], imports: [CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    FontAwesomeModule,
+    RouterModule.forChild(MaskRoutes)], providers: [
+      MaskRequestService,
+      provideHttpClient(withInterceptorsFromDi())
+    ]
+})
 export class MaskModule {
   fade = 1;
   constructor(private hermes: HermesService, private loc: Location, private router: Router) {

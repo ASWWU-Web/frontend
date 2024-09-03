@@ -1,11 +1,15 @@
 <div *ngIf="profile" class="profile profile-full row">
   <div class="col-sm-12 col-md-6">
-    <img class="img-fluid" src="{{ getPhotoLink(profile.photo) }}" />
+    <img
+      class="img-fluid"
+      src="{{ getPhotoLink(profile.photo) }}"
+      alt="{{ profile?.full_name | unescape }}'s profile picture"
+    />
   </div>
   <div class="col-sm-12 col-md-6">
     <h1 class="text-capitalize text-black">
       {{ profile?.full_name | unescape }}
-      <span *ngIf="profile?.year != currentYear && currentYear != null">
+      <span *ngIf="profile?.year !== currentYear && currentYear !== null">
         ({{ currentYear }})
       </span>
     </h1>

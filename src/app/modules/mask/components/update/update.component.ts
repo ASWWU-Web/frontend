@@ -15,7 +15,10 @@ import { ProfileModel } from '../../profile.model';
 @Component({
   selector: 'update-profile',
   templateUrl: 'update.component.html',
-  styleUrls: ['update.component.css'],
+  styleUrls: [
+    'update.component.css',
+    'update.component.mobile.css'
+  ],
   providers: [
   ],
 })
