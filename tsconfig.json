@@ -22,5 +22,6 @@
     "strictInjectionParameters": true,
     "strictTemplates": true,
     "fullTemplateTypeCheck": true
-  }
+  },
+  "files": ["src/main.ts"]
 }
