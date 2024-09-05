@@ -43,13 +43,21 @@
               >{{ attribute + (last ? "" : ",") | unescape }}</a
             >
             <a
-              *ngIf="key !== 'phone' && key !== 'email' && key !== 'website'"
+              *ngIf="
+                key !== 'phone' &&
+                key !== 'email' &&
+                key !== 'website' &&
+                key !== 'birthday'
+              "
               class="text-white"
               [routerLink]="['/mask/search']"
               [queryParams]="{ query: key + '=' + attribute }"
               (click)="closeModal()"
               >{{ attribute + (last ? "" : ",") | unescape }}</a
             >
+            <a *ngIf="key === 'birthday'" class="text-white">
+              {{ attribute | unescape | date: "MMMM d" }}
+            </a>
           </span>
         </h5>
       </span>
