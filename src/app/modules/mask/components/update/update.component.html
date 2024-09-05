@@ -1,3 +1,4 @@
+<!-- TODO: in the short term, we should see if we can use ngIf for mobile/desktop since Angular still renders both pages -->
 <div *ngIf="isLoggedOn()" class="row position-relative">
   <!-- use old ui for desktop -->
   <div id="edit-profile" class="col-md-6 only-desktop" *ngIf="fullProfile">
@@ -137,7 +138,7 @@
   </div>
 
   <!-- Profile preview -->
-  <div class="col-md-6" id="preview">
+  <div class="col-md-6 only-desktop" id="preview">
     <h1 class="text-white">Profile Preview</h1>
     <hr class="top-hr" />
     <profile-full [profile]="fullProfile"></profile-full>
@@ -147,7 +148,7 @@
   <div class="col-md-6 only-mobile" *ngIf="fullProfile">
     <!-- Pills (unused) -->
     <!-- <div class="row"></div> -->
-    <h2 class="text-white">About Me</h2>
+
     <!-- photo picker -->
     <div class="possible-photo-container">
       <h3 class="text-white mt-1">Profile Photos</h3>
@@ -182,21 +183,40 @@
         </div>
       </div>
     </div>
-    <div>
-      <div *ngFor="let section of sections">
-        <hr />
+    <div class="mt-2">
+      <!-- Loop through sections -->
+      <div
+        *ngFor="let section of sections"
+        id="{{
+          sectionTitles[sections.indexOf(section)]
+            .replace(' ', '-')
+            .toLowerCase()
+        }}"
+      >
+        <!-- FIXME: Let's try to reduce the amount of comparisons we do here -->
         <div class="row">
-          <div *ngFor="let field of section" class="col-md-6 pb-2 pt-2">
-            <!-- Non Staff Fields -->
-            <div
+          <!-- Section Title -->
+          <div class="pt-2 pb-2">
+            <h2
+              class="text-white section-title"
               *ngIf="
-                !(
-                  field === 'department' ||
-                  field === 'office' ||
-                  field === 'office_hours'
-                )
+                (sectionTitles[sections.indexOf(section)] === 'Faculty' &&
+                  !isStudent) ||
+                sectionTitles[sections.indexOf(section)] !== 'Faculty'
               "
+            >
+              {{ sectionTitles[sections.indexOf(section)] }}
+            </h2>
+          </div>
+          <!-- Loop through fields -->
+          <div *ngFor="let field of section" class="col-md-6 pb-2 pt-2">
+            <!-- Raw Text Fields -->
+            <div
               class="text-white text-capitalize"
+              *ngIf="
+                (staffOnlyFields.includes(field) && !isStudent) ||
+                !staffOnlyFields.includes(field)
+              "
             >
               <p
                 class="text-capitalize mobile-field-title"
@@ -208,46 +228,28 @@
                 *ngIf="
                   !searchables.hasOwnProperty(field) &&
                   !selectables[field] &&
-                  !(
-                    field === 'department' ||
-                    field === 'office' ||
-                    field === 'office_hours'
-                  )
+                  field !== 'birthday'
                 "
                 type="text"
                 class="form-control"
                 id="{{ field + 'input' }}"
                 [(ngModel)]="fullProfile[field]"
               />
-            </div>
-            <!-- Staff Fields -->
-            <div
-              *ngIf="
-                (field === 'department' ||
-                  field === 'office' ||
-                  field === 'office_hours') &&
-                (userStatus === 'Faculty' || userStatus === 'Staff')
-              "
-              class="text-white text-capitadivze"
-            >
-              <input
-                *ngIf="
-                  !searchables.hasOwnProperty(field) &&
-                  !selectables[field] &&
-                  (field === 'department' ||
-                    field === 'office' ||
-                    field === 'office_hours')
-                "
-                type="text"
-                class="form-control"
-                id="{{ field + 'input' }}"
-                [(ngModel)]="fullProfile[field]"
-              />
-              <i class="text-capitalize field-title">{{
-                field.split("_").join(" ")
-              }}</i>
             </div>
 
+            <!-- -- Custom Fields -- -->
+
+            <!-- Birthday (date picker) -->
+            <div *ngIf="field === 'birthday'">
+              <input
+                type="date"
+                class="form-control text-start"
+                id="{{ field + 'input' }}"
+                [(ngModel)]="fullProfile[field]"
+              />
+            </div>
+
+            <!-- Searchable Fields -->
             <div *ngIf="searchables.hasOwnProperty(field)">
               <input
                 *ngIf="field === 'majors'"
@@ -266,6 +268,8 @@
                 [ngbTypeahead]="searchMinors"
               />
             </div>
+
+            <!-- Selectable Fields -->
             <select
               *ngIf="selectables.hasOwnProperty(field) && field !== 'privacy'"
               class="form-control"
@@ -278,21 +282,35 @@
                 {{ options }}
               </option>
             </select>
-            <div *ngIf="field === 'privacy'" class="form-check form-switch">
-              <label for="flexSwitchCheckDefault" class="form-check-label">
-                Privacy
+
+            <!-- Privacy Switch -->
+            <div
+              *ngIf="field === 'privacy'"
+              class="form-check form-switch form-switch-md form-switch-override"
+            >
+              <label
+                for="flexSwitchCheckDefault"
+                class="form-check-label mobile-field-title"
+              >
+                Private Profile
               </label>
               <input
                 class="form-check-input"
                 type="checkbox"
                 role="switch"
                 id="flexSwitchCheckDefault"
+                name="privacy"
+                [(ngModel)]="fullProfile.privacy"
               />
+              <p class="pt-1 text-info fst-italic">
+                Makes profile only visible to logged in users
+              </p>
             </div>
           </div>
         </div>
       </div>
     </div>
+    <!-- Submit button -->
     <div id="submit">
       <button class="btn btn-primary" (click)="UploadProfile()">
         Update Profile

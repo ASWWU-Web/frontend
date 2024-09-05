@@ -47,4 +47,18 @@
     height: 225px;
     width: 150px;
   }
+  div.form-switch-override {
+    padding-left: 0px;
+  }
+  .form-switch-override > input {
+    float: right;
+  }
+  .section-title {
+    border-bottom: solid 1px #dddddd;
+    padding-bottom: 0.5em;
+    width: fit-content;
+  }
+  input::-webkit-date-and-time-value {
+    text-align: left;
+  }
 }

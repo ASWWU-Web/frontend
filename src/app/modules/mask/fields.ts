@@ -2,7 +2,7 @@
  * Created by ethan on 2/9/17.
  */
 // All fields that exist in a profile.
-export const FieldSections: string[][] = [
+export const FieldSections = [
   [
     "full_name",
     "phone",
@@ -403,3 +403,9 @@ export const SearchableFields = {
     "Wildlife Ecology",
   ],
 } as const;
+
+export const StaffOnlyFields = [
+  "department",
+  "office",
+  "office_hours",
+];

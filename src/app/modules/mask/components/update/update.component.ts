@@ -16,7 +16,7 @@ import {
   Status,
   User,
 } from "../../../../../shared-ng/interfaces/interfaces";
-import { FieldSections, SearchableFields, SelectFields } from "../../fields";
+import { FieldSections, SearchableFields, SelectFields, StaffOnlyFields } from "../../fields";
 import {
   CURRENT_YEAR,
   DEFAULT_PHOTO,
@@ -41,13 +41,22 @@ export class UpdateComponent implements OnInit {
     private as: AuthService,
     private mrs: MaskRequestService,
     private router: Router,
-  ) {}
+  ) { }
 
   profile: User;
   fullProfile: ProfileModel;
-  sections: string[][] = FieldSections;
+  sections = FieldSections;
   selectables = SelectFields;
   searchables = SearchableFields;
+  staffOnlyFields = StaffOnlyFields;
+  sectionTitles = [
+    "About Me",
+    "Relationships",
+    "Academics",
+    "Hobbies",
+    "Favorites",
+    "Faculty"
+  ]
   possiblePhotos: string[];
   searchYears: string[];
   justClicked: string;
@@ -81,8 +90,8 @@ export class UpdateComponent implements OnInit {
         term.length < 2
           ? []
           : this.searchables["majors"]
-              .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10),
+            .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
+            .slice(0, 10),
       ),
     );
   searchMinors = (text$: Observable<string>) =>
@@ -93,8 +102,8 @@ export class UpdateComponent implements OnInit {
         term.length < 2
           ? []
           : this.searchables["minors"]
-              .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10),
+            .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
+            .slice(0, 10),
       ),
     );
 
@@ -165,5 +174,8 @@ export class UpdateComponent implements OnInit {
     authObserverable.subscribe((data) => {
       this.userStatus = data.status;
     });
+  }
+  get isStudent(): boolean {
+    return this.userStatus === "Student";
   }
 }
