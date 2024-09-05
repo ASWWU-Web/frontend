@@ -5,6 +5,8 @@
 import { ProfileFull } from "src/shared-ng/interfaces/mask";
 import { DEFAULT_PHOTO, MEDIA_SM, MEDIA_URI } from "../../../shared-ng/config";
 
+// This class is used to convert the backend profile into a frontend profile
+// This should be updated if the profile model in the backend changes.
 export class ProfileModel implements ProfileFull {
   wwuid = "";
   username = "";
@@ -35,18 +37,22 @@ export class ProfileModel implements ProfileFull {
   pet_peeves = "";
   personality = "";
   views = "";
-  privacy = "";
+  privacy = true;
   department = "";
   office = "";
   office_hours = "";
   year = "";
 
   // If the data passed to the ProfileModel is a JSON, this constructor will parse it.
-  constructor(data: ProfileFull | string | Partial<ProfileFull>) {
+  constructor(data: ProfileFull | Partial<ProfileFull> | string) {
+    // we do a cast because you can't properly type a JSON object
     if (typeof data == "string") data = JSON.parse(data) as ProfileFull;
     for (const key in data) {
       if ((data[key].length > 0 && data[key] != "None") || data[key] != "") {
         this[key] = data[key].trim();
+        // convert the privacy key to a boolean
+      } else if (key == "privacy") {
+        this[key] = data[key] == "1";
       }
     }
     if ((!this.full_name || this.full_name == "") && this.username) {
@@ -79,7 +85,19 @@ export class ProfileModel implements ProfileFull {
 
     return photo;
   }
-  photoLink(): string {
+
+  // Get the link for a given photo
+  get photoLink(): string {
     return this.getPhotoLink("");
+  }
+
+  // Serialize the profile to JSON. Used when sending the profile to the backend.
+  // We need to convert the privacy key to a string because the backend expects a string "1" or "0"
+  toJSON() {
+    //  set privacy to 0 or 1 for the backend
+    return {
+      ...this,
+      privacy: this.privacy ? "1" : "0",
+    }
   }
 }
