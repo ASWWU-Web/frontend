@@ -29,7 +29,7 @@ export class ProfileModalContentComponent implements OnInit {
     private mrs: MaskRequestService,
     private activatedRoute: ActivatedRoute,
     private router: Router,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.year = this.year ? this.year : CURRENT_YEAR;
@@ -47,8 +47,8 @@ export class ProfileModalContentComponent implements OnInit {
 
     const maskObservable = this.mrs.readProfile(this.year, this.username);
     maskObservable.subscribe((data) => {
-      this.profile = new ProfileModel(data);
-    }, undefined);
+      this.profile = new ProfileModel(data, this.year);
+    });
     // this.rs.get(url, (data) => this.profile = new ProfileModel(data), undefined);
     const stateObj = { hello: "there" };
     history.pushState(stateObj, "Profile View", this.display_url);
@@ -77,7 +77,7 @@ export class ProfileModalComponent implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   open(username: string, year: string): void {
     // save the modal reference so we can close it
@@ -93,7 +93,7 @@ export class ProfileModalComponent implements OnInit {
 
     // Promise is rejected if click outside of modal or exit button is clicked; resolved if back button is clicked
     this.modal.result.then(
-      () => {},
+      () => { },
       () => {
         this.backButton = false;
         history.back();

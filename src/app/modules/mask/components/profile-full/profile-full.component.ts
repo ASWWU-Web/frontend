@@ -55,4 +55,8 @@ export class ProfileFullComponent {
   closeModal() {
     this.activeModal.close("Close click");
   }
+  get schoolYear(): string {
+    // we store the date at the end of the path
+    return location.pathname.split("/").pop() ?? "";
+  }
 }

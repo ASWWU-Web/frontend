@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
   constructor(
     private mrs: MaskRequestService,
     private activatedRoute: ActivatedRoute,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.subscription = this.activatedRoute.params.subscribe((param: any) => {
@@ -40,8 +40,8 @@ export class ProfileComponent implements OnInit {
       this.year = param["year"] ? param["year"] : CURRENT_YEAR;
       const profileObservable = this.mrs.readProfile(this.year, this.username);
       profileObservable.subscribe((data) => {
-        this.profile = new ProfileModel(data);
-      }, undefined);
+        this.profile = new ProfileModel(data, this.year);
+      });
     });
   }
 }

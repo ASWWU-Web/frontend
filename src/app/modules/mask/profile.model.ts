@@ -3,7 +3,7 @@
  */
 
 import { ProfileFull } from "src/shared-ng/interfaces/mask";
-import { DEFAULT_PHOTO, MEDIA_SM, MEDIA_URI } from "../../../shared-ng/config";
+import { CURRENT_YEAR, DEFAULT_PHOTO, MEDIA_SM, MEDIA_URI } from "../../../shared-ng/config";
 
 // This class is used to convert the backend profile into a frontend profile
 // This should be updated if the profile model in the backend changes.
@@ -43,8 +43,11 @@ export class ProfileModel implements ProfileFull {
   office_hours = "";
   year = "";
 
+  // angular sometimes injects an error message into the profile
+  error?: string;
+
   // If the data passed to the ProfileModel is a JSON, this constructor will parse it.
-  constructor(data: ProfileFull | Partial<ProfileFull> | string) {
+  constructor(data: ProfileFull | Partial<ProfileFull> | string, year: string = CURRENT_YEAR) {
     // we do a cast because you can't properly type a JSON object
     if (typeof data == "string") data = JSON.parse(data) as ProfileFull;
     for (const key in data) {
@@ -58,6 +61,7 @@ export class ProfileModel implements ProfileFull {
     if ((!this.full_name || this.full_name == "") && this.username) {
       this.full_name = this.username.replace(/\./g, " ");
     }
+    this.year = year;
   }
 
   linkByField(key: string): string {

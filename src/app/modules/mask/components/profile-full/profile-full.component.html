@@ -1,4 +1,4 @@
-<div *ngIf="profile" class="profile profile-full row">
+<div *ngIf="profile.username" class="profile profile-full row">
   <div class="col-sm-12 col-md-6">
     <img
       class="img-fluid"
@@ -7,11 +7,10 @@
     />
   </div>
   <div class="col-sm-12 col-md-6">
+    {{ profile | json }}
     <h1 class="text-capitalize text-white">
       {{ profile?.full_name | unescape }}
-      <span *ngIf="profile?.year !== currentYear && currentYear !== null">
-        ({{ currentYear }})
-      </span>
+      <span *ngIf="profile.year">({{ profile.year }})</span>
     </h1>
     <hr />
     <p *ngFor="let key of fieldsInOrder">
@@ -55,7 +54,14 @@
               (click)="closeModal()"
               >{{ attribute + (last ? "" : ",") | unescape }}</a
             >
-            <a *ngIf="key === 'birthday'" class="text-white">
+            <a
+              *ngIf="key === 'birthday'"
+              class="text-white"
+              routerLink="['/mask/search']"
+              [queryParams]="{ query: key + '=' + attribute }"
+              (click)="closeModal()"
+            >
+              <!-- check if the date is already formatted -->
               {{ attribute | unescape | date: "MMMM d" }}
             </a>
           </span>
@@ -69,4 +75,11 @@
       >
     </p>
   </div>
+</div>
+
+<!-- error message -->
+<div *ngIf="!profile.username || profile.error" class="row">
+  <h1 class="text-white">Hmm... This profile doesn't exist.</h1>
+  <p class="text-danger-emphasis">error: {{ profile.error }}</p>
+  <a class="link-primary" [routerLink]="['/mask']">Return Home</a>
 </div>
