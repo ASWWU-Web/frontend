@@ -130,7 +130,7 @@ export const SelectFields = {
     "Super Senior",
     "Undecided",
   ],
-  privacy: ["Must Be Logged In", "Public"],
+  privacy: ["Public", "Must Be Logged In"],
 } as const;
 
 export const SearchableFields = {
