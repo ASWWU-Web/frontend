@@ -7,7 +7,6 @@
     />
   </div>
   <div class="col-sm-12 col-md-6">
-    {{ profile | json }}
     <h1 class="text-capitalize text-white">
       {{ profile?.full_name | unescape }}
       <span *ngIf="profile.year">({{ profile.year }})</span>
