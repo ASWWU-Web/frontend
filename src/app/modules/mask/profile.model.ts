@@ -56,6 +56,9 @@ export class ProfileModel implements ProfileFull {
         // convert the privacy key to a boolean
       } else if (key == "privacy") {
         this[key] = data[key] == "1";
+        // stop gap measure to make sure that if the backend sends a null value, we don't display it to the user
+      } else if (key == "None") {
+        this[key] = "";
       }
     }
     if ((!this.full_name || this.full_name == "") && this.username) {

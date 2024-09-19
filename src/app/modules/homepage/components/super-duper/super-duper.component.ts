@@ -23,7 +23,7 @@ import { UntypedFormControl, UntypedFormGroup } from "@angular/forms";
   styleUrls: ["./super-duper.component.css"],
 })
 export class SuperDuperComponent implements OnInit {
-  @Input() model: string = null;
+  @Input() model: string | null = null;
   searching = false;
   searchFailed = false;
   hideSearchingWhenUnsubscribed = new Observable(
@@ -56,7 +56,7 @@ export class SuperDuperComponent implements OnInit {
     this.formGroup = new UntypedFormGroup({ name: new UntypedFormControl("") });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
   getNames(query: string) {
     if (query === "") {

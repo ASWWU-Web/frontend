@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Injectable } from "@angular/core";
 
-import { Observable } from "rxjs/internal/Observable";
 import { forkJoin, of } from "rxjs";
 import { catchError, map } from "rxjs/operators";
 
@@ -17,7 +17,7 @@ export class SuperDuperService {
   maskLink = "https://aswwumask.com/mask/profile/";
   pageLink = "https://aswwumask.com/pages/";
 
-  constructor(private requests: RequestService) {}
+  constructor(private requests: RequestService) { }
 
   private parseQuery(query: string): string {
     // TODO: switch regex with the method used in pages search component
@@ -86,15 +86,15 @@ export class SuperDuperService {
     const queryUri = this.parseQuery(query);
     const maskObservable = this.requests.get(this.maskUri + queryUri).pipe(
       map((response) => this.mapMask(response)),
-      catchError((err) => of([])),
+      catchError((_err) => of([])),
     );
     const pagesObservable = this.requests.get(this.pagesUri + queryUri).pipe(
       map((response) => this.mapPages(response)),
-      catchError((err) => of([])),
+      catchError((_err) => of([])),
     );
     const jobsObservable = this.requests.get(this.jobsUri).pipe(
       map((response) => this.mapJobs(query, response)),
-      catchError((err) => of([])),
+      catchError((_err) => of([])),
     ); // don't parseQuery()
     // uses: https://stackoverflow.com/questions/44141569/how-to-concat-two-observable-arrays-into-a-single-array
     const toReturn = forkJoin(
@@ -113,17 +113,17 @@ export class SuperDuperService {
     const queryUri = this.parseQuery(query);
     const maskObservable = this.requests.get(this.maskUri + queryUri).pipe(
       map((response) => response.results),
-      catchError((err) => of([])),
+      catchError((_err) => of([])),
     );
     const pagesObservable = this.requests.get(this.pagesUri + queryUri).pipe(
       map((response) => response.results),
-      catchError((err) => of([])),
+      catchError((_err) => of([])),
     );
     const jobsObservable = this.requests.get(this.jobsUri).pipe(
       map((response) =>
         response.forms.filter((result) => this.filterJobs(query, result)),
       ),
-      catchError((err) => of([])),
+      catchError((_err) => of([])),
     ); // don't parseQuery()
     // let jobsObservable = this.requests.getObservable( this.jobsUri ).map(response => this.mapJobs(query, response)).catch(err => of([])); // don't parseQuery()
 
