@@ -183,7 +183,7 @@
         </div>
         <div
           *ngIf="
-            possiblePhotos.length === 0 || possiblePhotos[0].includes('default')
+            possiblePhotos.length <= 1 && possiblePhotos[0].includes('default')
           "
           class="text-white text-center"
         >
