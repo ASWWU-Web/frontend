@@ -31,6 +31,7 @@ import {
   HermesService,
   RequestService,
   UrlService,
+  VersionService,
 } from "../shared-ng/services/services";
 import { ToastrModule } from "ngx-toastr";
 
@@ -68,6 +69,7 @@ import { AppComponent } from "./app.component";
     AuthService,
     UrlService,
     NgbActiveModal,
+    VersionService,
     provideHttpClient(withInterceptorsFromDi()),
   ],
 })
