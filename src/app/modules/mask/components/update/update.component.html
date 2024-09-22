@@ -181,6 +181,19 @@
             alt="One of your profile photos"
           />
         </div>
+        <div
+          *ngIf="
+            possiblePhotos.length === 0 || possiblePhotos[0].includes('default')
+          "
+          class="text-white text-center"
+        >
+          <h1>Don't see any photos?</h1>
+          <p class="text-start">
+            Your photo may be waiting approval. Check back later. If you haven't
+            uploaded a photo, click the profile icon in the top right corner and
+            upload one.
+          </p>
+        </div>
       </div>
     </div>
     <div class="mt-2">
