@@ -13,7 +13,9 @@ concurrency:
 jobs:
   deploy:
     if: ${{ github.event.workflow_run.conclusion == 'success' }}
-    runs-on: [self-hosted, linux, x64]
+    runs-on:
+      group: Default
+      labels: [self-hosted, linux, x64]
     steps:
       - name: Download build artifact from triggered workflow
         uses: dawidd6/action-download-artifact@v6
