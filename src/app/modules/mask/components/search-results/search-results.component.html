@@ -33,13 +33,14 @@
       class="col d-flex justify-content-center"
     >
       <p
-        class="text-black no-results-text"
+        class="text-white no-results-text"
         style="font-size: 100%; color: white"
       >
         No results found...
       </p>
+      <!-- TODO: hide this when super searching -->
       <p class="no-results-text">
-        <a [routerLink]="['super-search/']">Super Search?</a>
+        <a routerLink="/mask/super-search">Super Search?</a>
       </p>
     </div>
     <div
