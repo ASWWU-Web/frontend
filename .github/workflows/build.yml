@@ -23,6 +23,7 @@ jobs:
         run: |
           git submodule update --init --recursive
           yarn install --frozen-lockfile
+          yarn run prebuild
           if [[ ${{ env.BUILD_ENV }} == 'production' ]]; then
             yarn run build
           else
