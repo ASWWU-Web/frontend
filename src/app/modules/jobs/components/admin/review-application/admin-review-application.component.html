@@ -6,16 +6,22 @@
     <div class="row">
       <div class="col col-sm-12">
         <h1 id="title" class="text-capitalize">
-          {{username.replace(".", " ")}}
+          {{ username.replace(".", " ") }}
         </h1>
       </div>
-      </div>
     </div>
-    <div id="questions" class="container">
+  </div>
+  <div id="questions" class="container">
     <div class="row">
-      <div class="col col-sm-12 col-md-6" style="padding-bottom: 10px;">
+      <div class="col col-sm-12 col-md-6" style="padding-bottom: 10px">
         <label for="selectStatus">Status: </label>
-        <select *ngIf="app" id="selectStatus" class="custom-select col col-sm-12" [(ngModel)]="app.status" (change)="updateStatus()">
+        <select
+          *ngIf="app"
+          id="selectStatus"
+          class="custom-select col col-sm-12"
+          [(ngModel)]="app.status"
+          (change)="updateStatus()"
+        >
           <!-- <option [value]="''">Select a department...</option> -->
           <option [value]="'new'">New</option>
           <option [value]="'hire'">Hire</option>
@@ -27,40 +33,62 @@
       <div class="col col-sm-12 col-md-6">
         <label>Resume: </label>
         <div>
-          <a *ngIf="isResume" href="{{SERVER_URL + app.resume}}" class="btn" target="_blank" style="color: white; background-color: #803fa4;">View Resume</a>
+          <a
+            *ngIf="isResume"
+            href="{{ SERVER_URL + app.resume }}"
+            class="btn"
+            target="_blank"
+            style="color: white; background-color: #803fa4"
+            >View Resume</a
+          >
         </div>
-        <div *ngIf="!isResume" class="text-danger">
-          Resume not found.
-        </div>
+        <div *ngIf="!isResume" class="text-danger">Resume not found.</div>
       </div>
     </div>
 
     <h2>ASWWU Answers</h2>
     <p>General form answers:</p>
-    <hr>
-      <div class="row">
-        <div *ngFor="let question of gForm?.questions; let i = index;" class="form-group">
-          <div *ngIf="question&&gAnswers&&gAnswers[i]">
-            <div class="col">
-              <label for="gen{{question?.id}}" class="font-weight-bolder">{{question.question}}</label>
-              <div id="gen{{question?.id}}" class="admin-answer-review">{{gAnswers[i].answer}}</div>
+    <hr />
+    <div class="row">
+      <div
+        *ngFor="let question of gForm?.questions; let i = index"
+        class="form-group"
+      >
+        <div *ngIf="question && gAnswers && gAnswers[i]">
+          <div class="col">
+            <label for="gen{{ question?.id }}" class="font-weight-bolder">{{
+              question.question
+            }}</label>
+            <div id="gen{{ question?.id }}" class="admin-answer-review">
+              {{ gAnswers[i].answer }}
             </div>
           </div>
         </div>
       </div>
+    </div>
 
-      <h2>{{form?.job_name}} Answers</h2>
-      <p>Answers to specific application:</p>
-      <hr>
-      <div *ngFor="let question of form?.questions; let i = index;" class="form-group">
-        <div *ngIf="question&&answers&&answers[i]">
-          <label for="{{question?.id}}" class="font-weight-bolder">{{question.question}}</label>
-          <div id="{{question?.id}}" class="admin-answer-review">{{answers[i].answer}}</div>
+    <h2>{{ form?.job_name }} Answers</h2>
+    <p>Answers to specific application:</p>
+    <hr />
+    <div
+      *ngFor="let question of form?.questions; let i = index"
+      class="form-group"
+    >
+      <div *ngIf="question && answers && answers[i]">
+        <label for="{{ question?.id }}" class="font-weight-bolder">{{
+          question.question
+        }}</label>
+        <div id="{{ question?.id }}" class="admin-answer-review">
+          {{ answers[i].answer }}
         </div>
       </div>
+    </div>
   </div>
 </div>
 <div class="container" *ngIf="!currentUser">
-  <p>This page can only be viewed by someone logged in, please click the button to log in:</p>
+  <p>
+    This page can only be viewed by someone logged in, please click the button
+    to log in:
+  </p>
   <a class="btn btn-primary" [href]="buildLoginLink()">Log in</a>
 </div>

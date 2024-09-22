@@ -1,36 +1,41 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NgModule } from '@angular/core';
-import { AppRoutingModule } from './app-routing.module';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FontAwesomeModule, FaIconLibrary } from '@fortawesome/angular-fontawesome';
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { BrowserModule } from "@angular/platform-browser";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { NgModule } from "@angular/core";
+import { AppRoutingModule } from "./app-routing.module";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {
+  FaIconLibrary,
+  FontAwesomeModule,
+} from "@fortawesome/angular-fontawesome";
+import { faSearch } from "@fortawesome/free-solid-svg-icons";
 
-import { HttpClientModule } from '@angular/common/http';
-import { NgbActiveModal, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { NgbActiveModal, NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 // shared-ng components
 import {
-  NavBarComponent,
+  ContentModerationComponent,
+  ErrorPageComponent,
   FooterComponent,
   HeaderComponent,
-  UserBubbleComponent,
+  NavBarComponent,
   SharedNgContainerComponent,
-  ErrorPageComponent,
   UploadModalComponent,
-  ContentModerationComponent
-} from '../shared-ng/components/components';
+  UserBubbleComponent,
+} from "../shared-ng/components/components";
 import {
-  RequestService,
-  HermesService,
   AuthService,
-  UrlService
-} from '../shared-ng/services/services';
-import { ToastrModule } from 'ngx-toastr';
+  HermesService,
+  RequestService,
+  UrlService,
+  VersionService,
+} from "../shared-ng/services/services";
+import { ToastrModule } from "ngx-toastr";
 
-import { AppComponent } from './app.component';
-import { AtlasComponent } from "./modules/atlas/atlas.component";
-
+import { AppComponent } from "./app.component";
 
 @NgModule({
   declarations: [
@@ -43,11 +48,10 @@ import { AtlasComponent } from "./modules/atlas/atlas.component";
     ErrorPageComponent,
     UploadModalComponent,
     ContentModerationComponent,
-    AtlasComponent
   ],
+  bootstrap: [AppComponent],
   imports: [
     BrowserModule,
-    HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
@@ -56,8 +60,8 @@ import { AtlasComponent } from "./modules/atlas/atlas.component";
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut: 3000,
-      positionClass: 'toast-bottom-left'
-    })
+      positionClass: "toast-bottom-left",
+    }),
   ],
   providers: [
     RequestService,
@@ -65,8 +69,9 @@ import { AtlasComponent } from "./modules/atlas/atlas.component";
     AuthService,
     UrlService,
     NgbActiveModal,
+    VersionService,
+    provideHttpClient(withInterceptorsFromDi()),
   ],
-  bootstrap: [AppComponent],
 })
 export class AppModule {
   constructor(library: FaIconLibrary) {

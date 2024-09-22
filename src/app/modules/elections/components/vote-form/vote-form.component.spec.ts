@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { VoteFormComponent } from './vote-form.component';
+import { VoteFormComponent } from "./vote-form.component";
 
-describe('VoteFormComponent', () => {
+describe("VoteFormComponent", () => {
   let component: VoteFormComponent;
   let fixture: ComponentFixture<VoteFormComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ VoteFormComponent ]
-    })
-    .compileComponents();
+      declarations: [VoteFormComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('VoteFormComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

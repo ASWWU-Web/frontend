@@ -3,8 +3,8 @@
   "compilerOptions": {
     "rootDir": "./",
     "baseUrl": "./",
-    "downlevelIteration": true,
     "outDir": "./dist/out-tsc",
+    "esModuleInterop": true,
     "sourceMap": true,
     "declaration": false,
     "module": "esnext",
@@ -15,6 +15,7 @@
     "target": "ES2022",
     "typeRoots": ["node_modules/@types"],
     "lib": ["ES2022", "dom"],
+    "resolveJsonModule": true,
     "useDefineForClassFields": false
   },
   "angularCompilerOptions": {
@@ -22,5 +23,6 @@
     "strictInjectionParameters": true,
     "strictTemplates": true,
     "fullTemplateTypeCheck": true
-  }
+  },
+  "files": ["src/main.ts"]
 }

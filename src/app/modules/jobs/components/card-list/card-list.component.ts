@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from "@angular/core";
 
 interface Card {
   image: string;
@@ -11,17 +11,14 @@ interface Card {
 }
 
 @Component({
-  selector: 'card-list',
-  templateUrl: './card-list.component.html',
-  styleUrls: ['./card-list.component.css']
+  selector: "card-list",
+  templateUrl: "./card-list.component.html",
+  styleUrls: ["./card-list.component.css"],
 })
 export class CardListComponent implements OnInit {
-
   @Input() cards: Card[] = [];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
-  }
-
+  ngOnInit() {}
 }

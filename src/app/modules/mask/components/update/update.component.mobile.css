@@ -1,0 +1,64 @@
+.mobile-field-title {
+  font-family: "Helvetica Neue";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 22px;
+  /* identical to box height */
+  color: #ffffff;
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.form-control {
+  background-color: transparent !important;
+  border-radius: 10px;
+  color: #ffffff;
+}
+
+/* override some desktop styles */
+@media only screen and (max-aspect-ratio: 3/5) {
+  .col-md-6 {
+    padding-left: 25px;
+    padding-right: 25px;
+  }
+  .possible-photo-container {
+    /* PFP */
+
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 5px 10px;
+
+    position: relative;
+    width: auto;
+
+    background: rgba(75, 75, 75, 0.35);
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+  }
+
+  .possible-photo > img {
+    height: auto;
+    height: 225px;
+    width: 150px;
+  }
+  div.form-switch-override {
+    padding-left: 0px;
+  }
+  .form-switch-override > input {
+    float: right;
+  }
+  .section-title {
+    border-bottom: solid 1px #dddddd;
+    padding-bottom: 0.5em;
+    width: fit-content;
+  }
+  input::-webkit-date-and-time-value {
+    text-align: left;
+  }
+}

@@ -1,29 +1,27 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
-import { Position, Election, Vote } from 'src/shared-ng/interfaces/elections';
-import { ElectionsRequestService } from 'src/shared-ng/services/services';
-
-
+import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
+import { UntypedFormControl, UntypedFormGroup } from "@angular/forms";
+import { Election, Position, Vote } from "src/shared-ng/interfaces/elections";
+import { ElectionsRequestService } from "src/shared-ng/services/services";
 
 @Component({
-  selector: 'district-selection',
-  templateUrl: './district-selection.component.html',
-  styleUrls: ['./district-selection.component.css']
+  selector: "district-selection",
+  templateUrl: "./district-selection.component.html",
+  styleUrls: ["./district-selection.component.css"],
 })
 export class DistrictSelectionComponent implements OnInit {
   // request data
-  @Input() positions: Position[] = [];  // the list of district positions
+  @Input() positions: Position[] = []; // the list of district positions
   @Input() election: Election;
   @Input() votes: Vote[] = [];
 
   // completion emitters
-  @Output() onDistrictSelect: EventEmitter<number> = new EventEmitter<number>();  // event emitter for district choosing
-  @Output() onComplete: EventEmitter<number> = new EventEmitter<number>();  // event emitter for page transitions
+  @Output() onDistrictSelect: EventEmitter<number> = new EventEmitter<number>(); // event emitter for district choosing
+  @Output() onComplete: EventEmitter<number> = new EventEmitter<number>(); // event emitter for page transitions
 
   // member variables
-  selectedDistrict: number = null;  // the currently selected district
-  districtFormGroup: UntypedFormGroup;  // the form group controller for choosing a district
-  stagedVotes: {vote: Vote}[];
+  selectedDistrict: number = null; // the currently selected district
+  districtFormGroup: UntypedFormGroup; // the form group controller for choosing a district
+  stagedVotes: { vote: Vote }[];
 
   constructor(private ers: ElectionsRequestService) {
     this.stagedVotes = [];
@@ -33,10 +31,10 @@ export class DistrictSelectionComponent implements OnInit {
     this.selectedDistrict = 0;
     this.onDistrictSelect.emit(this.selectedDistrict);
     for (const vote of this.votes) {
-      this.stagedVotes.push({vote: vote});
+      this.stagedVotes.push({ vote });
     }
     this.districtFormGroup = new UntypedFormGroup({
-      district: new UntypedFormControl()
+      district: new UntypedFormControl(),
     });
   }
 

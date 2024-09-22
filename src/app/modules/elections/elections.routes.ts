@@ -1,21 +1,21 @@
-import { Route } from '@angular/router';
+import { Route } from "@angular/router";
 import {
+  AdminComponent,
   HomeComponent,
   VoteComponent,
-  AdminComponent,
-} from './components/elections.component';
+} from "./components/elections.component";
 
 export const ElectionRoutes: Route[] = [
   {
-    path: '',
-    component: HomeComponent
+    path: "",
+    component: HomeComponent,
   },
   {
-    path: 'vote',
-    component: VoteComponent
+    path: "vote",
+    component: VoteComponent,
   },
   {
-    path: 'admin',
-    component: AdminComponent
-  }
+    path: "admin",
+    component: AdminComponent,
+  },
 ];

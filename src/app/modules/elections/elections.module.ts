@@ -1,33 +1,39 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { HttpClientModule } from '@angular/common/http';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-
-import { ElectionsRequestService, HermesService } from '../../../shared-ng/services/services';
-import { ElectionRoutes } from './elections.routes';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { RouterModule } from "@angular/router";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
+import {
+  provideHttpClient,
+  withInterceptorsFromDi,
+} from "@angular/common/http";
+import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 
 import {
-  HomeComponent,
-  VoteComponent,
-  AdminComponent,
-  CountdownComponent,
-  AdminElectionsComponent,
-  AdminElectionsCandidateModalComponent,
+  ElectionsRequestService,
+  HermesService,
+} from "../../../shared-ng/services/services";
+import { ElectionRoutes } from "./elections.routes";
+
+import {
+  AdminBallotModalComponent,
+  AdminBallotModalContentComponent,
+  AdminBallotsComponent,
   AdminCandidatesRowComponent,
+  AdminComponent,
+  AdminElectionsCandidateModalComponent,
+  AdminElectionsComponent,
   AdminElectionsRowComponent,
   AdminPositionsComponent,
   AdminPositionsRowComponent,
-  AdminBallotsComponent,
-  VoteFormComponent,
-  MultiPositionHandlerComponent,
+  CountdownComponent,
   DistrictSelectionComponent,
+  HomeComponent,
+  MultiPositionHandlerComponent,
   NavigatorComponent,
-  AdminBallotModalComponent,
-  AdminBallotModalContentComponent
-} from './components/elections.component';
+  VoteComponent,
+  VoteFormComponent,
+} from "./components/elections.component";
 
 @NgModule({
   declarations: [
@@ -47,16 +53,7 @@ import {
     AdminElectionsCandidateModalComponent,
     AdminElectionsRowComponent,
     AdminPositionsRowComponent,
-    AdminBallotModalContentComponent
-  ],
-  imports: [
-    CommonModule,
-    HttpClientModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgbModule,
-    FontAwesomeModule,
-    RouterModule.forChild(ElectionRoutes),
+    AdminBallotModalContentComponent,
   ],
   exports: [
     HomeComponent,
@@ -75,14 +72,23 @@ import {
     AdminElectionsCandidateModalComponent,
     AdminElectionsRowComponent,
     AdminPositionsRowComponent,
-    AdminBallotModalContentComponent
+    AdminBallotModalContentComponent,
+  ],
+  imports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    NgbModule,
+    FontAwesomeModule,
+    RouterModule.forChild(ElectionRoutes),
   ],
   providers: [
-    ElectionsRequestService
-  ]
+    ElectionsRequestService,
+    provideHttpClient(withInterceptorsFromDi()),
+  ],
 })
 export class ElectionsModule {
   constructor(private hs: HermesService) {
-    this.hs.sendHeaderTitle('Elections');
+    this.hs.sendHeaderTitle("Elections");
   }
 }

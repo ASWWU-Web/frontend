@@ -1,6 +1,8 @@
-h1, h2, h4 {
-    height: auto;
-    width: auto;
+h1,
+h2,
+h4 {
+  height: auto;
+  width: auto;
 }
 
 /* @media (max-width:576px) {

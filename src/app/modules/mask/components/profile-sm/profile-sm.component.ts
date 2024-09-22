@@ -1,61 +1,39 @@
-import { HttpErrorResponse } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
-import { MEDIA_SM, DEFAULT_PHOTO, CURRENT_YEAR } from '../../../../../shared-ng/config';
-import { RequestService } from '../../../../../shared-ng/services/services';
+import { Component, Input, OnInit } from "@angular/core";
+import {
+  CURRENT_YEAR,
+  DEFAULT_PHOTO,
+  MEDIA_SM,
+} from "../../../../../shared-ng/config";
+import { RequestService } from "../../../../../shared-ng/services/services";
+import { PartialProfile } from "src/shared-ng/interfaces/mask";
 
 @Component({
-  selector: 'profile-sm',
-  templateUrl: 'profile-sm.component.html',
-  styleUrls: ['profile-sm.styles.css'],
-  inputs: ['searchResult']
+  selector: "profile-sm",
+  templateUrl: "profile-sm.component.html",
+  styleUrls: ["profile-sm.styles.css"],
 })
+export class ProfileSmComponent implements OnInit {
+  link = "";
 
-
-export class ProfileSmComponent {
-  link: string = "";
-
-  constructor(private rs: RequestService) { }
+  constructor(private rs: RequestService) {}
 
   ngOnInit() {
     this.link = this.getPhotoLinkSync(this.searchResult.photo);
-    this.getPhotoLinkAsync(this.searchResult.photo)
-      .then((link: string) => this.link = link);
   }
 
-  @Input() searchResult: any;
-  @Input('year') year: string = undefined;
+  @Input() searchResult: PartialProfile;
+  @Input() year: string = undefined;
   current_year = CURRENT_YEAR;
 
   // Photo url to link function returns proper url and BLANK photo if photo == "None"
   getPhotoLinkSync(url: string) {
-    var link = "";
-    if (url && url != 'None') {
-      link = MEDIA_SM + '/' + url;
+    let link = "";
+    if (url && url != "") {
+      link = MEDIA_SM + "/" + url;
+      if (url == DEFAULT_PHOTO) link = DEFAULT_PHOTO;
     } else {
-      link = MEDIA_SM + '/' + DEFAULT_PHOTO;
+      link = DEFAULT_PHOTO;
     }
     return link;
-  }
-  // Photo url to link function returns proper url and BLANK photo if photo == "None"
-  getPhotoLinkAsync(url: string) {
-    return new Promise((resolve, reject) => {
-      var link = this.getPhotoLinkSync(url);
-
-      this.rs.get(link).subscribe(
-        (data: any) => {
-          resolve(link);
-        },
-        (response: HttpErrorResponse) => { // why does requesting an image resource always respond with error?
-          if (response.status == 415) {
-            link = MEDIA_SM + '/' + DEFAULT_PHOTO;
-            resolve(link);
-          } else if (response.status == 200) {
-            resolve(link);
-          } else {
-            reject(response);
-          }
-        }
-      )
-    })
   }
 }

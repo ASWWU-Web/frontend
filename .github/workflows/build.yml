@@ -1,9 +1,11 @@
-name: Node CI
+name: Build
 
 on: [push]
 
 jobs:
   build:
+    env:
+      BUILD_ENV: ${{ github.ref == 'refs/heads/main' && 'production' || 'staging' }}
     runs-on: ubuntu-latest
 
     strategy:
@@ -16,18 +18,24 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
+
       - name: yarn install, build, and test
         run: |
           git submodule update --init --recursive
           yarn install --frozen-lockfile
-          yarn run build
+          yarn run prebuild
+          if [[ ${{ env.BUILD_ENV }} == 'production' ]]; then
+            yarn run build
+          else
+            yarn run build:staging
+          fi
         env:
           CI: true
       - name: prepare artifact
         run: |
           mkdir frontend-artifact
           mkdir frontend-artifact/frontend-payload
-          cp -r dist frontend-artifact/frontend-payload/dist-frontend
+          cp -r dist/browser frontend-artifact/frontend-payload/dist-frontend
           cp scripts/server_deploy.sh frontend-artifact/frontend-payload/
           cp scripts/remote_deploy.sh frontend-artifact
 

@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { MultiPositionHandlerComponent } from './multi-position-handler.component';
+import { MultiPositionHandlerComponent } from "./multi-position-handler.component";
 
-describe('MultiPositionHandlerComponent', () => {
+describe("MultiPositionHandlerComponent", () => {
   let component: MultiPositionHandlerComponent;
   let fixture: ComponentFixture<MultiPositionHandlerComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ MultiPositionHandlerComponent ]
-    })
-    .compileComponents();
+      declarations: [MultiPositionHandlerComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('MultiPositionHandlerComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

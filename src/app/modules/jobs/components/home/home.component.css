@@ -40,64 +40,130 @@
 }
 
 @-webkit-keyframes op1 {
-  0% { opacity: 0; }
-  6% { opacity: 1; }
-  13% { opacity: 1; }
-  19% { opacity: 0; }
+  0% {
+    opacity: 0;
+  }
+  6% {
+    opacity: 1;
+  }
+  13% {
+    opacity: 1;
+  }
+  19% {
+    opacity: 0;
+  }
 }
 
 @-webkit-keyframes op2 {
-  13% { opacity: 0; }
-  19% { opacity: 1; }
-  25% { opacity: 1; }
-  31% { opacity: 0; }
+  13% {
+    opacity: 0;
+  }
+  19% {
+    opacity: 1;
+  }
+  25% {
+    opacity: 1;
+  }
+  31% {
+    opacity: 0;
+  }
 }
 
 @-webkit-keyframes op3 {
-  25% { opacity: 0; }
-  31% { opacity: 1; }
-  38% { opacity: 1; }
-  44% { opacity: 0; }
+  25% {
+    opacity: 0;
+  }
+  31% {
+    opacity: 1;
+  }
+  38% {
+    opacity: 1;
+  }
+  44% {
+    opacity: 0;
+  }
 }
 
 @-webkit-keyframes op4 {
-  38% { opacity: 0; }
-  44% { opacity: 1; }
-  50% { opacity: 1; }
-  56% { opacity: 0; }
+  38% {
+    opacity: 0;
+  }
+  44% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 1;
+  }
+  56% {
+    opacity: 0;
+  }
 }
 
 @-webkit-keyframes op5 {
-  50% { opacity: 0; }
-  56% { opacity: 1; }
-  63% { opacity: 1; }
-  69% { opacity: 0; }
+  50% {
+    opacity: 0;
+  }
+  56% {
+    opacity: 1;
+  }
+  63% {
+    opacity: 1;
+  }
+  69% {
+    opacity: 0;
+  }
 }
 
 @-webkit-keyframes op6 {
-  63% { opacity: 0; }
-  69% { opacity: 1; }
-  75% { opacity: 1; }
-  81% { opacity: 0; }
+  63% {
+    opacity: 0;
+  }
+  69% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  81% {
+    opacity: 0;
+  }
 }
 
 @-webkit-keyframes op7 {
-  75% { opacity: 0; }
-  81% { opacity: 1; }
-  88% { opacity: 1; }
-  94% { opacity: 0; }
+  75% {
+    opacity: 0;
+  }
+  81% {
+    opacity: 1;
+  }
+  88% {
+    opacity: 1;
+  }
+  94% {
+    opacity: 0;
+  }
 }
 
 @-webkit-keyframes op8 {
-  88% { opacity: 0; }
-  94% { opacity: 1; }
-  100% { opacity: 1; }
-  0% { opacity: 1; }
-  6% { opacity: 0; }
+  88% {
+    opacity: 0;
+  }
+  94% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+  }
+  0% {
+    opacity: 1;
+  }
+  6% {
+    opacity: 0;
+  }
 }
 
 footer {
-  font-size: .65em;
+  font-size: 0.65em;
   text-align: center;
   border-top: 1px solid #ccc;
   padding-bottom: 10px;

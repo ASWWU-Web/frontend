@@ -1,51 +1,68 @@
-<div *ngIf="profile" class="profile profile-full row">
+<div *ngIf="profile.username" class="profile profile-full row">
   <div class="col-sm-12 col-md-6">
-    <img class="img-fluid" src="{{ getPhotoLink(profile.photo) }}" />
+    <img
+      class="img-fluid"
+      src="{{ getPhotoLink(profile.photo) }}"
+      alt="{{ profile?.full_name | unescape }}'s profile picture"
+    />
   </div>
   <div class="col-sm-12 col-md-6">
-    <h1 class="text-capitalize text-black">
+    <h1 class="text-capitalize text-white">
       {{ profile?.full_name | unescape }}
-      <span *ngIf="profile?.year != currentYear && currentYear != null">
-        ({{ currentYear }})
-      </span>
+      <span *ngIf="profile.year">({{ profile.year }})</span>
     </h1>
     <hr />
     <p *ngFor="let key of fieldsInOrder">
-      <span *ngIf="profile[key]">
-        <i class="text-muted text-capitalize">{{ displayKey(key) }}</i>
+      <span *ngIf="profile[key] && profile[key] !== 'None'">
+        <i class="text-secondary text-capitalize">{{ displayKey(key) }}</i>
         <h5 class="info">
           <span
             *ngFor="let attribute of profile[key].split(','); let last = last"
           >
             <br />
             <a
-              *ngIf="key == 'phone'"
-              class="text-black"
+              *ngIf="key === 'phone'"
+              class="text-white"
               href="tel:{{ attribute + (last ? '' : ',') | unescape }}"
               >{{ attribute + (last ? "" : ",") | unescape }}</a
             >
             <a
-              *ngIf="key == 'email'"
-              class="text-black"
+              *ngIf="key === 'email'"
+              class="text-white"
               href="mailto:{{ attribute + (last ? '' : ',') | unescape }}"
               >{{ attribute + (last ? "" : ",") | unescape }}</a
             >
             <a
-              *ngIf="key == 'website'"
-              class="text-black"
+              *ngIf="key === 'website'"
+              class="text-white"
               href="{{
                 generateWebsiteLink(attribute) + (last ? '' : ',') | unescape
               }}"
               >{{ attribute + (last ? "" : ",") | unescape }}</a
             >
             <a
-              *ngIf="key != 'phone' && key != 'email' && key != 'website'"
-              class="text-black"
+              *ngIf="
+                key !== 'phone' &&
+                key !== 'email' &&
+                key !== 'website' &&
+                key !== 'birthday'
+              "
+              class="text-white"
               [routerLink]="['/mask/search']"
               [queryParams]="{ query: key + '=' + attribute }"
               (click)="closeModal()"
               >{{ attribute + (last ? "" : ",") | unescape }}</a
             >
+            <a
+              *ngIf="key === 'birthday'"
+              class="text-white"
+              routerLink="['/mask/search']"
+              [queryParams]="{ query: key + '=' + attribute }"
+              (click)="closeModal()"
+            >
+              <!-- check if the date is already formatted -->
+              {{ attribute | unescape | date: "MMMM d" }}
+            </a>
           </span>
         </h5>
       </span>
@@ -57,4 +74,11 @@
       >
     </p>
   </div>
+</div>
+
+<!-- error message -->
+<div *ngIf="!profile.username || profile.error" class="row">
+  <h1 class="text-white">Hmm... This profile doesn't exist.</h1>
+  <p class="text-danger-emphasis">error: {{ profile.error }}</p>
+  <a class="link-primary" [routerLink]="['/mask']">Return Home</a>
 </div>

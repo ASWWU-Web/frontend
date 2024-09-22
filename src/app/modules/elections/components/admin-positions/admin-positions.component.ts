@@ -1,32 +1,44 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ElectionsRequestService } from 'src/shared-ng/services/services';
-import { UntypedFormGroup, UntypedFormControl, Validators } from '@angular/forms';
-import { Observable } from 'rxjs/internal/Observable';
-import { Position } from 'src/shared-ng/interfaces/elections';
+import { Component, Input, OnInit } from "@angular/core";
+import { NgbModal } from "@ng-bootstrap/ng-bootstrap";
+import { ElectionsRequestService } from "src/shared-ng/services/services";
+import {
+  UntypedFormControl,
+  UntypedFormGroup,
+  Validators,
+} from "@angular/forms";
+import { Observable } from "rxjs/internal/Observable";
+import { Position } from "src/shared-ng/interfaces/elections";
 
 @Component({
-  selector: '[positions-row]',
-  templateUrl: './admin-positions-row.component.html',
-  styleUrls: ['./admin-positions.component.css']
+  selector: "[positions-row]",
+  templateUrl: "./admin-positions-row.component.html",
+  styleUrls: ["./admin-positions.component.css"],
 })
 export class AdminPositionsRowComponent implements OnInit {
-
   @Input() rowData: Position;
   rowFormGroup: UntypedFormGroup;
   positions: Position[];
 
-  constructor(private modalService: NgbModal, private ers: ElectionsRequestService) { }
+  constructor(
+    private modalService: NgbModal,
+    private ers: ElectionsRequestService,
+  ) {}
 
   ngOnInit() {
     // initialize class members
     // this.newRowData = Object.assign({}, this.rowData);
     this.positions = [];
     this.rowFormGroup = new UntypedFormGroup({
-      election_type: new UntypedFormControl(this.rowData.election_type, [Validators.required]),
-      position: new UntypedFormControl(this.rowData.position, [Validators.required]),
-      active: new UntypedFormControl(this.rowData.active, [Validators.required]),
-      order: new UntypedFormControl(this.rowData.order, [Validators.required])
+      election_type: new UntypedFormControl(this.rowData.election_type, [
+        Validators.required,
+      ]),
+      position: new UntypedFormControl(this.rowData.position, [
+        Validators.required,
+      ]),
+      active: new UntypedFormControl(this.rowData.active, [
+        Validators.required,
+      ]),
+      order: new UntypedFormControl(this.rowData.order, [Validators.required]),
     });
   }
 
@@ -40,36 +52,38 @@ export class AdminPositionsRowComponent implements OnInit {
     if (newPosition) {
       saveObservable = this.ers.createPosition(formData);
     } else {
-      formData['id'] = this.rowData.id;
+      formData["id"] = this.rowData.id;
       saveObservable = this.ers.updatePosition(formData, this.rowData.id);
     }
     saveObservable.subscribe(
       (data) => {
         this.rowData = Object.assign({}, data);
         this.rowFormGroup.markAsPristine();
-      }, (err) => {
-        window.alert('Unable to save\n' + err.error.status);
-      });
+      },
+      (err) => {
+        window.alert("Unable to save\n" + err.error.status);
+      },
+    );
   }
 }
 
 @Component({
-  selector: 'app-admin-positions',
-  templateUrl: './admin-positions.component.html',
-  styleUrls: ['./admin-positions.component.css']
+  selector: "app-admin-positions",
+  templateUrl: "./admin-positions.component.html",
+  styleUrls: ["./admin-positions.component.css"],
 })
 export class AdminPositionsComponent implements OnInit {
   @Input() data: Position[];
 
-  constructor(private ers: ElectionsRequestService) { }
+  constructor(private ers: ElectionsRequestService) {}
 
-  ngOnInit() { }
+  ngOnInit() {}
 
   addPosition() {
     const newElection: Position = {
-      id: '',
-      election_type: '',
-      position: '',
+      id: "",
+      election_type: "",
+      position: "",
       active: true,
       order: 0,
     };

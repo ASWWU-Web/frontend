@@ -25,9 +25,11 @@
 }
 
 .mask-search-query {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   color: white;
-  transition: color .2s, background-color .2s;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
   font-weight: bold;
   background-color: transparent;
   padding-top: 12px;
@@ -58,13 +60,14 @@ option {
 /* add this for other browsers */
 
 .form-control {
-  padding: .75rem .75rem;
+  padding: 0.75rem 0.75rem;
 }
 
 .remove-button {
   border-left-style: none;
   padding-left: 1rem;
   padding-right: 1rem;
+  width: fit-content;
 }
 
 .remove-button:hover {
@@ -98,7 +101,7 @@ option {
   margin-top: 15px;
 }
 
-@media only screen and (min-aspect-ratio:3/4) and (min-height:700px) {
+@media only screen and (min-aspect-ratio: 3/4) and (min-height: 700px) {
   /* for desktop */
   #search-area {
     min-height: 50%;
@@ -135,12 +138,14 @@ option {
 }
 
 .year-selector {
-  font-family: 'Raleway', sans-serif;
+  font-family: "Raleway", sans-serif;
   color: white;
   border-radius: 0;
   border-width: 3px;
   border-color: white;
-  transition: color .2s, background-color .2s;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
   font-weight: bold;
   background-color: transparent;
   padding-top: 12px;
@@ -153,8 +158,10 @@ option {
   border-style: none;
   height: 100% !important;
   color: white;
-  font-family: 'Raleway', sans-serif;
-  transition: color .2s, background-color .2s;
+  font-family: "Raleway", sans-serif;
+  transition:
+    color 0.2s,
+    background-color 0.2s;
   font-weight: bold;
   /* padding-bottom: 12px; */
   border-radius: 0px;
@@ -170,7 +177,7 @@ option {
 }
 
 option {
-  color:white;
+  color: white;
 }
 
 button {

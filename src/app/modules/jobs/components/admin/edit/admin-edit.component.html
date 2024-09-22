@@ -1,19 +1,46 @@
 <div class="container" *ngIf="job">
   <label for="jobName">Job Name</label>
-  <input type="text" class="form-control" id="jobName" required [(ngModel)]="job.job_name" name="job_name">
+  <input
+    type="text"
+    class="form-control"
+    id="jobName"
+    required
+    [(ngModel)]="job.job_name"
+    name="job_name"
+  />
 
   <label for="jobDesc">Job description</label>
-  <textarea type="text" class="form-control" id="jobDesc" required [(ngModel)]="job.job_description"
-    name="jobDesc"></textarea>
-  <small>The first line of the description will be what appears on the homepage.</small>
+  <textarea
+    type="text"
+    class="form-control"
+    id="jobDesc"
+    required
+    [(ngModel)]="job.job_description"
+    name="jobDesc"
+  ></textarea>
+  <small
+    >The first line of the description will be what appears on the
+    homepage.</small
+  >
   <br />
   <label for="owner">Owner</label>
-  <input class="form-control" id="owner" required [(ngModel)]="job.owner" name="owner"
-    [ngbTypeahead]="search" type="search">
+  <input
+    class="form-control"
+    id="owner"
+    required
+    [(ngModel)]="job.owner"
+    name="owner"
+    [ngbTypeahead]="search"
+    type="search"
+  />
 
   <label for="Department">Department</label>
   <div class="form-group">
-    <select class="custom-select col col-sm-12" name="jobDesc" [(ngModel)]="job.department">
+    <select
+      class="custom-select col col-sm-12"
+      name="jobDesc"
+      [(ngModel)]="job.department"
+    >
       <option selected [value]="''">Select a department...</option>
       <option [value]="'Executive'">Executive</option>
       <option [value]="'Senate'">Senate</option>
@@ -35,25 +62,42 @@
 
   <label for="visibility">Visibility</label>
   <select class="form-control" [(ngModel)]="job.visibility">
-    <option selected [value]="true"> Visible</option>
-    <option [value]="false"> Hidden</option>
+    <option selected [value]="true">Visible</option>
+    <option [value]="false">Hidden</option>
   </select>
 
   <label for="featured">Featured</label>
   <select class="form-control" [(ngModel)]="job.featured">
-    <option selected [value]="false"> Not featured</option>
-    <option [value]="true"> Featured</option>
+    <option selected [value]="false">Not featured</option>
+    <option [value]="true">Featured</option>
   </select>
 
   <label for="imgLink">Image Link</label>
-  <input type="text" class="form-control" id="imgLink" required [(ngModel)]="job.image" name="imgLink">
+  <input
+    type="text"
+    class="form-control"
+    id="imgLink"
+    required
+    [(ngModel)]="job.image"
+    name="imgLink"
+  />
 
   <label for="imgTest">Current Image:</label>
-  <img src="{{job.image}}" name="imgTest" style="height:100px; width: auto;" />
+  <img
+    src="{{ job.image }}"
+    name="imgTest"
+    style="height: 100px; width: auto"
+  />
 
-  <div *ngFor="let question of job.questions; let i = index;" class="form-group">
-    <label for="{{i}}">Question {{i + 1}}</label>
-    <textarea type="text" class="form-control" required [(ngModel)]="job.questions[i].question" name="{{i}}"></textarea>
+  <div *ngFor="let question of job.questions; let i = index" class="form-group">
+    <label for="{{ i }}">Question {{ i + 1 }}</label>
+    <textarea
+      type="text"
+      class="form-control"
+      required
+      [(ngModel)]="job.questions[i].question"
+      name="{{ i }}"
+    ></textarea>
   </div>
 
   <button class="btn btn-success" (click)="submitForm()">Submit</button>

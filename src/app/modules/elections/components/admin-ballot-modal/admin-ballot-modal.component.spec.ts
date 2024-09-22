@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from "@angular/core/testing";
 
-import { AdminBallotModalComponent } from './admin-ballot-modal.component';
+import { AdminBallotModalComponent } from "./admin-ballot-modal.component";
 
-describe('AdminBallotModalComponent', () => {
+describe("AdminBallotModalComponent", () => {
   let component: AdminBallotModalComponent;
   let fixture: ComponentFixture<AdminBallotModalComponent>;
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ AdminBallotModalComponent ]
-    })
-    .compileComponents();
+      declarations: [AdminBallotModalComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe('AdminBallotModalComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it("should create", () => {
     expect(component).toBeTruthy();
   });
 });

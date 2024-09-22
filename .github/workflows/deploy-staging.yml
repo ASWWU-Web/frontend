@@ -1,0 +1,28 @@
+name: Deploy to staging
+
+on:
+  workflow_run:
+    workflows: [Build]
+    types: [completed]
+    branches-ignore: [main]
+
+concurrency:
+  group: staging
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: self-hosted
+    steps:
+      - name: Download build artifact from triggered workflow
+        uses: dawidd6/action-download-artifact@v6
+        with:
+          run_id: ${{ github.event.workflow_run.id }}
+          name: frontend-artifact
+          path: /tmp/frontend-artifact-staging
+          search_artifacts: true
+      - name: Deploy to staging
+        run: |
+          cd /tmp/frontend-artifact-staging/frontend-payload
+          ./server_deploy.sh ${{ github.event.repository.name }} /tmp/frontend-artifact/frontend-payload-staging staging
